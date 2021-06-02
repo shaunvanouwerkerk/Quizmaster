@@ -1,9 +1,12 @@
 package view;
 
 import database.mysql.DBAccess;
+import database.mysql.UserDAO;
 import javafx.application.Application;
 import javafx.stage.Stage;
-import database.mysql.DBAccess;
+import model.User;
+
+import java.util.ArrayList;
 
 
 public class Main extends Application {
@@ -14,7 +17,7 @@ public class Main extends Application {
 
     public static DBAccess getDBaccess() {
         if (dbAccess == null) {
-            dbAccess = new DBAccess("Klanten", "userKlanten", "pwKlanten");
+            dbAccess = new DBAccess("quizzydraw", "quizuser", "quizuserPW");
         }
         return dbAccess;
     }
@@ -22,6 +25,14 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         launch(args);
+
+//        DBAccess dbAccess1 = getDBaccess();
+//        dbAccess1.openConnection();
+//
+//
+//        UserDAO userDAO = new UserDAO(dbAccess1);
+//        ArrayList<User> users = userDAO.getUsers();
+//        System.out.println(users);
     }
 
     @Override
