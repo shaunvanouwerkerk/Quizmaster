@@ -31,7 +31,7 @@ CREATE TABLE `role` (
   roleName varchar(45) NOT NULL,
   PRIMARY KEY (roleName)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
+-- /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `role`
@@ -54,7 +54,7 @@ CREATE TABLE `user` (
   KEY fk_Gebruiker_Rol1_idx (roleName),
   CONSTRAINT fk_Gebruiker_Rol1 FOREIGN KEY (roleName) REFERENCES `role` (roleName) ON DELETE RESTRICT ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
+-- /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `user`
@@ -75,7 +75,7 @@ CREATE TABLE course (
   KEY fk_Cursus_Gebruiker1_idx (idCoordinatorCourse),
   CONSTRAINT fk_Cursus_Gebruiker1 FOREIGN KEY (idCoordinatorCourse) REFERENCES `user` (idUser) ON DELETE RESTRICT ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
+-- /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `course`
@@ -96,7 +96,7 @@ CREATE TABLE `group` (
   CONSTRAINT fk_Group_Course1 FOREIGN KEY (idCourse) REFERENCES course (idCourse) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT fk_Group_Gebruiker1 FOREIGN KEY (idCoordinatorGroup) REFERENCES `user` (idUser) ON DELETE RESTRICT ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
+-- /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `group`
@@ -119,7 +119,7 @@ CREATE TABLE question (
   KEY fk_Vraag_Quiz1_idx (idQuiz),
   CONSTRAINT fk_Vraag_Quiz1 FOREIGN KEY (idQuiz) REFERENCES quiz (idQuiz) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
+-- /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `question`
@@ -139,7 +139,7 @@ CREATE TABLE quiz (
   KEY fk_Quiz_Course1_idx (idCourse),
   CONSTRAINT fk_Quiz_Course1 FOREIGN KEY (idCourse) REFERENCES course (idCourse) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
+-- /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `quiz`
@@ -159,7 +159,7 @@ CREATE TABLE studentincourse (
   CONSTRAINT fk_Course_has_User_Course1 FOREIGN KEY (idCourse) REFERENCES course (idCourse) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT fk_Course_has_User_User1 FOREIGN KEY (idStudent) REFERENCES `user` (idUser) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
+-- /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `studentincourse`
@@ -181,7 +181,7 @@ CREATE TABLE usermakesquiz (
   CONSTRAINT fk_Quiz_has_Gebruiker_Gebruiker1 FOREIGN KEY (idGebruiker) REFERENCES `user` (idUser) ON DELETE RESTRICT ON UPDATE CASCADE,
   CONSTRAINT fk_Quiz_has_Gebruiker_Quiz1 FOREIGN KEY (idQuiz) REFERENCES quiz (idQuiz) ON DELETE RESTRICT ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
+-- /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `usermakesquiz`
