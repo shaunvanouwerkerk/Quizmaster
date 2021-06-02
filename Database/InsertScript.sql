@@ -125,7 +125,7 @@ CREATE TABLE `role` (
 -- Dumping data for table `role`
 --
 
-INSERT INTO role VALUES ('admin'),('coordinator'),('docent'),('student'),('techbeheer');
+INSERT INTO role VALUES ('admin'),('coordinator'),('docent'),('student'),('technischBeheerder');
 
 --
 -- Table structure for table `studentincourse`
@@ -166,14 +166,14 @@ CREATE TABLE `user` (
   UNIQUE KEY name_UNIQUE (`name`),
   KEY fk_Gebruiker_Rol1_idx (roleName),
   CONSTRAINT fk_Gebruiker_Rol1 FOREIGN KEY (roleName) REFERENCES `role` (roleName) ON DELETE RESTRICT ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO user VALUES (1,'s','s','student'),(2,'d','d','docent'),(3,'a','a','admin'),(4,'t','t','techbeheer'),(5,'c','c','coordinator');
+INSERT INTO user VALUES (1,'s1','s1','student'),(2,'d1','d1','docent'),(3,'a1','a1','admin'),(4,'t1','t1','technischBeheerder'),(5,'c1','c1','coordinator'),(6,'s2','s2','student'),(7,'s3','s3','student'),(8,'s4','s4','student'),(9,'s5','s5','student'),(10,'d2','d2','docent'),(11,'d3','d3','docent'),(12,'d4','d4','docent'),(13,'d5','d5','docent'),(14,'a2','a2','admin'),(15,'a3','a3','admin'),(16,'a4','a4','admin'),(17,'a5','a5','admin'),(18,'t2','t2','technischBeheerder'),(19,'t3','t3','technischBeheerder'),(20,'t4','t4','technischBeheerder'),(21,'t5','t5','technischBeheerder'),(22,'c2','c2','coordinator'),(23,'c3','c3','coordinator'),(24,'c4','c4','coordinator'),(25,'c5','c5','coordinator');
 
 --
 -- Table structure for table `usermakesquiz`
