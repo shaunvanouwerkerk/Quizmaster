@@ -33,6 +33,7 @@ CREATE TABLE IF NOT EXISTS `QuizzyDraw`.`User` (
   `roleName` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`idUser`),
   INDEX `fk_Gebruiker_Rol1_idx` (`roleName` ASC) VISIBLE,
+  UNIQUE INDEX `name_UNIQUE` (`name` ASC) VISIBLE,
   CONSTRAINT `fk_Gebruiker_Rol1`
     FOREIGN KEY (`roleName`)
     REFERENCES `QuizzyDraw`.`Role` (`roleName`)
@@ -45,12 +46,13 @@ ENGINE = InnoDB;
 -- Table `QuizzyDraw`.`Course`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `QuizzyDraw`.`Course` (
+  `idCourse` INT NOT NULL,
   `nameCourse` VARCHAR(45) NOT NULL,
-  `idCoordinator` INT NOT NULL,
-  PRIMARY KEY (`nameCourse`),
-  INDEX `fk_Cursus_Gebruiker1_idx` (`idCoordinator` ASC) VISIBLE,
+  `idCoordinatorCourse` INT NOT NULL,
+  INDEX `fk_Cursus_Gebruiker1_idx` (`idCoordinatorCourse` ASC) VISIBLE,
+  PRIMARY KEY (`idCourse`),
   CONSTRAINT `fk_Cursus_Gebruiker1`
-    FOREIGN KEY (`idCoordinator`)
+    FOREIGN KEY (`idCoordinatorCourse`)
     REFERENCES `QuizzyDraw`.`User` (`idUser`)
     ON DELETE RESTRICT
     ON UPDATE CASCADE)
@@ -62,14 +64,14 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `QuizzyDraw`.`Quiz` (
   `idQuiz` INT NOT NULL,
-  `nameCourse` VARCHAR(45) NOT NULL,
+  `idCourse` INT NOT NULL,
   `nameQuiz` VARCHAR(45) NOT NULL,
   `succesDefinition` DECIMAL(5,2) NOT NULL,
-  PRIMARY KEY (`idQuiz`, `nameCourse`),
-  INDEX `fk_Quiz_Cursus1_idx` (`nameCourse` ASC) VISIBLE,
-  CONSTRAINT `fk_Quiz_Cursus1`
-    FOREIGN KEY (`nameCourse`)
-    REFERENCES `QuizzyDraw`.`Course` (`nameCourse`)
+  PRIMARY KEY (`idQuiz`, `idCourse`),
+  INDEX `fk_Quiz_Course1_idx` (`idCourse` ASC) VISIBLE,
+  CONSTRAINT `fk_Quiz_Course1`
+    FOREIGN KEY (`idCourse`)
+    REFERENCES `QuizzyDraw`.`Course` (`idCourse`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
@@ -79,14 +81,21 @@ ENGINE = InnoDB;
 -- Table `QuizzyDraw`.`Group`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `QuizzyDraw`.`Group` (
-  `groupName` VARCHAR(45) NOT NULL,
-  `idCoordinator` INT NOT NULL,
-  PRIMARY KEY (`groupName`),
-  INDEX `fk_Group_Gebruiker1_idx` (`idCoordinator` ASC) VISIBLE,
+  `idGroup` INT NOT NULL,
+  `idCoordinatorGroup` INT NOT NULL,
+  `idCourse` INT NOT NULL,
+  INDEX `fk_Group_Gebruiker1_idx` (`idCoordinatorGroup` ASC) VISIBLE,
+  INDEX `fk_Group_Course1_idx` (`idCourse` ASC) VISIBLE,
+  PRIMARY KEY (`idGroup`),
   CONSTRAINT `fk_Group_Gebruiker1`
-    FOREIGN KEY (`idCoordinator`)
+    FOREIGN KEY (`idCoordinatorGroup`)
     REFERENCES `QuizzyDraw`.`User` (`idUser`)
     ON DELETE RESTRICT
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_Group_Course1`
+    FOREIGN KEY (`idCourse`)
+    REFERENCES `QuizzyDraw`.`Course` (`idCourse`)
+    ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
@@ -96,8 +105,12 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `QuizzyDraw`.`Question` (
   `idQuestion` INT NOT NULL,
-  `questionString` VARCHAR(45) NOT NULL,
   `idQuiz` INT NOT NULL,
+  `questionString` VARCHAR(45) NOT NULL,
+  `answerA` VARCHAR(45) NOT NULL,
+  `answerB` VARCHAR(45) NOT NULL,
+  `answerC` VARCHAR(45) NOT NULL,
+  `answerD` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`idQuestion`, `idQuiz`),
   INDEX `fk_Vraag_Quiz1_idx` (`idQuiz` ASC) VISIBLE,
   CONSTRAINT `fk_Vraag_Quiz1`
@@ -109,65 +122,48 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `QuizzyDraw`.`Answer`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `QuizzyDraw`.`Answer` (
-  `idQuestion` INT NOT NULL,
-  `idAnswer` INT NOT NULL,
-  `answer` VARCHAR(45) NOT NULL,
-  `correct` TINYINT(1) NOT NULL,
-  PRIMARY KEY (`idQuestion`, `idAnswer`),
-  CONSTRAINT `fk_table1_Vraag`
-    FOREIGN KEY (`idQuestion`)
-    REFERENCES `QuizzyDraw`.`Question` (`idQuestion`)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `QuizzyDraw`.`GroepWithStudent`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `QuizzyDraw`.`GroepWithStudent` (
-  `idUser` INT NOT NULL,
-  `groupName` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`idUser`, `groupName`),
-  INDEX `fk_Gebruiker_has_Group_Group1_idx` (`groupName` ASC) VISIBLE,
-  INDEX `fk_Gebruiker_has_Group_Gebruiker1_idx` (`idUser` ASC) VISIBLE,
-  CONSTRAINT `fk_Gebruiker_has_Group_Gebruiker1`
-    FOREIGN KEY (`idUser`)
-    REFERENCES `QuizzyDraw`.`User` (`idUser`)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE,
-  CONSTRAINT `fk_Gebruiker_has_Group_Group1`
-    FOREIGN KEY (`groupName`)
-    REFERENCES `QuizzyDraw`.`Group` (`groupName`)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `QuizzyDraw`.`UserMakesQuiz`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `QuizzyDraw`.`UserMakesQuiz` (
-  `afnameNummerTotaalSysteem` INT NOT NULL AUTO_INCREMENT,
+  `takeTestNumber` INT NOT NULL AUTO_INCREMENT,
   `idQuiz` INT NOT NULL,
-  `naamCursus` VARCHAR(45) NOT NULL,
   `idGebruiker` INT NOT NULL,
-  `result` DOUBLE NOT NULL,
-  PRIMARY KEY (`afnameNummerTotaalSysteem`),
+  `numberAnswersRight` INT NOT NULL,
+  `dateQuiz` DATE NOT NULL,
+  PRIMARY KEY (`takeTestNumber`),
   INDEX `fk_Quiz_has_Gebruiker_Gebruiker1_idx` (`idGebruiker` ASC) VISIBLE,
-  INDEX `fk_Quiz_has_Gebruiker_Quiz1_idx` (`idQuiz` ASC, `naamCursus` ASC) VISIBLE,
+  INDEX `fk_Quiz_has_Gebruiker_Quiz1_idx` (`idQuiz` ASC) VISIBLE,
   CONSTRAINT `fk_Quiz_has_Gebruiker_Quiz1`
-    FOREIGN KEY (`idQuiz` , `naamCursus`)
-    REFERENCES `QuizzyDraw`.`Quiz` (`idQuiz` , `nameCourse`)
+    FOREIGN KEY (`idQuiz`)
+    REFERENCES `QuizzyDraw`.`Quiz` (`idQuiz`)
     ON DELETE RESTRICT
     ON UPDATE CASCADE,
   CONSTRAINT `fk_Quiz_has_Gebruiker_Gebruiker1`
     FOREIGN KEY (`idGebruiker`)
     REFERENCES `QuizzyDraw`.`User` (`idUser`)
     ON DELETE RESTRICT
+    ON UPDATE CASCADE)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `QuizzyDraw`.`StudentInCourse`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `QuizzyDraw`.`StudentInCourse` (
+  `idCourse` INT NOT NULL,
+  `idStudent` INT NOT NULL,
+  PRIMARY KEY (`idCourse`, `idStudent`),
+  INDEX `fk_Course_has_User_User1_idx` (`idStudent` ASC) VISIBLE,
+  INDEX `fk_Course_has_User_Course1_idx` (`idCourse` ASC) VISIBLE,
+  CONSTRAINT `fk_Course_has_User_Course1`
+    FOREIGN KEY (`idCourse`)
+    REFERENCES `QuizzyDraw`.`Course` (`idCourse`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_Course_has_User_User1`
+    FOREIGN KEY (`idStudent`)
+    REFERENCES `QuizzyDraw`.`User` (`idUser`)
+    ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
