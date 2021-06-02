@@ -18,6 +18,10 @@ public class User {
         this(0, password, username, roleName);
     }
 
+    public User() {
+        this("", "", "");
+    }
+
     @Override
     public String toString() {
         StringBuilder resultString = new StringBuilder("");

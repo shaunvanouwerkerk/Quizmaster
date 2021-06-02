@@ -23,21 +23,27 @@ public class LoginController {
 
     public LoginController() {
         this.dbAccess = Main.getDBaccess();
-        dbAccess.openConnection();
         this.userDAO = new UserDAO(dbAccess);
     }
 
     public void doLogin(ActionEvent actionEvent) {
         ArrayList<User> allUsers = userDAO.getUsers();
+        User userDb = null;
         for (User user: allUsers) {
             if(user.getPassword().equals(passwordField.getText()) && user.getUsername().equals(nameTextField.getText())) {
                 System.out.println("lekker bezig pik");
-                break;
-            } else {
-                Alert foutmelding = new Alert(Alert.AlertType.ERROR);
-                foutmelding.setContentText("Je username en/of password zijn incorrect.");
-                foutmelding.show();
+                userDb = new User(user.getIdUser(), user.getPassword(), user.getUsername(), user.getRoleName());
             }
+        }
+        if(!(userDb == null)) {
+            Alert loginSuccessfull = new Alert(Alert.AlertType.INFORMATION);
+            loginSuccessfull.setContentText("Login succesvol! Lekker bezig pik");
+            loginSuccessfull.show();
+            Main.getSceneManager().showWelcomeScene();
+        } else {
+            Alert foutmelding = new Alert(Alert.AlertType.ERROR);
+            foutmelding.setContentText("Je username en/of password zijn incorrect.");
+            foutmelding.show();
         }
     }
 

@@ -68,6 +68,7 @@ public class DBAccess {
     }
 
     public Connection getConnection()  {
+        openConnection();
         return connection;
     }
 }
