@@ -13,13 +13,60 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
+-- -----------------------------------------------------
+-- Schema QuizzyDraw
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema QuizzyDraw
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `QuizzyDraw` DEFAULT CHARACTER SET utf8 ;
+USE `QuizzyDraw` ;
+
+--
+-- Table structure for table `role`
+--
+
+CREATE TABLE `role` (
+  roleName varchar(45) NOT NULL,
+  PRIMARY KEY (roleName)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `role`
+--
+
+INSERT INTO role VALUES ('admin'),('coordinator'),('docent'),('student'),('technischBeheerder');
+
+
+--
+-- Table structure for table `user`
+--
+
+CREATE TABLE `user` (
+  idUser int NOT NULL AUTO_INCREMENT,
+  `password` varchar(45) NOT NULL,
+  `name` varchar(45) NOT NULL,
+  roleName varchar(45) NOT NULL,
+  PRIMARY KEY (idUser),
+  UNIQUE KEY name_UNIQUE (`name`),
+  KEY fk_Gebruiker_Rol1_idx (roleName),
+  CONSTRAINT fk_Gebruiker_Rol1 FOREIGN KEY (roleName) REFERENCES `role` (roleName) ON DELETE RESTRICT ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO user VALUES (1,'s1','s1','student'),(2,'d1','d1','docent'),(3,'a1','a1','admin'),(4,'t1','t1','technischBeheerder'),(5,'c1','c1','coordinator'),(6,'s2','s2','student'),(7,'s3','s3','student'),(8,'s4','s4','student'),(9,'s5','s5','student'),(10,'d2','d2','docent'),(11,'d3','d3','docent'),(12,'d4','d4','docent'),(13,'d5','d5','docent'),(14,'a2','a2','admin'),(15,'a3','a3','admin'),(16,'a4','a4','admin'),(17,'a5','a5','admin'),(18,'t2','t2','technischBeheerder'),(19,'t3','t3','technischBeheerder'),(20,'t4','t4','technischBeheerder'),(21,'t5','t5','technischBeheerder'),(22,'c2','c2','coordinator'),(23,'c3','c3','coordinator'),(24,'c4','c4','coordinator'),(25,'c5','c5','coordinator');
+
+
+
 --
 -- Table structure for table `course`
 --
-
-DROP TABLE IF EXISTS course;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE course (
   idCourse int NOT NULL,
   nameCourse varchar(45) NOT NULL,
@@ -39,9 +86,6 @@ CREATE TABLE course (
 -- Table structure for table `group`
 --
 
-DROP TABLE IF EXISTS group;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `group` (
   idGroup int NOT NULL,
   idCoordinatorGroup int NOT NULL,
@@ -63,9 +107,6 @@ CREATE TABLE `group` (
 -- Table structure for table `question`
 --
 
-DROP TABLE IF EXISTS question;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE question (
   idQuestion int NOT NULL,
   idQuiz int NOT NULL,
@@ -89,9 +130,6 @@ CREATE TABLE question (
 -- Table structure for table `quiz`
 --
 
-DROP TABLE IF EXISTS quiz;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE quiz (
   idQuiz int NOT NULL,
   idCourse int NOT NULL,
@@ -107,33 +145,11 @@ CREATE TABLE quiz (
 -- Dumping data for table `quiz`
 --
 
-
---
--- Table structure for table `role`
---
-
-DROP TABLE IF EXISTS role;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `role` (
-  roleName varchar(45) NOT NULL,
-  PRIMARY KEY (roleName)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `role`
---
-
-INSERT INTO role VALUES ('admin'),('coordinator'),('docent'),('student'),('technischBeheerder');
-
 --
 -- Table structure for table `studentincourse`
 --
 
-DROP TABLE IF EXISTS studentincourse;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+
 CREATE TABLE studentincourse (
   idCourse int NOT NULL,
   idStudent int NOT NULL,
@@ -149,39 +165,10 @@ CREATE TABLE studentincourse (
 -- Dumping data for table `studentincourse`
 --
 
-
---
--- Table structure for table `user`
---
-
-DROP TABLE IF EXISTS user;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `user` (
-  idUser int NOT NULL AUTO_INCREMENT,
-  `password` varchar(45) NOT NULL,
-  `name` varchar(45) NOT NULL,
-  roleName varchar(45) NOT NULL,
-  PRIMARY KEY (idUser),
-  UNIQUE KEY name_UNIQUE (`name`),
-  KEY fk_Gebruiker_Rol1_idx (roleName),
-  CONSTRAINT fk_Gebruiker_Rol1 FOREIGN KEY (roleName) REFERENCES `role` (roleName) ON DELETE RESTRICT ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `user`
---
-
-INSERT INTO user VALUES (1,'s1','s1','student'),(2,'d1','d1','docent'),(3,'a1','a1','admin'),(4,'t1','t1','technischBeheerder'),(5,'c1','c1','coordinator'),(6,'s2','s2','student'),(7,'s3','s3','student'),(8,'s4','s4','student'),(9,'s5','s5','student'),(10,'d2','d2','docent'),(11,'d3','d3','docent'),(12,'d4','d4','docent'),(13,'d5','d5','docent'),(14,'a2','a2','admin'),(15,'a3','a3','admin'),(16,'a4','a4','admin'),(17,'a5','a5','admin'),(18,'t2','t2','technischBeheerder'),(19,'t3','t3','technischBeheerder'),(20,'t4','t4','technischBeheerder'),(21,'t5','t5','technischBeheerder'),(22,'c2','c2','coordinator'),(23,'c3','c3','coordinator'),(24,'c4','c4','coordinator'),(25,'c5','c5','coordinator');
-
 --
 -- Table structure for table `usermakesquiz`
 --
 
-DROP TABLE IF EXISTS usermakesquiz;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE usermakesquiz (
   takeTestNumber int NOT NULL AUTO_INCREMENT,
   idQuiz int NOT NULL,
