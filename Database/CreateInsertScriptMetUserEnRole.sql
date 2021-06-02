@@ -197,3 +197,8 @@ CREATE TABLE usermakesquiz (
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed
+
+-- Create User & Grant access
+CREATE USER 'quizzyuser'@'localhost' IDENTIFIED BY 'quizzyuserPW';
+GRANT ALL PRIVILEGES ON quizzydraw .* TO 'quizzyuser'@'localhost';
+
