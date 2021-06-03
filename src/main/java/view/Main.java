@@ -32,9 +32,7 @@ public class Main extends Application {
     public static void main(String[] args) {
         launch(args);
 
-        User user = new User("penis", "De Cock", "student");
-        UserDAO userDAO = new UserDAO(getDBaccess());
-        userDAO.storeOne(user);
+
 
 //        DBAccess dbAccess1 = getDBaccess();
 //        dbAccess1.openConnection();
