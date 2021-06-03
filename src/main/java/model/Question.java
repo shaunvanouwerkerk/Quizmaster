@@ -18,6 +18,7 @@ public class Question {
                      String answerA, String answerB, String answerC, String answerD) {
         this.idQuestion = idQuestion;
         this.idQuiz = idQuiz;
+        this.questionString = questionString;
         this.answerA = answerA;
         this.answerB = answerB;
         this.answerC = answerC;
