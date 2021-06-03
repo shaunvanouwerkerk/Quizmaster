@@ -31,16 +31,6 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         launch(args);
-
-
-
-//        DBAccess dbAccess1 = getDBaccess();
-//        dbAccess1.openConnection();
-//
-//
-//        UserDAO userDAO = new UserDAO(dbAccess1);
-//        ArrayList<User> users = userDAO.getUsers();
-//        System.out.println(users);
     }
 
     @Override
