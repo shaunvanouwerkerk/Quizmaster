@@ -17,7 +17,7 @@ public class Main extends Application {
     public static User loggedInUser = null;
     public static final String STUDENT_ROL = "student";
     public static final String ADMIN_ROL = "admin";
-    public static final String TECHBEHEER_ROL = "technischbeheerder";
+    public static final String TECHBEHEER_ROL = "technischBeheerder";
     public static final String COORDINATOR_ROL = "coordinator";
     public static final String DOCENT_ROL = "docent";
 

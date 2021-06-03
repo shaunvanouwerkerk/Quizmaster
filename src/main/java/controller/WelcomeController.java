@@ -86,8 +86,20 @@ public class  WelcomeController {
 
     public void setup() {
         setLabels();
-        System.out.println(Main.loggedInUser.getIdUser());
-        setupStudent();
+        switch (Main.loggedInUser.getRoleName()) {
+            case Main.STUDENT_ROL: setupStudent();
+            break;
+            case Main.ADMIN_ROL: setupAdmin();
+            break;
+            case Main.COORDINATOR_ROL:setupCoordinator();
+            break;
+            case Main.TECHBEHEER_ROL:setupTechBeheer();
+            break;
+            case Main.DOCENT_ROL: setupDocent();
+            break;
+            default: Main.getSceneManager().showLogoutScene();
+
+        }
     }
 
 
