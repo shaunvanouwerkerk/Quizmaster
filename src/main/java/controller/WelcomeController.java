@@ -57,8 +57,8 @@ public class  WelcomeController {
         setupStudent();
     }
 
-    public void doLogout() {
-
+    public void doLogout(ActionEvent event) {
+        Main.getSceneManager().showLogoutScene();
     }
 
 }
