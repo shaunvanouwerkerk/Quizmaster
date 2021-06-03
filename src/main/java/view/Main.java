@@ -1,15 +1,44 @@
 package view;
 
+import database.mysql.DBAccess;
+import database.mysql.UserDAO;
 import javafx.application.Application;
 import javafx.stage.Stage;
+import model.User;
+
+import java.util.ArrayList;
+
 
 public class Main extends Application {
 
     private static SceneManager sceneManager = null;
     private static Stage primaryStage = null;
+    private static DBAccess dbAccess = null;
+    public static User loggedInUser = null;
+    public static final String STUDENT_ROL = "student";
+    public static final String ADMIN_ROL = "admin";
+    public static final String TECHBEHEER_ROL = "technischbeheerder";
+    public static final String COORDINATOR_ROL = "coordinator";
+    public static final String DOCENT_ROL = "docent";
+
+    public static DBAccess getDBaccess() {
+        if (dbAccess == null) {
+            dbAccess = new DBAccess("quizzydraw", "quizuser", "quizuserPW");
+        }
+        return dbAccess;
+    }
+
 
     public static void main(String[] args) {
         launch(args);
+
+//        DBAccess dbAccess1 = getDBaccess();
+//        dbAccess1.openConnection();
+//
+//
+//        UserDAO userDAO = new UserDAO(dbAccess1);
+//        ArrayList<User> users = userDAO.getUsers();
+//        System.out.println(users);
     }
 
     @Override
@@ -30,4 +59,8 @@ public class Main extends Application {
     public static Stage getPrimaryStage() {
         return primaryStage;
     }
+
+
+
+
 }

@@ -24,6 +24,7 @@ public class DBAccess {
         this.databaseName = databaseName;
         this.mainUser = mainUser;
         this.mainUserPassword = mainUserPassword;
+        loadDriver();
     }
 
     /**
@@ -56,7 +57,28 @@ public class DBAccess {
         }
     }
 
+    private void loadDriver() {
+        try {
+            System.out.print("Load driver... ");
+            Class.forName(MYSQL_DRIVER); // Explicitly load the JDBC-driver.
+            System.out.println("Loading driver succesful");
+        } catch (ClassNotFoundException driverFout) {
+            System.out.println("Driver niet gevonden");
+        }
+    }
+
     public Connection getConnection()  {
+        if (connection == null) {
+            this.openConnection();
+        }
+        try {
+            if (connection.isClosed()) {
+                this.openConnection();
+            }
+        }
+        catch (SQLException sqlFout) {
+            System.out.println("connection fout");
+        }
         return connection;
     }
 }
