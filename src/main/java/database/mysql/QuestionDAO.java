@@ -1,4 +1,7 @@
 package database.mysql;
+/*
+ * @Author: Nijad Nazarli
+ * */
 
 import model.Question;
 
