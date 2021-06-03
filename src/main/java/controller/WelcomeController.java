@@ -32,6 +32,7 @@ public class  WelcomeController {
 
         item1.setOnAction(event -> Main.getSceneManager().showStudentSignInOutScene());
         item2.setOnAction(event -> Main.getSceneManager().showSelectQuizForStudent());
+
         taskMenuButton.getItems().add(item1);
         taskMenuButton.getItems().add(item2);
     }
@@ -42,36 +43,43 @@ public class  WelcomeController {
 
         item1.setOnAction(event -> Main.getSceneManager().showStudentSignInOutScene());
         item2.setOnAction(event -> Main.getSceneManager().showSelectQuizForStudent());
+
         taskMenuButton.getItems().add(item1);
         taskMenuButton.getItems().add(item2);
     }
 
     public void setupAdmin() {
         MenuItem item1 = new MenuItem("Beheer groepen");
-        MenuItem item2 = new MenuItem("Beheer gebruikers");
+        MenuItem item2 = new MenuItem("Beheer cursussen");
 
-        item1.setOnAction(event -> Main.getSceneManager().showStudentSignInOutScene());
-        item2.setOnAction(event -> Main.getSceneManager().showManageUserScene());
+
+        item1.setOnAction(event -> Main.getSceneManager().showManageGroupsScene());
+        item2.setOnAction(event -> Main.getSceneManager().showManageCoursesScene());
+
         taskMenuButton.getItems().add(item1);
         taskMenuButton.getItems().add(item2);
+
     }
 
     public void setupTechBeheer() {
-        MenuItem item1 = new MenuItem("In- en Uitschrijven cursus");
-        MenuItem item2 = new MenuItem("Kies een quiz");
+        MenuItem item1 = new MenuItem("Beheer gebruikers");
+        MenuItem item2 = new MenuItem("Maak/wijzig gebruiker");
 
-        item1.setOnAction(event -> Main.getSceneManager().showStudentSignInOutScene());
-        item2.setOnAction(event -> Main.getSceneManager().showSelectQuizForStudent());
+        item1.setOnAction(event -> Main.getSceneManager().showManageUserScene());
+        item2.setOnAction(event -> Main.getSceneManager().showCreateUpdateUserScene(Main.loggedInUser));
+
         taskMenuButton.getItems().add(item1);
         taskMenuButton.getItems().add(item2);
     }
 
     public void setupCoordinator() {
-        MenuItem item1 = new MenuItem("In- en Uitschrijven cursus");
-        MenuItem item2 = new MenuItem("Kies een quiz");
+        MenuItem item1 = new MenuItem("Beheer Quizzen");
+        MenuItem item2 = new MenuItem("Beheer vragen");
 
-        item1.setOnAction(event -> Main.getSceneManager().showStudentSignInOutScene());
-        item2.setOnAction(event -> Main.getSceneManager().showSelectQuizForStudent());
+
+        item1.setOnAction(event -> Main.getSceneManager().showManageQuizScene());
+        item2.setOnAction(event -> Main.getSceneManager().showManageQuestionsScene());
+
         taskMenuButton.getItems().add(item1);
         taskMenuButton.getItems().add(item2);
     }
