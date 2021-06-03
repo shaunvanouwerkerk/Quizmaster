@@ -6,6 +6,8 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import model.User;
 import view.Main;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 
 public class WelcomeController {
 
@@ -16,31 +18,29 @@ public class WelcomeController {
     @FXML
     private MenuButton taskMenuButton;
 
-    public WelcomeController(User user) {
-        this.userJava = user;
-    }
 
-    public void setUserJavaUser(User user) {
-        userJava = user;
-        System.out.println(userJava.getRoleName());
-        System.out.println(welcomeLabel);
-
-//        switch (userJava.getRoleName()) {
-//            case "student":
-//                setupStudent();
-//                setLabels();
-//                welcomeLabel.setText("Welkom " + userJava.getRoleName() + " " + userJava.getUsername());
+//    public void setUserJavaUser(User user) {
+//        this.userJava = user;
+//        System.out.println(userJava.getRoleName());
+//        setLabels(userJava);
 //
-//        }
-
-    }
+////        switch (userJava.getRoleName()) {
+////            case "student":
+////                setupStudent();
+////                setLabels();
+////                welcomeLabel.setText("Welkom " + userJava.getRoleName() + " " + userJava.getUsername());
+////
+////        }
+//
+//    }
 
     public void setLabels() {
-        welcomeLabel.setText("Welkom " + userJava.getRoleName() + " " + userJava.getUsername());
+
+        welcomeLabel.setText("Welkom " + Main.loggedInUser.getRoleName() + " " + Main.loggedInUser.getUsername());
     }
 
     public void setupStudent() {
-        setLabels();
+
         MenuItem item1 = new MenuItem("In- en Uitschrijven cursus");
         MenuItem item2 = new MenuItem("Kies een quiz");
 
@@ -48,11 +48,16 @@ public class WelcomeController {
         item2.setOnAction(event -> Main.getSceneManager().showSelectQuizForStudent());
         taskMenuButton.getItems().add(item1);
         taskMenuButton.getItems().add(item2);
+
     }
 
     public void setup() {
         setLabels();
+        System.out.println(Main.loggedInUser.getIdUser());
+        setupStudent();
     }
 
-    public void doLogout() {}
+    public void doLogout() {
+
+    }
 }

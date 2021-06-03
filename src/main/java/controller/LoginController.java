@@ -16,6 +16,7 @@ public class LoginController {
     private final DBAccess dbAccess;
     private final UserDAO userDAO;
 
+
     @FXML
     private TextField nameTextField;
     @FXML
@@ -28,22 +29,19 @@ public class LoginController {
 
     public void doLogin(ActionEvent actionEvent) {
         ArrayList<User> allUsers = userDAO.getUsers();
-        User userJava = null;
 
         for (User user: allUsers) {
             if(user.getPassword().equals(passwordField.getText()) && user.getUsername().equals(nameTextField.getText())) {
-                System.out.println("lekker bezig pik");
-                userJava = new User(user.getIdUser(), user.getPassword(), user.getUsername(), user.getRoleName());
+
+                Main.loggedInUser = new User(user.getIdUser(), user.getPassword(), user.getUsername(), user.getRoleName());
             }
         }
-        if(!(userJava == null)) {
+        if(!(Main.loggedInUser == null)) {
             Alert loginSuccessfull = new Alert(Alert.AlertType.INFORMATION);
-            loginSuccessfull.setContentText("Login succesvol! Lekker bezig pik");
+            loginSuccessfull.setContentText("Login succesvol! Lekker bezig!");
             loginSuccessfull.show();
 
             //geeft de ingelogte user door naar de welcomeController/welcomeScene
-            WelcomeController welcomeController = new WelcomeController(userJava);
-//            welcomeController.setUserJavaUser(userJava);
             Main.getSceneManager().showWelcomeScene();
         } else {
             Alert foutmelding = new Alert(Alert.AlertType.ERROR);

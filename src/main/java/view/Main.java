@@ -14,6 +14,12 @@ public class Main extends Application {
     private static SceneManager sceneManager = null;
     private static Stage primaryStage = null;
     private static DBAccess dbAccess = null;
+    public static User loggedInUser = null;
+    public static final String STUDENT_ROL = "student";
+    public static final String ADMIN_ROL = "admin";
+    public static final String TECHBEHEER_ROL = "technischbeheerder";
+    public static final String COORDINATOR_ROL = "coordinator";
+    public static final String DOCENT_ROL = "docent";
 
     public static DBAccess getDBaccess() {
         if (dbAccess == null) {
