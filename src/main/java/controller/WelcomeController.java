@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 
-public class WelcomeController {
+public class  WelcomeController {
 
     @FXML
     private Label welcomeLabel;
@@ -14,4 +14,6 @@ public class WelcomeController {
     public void setup() {}
 
     public void doLogout() {}
+
+
 }
