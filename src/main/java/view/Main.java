@@ -23,7 +23,7 @@ public class Main extends Application {
 
     public static DBAccess getDBaccess() {
         if (dbAccess == null) {
-            dbAccess = new DBAccess("quizzydraw", "quizuser", "quizuserPW");
+            dbAccess = new DBAccess("quizzydraw", "quizzyuser", "quizzyuserPW");
         }
         return dbAccess;
     }
