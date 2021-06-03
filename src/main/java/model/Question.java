@@ -30,12 +30,9 @@ public class Question {
         this.answerD = answerD;
     }
 
-    public Question (String questionString, String answerA, String answerB, String answerC, String answerD) {
-        this.questionString = questionString;
-        this.answerA = answerA;
-        this.answerB = answerB;
-        this.answerC = answerC;
-        this.answerD = answerD;
+    public Question (int idQuiz, String questionString,
+                     String answerA, String answerB, String answerC, String answerD) {
+        this(0, idQuiz, questionString, answerA, answerB, answerC, answerD);
     }
 
     // Methodes
@@ -58,7 +55,39 @@ public class Question {
         return resultString.toString();
     }
     // Getters en Setters
+    public void setIdQuiz(int idQuiz) {
+        this.idQuiz = idQuiz;
+    }
 
+    public void setIdQuestion(int idQuestion) {
+        this.idQuestion = idQuestion;
+    }
 
+    public int getIdQuestion() {
+        return idQuestion;
+    }
 
+    public int getIdQuiz() {
+        return idQuiz;
+    }
+
+    public String getQuestionString() {
+        return questionString;
+    }
+
+    public String getAnswerA() {
+        return answerA;
+    }
+
+    public String getAnswerB() {
+        return answerB;
+    }
+
+    public String getAnswerC() {
+        return answerC;
+    }
+
+    public String getAnswerD() {
+        return answerD;
+    }
 }
