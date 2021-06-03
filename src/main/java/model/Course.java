@@ -13,17 +13,10 @@ public class Course {
         this.idCoordinator = idCoordinator;
     }
 
-    public Course(int idCourse, String nameCourse) {
-        this(idCourse, nameCourse,0);
+    public Course(String nameCourse, int idCoordinator){
+        this(0,nameCourse,idCoordinator);
     }
 
-    public Course(int idCourse){
-        this(idCourse,"",0);
-    }
-
-    public Course(){
-        this(0,"",0);
-    }
 
 
     //getters/setters
@@ -49,5 +42,12 @@ public class Course {
 
     public void setIdCoordinator(int idCoordinator) {
         this.idCoordinator = idCoordinator;
+    }
+
+    //toString methode
+
+    @Override
+    public String toString() {
+        return String.format("Course id: %d\nCourse name: %s\nCourse Coordinator: %d\n",idCourse,nameCourse,idCoordinator);
     }
 }
