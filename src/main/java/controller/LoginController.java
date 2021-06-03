@@ -28,17 +28,22 @@ public class LoginController {
 
     public void doLogin(ActionEvent actionEvent) {
         ArrayList<User> allUsers = userDAO.getUsers();
-        User userDb = null;
+        User userJava = null;
+
         for (User user: allUsers) {
             if(user.getPassword().equals(passwordField.getText()) && user.getUsername().equals(nameTextField.getText())) {
                 System.out.println("lekker bezig pik");
-                userDb = new User(user.getIdUser(), user.getPassword(), user.getUsername(), user.getRoleName());
+                userJava = new User(user.getIdUser(), user.getPassword(), user.getUsername(), user.getRoleName());
             }
         }
-        if(!(userDb == null)) {
+        if(!(userJava == null)) {
             Alert loginSuccessfull = new Alert(Alert.AlertType.INFORMATION);
             loginSuccessfull.setContentText("Login succesvol! Lekker bezig pik");
             loginSuccessfull.show();
+
+            //geeft de ingelogte user door naar de welcomeController/welcomeScene
+            WelcomeController welcomeController = new WelcomeController(userJava);
+//            welcomeController.setUserJavaUser(userJava);
             Main.getSceneManager().showWelcomeScene();
         } else {
             Alert foutmelding = new Alert(Alert.AlertType.ERROR);
