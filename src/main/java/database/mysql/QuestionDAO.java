@@ -4,15 +4,14 @@ import model.Question;
 
 import java.util.ArrayList;
 
-public class QuestionDAO extends AbstractDAO implements GenericDAO{
+public class QuestionDAO extends AbstractDAO implements GenericDAO<Question>{
 
     public QuestionDAO (DBAccess dbAccess) {
         super(dbAccess);
     }
 
     @Override
-    public void storeOne(Object question) {
-
+    public void storeOne(Question question) {
     }
 
     @Override
@@ -21,7 +20,7 @@ public class QuestionDAO extends AbstractDAO implements GenericDAO{
     }
 
     @Override
-    public Object getOneById(int id) {
+    public Question getOneById(int id) {
         return null;
     }
 }
