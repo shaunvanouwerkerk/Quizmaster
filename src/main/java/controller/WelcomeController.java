@@ -19,20 +19,6 @@ public class  WelcomeController {
     private MenuButton taskMenuButton;
 
 
-//    public void setUserJavaUser(User user) {
-//        this.userJava = user;
-//        System.out.println(userJava.getRoleName());
-//        setLabels(userJava);
-//
-////        switch (userJava.getRoleName()) {
-////            case "student":
-////                setupStudent();
-////                setLabels();
-////                welcomeLabel.setText("Welkom " + userJava.getRoleName() + " " + userJava.getUsername());
-////
-////        }
-//
-//    }
 
     public void setLabels() {
 
@@ -48,7 +34,46 @@ public class  WelcomeController {
         item2.setOnAction(event -> Main.getSceneManager().showSelectQuizForStudent());
         taskMenuButton.getItems().add(item1);
         taskMenuButton.getItems().add(item2);
+    }
 
+    public void setupDocent() { // TODO: 03/06/2021 we moeten nog weten wat hier kan komen voor een docent.
+        MenuItem item1 = new MenuItem("[NOG INVULLEN]");
+        MenuItem item2 = new MenuItem("[NOG INVULLEN]");
+
+        item1.setOnAction(event -> Main.getSceneManager().showStudentSignInOutScene());
+        item2.setOnAction(event -> Main.getSceneManager().showSelectQuizForStudent());
+        taskMenuButton.getItems().add(item1);
+        taskMenuButton.getItems().add(item2);
+    }
+
+    public void setupAdmin() {
+        MenuItem item1 = new MenuItem("Beheer groepen");
+        MenuItem item2 = new MenuItem("Beheer gebruikers");
+
+        item1.setOnAction(event -> Main.getSceneManager().showStudentSignInOutScene());
+        item2.setOnAction(event -> Main.getSceneManager().showManageUserScene());
+        taskMenuButton.getItems().add(item1);
+        taskMenuButton.getItems().add(item2);
+    }
+
+    public void setupTechBeheer() {
+        MenuItem item1 = new MenuItem("In- en Uitschrijven cursus");
+        MenuItem item2 = new MenuItem("Kies een quiz");
+
+        item1.setOnAction(event -> Main.getSceneManager().showStudentSignInOutScene());
+        item2.setOnAction(event -> Main.getSceneManager().showSelectQuizForStudent());
+        taskMenuButton.getItems().add(item1);
+        taskMenuButton.getItems().add(item2);
+    }
+
+    public void setupCoordinator() {
+        MenuItem item1 = new MenuItem("In- en Uitschrijven cursus");
+        MenuItem item2 = new MenuItem("Kies een quiz");
+
+        item1.setOnAction(event -> Main.getSceneManager().showStudentSignInOutScene());
+        item2.setOnAction(event -> Main.getSceneManager().showSelectQuizForStudent());
+        taskMenuButton.getItems().add(item1);
+        taskMenuButton.getItems().add(item2);
     }
 
     public void setup() {
@@ -56,6 +81,8 @@ public class  WelcomeController {
         System.out.println(Main.loggedInUser.getIdUser());
         setupStudent();
     }
+
+
 
     public void doLogout(ActionEvent event) {
         Main.getSceneManager().showLogoutScene();
