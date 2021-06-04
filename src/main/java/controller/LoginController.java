@@ -28,7 +28,7 @@ public class LoginController {
     }
 
     public void doLogin(ActionEvent actionEvent) {
-        ArrayList<User> allUsers = userDAO.getUsers();
+        ArrayList<User> allUsers = userDAO.getAll();
 
         for (User user: allUsers) {
             if(user.getPassword().equals(passwordField.getText()) && user.getUsername().equals(nameTextField.getText())) {
@@ -44,9 +44,9 @@ public class LoginController {
             //geeft de ingelogte user door naar de welcomeController/welcomeScene
             Main.getSceneManager().showWelcomeScene();
         } else {
-            Alert foutmelding = new Alert(Alert.AlertType.ERROR);
-            foutmelding.setContentText("Je username en/of password zijn incorrect.");
-            foutmelding.show();
+                Alert foutmelding = new Alert(Alert.AlertType.ERROR);
+                foutmelding.setContentText("Je username en/of password zijn incorrect.");
+                foutmelding.show();
         }
     }
 

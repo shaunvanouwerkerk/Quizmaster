@@ -142,4 +142,8 @@ public class SceneManager {
         CoordinatorDashboardController controller = loader.getController();
         controller.setup();
     }
+
+    public void showLogoutScene() {
+        getScene("/view/fxml/logout.fxml");
+    }
 }
