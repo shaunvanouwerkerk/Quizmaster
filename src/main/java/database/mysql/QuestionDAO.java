@@ -63,7 +63,7 @@ public class QuestionDAO extends AbstractDAO implements GenericDAO<Question>{
     }
 
     // Methode die alle bij een bepaalde quiz behorende vragen uit database haalt
-    public ArrayList<Question> getAll(Quiz quiz) {
+    /*public ArrayList<Question> getAll(Quiz quiz) {
         ArrayList<Question> alleVragenUitDatabase = new ArrayList<>();
         String sql = "SELECT * FROM question WHERE idQuiz = ?;";
         try {
@@ -88,7 +88,7 @@ public class QuestionDAO extends AbstractDAO implements GenericDAO<Question>{
             System.out.println(sqlException.getMessage());
         }
         return alleVragenUitDatabase;
-    }
+    }*/
 
     @Override
     public Question getOneById(int questionId) {
