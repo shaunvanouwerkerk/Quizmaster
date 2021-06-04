@@ -30,6 +30,8 @@ public class ShaunTest {
         Quiz quiz2 = quizDAO.getOneById(1);
         System.out.println(quiz2);
 
+
+
         //3. Test voor set nieuwe quiz
         CourseDAO courseDAO = new CourseDAO(dbAccess);
         QuizDAO quizDAO1 = new QuizDAO(dbAccess);
