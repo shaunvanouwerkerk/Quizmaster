@@ -19,6 +19,10 @@ public class Quiz implements GenericDAO {
         
     }
 
+    public int getIdQuiz() {
+        return idQuiz;
+    }
+
     @Override
     public ArrayList getAll() {
         return null;
