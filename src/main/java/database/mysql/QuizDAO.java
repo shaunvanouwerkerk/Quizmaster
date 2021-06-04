@@ -41,7 +41,7 @@ public class QuizDAO extends AbstractDAO implements GenericDAO <Quiz> {
 
     @Override
     public Quiz getOneById(int id) {
-        Quiz quiz = null;
+        Quiz quiz = null;3
         String sql = "SELECT * FROM Quiz WHERE idQuiz = ?";
         try {
             setupPreparedStatement(sql);
