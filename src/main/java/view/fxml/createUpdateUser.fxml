@@ -5,5 +5,12 @@
 <?import javafx.scene.text.*?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0"
-            prefWidth="900.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+            prefWidth="900.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controller.CreateUpdateUserController">
+    <Label layoutX="154.0" layoutY="148.0" text="Naam gebruiker:" >
+        <font>
+            <Font size="18.0"/>
+        </font>
+    </Label>
+    <TextField fx:id="nameTextField" layoutX="286.0" layoutY="149.0" prefHeight="25.0" prefWidth="335.0"/>
 </AnchorPane>

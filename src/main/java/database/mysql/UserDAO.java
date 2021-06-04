@@ -87,4 +87,21 @@ public class UserDAO extends AbstractDAO implements GenericDAO<User>{
             System.out.println(sqlException.getMessage());
         }
     }
+
+    public ArrayList<String> getAllRoles() {
+        String sql = "SELECT * FROM role;";
+        ArrayList<String> allRoles = new ArrayList<>();
+        try {
+            setupPreparedStatement(sql);
+            ResultSet resultSet = executeSelectStatement();
+
+            while (resultSet.next()) {
+                String role = resultSet.getString("roleName");
+                allRoles.add(role);
+            }
+        } catch (SQLException sqlException) {
+            System.out.println(sqlException.getMessage());
+        }
+        return allRoles;
+    }
 }

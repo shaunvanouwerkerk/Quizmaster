@@ -37,7 +37,9 @@ public class ManageUsersController {
         Main.getSceneManager().showWelcomeScene();
     }
 
-    public void doCreateUser() {}
+    public void doCreateUser() {
+        Main.getSceneManager().showCreateUpdateUserScene(userList.getSelectionModel().getSelectedItem());
+    }
 
     public void doUpdateUser() {}
 
