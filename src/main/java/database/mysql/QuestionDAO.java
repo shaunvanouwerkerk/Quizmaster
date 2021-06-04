@@ -68,7 +68,7 @@ public class QuestionDAO extends AbstractDAO implements GenericDAO<Question>{
         String sql = "SELECT * FROM question WHERE idQuiz = ?;";
         try {
             setupPreparedStatement(sql);
-            preparedStatement.setInt(1, quiz.getIdQuiz);
+            // preparedStatement.setInt(1, quiz.getIdQuiz);   // wachten totdat Shaun met zijn Quiz model klaar is
             ResultSet resultSet = executeSelectStatement();
             while (resultSet.next()) {
                 int idQuestion = resultSet.getInt(1);
