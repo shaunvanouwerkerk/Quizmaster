@@ -1,36 +1,58 @@
 package model;
 
-import database.mysql.GenericDAO;
+/**
+ * @author Shaun van Ouwerkerk
+ */
 
-import java.util.ArrayList;
-
-public class Quiz implements GenericDAO {
+public class Quiz {
+    // TODO: 03/06/2021 Ik heb hieronder de idQuiz meegenomen, dient die los te staan en geen onderdeel te zijn van de constructor?
 
     private String nameQuiz;
-    private double succesDefinition;
-    private int idQuiz; // TODO: 02/06/2021 Moet hier nog AI? 
+    private int succesDefinition;
+    private int idQuiz;
+    private int idCourse;
 
-    public Quiz (int idQuiz, Course idCourse, String nameQuiz, double succesDefinition){
+    public Quiz(String nameQuiz, int succesDefinition, int idQuiz, int idCourse) {
         this.idQuiz = idQuiz;
+        this.idCourse = idCourse;
         this.nameQuiz = nameQuiz;
         this.succesDefinition = succesDefinition;
-        // TODO: 02/06/2021 Hoe vult Course idCourse zich?
-        //
-        
     }
 
-    @Override
-    public ArrayList getAll() {
-        return null;
+    public Quiz(String nameQuiz, int succesDefinition) {
+        this(nameQuiz, succesDefinition, 1, 1);
     }
 
-    @Override
-    public Object getOneById(int id) {
-        return null;
+        //Getters & Setters
+
+        public String getNameQuiz () {
+            return nameQuiz;
+        }
+
+        public int getSuccesDefinition () {
+            return succesDefinition;
+        }
+
+        public void setNameQuiz (String nameQuiz){
+            this.nameQuiz = nameQuiz;
+
+        }
+
+        public void setSuccesDefinition ( int succesDefinition){
+            this.succesDefinition = succesDefinition;
+        }
+
+        @Override
+        public String toString () {
+
+            StringBuilder resultString = new StringBuilder("");
+            resultString.append(idQuiz + " ");
+            resultString.append(idCourse + " ");
+            resultString.append(nameQuiz + " ");
+            resultString.append(succesDefinition);
+            return resultString.toString();
+
+        }
     }
 
-    @Override
-    public void storeOne(Object type) {
 
-    }
-}
