@@ -64,7 +64,4 @@ public class CreateUpdateUserController {
 
     }
 
-//    public void setTextMenuButton(ActionEvent event) {
-//        taskMenuButton.setOnAction(event -> taskMenuButton.setText(allRoles.g));
-//    }
 }
