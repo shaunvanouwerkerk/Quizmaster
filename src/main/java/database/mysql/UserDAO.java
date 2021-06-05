@@ -82,7 +82,11 @@ public class UserDAO extends AbstractDAO implements GenericDAO<User>{
             user.setIdUser(key);
         } catch (SQLException sqlException) {
             Alert foutmelding = new Alert(Alert.AlertType.ERROR);
-            foutmelding.setContentText("Gebruiker kon niet worden opgeslagen.");
+            if(sqlException.getMessage().contains("Duplicate")) {
+                foutmelding.setContentText("Deze gebuikersnaam bestaat al! Gebruiker is niet opgslagen.");
+            } else {
+                foutmelding.setContentText("Gebruiker kon niet worden opgeslagen.");
+            }
             foutmelding.show();
             System.out.println(sqlException.getMessage());
         }
