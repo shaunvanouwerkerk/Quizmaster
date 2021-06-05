@@ -32,11 +32,10 @@ public class CreateUpdateUserController {
     @FXML
     private TextField passwordTextField;
     @FXML
-    private MenuButton taskMenuButton;
+    private ComboBox<String> roleButton;
     @FXML
     ListView<String> roleList;
-    @FXML
-    ComboBox<String> comboBox;
+
 
     public CreateUpdateUserController() {
         this.dbAccess = Main.getDBaccess();
@@ -45,7 +44,8 @@ public class CreateUpdateUserController {
 
 
     public void setup(User user) {
-//        setTaskMenuButtonRoles();
+        ComboBox<String> keuzeBox = setTaskMenuButtonRoles();
+        roleButton.setOnAction(event -> keuzeBox.getSelectionModel().getSelectedItem());
     }
 
     public void doMenu() {}
@@ -53,18 +53,18 @@ public class CreateUpdateUserController {
     public void doCreateUpdateUser() {
     }
 
-//    public void setTaskMenuButtonRoles() {
-//        this.allRoles = userDAO.getAllRoles();
-//        ObservableList<String> observableList = FXCollections.observableList(allRoles);
-//        final ComboBox comboBox = new ComboBox((ObservableList) allRoles);
-//        for (String role: allRoles) {
-////            MenuItem menuItem = new MenuItem(role);
-////            taskMenuButton.getItems().add(menuItem);
-//            comboBox.setItems((ObservableList) allRoles);
-//        }
+    public ComboBox<String> setTaskMenuButtonRoles() {
+        this.allRoles = userDAO.getAllRoles();
+        ObservableList<String> observableList = FXCollections.observableArrayList(allRoles);
+        ComboBox<String> comboBox = new ComboBox<>(observableList);
+        for(String text: observableList) {
+            roleButton.getItems().add(text);
+        }
+        return comboBox;
+
+    }
+
+//    public void setTextMenuButton(ActionEvent event) {
+//        taskMenuButton.setOnAction(event -> taskMenuButton.setText(allRoles.g));
 //    }
-//
-////    public void setTextMenuButton(ActionEvent event) {
-////        taskMenuButton.setOnAction(event -> taskMenuButton.setText(allRoles.g));
-////    }
 }

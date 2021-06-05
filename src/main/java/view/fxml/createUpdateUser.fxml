@@ -31,6 +31,6 @@
             <Font size="18.0" />
         </font>
     </Label>
-    <MenuButton fx:id="taskMenuButton" alignment="CENTER" layoutX="350.0" layoutY="212.0" prefHeight="25.0" prefWidth="335.0" text="Kies een rol" />
+    <ComboBox fx:id="roleButton"  layoutX="350.0" layoutY="212.0" prefHeight="25.0" prefWidth="335.0" promptText="Kies een rol"/>
    <AnchorPane prefHeight="200.0" prefWidth="200.0" />
 </AnchorPane>
