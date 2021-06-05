@@ -23,7 +23,7 @@ public class CreateUpdateUserController {
     private UserDAO userDAO;
     private DBAccess dbAccess;
     private ArrayList<String> allRoles;
-    private ComboBox<String> roles;
+
 
     @FXML
     private Label welcomeLabel;
@@ -33,8 +33,7 @@ public class CreateUpdateUserController {
     private TextField passwordTextField;
     @FXML
     private ComboBox<String> roleButton;
-    @FXML
-    ListView<String> roleList;
+
 
 
     public CreateUpdateUserController() {
@@ -51,6 +50,10 @@ public class CreateUpdateUserController {
     public void doMenu() {}
 
     public void doCreateUpdateUser() {
+    }
+
+    public void doClear() {
+
     }
 
     public ComboBox<String> setTaskMenuButtonRoles() {

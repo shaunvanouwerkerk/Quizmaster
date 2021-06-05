@@ -19,18 +19,35 @@
             <Font size="18.0" />
         </font>
     </Label>
-    <TextField fx:id="userNameTextField" alignment="CENTER" layoutX="350.0" layoutY="148.0" prefHeight="25.0" prefWidth="335.0" promptText="vul hier de gebruikernaam in" />
+    <TextField fx:id="userNameTextField" layoutX="350.0" layoutY="148.0" prefHeight="25.0" prefWidth="335.0" promptText="vul hier de gebruikernaam in" />
     <Label layoutX="154.0" layoutY="180.0" text="Wachtwoord gebruiker:">
         <font>
             <Font size="18.0" />
         </font>
     </Label>
-    <TextField fx:id="passwordTextField" alignment="CENTER" layoutX="350.0" layoutY="180.0" prefHeight="25.0" prefWidth="335.0" promptText="vul hier het wachtwoord in" />
+    <TextField fx:id="passwordTextField" layoutX="350.0" layoutY="180.0" prefHeight="25.0" prefWidth="335.0" promptText="vul hier het wachtwoord in" />
     <Label layoutX="154.0" layoutY="212.0" text="Rol gebruiker:">
         <font>
             <Font size="18.0" />
         </font>
     </Label>
-    <ComboBox fx:id="roleButton"  layoutX="350.0" layoutY="212.0" prefHeight="25.0" prefWidth="335.0" promptText="Kies een rol"/>
-   <AnchorPane prefHeight="200.0" prefWidth="200.0" />
+    <ComboBox fx:id="roleButton" layoutX="350.0" layoutY="212.0" prefHeight="25.0" prefWidth="335.0" promptText="Kies een rol" />
+    <Button layoutX="350.0" layoutY="292.0" mnemonicParsing="false" onAction="#doCreateUpdateUser" text="Voeg gebruiker toe">
+        <font>
+            <Font size="14.0" />
+        </font>
+    </Button>
+    <Button layoutX="527.0" layoutY="292.0" mnemonicParsing="false" onAction="#doClear" text="Maak invulvelden leeg">
+        <font>
+            <Font size="14.0" />
+        </font>
+    </Button>
+   <AnchorPane prefHeight="200.0" prefWidth="200.0">
+      <children>
+          <Button layoutX="42.0" layoutY="36.0" mnemonicParsing="false" onAction="#doMenu" text="Menu">
+              <font>
+                  <Font size="14.0" />
+              </font>
+          </Button>
+      </children></AnchorPane>
 </AnchorPane>
