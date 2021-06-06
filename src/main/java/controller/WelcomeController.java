@@ -63,10 +63,10 @@ public class  WelcomeController {
 
     public void setupTechBeheer() {
         MenuItem item1 = new MenuItem("Beheer gebruikers");
-        MenuItem item2 = new MenuItem("Maak/wijzig gebruiker");
+        MenuItem item2 = new MenuItem("Maak nieuwe gebruiker");
 
         item1.setOnAction(event -> Main.getSceneManager().showManageUserScene());
-        item2.setOnAction(event -> Main.getSceneManager().showCreateUpdateUserScene(Main.loggedInUser));
+        item2.setOnAction(event -> Main.getSceneManager().showCreateUserScene());
 
         taskMenuButton.getItems().add(item1);
         taskMenuButton.getItems().add(item2);

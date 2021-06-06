@@ -96,6 +96,29 @@ public class UserDAO extends AbstractDAO implements GenericDAO<User>{
         }
     }
 
+    public void updateUser(User user) {
+        String sql = "UPDATE user SET password = ?, name = ?, roleName = ? WHERE idUser = ?";
+
+        try {
+            setupPreparedStatement(sql);
+            preparedStatement.setString(1, user.getPassword());
+            preparedStatement.setString(2, user.getUsername());
+            preparedStatement.setString(3, user.getRoleName());
+            preparedStatement.setInt(4, user.getIdUser());
+            System.out.println(user);
+            executeManipulateStatement();
+        } catch (SQLException sqlException) {
+            Alert foutmelding = new Alert(Alert.AlertType.ERROR);
+            if(sqlException.getMessage().contains("Duplicate")) {
+                foutmelding.setContentText("Deze gebuikersnaam bestaat al! Gebruiker is niet gewijzigd.");
+            } else {
+                foutmelding.setContentText("Gebruiker kon niet worden gewijzigd.");
+            }
+            foutmelding.show();
+            System.out.println(sqlException.getMessage());
+        }
+    }
+
     public ArrayList<String> getAllRoles() {
         String sql = "SELECT * FROM role;";
         ArrayList<String> allRoles = new ArrayList<>();

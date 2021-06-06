@@ -38,10 +38,14 @@ public class ManageUsersController {
     }
 
     public void doCreateUser() {
-        Main.getSceneManager().showCreateUpdateUserScene(userList.getSelectionModel().getSelectedItem());
+        Main.getSceneManager().showCreateUserScene();
     }
 
-    public void doUpdateUser() {}
+    public void doUpdateUser() {
+        Main.getSceneManager().showUpdateUserScene(userList.getSelectionModel().getSelectedItem());
+    }
 
-    public void doDeleteUser() {}
+    public void doDeleteUser() {
+
+    }
 }

@@ -10,13 +10,10 @@ import database.mysql.DBAccess;
 import database.mysql.UserDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import model.User;
 import view.Main;
-
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class CreateUpdateUserController {
@@ -34,6 +31,8 @@ public class CreateUpdateUserController {
     private TextField passwordTextField;
     @FXML
     private ComboBox<String> roleButton;
+    @FXML
+    private Button createUpdate;
 
 
 
@@ -43,18 +42,29 @@ public class CreateUpdateUserController {
     }
 
 
-    public void setup(User user) {
+    public void setupCreateUser() {
         ComboBox<String> keuzeBox = setTaskMenuButtonRoles();
         roleButton.getSelectionModel().select(Main.STUDENT_ROL);
         roleButton.setOnAction(event -> keuzeBox.getSelectionModel().getSelectedItem());
 
     }
 
+    public void setupUpdateUser(User user) {
+        welcomeLabel.setText("Wijzig gebruiker");
+        userNameTextField.setText(user.getUsername());
+        passwordTextField.setText(user.getPassword());
+        createUpdate.setText("Wijzig gebruker");
+        createUpdate.setOnAction(event -> doUpdateUser(user));
+        ComboBox<String> keuzeBox = setTaskMenuButtonRoles();
+        roleButton.getSelectionModel().select(user.getRoleName());
+        roleButton.setOnAction(event -> keuzeBox.getSelectionModel().getSelectedItem());
+    }
+
     public void doMenu() {
         Main.getSceneManager().showManageUserScene();
     }
 
-    public void doCreateUpdateUser() {
+    public void doCreateUser() {
         boolean correctFilledOut = checkFields();
         if (correctFilledOut) {
             String username = userNameTextField.getText();
@@ -63,6 +73,17 @@ public class CreateUpdateUserController {
             User user = new User(password, username, role);
             userDAO.storeOne(user);
             doClear();
+        }
+    }
+
+    public void doUpdateUser(User user) {
+        boolean correctFilledOut = checkFields();
+        if (correctFilledOut) {
+            System.out.println(user);
+            user.setPassword(passwordTextField.getText());
+            user.setUsername(userNameTextField.getText());
+            user.setRoleName(roleButton.getSelectionModel().getSelectedItem());
+            userDAO.updateUser(user);
         }
     }
 
@@ -79,7 +100,7 @@ public class CreateUpdateUserController {
         boolean allFields = false;
         boolean userName = false;
         boolean password = false;
-        boolean role = false;
+
         Alert foutmelding = new Alert(Alert.AlertType.ERROR);
 
         if (!(userNameTextField.getText().isEmpty())) {
@@ -98,17 +119,7 @@ public class CreateUpdateUserController {
             foutmelding.setContentText("Je hebt geen gebruikersnaam én geen wachtwoord opgegeven");
             foutmelding.show();
         }
-        switch (roleButton.getSelectionModel().getSelectedItem()) {
-                case Main.ADMIN_ROL:
-                case Main.TECHBEHEER_ROL:
-                case Main.COORDINATOR_ROL:
-                case Main.STUDENT_ROL:
-                case Main.DOCENT_ROL: {
-                    role = true;
-                    break;
-            }
-        }
-        if(userName && password && role) {
+        if(userName && password) {
             allFields = true;
         }
         System.out.println(allFields);
@@ -124,7 +135,6 @@ public class CreateUpdateUserController {
             roleButton.getItems().add(text);
         }
         return comboBox;
-
     }
 
 }
