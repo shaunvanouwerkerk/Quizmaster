@@ -4,6 +4,7 @@ package database.mysql;
 * */
 
 import model.Course;
+import model.Question;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -69,6 +70,17 @@ public class CourseDAO extends AbstractDAO implements GenericDAO<Course>{
             course.setIdCourse(key);
         } catch (SQLException sqlException) {
             System.out.println("SQL error " + sqlException.getMessage());
+        }
+    }
+    //methode voor het verwijderen van een Course
+    public void deleteCourse(Course course) {
+        String sql = "DELETE FROM course WHERE idCourse = ?;";
+        try {
+            setupPreparedStatement(sql);
+            preparedStatement.setInt(1, course.getIdCourse());
+            executeManipulateStatement();
+        } catch (SQLException sqlException) {
+            System.out.println(sqlException.getMessage());
         }
     }
 

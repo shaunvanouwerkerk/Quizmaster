@@ -52,13 +52,14 @@ public class  WelcomeController {
     public void setupAdmin() {
         MenuItem item1 = new MenuItem("Beheer groepen");
         MenuItem item2 = new MenuItem("Beheer cursussen");
-
+        //MenuItem item3 = new MenuItem("Maak nieuwe cursus aan");
 
         item1.setOnAction(event -> Main.getSceneManager().showManageGroupsScene());
         item2.setOnAction(event -> Main.getSceneManager().showManageCoursesScene());
-
+        //item3.setOnAction(event -> Main.getSceneManager().showCreateCorseScene());
         taskMenuButton.getItems().add(item1);
         taskMenuButton.getItems().add(item2);
+        //taskMenuButton.getItems().add(item3);
 
     }
 

@@ -1,8 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0"
-            prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CreateUpdateCourseController">
+      <children>
+      <Label fx:id="titleLabel" layoutX="322.0" layoutY="69.0" text="Maak een nieuwe cursus aan">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="294.0" layoutY="142.0" text="Naam curcus">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="nameCourseTextfield" layoutX="401.0" layoutY="140.0" />
+      <ComboBox fx:id="nameCoordinator" layoutX="400.0" layoutY="188.0" prefWidth="150.0" promptText="Naam coördinator" />
+      <Button fx:id="addCourse" layoutX="430.0" layoutY="278.0" mnemonicParsing="false" text="Voeg cursus toe">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="backToMenu" layoutX="259.0" layoutY="278.0" mnemonicParsing="false" onAction="#doMenu" text="Terug naar menu">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+   </children>
 </AnchorPane>

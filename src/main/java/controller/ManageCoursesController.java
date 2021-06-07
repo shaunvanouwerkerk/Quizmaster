@@ -31,9 +31,7 @@ public class ManageCoursesController {
         for (Course course : allCourses) {
             courseList.getItems().add(course);
         }
-        // Om een nullpointer exception te vermijden
         courseList.getSelectionModel().selectFirst();
-
     }
 
     public void doMenu(ActionEvent actionEvent){
@@ -42,15 +40,21 @@ public class ManageCoursesController {
     }
 
 
-    public void doCreateCourse(){}
+    public void doCreateCourse(){
+        Main.getSceneManager().showCreateUpdateCourseScene(courseList.getSelectionModel().getSelectedItem());
+    }
 
-    public void doUpdateCourse(ActionEvent event){
-        Course course = courseList.getSelectionModel().getSelectedItem();
-        Main.getSceneManager().showCreateUpdateCourseScene(course);
+    public void doUpdateCourse(){
+        Main.getSceneManager().showCreateUpdateCourseScene(courseList.getSelectionModel().getSelectedItem());
     }
 
 
 
-    public void doDeleteCourse(){}
+    public void doDeleteCourse(){
+        Course removeCourse = courseList.getSelectionModel().getSelectedItem();
+        courseDAO.deleteCourse(removeCourse);
+        courseList.getItems().remove(removeCourse);
+
+    }
 
 }
