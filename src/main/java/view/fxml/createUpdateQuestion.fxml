@@ -25,8 +25,8 @@
       </Label>
       <TextField fx:id="idQuiz" layoutX="301.0" layoutY="175.0" promptText="Voer quiz nummer in" />
       <Label layoutX="210.0" layoutY="179.0" text="Quiz Nummer" />
-      <Button layoutX="279.0" layoutY="392.0" mnemonicParsing="false" text="Bevestigen" onAction="#doCreateQuestion" />
-      <Button layoutX="373.0" layoutY="392.0" mnemonicParsing="false" text="Leegmaken" onAction="#doClear"/>
+      <Button layoutX="279.0" layoutY="392.0" mnemonicParsing="false" onAction="#doCreateUpdateQuestion" text="Bevestigen" />
+      <Button layoutX="373.0" layoutY="392.0" mnemonicParsing="false" onAction="#doClear" text="Leegmaken" />
       <Button layoutX="210.0" layoutY="392.0" mnemonicParsing="false" onAction="#doMenu" text="Menu" />
    </children>
 </AnchorPane>

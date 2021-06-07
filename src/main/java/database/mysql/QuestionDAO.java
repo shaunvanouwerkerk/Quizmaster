@@ -144,4 +144,21 @@ public class QuestionDAO extends AbstractDAO implements GenericDAO<Question>{
             System.out.println(sqlException.getMessage());
         }
     }
+
+    public int getCurrentQuestionId () {
+        String sql = "Select MAX(idQuestion) From question;";
+        int currentQuestionId = 0;
+        try {
+            setupPreparedStatement(sql);
+            ResultSet resultSet = executeSelectStatement();
+            if (resultSet.next()) {
+                currentQuestionId = resultSet.getInt(1);
+            } else {
+                System.out.println("Er zijn geen vragen in de database");
+            }
+        } catch (SQLException sqlException) {
+            System.out.println(sqlException.getMessage());
+        }
+        return currentQuestionId;
+    }
 }

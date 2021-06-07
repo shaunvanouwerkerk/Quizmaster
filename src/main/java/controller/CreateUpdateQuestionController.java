@@ -3,6 +3,8 @@ package controller;
 * @Author: Nijad Nazarli
 */
 
+import com.mysql.cj.jdbc.exceptions.SQLError;
+import com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping;
 import database.mysql.DBAccess;
 import database.mysql.QuestionDAO;
 import javafx.fxml.FXML;
@@ -13,9 +15,14 @@ import javafx.scene.control.TextField;
 import model.Question;
 import view.Main;
 
+import java.sql.SQLDataException;
+import java.sql.SQLException;
+import java.util.InputMismatchException;
+
 public class CreateUpdateQuestionController {
     private DBAccess dbAccess;
     private QuestionDAO questionDAO;
+    private static final String NIEUWE_VRAAG_AANMAKEN = "Een vraag aanmaken";
 
     @FXML
     private Label hoofdTitel;
@@ -51,7 +58,7 @@ public class CreateUpdateQuestionController {
 
     public void setupCreateQuestion() {
         doClear();
-        hoofdTitel.setText("Een vraag aanmaken");
+        hoofdTitel.setText(NIEUWE_VRAAG_AANMAKEN);
     }
 
     public void doMenu() {
@@ -69,26 +76,42 @@ public class CreateUpdateQuestionController {
         antwoordD.clear();
     }
 
-    public void doUpdateQuestion() {
+    public void doCreateUpdateQuestion() {
         // TODO: Controleren of invoer juist is (niet langer dan 45 char)
         // TODO: Wat gebeurt als de velden leeg gemaakt worden
+        // 1. Create Question Scenario
+            if (hoofdTitel.getText().equals(NIEUWE_VRAAG_AANMAKEN)){
+                int nieuweIdQuestion = questionDAO.getCurrentQuestionId() + 1;
+                Question nieuweVraag = fillOutQuestionFields();
+                nieuweVraag.setIdQuestion(nieuweIdQuestion);
+                idQuestion.setText(String.valueOf(nieuweIdQuestion));
+                questionDAO.storeOne(nieuweVraag);
+                Alert bevestigAanmakenVraag = new Alert(Alert.AlertType.INFORMATION);
+                bevestigAanmakenVraag.setContentText("Vraag is succesvol aangemaakt");
+                bevestigAanmakenVraag.show();
+                setup(nieuweVraag);
+            } else {
+        // 2. Update Question Scenario
+                Question aangepasteVraag = fillOutQuestionFields();
+                aangepasteVraag.setIdQuestion(Integer.parseInt(idQuestion.getText()));
+                questionDAO.updateOne(aangepasteVraag);
+                Alert bevestigAanpassenVraag = new Alert(Alert.AlertType.INFORMATION);
+                bevestigAanpassenVraag.setContentText("Vraag is succesvol aangepast");
+                bevestigAanpassenVraag.show();
+                setup(aangepasteVraag);
+            }
+    }
+
+    public Question fillOutQuestionFields() {
         int nieuweIdQuiz = Integer.parseInt(idQuiz.getText());
         String nieuweQuestionString = questionString.getText();
         String nieuweAntwoordA = antwoordA.getText();
         String nieuweAntwoordB = antwoordB.getText();
         String nieuweAntwoordC = antwoordC.getText();
         String nieuweAntwoordD = antwoordD.getText();
-        Question nieuweVraag = new Question(Integer.parseInt(idQuestion.getText()), nieuweIdQuiz,
-                nieuweQuestionString, nieuweAntwoordA, nieuweAntwoordB, nieuweAntwoordC, nieuweAntwoordD);
-        questionDAO.updateOne(nieuweVraag);
-        Alert bevestigAanpassenVraag = new Alert(Alert.AlertType.CONFIRMATION);
-        bevestigAanpassenVraag.setContentText("Vraag is succesvol aangepast");
-        setup(nieuweVraag);
+        Question nieuweVraag = new Question(nieuweIdQuiz,
+                    nieuweQuestionString, nieuweAntwoordA, nieuweAntwoordB, nieuweAntwoordC, nieuweAntwoordD);
+        return nieuweVraag;
     }
 
-    public void doCreateQuestion() {
-        // 1. Scenario voor Create Question
-
-
-    }
 }
