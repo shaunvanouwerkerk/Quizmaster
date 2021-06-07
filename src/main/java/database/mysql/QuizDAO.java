@@ -84,4 +84,18 @@ public class QuizDAO extends AbstractDAO implements GenericDAO <Quiz> {
         }
     }
 
+    public void deleteOne(Quiz quiz){
+        String sql = "DELETE FROM Quiz WHERE idQuiz = ? ";
+
+        try {
+            setupPreparedStatement(sql);
+            preparedStatement.setInt(1,quiz.getIdQuiz() );
+            executeManipulateStatement();
+
+        }catch (SQLException sqlFout) {
+            System.out.println(sqlFout.getMessage());
+        }
+
+    }
+
 }
