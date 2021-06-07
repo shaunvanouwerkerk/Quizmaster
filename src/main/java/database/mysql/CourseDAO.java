@@ -73,7 +73,7 @@ public class CourseDAO extends AbstractDAO implements GenericDAO<Course>{
     }
 
     public ArrayList<Course> getCoursesByIdCoordinator(int id) {
-        String sql = "SELECT * FROM Course Where idCoordinator = ?";
+        String sql = "SELECT * FROM Course Where idCoordinatorCourse = ?";
         ArrayList<Course> courses = new ArrayList<>();
         Course result = null;
         try {

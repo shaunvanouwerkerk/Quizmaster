@@ -152,8 +152,4 @@ public class SceneManager {
     public void showLogoutScene() {
         getScene("/view/fxml/logout.fxml");
     }
-
-    public void showBevestigingKeuzeScene() {
-        getScene("/view/fxml/bevestigingKeuze.fxml");
-    }
 }
