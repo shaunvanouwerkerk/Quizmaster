@@ -137,7 +137,7 @@ public class UserDAO extends AbstractDAO implements GenericDAO<User>{
     }
 
     public void deleteUser(User user) {
-        String sql = "DELETE FROM user WHERE userId = ?";
+        String sql = "DELETE FROM user WHERE idUser = ?";
         try {
             setupPreparedStatement(sql);
             preparedStatement.setInt(1, user.getIdUser());

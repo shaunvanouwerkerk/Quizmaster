@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LogoutController">
+    <Label alignment="CENTER" layoutY="84.0" prefHeight="29.0" prefWidth="900.0" text="Zeker weten uitloggen?">
+        <font>
+            <Font size="24.0" />
+        </font>
+    </Label>
+    <Button defaultButton="true" layoutX="420.0" layoutY="143.0" mnemonicParsing="false" onAction="#doLogout" prefHeight="25.0" prefWidth="100.0" text="Ja">
+        <font>
+            <Font size="16.0" />
+        </font>
+    </Button>
+    <Button layoutX="420.0" layoutY="206.0" mnemonicParsing="false" onAction="#doReturn" prefHeight="25.0" prefWidth="100.0" text="Nee">
+        <font>
+            <Font size="16.0" />
+        </font>
+    </Button>
+</AnchorPane>

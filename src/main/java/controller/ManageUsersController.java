@@ -3,6 +3,7 @@ package controller;
 import database.mysql.DBAccess;
 import database.mysql.UserDAO;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import model.User;
@@ -46,6 +47,12 @@ public class ManageUsersController {
     }
 
     public void doDeleteUser() {
+        Alert deleteAlert = new Alert(Alert.AlertType.WARNING);
+        deleteAlert.setContentText(String.format("Weet je zeker dat je gebruiker %s wilt verwijderen?",
+                userList.getSelectionModel().getSelectedItem().toString()));
+        deleteAlert.show();
+        userDAO.deleteUser(userList.getSelectionModel().getSelectedItem());
+
 
 
     }
