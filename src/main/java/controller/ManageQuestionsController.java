@@ -5,7 +5,6 @@ package controller;
 
 import database.mysql.DBAccess;
 import database.mysql.QuestionDAO;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ListView;
@@ -44,7 +43,7 @@ public class ManageQuestionsController {
     }
 
     public void doUpdateQuestion(){
-        Main.getSceneManager().showCreateUpdateQuestionScene(questionList.getSelectionModel().getSelectedItem());
+        Main.getSceneManager().showUpdateQuestionScene(questionList.getSelectionModel().getSelectedItem());
     }
 
     public void doDeleteQuestion(){

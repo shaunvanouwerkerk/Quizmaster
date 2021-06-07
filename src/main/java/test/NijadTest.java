@@ -13,7 +13,7 @@ public class NijadTest {
 
     public static void main(String[] args) {
 
-        // Vraag met antwoorden in een willekeurige orde uitprinten
+        /*// Vraag met antwoorden in een willekeurige orde uitprinten
         System.out.println("-----Vraag met antwoorden in een willekeurige orde uitprinten-----");
         Question testVraag = new Question(1, "Welk project team is het beste uit de lijst?",
                 "Quaranteam", "team 2","team 3", "team 4");
@@ -39,10 +39,10 @@ public class NijadTest {
         // Testen: haal alle vragen die bij een quiz behoren uit de database
         System.out.println("-----Testen: haal alle vragen die bij een quiz behoren uit de database-----");
         QuizDAO quizDAO = new QuizDAO(dbAccess);
-        /*ArrayList<Question> alleVragenPerQuiz = questionDAO.getAllperQuiz(quizDAO.getOneById(1));
+        *//*ArrayList<Question> alleVragenPerQuiz = questionDAO.getAllperQuiz(quizDAO.getOneById(1));
         for (Question question: alleVragenPerQuiz) {
             System.out.println(question);
-        }*/
+        }*//*
 
         // Testen: haal alle vragen die bij een quiz behoren uit de database
         System.out.println("-----Testen: haal alle vragen die bij een quiz behoren uit de database-----");
@@ -50,7 +50,14 @@ public class NijadTest {
         ArrayList<Question> legeQuizzen = questionDAO.getAllperQuiz(quizDAO.getOneById(2));
         for (Question question: legeQuizzen) {
             System.out.println(question);
-        }
+        }*/
+
+        // Een vraag in aanpassen
+        DBAccess dbAccess = Main.getDBaccess();
+        QuestionDAO questionDAO = new QuestionDAO(dbAccess);
+        Question question = new Question(12, 5, "Dit is een aangepaste vraag", "juiste antwoord",
+                "b", "c", "d");
+        // questionDAO.updateOne(question);
 
 
     }

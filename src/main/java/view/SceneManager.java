@@ -113,7 +113,7 @@ public class SceneManager {
         controller.setup();
     }
 
-    public void showCreateUpdateQuestionScene(Question question) {
+    public void showUpdateQuestionScene(Question question) {
         FXMLLoader loader = getScene("/view/fxml/createUpdateQuestion.fxml");
         CreateUpdateQuestionController controller = loader.getController();
         controller.setup(question);

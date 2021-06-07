@@ -18,15 +18,15 @@
       <Label layoutX="210.0" layoutY="344.0" text="Antwoord D" />
       <Label layoutX="210.0" layoutY="146.0" text="Vraag Nummer" />
       <TextField fx:id="idQuestion" editable="false" layoutX="301.0" layoutY="142.0" />
-      <Label layoutX="210.0" layoutY="77.0" text="Een vraag bewerken">
+      <Label fx:id="hoofdTitel" layoutX="210.0" layoutY="77.0" text="Een vraag bewerken">
          <font>
             <Font name="Arial Bold" size="18.0" />
          </font>
       </Label>
       <TextField fx:id="idQuiz" layoutX="301.0" layoutY="175.0" promptText="Voer quiz nummer in" />
       <Label layoutX="210.0" layoutY="179.0" text="Quiz Nummer" />
-      <Button layoutX="279.0" layoutY="392.0" mnemonicParsing="false" text="Bevestigen" />
-      <Button layoutX="373.0" layoutY="392.0" mnemonicParsing="false" text="Leegmaken" />
+      <Button layoutX="279.0" layoutY="392.0" mnemonicParsing="false" text="Bevestigen" onAction="#doCreateQuestion" />
+      <Button layoutX="373.0" layoutY="392.0" mnemonicParsing="false" text="Leegmaken" onAction="#doClear"/>
       <Button layoutX="210.0" layoutY="392.0" mnemonicParsing="false" onAction="#doMenu" text="Menu" />
    </children>
 </AnchorPane>

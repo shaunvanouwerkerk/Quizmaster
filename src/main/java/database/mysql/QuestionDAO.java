@@ -129,8 +129,7 @@ public class QuestionDAO extends AbstractDAO implements GenericDAO<Question>{
     }
 
     public void updateOne(Question question) {
-        String sql = "UPDATE question SET idQuiz = ?, questionString = '?', answerA = '?', answerB = '?', " +
-                "answerC = '?', answerD = '?' WHERE idQuestion = ?;";
+        String sql = "UPDATE question SET idQuiz = ?, questionString = ?, answerA = ?, answerB = ?, answerC = ?, answerD = ? WHERE idQuestion = ?;";
         try {
             setupPreparedStatement(sql);
             preparedStatement.setInt(1, question.getIdQuiz());
