@@ -66,5 +66,4 @@ INSERT INTO user VALUES (1,'s1','s1','student'),(2,'d1','d1','docent'),(3,'a1','
 
 -- Dump completed
 
-CREATE USER 'quizzyuser'@'localhost' IDENTIFIED BY 'quizzyuserPW';
-GRANT ALL PRIVILEGES ON quizzydraw .* TO 'quizzyuser'@'localhost';
+
