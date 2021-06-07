@@ -1,4 +1,7 @@
 package model;
+/*
+* Author Harold Stevens
+* */
 
 public class Course {
 

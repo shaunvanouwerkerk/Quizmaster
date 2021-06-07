@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
+import model.Course;
 import model.User;
 import view.Main;
 import javafx.event.ActionEvent;

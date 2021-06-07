@@ -1,4 +1,7 @@
 package database.mysql;
+/*
+* Author Harold Stevens
+* */
 
 import model.Course;
 
