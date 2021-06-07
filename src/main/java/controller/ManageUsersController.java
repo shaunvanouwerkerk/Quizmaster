@@ -57,10 +57,5 @@ public class ManageUsersController {
         if(result.get() == ButtonType.OK) {
             userDAO.deleteUser(userList.getSelectionModel().getSelectedItem());
         }
-
-
-
-
-
     }
 }
