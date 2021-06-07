@@ -119,6 +119,12 @@ public class SceneManager {
         controller.setup(question);
     }
 
+    public void showCreateQuestionScene() {
+        FXMLLoader loader = getScene("/view/fxml/createUpdateQuestion.fxml");
+        CreateUpdateQuestionController controller = loader.getController();
+        controller.setupCreateQuestion();
+    }
+
     public void showStudentSignInOutScene() {
         FXMLLoader loader = getScene("/view/fxml/studentSignInOut.fxml");
         StudentSignInOutController controller = loader.getController();

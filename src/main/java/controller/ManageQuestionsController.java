@@ -1,9 +1,13 @@
 package controller;
+/*
+* @Author: Nijad Nazarli
+*/
 
 import database.mysql.DBAccess;
 import database.mysql.QuestionDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ListView;
 import model.Question;
 import view.Main;
@@ -36,7 +40,7 @@ public class ManageQuestionsController {
     }
 
     public void doCreateQuestion(){
-        Main.getSceneManager().showCreateUpdateQuestionScene(questionList.getSelectionModel().getSelectedItem());
+        Main.getSceneManager().showCreateQuestionScene();
     }
 
     public void doUpdateQuestion(){
@@ -47,5 +51,8 @@ public class ManageQuestionsController {
         Question vraagOmTeVerwijderen = questionList.getSelectionModel().getSelectedItem();
         questionDAO.deleteOne(vraagOmTeVerwijderen);
         questionList.getItems().remove(vraagOmTeVerwijderen);
+        Alert bevestigVerwijderen = new Alert(Alert.AlertType.WARNING);
+        bevestigVerwijderen.setContentText("De vraag is succesvol verwijderd");
+        bevestigVerwijderen.show();
     }
 }

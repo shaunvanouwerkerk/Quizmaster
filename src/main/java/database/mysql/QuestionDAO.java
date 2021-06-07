@@ -1,7 +1,7 @@
 package database.mysql;
 /*
  * @Author: Nijad Nazarli
- * */
+ */
 
 import model.Question;
 import model.Quiz;
@@ -122,6 +122,24 @@ public class QuestionDAO extends AbstractDAO implements GenericDAO<Question>{
         try {
             setupPreparedStatement(sql);
             preparedStatement.setInt(1, question.getIdQuestion());
+            executeManipulateStatement();
+        } catch (SQLException sqlException) {
+            System.out.println(sqlException.getMessage());
+        }
+    }
+
+    public void updateOne(Question question) {
+        String sql = "UPDATE question SET idQuiz = ?, questionString = '?', answerA = '?', answerB = '?', " +
+                "answerC = '?', answerD = '?' WHERE idQuestion = ?;";
+        try {
+            setupPreparedStatement(sql);
+            preparedStatement.setInt(1, question.getIdQuiz());
+            preparedStatement.setString(2, question.getQuestionString());
+            preparedStatement.setString(3, question.getAnswerA());
+            preparedStatement.setString(4, question.getAnswerB());
+            preparedStatement.setString(5, question.getAnswerC());
+            preparedStatement.setString(6, question.getAnswerD());
+            preparedStatement.setInt(7, question.getIdQuestion());
             executeManipulateStatement();
         } catch (SQLException sqlException) {
             System.out.println(sqlException.getMessage());

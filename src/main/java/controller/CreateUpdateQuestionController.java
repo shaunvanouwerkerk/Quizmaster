@@ -1,4 +1,7 @@
 package controller;
+/*
+* @Author: Nijad Nazarli
+*/
 
 import database.mysql.DBAccess;
 import database.mysql.QuestionDAO;
@@ -42,9 +45,22 @@ public class CreateUpdateQuestionController {
         antwoordD.setText(question.getAnswerD());
     }
 
+    public void setupCreateQuestion() {
+        questionString.clear();
+        idQuiz.clear();
+        idQuestion.clear();
+        antwoordA.clear();
+        antwoordB.clear();
+        antwoordC.clear();
+        antwoordD.clear();
+    }
+
     public void doMenu() {
         Main.getSceneManager().showManageQuestionsScene();
     }
 
-    public void doCreateUpdateQuestion() {}
+    public void doCreateUpdateQuestion() {
+
+
+    }
 }
