@@ -22,8 +22,23 @@ public class  WelcomeController {
 
 
     public void setLabels() {
+        String role = "";
+        switch (Main.loggedInUser.getRoleName()) {
+            case "technischBeheerder": role = "Technisch Beheerder";
+            break;
+            case "admin": role = "Administrator";
+            break;
+            case "student": role = "Student";
+            break;
+            case "docent": role = "Docent";
+            break;
+            case "coordinator": role = "Coördinator";
+            break;
 
-        welcomeLabel.setText("Welkom " + Main.loggedInUser.getRoleName() + " " + Main.loggedInUser.getUsername());
+
+        }
+        welcomeLabel.setText(String.format("Welkom %s! Je bent ingelogd als %s.", Main.loggedInUser.getUsername()
+        , role));
     }
 
     public void setupStudent() {

@@ -84,5 +84,29 @@ public class CourseDAO extends AbstractDAO implements GenericDAO<Course>{
         }
     }
 
+    public ArrayList<Course> getCoursesByIdCoordinator(int id) {
+        String sql = "SELECT * FROM Course Where idCoordinatorCourse = ?";
+        ArrayList<Course> courses = new ArrayList<>();
+        Course result = null;
+        try {
+            setupPreparedStatement(sql);
+            preparedStatement.setInt(1, id);
+            ResultSet resultSet = executeSelectStatement();
+            if (resultSet.next()) {
+                String nameCourse = resultSet.getString("nameCourse");
+                int idCoordinatorCourse = resultSet.getInt("idCoordinatorCourse");
+                result = new Course(nameCourse,idCoordinatorCourse);
+                result.setIdCourse(id);
+                courses.add(result);
+            } else {
+                System.out.println("Er zijn geen courses voor deze Coordinator");
+            }
+        }
+        catch (SQLException sqlException){
+            System.out.println("SQL error " + sqlException.getMessage());
+        }
+        return courses;
+    }
+
     }
 
