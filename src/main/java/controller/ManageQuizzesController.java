@@ -37,13 +37,14 @@ public class ManageQuizzesController {
 //         Om een nullpointer exception te vermijden
         quizList.getSelectionModel().selectFirst();
 
-
     }
 
     public void doMenu(){Main.getSceneManager().showWelcomeScene();}
 
 
-    public void doCreateQuiz(){};
+    public void doCreateQuiz(){
+        Main.getSceneManager().showCreateUpdateQuizScene(quizList.getSelectionModel().getSelectedItem());
+    };
 
 
     public void doUpdateQuiz() {

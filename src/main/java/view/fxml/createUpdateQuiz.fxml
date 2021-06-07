@@ -1,9 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/10.0.2-internal"
-            xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CreateUpdateQuizController">
+   <children>
+      <Label fx:id="titelCreateUpdate" layoutX="204.0" layoutY="75.0" text="Quiz maken">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Label fx:id="quizId" layoutX="204.0" layoutY="247.0" text="Quiz ID" />
+      <Label fx:id="courseId" layoutX="204.0" layoutY="157.0" text="Course ID*" />
+      <Label fx:id="quizName" layoutX="204.0" layoutY="278.0" text="Quiz Naam" />
+      <Label fx:id="succesDefinition" layoutX="204.0" layoutY="309.0" text="Succesdefinitie" />
+      <TextField disable="true" layoutX="312.0" layoutY="243.0" prefHeight="25.0" prefWidth="215.0" />
+      <TextField fx:id="textfieldQuizName" layoutX="312.0" layoutY="274.0" prefHeight="25.0" prefWidth="215.0" promptText="Voer hier je quiznaam in" />
+      <TextField fx:id="textfieldSuccesDefinition" layoutX="312.0" layoutY="305.0" prefHeight="25.0" prefWidth="215.0" promptText="Voer hier de succesdefinitie toe" />
+      <Button layoutX="201.0" layoutY="374.0" mnemonicParsing="false" onAction="#doMenu" text="Menu" />
+      <Button fx:id="adQuiz" layoutX="282.0" layoutY="374.0" mnemonicParsing="false" text="Voeg quiz toe" />
+      <Button layoutX="398.0" layoutY="374.0" mnemonicParsing="false" text="Invulveld leegmaken" />
+      <ComboBox fx:id="courseButton" layoutX="312.0" layoutY="153.0" prefHeight="25.0" prefWidth="215.0" promptText="Kies een course" />
+      <Label layoutX="210.0" layoutY="185.0" text="*Deze quiz valt onder de volgende course:">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Label>
+   </children>
 </AnchorPane>
