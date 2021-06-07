@@ -67,6 +67,7 @@ GroupDAO extends AbstractDAO implements GenericDAO<Group>{
     }
 
     @Override
+
     public void storeOne(Group group) {
               String sql = "Insert INTO group(idCoordinatorGroup, idCourse) VALUES (?, ?);";
             try{
