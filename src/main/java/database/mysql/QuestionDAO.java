@@ -19,7 +19,7 @@ public class QuestionDAO extends AbstractDAO implements GenericDAO<Question>{
     @Override
     public void storeOne(Question question) {
         // Question op auto increment?
-        String sql = "INSERT INTO question(idQuiz, questionString, answerA, answerB, answerC, answer D) " +
+        String sql = "INSERT INTO question(idQuiz, questionString, answerA, answerB, answerC, answerD) " +
                 "VALUES(?, ?, ?, ?, ?, ?);";
         try {
              setupPreparedStatementWithKey(sql);
@@ -63,12 +63,12 @@ public class QuestionDAO extends AbstractDAO implements GenericDAO<Question>{
     }
 
     // Methode die alle bij een bepaalde quiz behorende vragen uit database haalt
-    /*public ArrayList<Question> getAll(Quiz quiz) {
+    public ArrayList<Question> getAllperQuiz (Quiz quiz) {
         ArrayList<Question> alleVragenUitDatabase = new ArrayList<>();
         String sql = "SELECT * FROM question WHERE idQuiz = ?;";
         try {
             setupPreparedStatement(sql);
-            // preparedStatement.setInt(1, quiz.getIdQuiz);   // wachten totdat Shaun met zijn Quiz model klaar is
+            preparedStatement.setInt(1, quiz.getIdQuiz());
             ResultSet resultSet = executeSelectStatement();
             while (resultSet.next()) {
                 int idQuestion = resultSet.getInt(1);
@@ -88,7 +88,7 @@ public class QuestionDAO extends AbstractDAO implements GenericDAO<Question>{
             System.out.println(sqlException.getMessage());
         }
         return alleVragenUitDatabase;
-    }*/
+    }
 
     @Override
     public Question getOneById(int questionId) {
@@ -115,5 +115,16 @@ public class QuestionDAO extends AbstractDAO implements GenericDAO<Question>{
             System.out.println(sqlException.getMessage());
         }
         return questionUitDatabase;
+    }
+
+    public void deleteOne(Question question) {
+        String sql = "DELETE FROM question WHERE idQuestion = ?;";
+        try {
+            setupPreparedStatement(sql);
+            preparedStatement.setInt(1, question.getIdQuestion());
+            executeManipulateStatement();
+        } catch (SQLException sqlException) {
+            System.out.println(sqlException.getMessage());
+        }
     }
 }

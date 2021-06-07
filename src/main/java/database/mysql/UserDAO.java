@@ -80,11 +80,59 @@ public class UserDAO extends AbstractDAO implements GenericDAO<User>{
             preparedStatement.setString(3, user.getRoleName());
             int key = executeInsertStatementWithKey();
             user.setIdUser(key);
+            Alert opgeslagen = new Alert(Alert.AlertType.CONFIRMATION);
+            opgeslagen.setContentText(String.format("Gebruiker met ID: %d, username %s met als rol %s " +
+                    "is opgeslagen!", user.getIdUser(), user.getUsername(), user.getRoleName()));
+            opgeslagen.show();
         } catch (SQLException sqlException) {
             Alert foutmelding = new Alert(Alert.AlertType.ERROR);
-            foutmelding.setContentText("Gebruiker kon niet worden opgeslagen.");
+            if(sqlException.getMessage().contains("Duplicate")) {
+                foutmelding.setContentText("Deze gebuikersnaam bestaat al! Gebruiker is niet opgslagen.");
+            } else {
+                foutmelding.setContentText("Gebruiker kon niet worden opgeslagen.");
+            }
             foutmelding.show();
             System.out.println(sqlException.getMessage());
         }
+    }
+
+    public void updateUser(User user) {
+        String sql = "UPDATE user SET password = ?, name = ?, roleName = ? WHERE idUser = ?";
+
+        try {
+            setupPreparedStatement(sql);
+            preparedStatement.setString(1, user.getPassword());
+            preparedStatement.setString(2, user.getUsername());
+            preparedStatement.setString(3, user.getRoleName());
+            preparedStatement.setInt(4, user.getIdUser());
+            System.out.println(user);
+            executeManipulateStatement();
+        } catch (SQLException sqlException) {
+            Alert foutmelding = new Alert(Alert.AlertType.ERROR);
+            if(sqlException.getMessage().contains("Duplicate")) {
+                foutmelding.setContentText("Deze gebuikersnaam bestaat al! Gebruiker is niet gewijzigd.");
+            } else {
+                foutmelding.setContentText("Gebruiker kon niet worden gewijzigd.");
+            }
+            foutmelding.show();
+            System.out.println(sqlException.getMessage());
+        }
+    }
+
+    public ArrayList<String> getAllRoles() {
+        String sql = "SELECT * FROM role;";
+        ArrayList<String> allRoles = new ArrayList<>();
+        try {
+            setupPreparedStatement(sql);
+            ResultSet resultSet = executeSelectStatement();
+
+            while (resultSet.next()) {
+                String role = resultSet.getString("roleName");
+                allRoles.add(role);
+            }
+        } catch (SQLException sqlException) {
+            System.out.println(sqlException.getMessage());
+        }
+        return allRoles;
     }
 }

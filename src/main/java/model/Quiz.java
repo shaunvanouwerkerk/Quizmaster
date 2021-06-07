@@ -5,13 +5,13 @@ package model;
  */
 
 public class Quiz {
-    // TODO: 03/06/2021 Ik heb hieronder de idQuiz meegenomen, dient die los te staan en geen onderdeel te zijn van de constructor?
-
-    private String nameQuiz;
-    private int succesDefinition;
+    // Attributen
     private int idQuiz;
     private int idCourse;
+    private String nameQuiz;
+    private int succesDefinition;
 
+    //Constructor
     public Quiz(String nameQuiz, int succesDefinition, int idQuiz, int idCourse) {
         this.idQuiz = idQuiz;
         this.idCourse = idCourse;
@@ -19,37 +19,35 @@ public class Quiz {
         this.succesDefinition = succesDefinition;
     }
 
-    public Quiz(String nameQuiz, int succesDefinition) {
-        this(nameQuiz, succesDefinition, 1, 1);
+    public Quiz(String nameQuiz, int succesDefinition, int idCourse) {
+        this(nameQuiz, succesDefinition,0,idCourse);
     }
 
-        //Getters & Setters
+    public  Quiz(String nameQuiz, int succesDefinition){
+        this(nameQuiz,succesDefinition,0);
+    }
 
-        public String getNameQuiz () {
-            return nameQuiz;
-        }
 
-        public int getSuccesDefinition () {
-            return succesDefinition;
-        }
+    //Getters & Setters
+    public int getIdQuiz() { return idQuiz; }
 
-        public void setNameQuiz (String nameQuiz){
-            this.nameQuiz = nameQuiz;
+    public int getIdCourse() { return idCourse; }
 
-        }
+    public String getNameQuiz() { return nameQuiz; }
 
-        public void setSuccesDefinition ( int succesDefinition){
-            this.succesDefinition = succesDefinition;
-        }
+    public int getSuccesDefinition() { return succesDefinition; }
 
-        @Override
+    public void setIdQuiz(int idQuiz) { this.idQuiz = idQuiz; }
+
+    // Methode
+    @Override
         public String toString () {
 
             StringBuilder resultString = new StringBuilder("");
-            resultString.append(idQuiz + " ");
-            resultString.append(idCourse + " ");
-            resultString.append(nameQuiz + " ");
-            resultString.append(succesDefinition);
+            resultString.append("idQuiz: " + idQuiz + " ");
+            resultString.append("idCourse: " + idCourse + " ");
+            resultString.append("nameQuiz: " + nameQuiz + " ");
+            resultString.append("succesDefintion: " + succesDefinition);
             return resultString.toString();
 
         }
