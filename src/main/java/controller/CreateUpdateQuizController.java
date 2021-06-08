@@ -11,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import model.Course;
 import model.Quiz;
+import model.User;
 import view.Main;
 
 import java.util.ArrayList;
@@ -30,6 +31,8 @@ public class CreateUpdateQuizController {
     private TextField textfieldSuccesDefinition;
     @FXML
     private Button adQuiz;
+    @FXML
+    private TextField textfieldQuizId;
 
 
     public CreateUpdateQuizController() {
@@ -46,14 +49,33 @@ public class CreateUpdateQuizController {
 
     public void setup(Quiz quiz) {}
 
+    public void setupCreateQuiz(){
+
+    }
+
+    public void setupUpdateQuiz (Quiz quiz) {
+        titelCreateUpdate.setText("Quiz bewerken");
+        textfieldQuizName.setText(quiz.getNameQuiz());
+        textfieldQuizId.setText(String.valueOf(quiz.getIdQuiz()));
+        textfieldSuccesDefinition.setText(String.valueOf(quiz.getSuccesDefinition()));
+        adQuiz.setText("Bewerken");
+    }
+
     public void doMenu() {
         Main.getSceneManager().showManageQuizScene();
     }
 
     public void doCreateUpdateQuiz() {}
 
+    public void doClear(){
+        textfieldQuizName.clear();
+        textfieldSuccesDefinition.clear();
+    }
+
 //    // Methode om een dropdownlist te krijgen van cursussen.
 //    public ComboBox<String> setCourseMenuButton () {
+//        User user = new User();
+//        this.allCourses = courseDAO.getCoursesByIdCoordinator(user.getIdUser());
 //
 //    }
 
