@@ -44,10 +44,7 @@ public class Quiz {
         public String toString () {
 
             StringBuilder resultString = new StringBuilder("");
-            resultString.append("idQuiz: " + idQuiz + " ");
-            resultString.append("idCourse: " + idCourse + " ");
-            resultString.append("nameQuiz: " + nameQuiz + " ");
-            resultString.append("succesDefintion: " + succesDefinition);
+            resultString.append("idQuiz: " + idQuiz + ". " + nameQuiz);
             return resultString.toString();
 
         }

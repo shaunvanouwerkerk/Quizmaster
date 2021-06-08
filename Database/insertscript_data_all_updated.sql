@@ -27,12 +27,11 @@ INSERT INTO course VALUES (1,'OOP',5),(2,'Programming',22),(3,'Databases',23),(4
 --
 -- Dumping data for table `question`
 --
-INSERT INTO Quiz VALUES (1,1,'Bouw klassenstructuur',8),(2,1,'Gebruik klassen en JDBC',7),(3,1,'Bouw menu',6),(4,2,'Programmin 1',8),(5,3,'Database ontwerp',7),(6,3,'Database bouw en gebruik',8),(7,4,'Advanced programming 1',8);
 
 --
 -- Dumping data for table `quiz`
 --
-INSERT INTO Quiz VALUES (1,1,'Bouw klassenstructuur',8),(2,1,'Gebruik klassen en JDBC',7),(3,1,'Bouw menu',6),(4,2,'Programmin 1',8),(5,3,'Database ontwerp',7),(6,3,'Database bouw en gebruik',8),(7,4,'Advanced programming 1',8);
+INSERT INTO Quiz VALUES (1,1,'Bouw klassenstructuur',8),(2,1,'Gebruik klassen en JDBC',7),(3,1,'Bouw menu',6),(4,2,'Programming 1',8),(5,3,'Database ontwerp',7),(6,3,'Database bouw en gebruik',8),(7,4,'Advanced programming 1',8);
 
 --
 -- Dumping data for table `role`
