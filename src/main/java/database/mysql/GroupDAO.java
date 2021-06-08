@@ -67,7 +67,6 @@ GroupDAO extends AbstractDAO implements GenericDAO<Group>{
     }
 
     @Override
-
     public void storeOne(Group group) {
               String sql = "Insert INTO group(idCoordinatorGroup, idCourse) VALUES (?, ?);";
             try{
@@ -79,5 +78,39 @@ GroupDAO extends AbstractDAO implements GenericDAO<Group>{
             } catch (SQLException sqlException) {
                 System.out.println(sqlException.getMessage());
             }
+    }
+
+    public Group getOneByIdCoordinator(int idCoordinator) {
+        String sql = "SELECT * FROM group WHERE idCoordinator = ?";
+        Group result = null;
+        try {
+            setupPreparedStatement(sql);
+            preparedStatement.setInt(1, idCoordinator);
+            ResultSet resultSet = executeSelectStatement();
+            if (resultSet.next()) {
+                int idGroup = resultSet.getInt("idGroup");
+                int idCourse = resultSet.getInt("idCourse");
+                result = new Group(idGroup, idCoordinator, idCourse);
+            } else {
+                Alert foutmelding = new Alert(Alert.AlertType.ERROR);
+                foutmelding.setContentText("Er is geen groep met deze groep ID in de database");
+                foutmelding.show();
+            }
+        }
+        catch (SQLException sqlException){
+            System.out.println(sqlException.getMessage());
+        }
+        return result;
+    }
+
+    public void deleteGroup(Group group) {
+        String sql = "DELETE FROM group WHERE idgroup = ?;";
+        try {
+            setupPreparedStatement(sql);
+            preparedStatement.setInt(1, group.getIdGroup());
+            executeManipulateStatement();
+        } catch (SQLException sqlException) {
+            System.out.println(sqlException.getMessage());
+        }
     }
 }
