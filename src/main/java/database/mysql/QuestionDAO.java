@@ -91,6 +91,36 @@ public class QuestionDAO extends AbstractDAO implements GenericDAO<Question>{
         return alleVragenUitDatabase;
     }
 
+    public ArrayList<Question> getAllperLoggedInCoordinator (int idCoordinator) {
+        ArrayList<Question> alleVragenUitDatabase = new ArrayList<>();
+        String sql = "Select q.idQuestion, q.idQuiz, q.questionString, q.answerA, q.answerB, q.answerC, q.answerD " +
+                "FROM question q JOIN " +
+                "( Select * FROM quiz q WHERE idCourse IN ( Select idCourse from course where idCoordinatorCourse = ?)) " +
+                "as jointTable WHERE q.idQuiz = jointTable.idQuiz;";
+        try {
+            setupPreparedStatement(sql);
+            preparedStatement.setInt(1, idCoordinator);
+            ResultSet resultSet = executeSelectStatement();
+            while (resultSet.next()) {
+                int idQuestion = resultSet.getInt(1);
+                int idQuiz = resultSet.getInt(2);
+                String questionString = resultSet.getString(3);
+                String answerA = resultSet.getString(4);
+                String answerB = resultSet.getString(5);
+                String answerC = resultSet.getString(6);
+                String answerD = resultSet.getString(7);
+                alleVragenUitDatabase.add(new Question(idQuestion, idQuiz, questionString,
+                        answerA, answerB, answerC, answerD));
+            }
+            if (alleVragenUitDatabase.isEmpty()) {
+                System.out.println("Er zijn nog geen vragen in de database");
+            }
+        } catch (SQLException sqlException) {
+            System.out.println(sqlException.getMessage());
+        }
+        return alleVragenUitDatabase;
+    }
+
     @Override
     public Question getOneById(int questionId) {
         Question questionUitDatabase = null;

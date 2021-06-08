@@ -18,7 +18,6 @@ public class ManageQuestionsController {
 
     private DBAccess dbAccess;
     private QuestionDAO questionDAO;
-    private QuizDAO quizDAO;
 
     @FXML
     private ListView<Question> questionList;
@@ -29,12 +28,18 @@ public class ManageQuestionsController {
 
     public void setup() {
         this.questionDAO = new QuestionDAO(this.dbAccess);
-        this.quizDAO = new QuizDAO(this.dbAccess);
-        ArrayList<Question> alleVragen = questionDAO.getAll();
+        ArrayList<Question> alleVragen = questionDAO.getAllperLoggedInCoordinator(Main.loggedInUser.getIdUser());
         for (Question question: alleVragen) {
             questionList.getItems().add(question);
         }
         questionList.getSelectionModel().selectFirst();
+
+        if (alleVragen.isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("Er zijn geen door jou gemaakte vragen in de database. " +
+                    "\nDruk op 'Nieuw' om een nieuwe vraag aan te kunnen maken");
+            alert.show();
+        }
     }
 
     public void doMenu(){
