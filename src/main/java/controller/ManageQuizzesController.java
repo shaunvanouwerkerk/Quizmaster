@@ -1,8 +1,10 @@
 package controller;
 /*
 @ Author Shaun
-Nog niet af!
+Nog niet af! 
  */
+
+// TODO: 08/06/2021 :Als je over quiz gaat dat het aantal vragen wordt getoond. 
 
 import database.mysql.DBAccess;
 import database.mysql.QuestionDAO;
