@@ -78,7 +78,9 @@ public class CreateUpdateQuestionController {
 
     public void doCreateUpdateQuestion() {
         // TODO: Controleren of invoer juist is (niet langer dan 45 char)
+        // TODO: Afhandelen error als de velden leeg zijn bij het aanmaken
         // TODO: Wat gebeurt als de velden leeg gemaakt worden
+
         // 1. Create Question Scenario
             if (hoofdTitel.getText().equals(NIEUWE_VRAAG_AANMAKEN)){
                 int nieuweIdQuestion = questionDAO.getCurrentQuestionId() + 1;
@@ -86,6 +88,7 @@ public class CreateUpdateQuestionController {
                 nieuweVraag.setIdQuestion(nieuweIdQuestion);
                 idQuestion.setText(String.valueOf(nieuweIdQuestion));
                 questionDAO.storeOne(nieuweVraag);
+
                 Alert bevestigAanmakenVraag = new Alert(Alert.AlertType.INFORMATION);
                 bevestigAanmakenVraag.setContentText("Vraag is succesvol aangemaakt");
                 bevestigAanmakenVraag.show();
@@ -95,6 +98,7 @@ public class CreateUpdateQuestionController {
                 Question aangepasteVraag = fillOutQuestionFields();
                 aangepasteVraag.setIdQuestion(Integer.parseInt(idQuestion.getText()));
                 questionDAO.updateOne(aangepasteVraag);
+
                 Alert bevestigAanpassenVraag = new Alert(Alert.AlertType.INFORMATION);
                 bevestigAanpassenVraag.setContentText("Vraag is succesvol aangepast");
                 bevestigAanpassenVraag.show();
