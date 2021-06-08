@@ -33,6 +33,7 @@ public class QuestionDAO extends AbstractDAO implements GenericDAO<Question>{
         } catch (SQLException sqlException) {
             System.out.println(sqlException.getMessage());
         }
+
     }
 
     @Override

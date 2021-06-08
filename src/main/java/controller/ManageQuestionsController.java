@@ -5,6 +5,7 @@ package controller;
 
 import database.mysql.DBAccess;
 import database.mysql.QuestionDAO;
+import database.mysql.QuizDAO;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ListView;
@@ -17,6 +18,7 @@ public class ManageQuestionsController {
 
     private DBAccess dbAccess;
     private QuestionDAO questionDAO;
+    private QuizDAO quizDAO;
 
     @FXML
     private ListView<Question> questionList;
@@ -27,6 +29,7 @@ public class ManageQuestionsController {
 
     public void setup() {
         this.questionDAO = new QuestionDAO(this.dbAccess);
+        this.quizDAO = new QuizDAO(this.dbAccess);
         ArrayList<Question> alleVragen = questionDAO.getAll();
         for (Question question: alleVragen) {
             questionList.getItems().add(question);
