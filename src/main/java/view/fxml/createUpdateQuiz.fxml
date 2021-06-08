@@ -21,7 +21,7 @@
       <TextField fx:id="textfieldQuizName" layoutX="312.0" layoutY="274.0" prefHeight="25.0" prefWidth="215.0" promptText="Voer hier je quiznaam in" />
       <TextField fx:id="textfieldSuccesDefinition" layoutX="312.0" layoutY="305.0" prefHeight="25.0" prefWidth="215.0" promptText="Voer hier de succesdefinitie toe" />
       <Button layoutX="201.0" layoutY="374.0" mnemonicParsing="false" onAction="#doMenu" text="Menu" />
-      <Button fx:id="adQuiz" layoutX="282.0" layoutY="374.0" mnemonicParsing="false" text="Voeg quiz toe" />
+      <Button fx:id="adQuiz" layoutX="282.0" layoutY="374.0" mnemonicParsing="false" onAction="#doCreateQuiz" text="Voeg quiz toe" />
       <Button layoutX="398.0" layoutY="374.0" mnemonicParsing="false" onAction="#doClear" text="Invulveld leegmaken" />
       <ComboBox fx:id="courseButton" layoutX="312.0" layoutY="153.0" prefHeight="25.0" prefWidth="215.0" promptText="Kies een course" />
       <Label layoutX="210.0" layoutY="185.0" text="*Deze quiz valt onder de volgende course:">
