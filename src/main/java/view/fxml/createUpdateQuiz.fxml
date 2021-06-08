@@ -17,12 +17,12 @@
       <Label fx:id="courseId" layoutX="204.0" layoutY="157.0" text="Course ID*" />
       <Label fx:id="quizName" layoutX="204.0" layoutY="278.0" text="Quiz Naam" />
       <Label fx:id="succesDefinition" layoutX="204.0" layoutY="309.0" text="Succesdefinitie" />
-      <TextField disable="true" layoutX="312.0" layoutY="243.0" prefHeight="25.0" prefWidth="215.0" />
+      <TextField fx:id="textfieldQuizId" disable="true" layoutX="312.0" layoutY="243.0" prefHeight="25.0" prefWidth="215.0" />
       <TextField fx:id="textfieldQuizName" layoutX="312.0" layoutY="274.0" prefHeight="25.0" prefWidth="215.0" promptText="Voer hier je quiznaam in" />
       <TextField fx:id="textfieldSuccesDefinition" layoutX="312.0" layoutY="305.0" prefHeight="25.0" prefWidth="215.0" promptText="Voer hier de succesdefinitie toe" />
       <Button layoutX="201.0" layoutY="374.0" mnemonicParsing="false" onAction="#doMenu" text="Menu" />
       <Button fx:id="adQuiz" layoutX="282.0" layoutY="374.0" mnemonicParsing="false" text="Voeg quiz toe" />
-      <Button layoutX="398.0" layoutY="374.0" mnemonicParsing="false" text="Invulveld leegmaken" />
+      <Button layoutX="398.0" layoutY="374.0" mnemonicParsing="false" onAction="#doClear" text="Invulveld leegmaken" />
       <ComboBox fx:id="courseButton" layoutX="312.0" layoutY="153.0" prefHeight="25.0" prefWidth="215.0" promptText="Kies een course" />
       <Label layoutX="210.0" layoutY="185.0" text="*Deze quiz valt onder de volgende course:">
          <font>

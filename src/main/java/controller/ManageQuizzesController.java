@@ -5,20 +5,27 @@ Nog niet af!
  */
 
 import database.mysql.DBAccess;
+import database.mysql.QuestionDAO;
 import database.mysql.QuizDAO;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ListView;
 
 import javafx.scene.control.TextField;
+import model.Question;
 import model.Quiz;
 import view.Main;
 import java.util.ArrayList;
+import java.util.Optional;
 
 
 public class ManageQuizzesController {
 
     private QuizDAO quizDAO;
+    private QuestionDAO questionDAO;
     private DBAccess dbAccess;
+
 
     @FXML
     ListView<Quiz> quizList;
@@ -39,32 +46,40 @@ public class ManageQuizzesController {
 
     }
 
-    public void doMenu(){Main.getSceneManager().showWelcomeScene();}
-
+    public void doMenu(){
+        Main.getSceneManager().showWelcomeScene();
+    }
 
     public void doCreateQuiz(){
-        Main.getSceneManager().showCreateUpdateQuizScene(quizList.getSelectionModel().getSelectedItem());
-    };
-
+        Main.getSceneManager().showCreateQuizScene(quizList.getSelectionModel().getSelectedItem());
+    }
 
     public void doUpdateQuiz() {
-        Quiz quiz = quizList.getSelectionModel().getSelectedItem();
-
-        if (quiz == null) {
-            warningText.setVisible(true);
-            warningText.setText("Je dient eerst een quiz te kiezen");
-        } else {
-            Main.getSceneManager().showCreateUpdateQuizScene(quizList.getSelectionModel().getSelectedItem());
-        }
+       Main.getSceneManager().showUpdateQuizScene(quizList.getSelectionModel().getSelectedItem());
     }
 
     public void doDeleteQuiz(){
-        // TODO: 06/06/2021 Gaat dit met een DAO die lijnen verwijdered?
-//        Quiz quiz = quizList.getSelectionModel().getSelectedItem();
-//
-//        if (quiz == null) {
-//            warningText.setVisible(true);
-//            warningText.setText("Je dient eerst een quiz te kiezen");
-//        } else { //Nog toevoegen.
+        Quiz quiz = quizList.getSelectionModel().getSelectedItem();
+        this.questionDAO = new QuestionDAO(dbAccess);
+        Question question = questionDAO.getOneById(quiz.getIdCourse());
+
+        //Checkt eerst of er niet al quizvragen zijn aangemaakt.
+        if(question == null) {
+            Alert deleteAlert = new Alert(Alert.AlertType.WARNING);
+            deleteAlert.setTitle("Verwijder quiz");
+            deleteAlert.setHeaderText("Weet je zeker dat je de quiz wilt verwijderen?");
+            Optional<ButtonType> result = deleteAlert.showAndWait();
+
+            if(result.get() == ButtonType.OK){
+                quizDAO.deleteOne(quizList.getSelectionModel().getSelectedItem());
+                Main.getSceneManager().showManageQuizScene();
+            }
+
+        }else{
+            Alert deleteAlert = new Alert(Alert.AlertType.ERROR);
+            deleteAlert.setTitle("Verwijder quiz niet mogelijk!");
+            deleteAlert.setHeaderText("Deze quiz kan niet verwijderd worden\ner zijn al vragen aangemaakt.");
+            Optional<ButtonType> result = deleteAlert.showAndWait();
+        }
     }
 }
