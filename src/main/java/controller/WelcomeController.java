@@ -71,7 +71,7 @@ public class  WelcomeController {
 
         item1.setOnAction(event -> Main.getSceneManager().showManageGroupsScene());
         item2.setOnAction(event -> Main.getSceneManager().showManageCoursesScene());
-        //item3.setOnAction(event -> Main.getSceneManager().showCreateCorseScene());
+        //item3.setOnAction(event -> Main.getSceneManager().showCreateCourseScene());
         taskMenuButton.getItems().add(item1);
         taskMenuButton.getItems().add(item2);
         //taskMenuButton.getItems().add(item3);

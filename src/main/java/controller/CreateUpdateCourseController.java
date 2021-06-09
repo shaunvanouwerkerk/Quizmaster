@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import model.Course;
+import model.User;
 import view.Main;
 
 import java.util.ArrayList;
@@ -36,8 +37,11 @@ public class CreateUpdateCourseController {
     public void setup(Course course) {
         titleLabel.setText("Wijzig cursus");
         nameCourseTextfield.setText(course.getNameCourse());
+        naamCoordinator.getSelectionModel().getSelectedItem();
 
     }
+
+
 
     @FXML
     public void doMenu(){

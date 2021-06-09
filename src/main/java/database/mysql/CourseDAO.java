@@ -107,6 +107,22 @@ public class CourseDAO extends AbstractDAO implements GenericDAO<Course>{
         }
         return courses;
     }
+    public ArrayList<String> getNamesCoordinators() {
+        String sql = "SELECT name FROM user WHERE roleName = coordinator;";
+        ArrayList<String> allCoordinators = new ArrayList<>();
+        try {
+            setupPreparedStatement(sql);
+            ResultSet resultSet = executeSelectStatement();
+
+            while (resultSet.next()) {
+                String name = resultSet.getString("roleName");
+                allCoordinators.add(name);
+            }
+        } catch (SQLException sqlException) {
+            System.out.println(sqlException.getMessage());
+        }
+        return allCoordinators;
+    }
 
     }
 
