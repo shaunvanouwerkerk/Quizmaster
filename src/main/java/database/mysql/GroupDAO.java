@@ -25,7 +25,7 @@ GroupDAO extends AbstractDAO implements GenericDAO<Group>{
     public ArrayList getAll() {
         ArrayList<Group> groups = new ArrayList<>();
         Group group;
-        String sql = "SELECT * FROM group";
+        String sql = "SELECT * from `group`";
         try {
             setupPreparedStatement(sql);
             ResultSet resultSet = executeSelectStatement();
@@ -44,7 +44,7 @@ GroupDAO extends AbstractDAO implements GenericDAO<Group>{
 
     @Override
     public Group getOneById(int idGroup) {
-        String sql = "SELECT * FROM group WHERE idGroup = ?";
+        String sql = "SELECT * FROM `group` WHERE idGroup = ?";
         Group result = null;
         try {
             setupPreparedStatement(sql);
@@ -68,7 +68,7 @@ GroupDAO extends AbstractDAO implements GenericDAO<Group>{
 
     @Override
     public void storeOne(Group group) {
-              String sql = "Insert INTO group(idCoordinatorGroup, idCourse) VALUES (?, ?);";
+              String sql = "Insert INTO `group`(idCoordinatorGroup, idCourse) VALUES (?, ?);";
             try{
                 setupPreparedStatementWithKey(sql);
                 preparedStatement.setInt(1, group.getIdCooridnator());
@@ -81,7 +81,7 @@ GroupDAO extends AbstractDAO implements GenericDAO<Group>{
     }
 
     public Group getOneByIdCoordinator(int idCoordinator) {
-        String sql = "SELECT * FROM group WHERE idCoordinator = ?";
+        String sql = "SELECT * FROM `group` WHERE idCoordinator = ?";
         Group result = null;
         try {
             setupPreparedStatement(sql);
@@ -104,7 +104,7 @@ GroupDAO extends AbstractDAO implements GenericDAO<Group>{
     }
 
     public void deleteGroup(Group group) {
-        String sql = "DELETE FROM group WHERE idgroup = ?;";
+        String sql = "DELETE FROM `group` WHERE idgroup = ?;";
         try {
             setupPreparedStatement(sql);
             preparedStatement.setInt(1, group.getIdGroup());
