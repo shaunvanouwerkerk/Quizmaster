@@ -25,7 +25,7 @@ GroupDAO extends AbstractDAO implements GenericDAO<Group>{
     public ArrayList getAll() {
         ArrayList<Group> groups = new ArrayList<>();
         Group group;
-        String sql = "SELECT * from group";
+        String sql = "SELECT * FROM group";
         try {
             setupPreparedStatement(sql);
             ResultSet resultSet = executeSelectStatement();
