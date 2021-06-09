@@ -80,9 +80,9 @@ GroupDAO extends AbstractDAO implements GenericDAO<Group>{
             }
     }
 
-    public Group getOneByIdCoordinator(int idCoordinator) {
+    public Group getAllByIdCoordinator(int idCoordinator) {
         String sql = "SELECT * FROM `group` WHERE idCoordinator = ?";
-        Group result = null;
+        Group groupWithCoordinator = null;
         try {
             setupPreparedStatement(sql);
             preparedStatement.setInt(1, idCoordinator);
@@ -90,17 +90,40 @@ GroupDAO extends AbstractDAO implements GenericDAO<Group>{
             if (resultSet.next()) {
                 int idGroup = resultSet.getInt("idGroup");
                 int idCourse = resultSet.getInt("idCourse");
-                result = new Group(idGroup, idCoordinator, idCourse);
+                groupWithCoordinator = new Group(idGroup, idCoordinator, idCourse);
             } else {
                 Alert foutmelding = new Alert(Alert.AlertType.ERROR);
-                foutmelding.setContentText("Er is geen groep met deze groep ID in de database");
+                foutmelding.setContentText("Er is geen groep met deze coordinator in de database");
                 foutmelding.show();
             }
         }
         catch (SQLException sqlException){
             System.out.println(sqlException.getMessage());
         }
-        return result;
+        return groupWithCoordinator;
+    }
+
+    public Group getAllByIdCourse(int idCourse) {
+        String sql = "SELECT * FROM `group` WHERE idCourse = ?";
+        Group groupInCourse = null;
+        try {
+            setupPreparedStatement(sql);
+            preparedStatement.setInt(1, idCourse);
+            ResultSet resultSet = executeSelectStatement();
+            if (resultSet.next()) {
+                int idGroup = resultSet.getInt("idGroup");
+                int idCoordinator = resultSet.getInt("idCoordinator");
+                groupInCourse = new Group(idGroup, idCoordinator, idCourse);
+            } else {
+                Alert foutmelding = new Alert(Alert.AlertType.ERROR);
+                foutmelding.setContentText("Er is geen groep in deze course in de database");
+                foutmelding.show();
+            }
+        }
+        catch (SQLException sqlException){
+            System.out.println(sqlException.getMessage());
+        }
+        return groupInCourse;
     }
 
     public void deleteGroup(Group group) {

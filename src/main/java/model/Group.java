@@ -15,6 +15,10 @@ public class Group {
         this.idCourse = idCourse;
     }
 
+    public Group(int idCoordinator, int idCourse) {
+        this(0, idCoordinator, idCourse);
+    }
+
     @Override
     public String toString() {
         return String.format("Course %d has a coordinator %d and part-taking group %d",
