@@ -39,7 +39,6 @@ public class ManageCoursesController {
         Main.getSceneManager().showWelcomeScene();
     }
 
-
     public void doCreateCourse(){
         Main.getSceneManager().showCreateUpdateCourseScene(courseList.getSelectionModel().getSelectedItem());
     }
@@ -47,8 +46,6 @@ public class ManageCoursesController {
     public void doUpdateCourse(){
         Main.getSceneManager().showCreateUpdateCourseScene(courseList.getSelectionModel().getSelectedItem());
     }
-
-
 
     public void doDeleteCourse(){
         Course removeCourse = courseList.getSelectionModel().getSelectedItem();

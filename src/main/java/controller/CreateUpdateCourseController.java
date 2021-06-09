@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import model.Course;
 import model.User;
@@ -25,7 +26,7 @@ public class CreateUpdateCourseController {
     @FXML
     private Button backToMenu;
     @FXML
-    private TextField titleLabel;
+    private Label titleLabel;
     @FXML
     private ComboBox<String> naamCoordinator;
 
@@ -38,7 +39,6 @@ public class CreateUpdateCourseController {
         titleLabel.setText("Wijzig cursus");
         nameCourseTextfield.setText(course.getNameCourse());
         naamCoordinator.getSelectionModel().getSelectedItem();
-
     }
 
 
