@@ -82,9 +82,9 @@ public class CourseDAO extends AbstractDAO implements GenericDAO<Course>{
             ResultSet resultSet = executeSelectStatement();
             if (resultSet.next()) {
                 String nameCourse = resultSet.getString("nameCourse");
-                int idCoordinatorCourse = resultSet.getInt("idCoordinatorCourse");
-                result = new Course(nameCourse,idCoordinatorCourse);
-                result.setIdCourse(id);
+                int idCourse = resultSet.getInt("idCourse");
+                result = new Course(nameCourse,id);
+                result.setIdCourse(idCourse);
                 courses.add(result);
             } else {
                 System.out.println("Er zijn geen courses voor deze Coordinator");
