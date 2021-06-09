@@ -87,11 +87,11 @@ public class SceneManager {
         controller.setupUpdateCourse(course);
     }
 
-    public void showCreateUpdateCourseScene(Course course) {
+    /*public void showCreateUpdateCourseScene(Course course) {
         FXMLLoader loader = getScene("/view/fxml/createUpdateCourse.fxml");
         CreateUpdateCourseController controller = loader.getController();
         controller.setup(course);
-    }
+    }*/
 
     public void showManageGroupsScene() {
         FXMLLoader loader = getScene("/view/fxml/manageGroups.fxml");

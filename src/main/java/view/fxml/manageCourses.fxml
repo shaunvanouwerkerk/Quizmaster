@@ -21,7 +21,7 @@
             <Font size="14.0" />
         </font>
     </Button>
-    <Button layoutX="113.0" layoutY="285.0" mnemonicParsing="false" onAction="#doUpdateCourse" text="Wijzig">
+    <Button fx:id="updateCourseButton" layoutX="113.0" layoutY="285.0" mnemonicParsing="false" onAction="#doUpdateCourse" text="Wijzig">
         <font>
             <Font size="14.0" />
         </font>
