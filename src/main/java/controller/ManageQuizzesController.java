@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 
-public class ManageQuizzesController {
+public class  ManageQuizzesController {
 
     private QuizDAO quizDAO;
     private QuestionDAO questionDAO;
