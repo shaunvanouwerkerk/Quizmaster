@@ -40,7 +40,9 @@ public class CreateUpdateCourseController {
         nameCourseTextfield.setText(course.getNameCourse());
         naamCoordinator.getSelectionModel().getSelectedItem();
     }
+    public void setupCreateCourse(){}
 
+    public void setupUpdateCourse(Course course){}
 
 
     @FXML

@@ -43,6 +43,8 @@ public class ManageCoursesController {
         Main.getSceneManager().showCreateUpdateCourseScene(courseList.getSelectionModel().getSelectedItem());
     }
 
+
+
     public void doUpdateCourse(){
         Main.getSceneManager().showCreateUpdateCourseScene(courseList.getSelectionModel().getSelectedItem());
     }
