@@ -49,6 +49,7 @@ public class ManageGroupsController {
 
     public void doCreateGroup() {
         Main.getSceneManager().showCreateUpdateGroupScene(groupList.getSelectionModel().getSelectedItem());
+
     }
 
     public void doUpdateGroup() {
@@ -57,7 +58,7 @@ public class ManageGroupsController {
 
     public void doDeleteGroup() {
         Group groupToDelete = groupList.getSelectionModel().getSelectedItem();
-        Alert deleteAlert = new Alert(Alert.AlertType.WARNING);
+        Alert deleteAlert = new Alert(Alert.AlertType.CONFIRMATION);
         deleteAlert.setTitle("Verwijder group");
         deleteAlert.setHeaderText("Weet je zeker dat je de group wilt verwijderen?");
         Optional<ButtonType> result = deleteAlert.showAndWait();
