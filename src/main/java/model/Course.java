@@ -21,7 +21,6 @@ public class Course {
     }
 
 
-
     //getters/setters
     public int getIdCourse() {
         return idCourse;

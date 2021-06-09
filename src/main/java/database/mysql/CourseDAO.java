@@ -3,8 +3,10 @@ package database.mysql;
 * Author Harold Stevens
 * */
 
+import javafx.scene.control.Alert;
 import model.Course;
 import model.Question;
+import model.User;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -107,21 +109,26 @@ public class CourseDAO extends AbstractDAO implements GenericDAO<Course>{
         }
         return courses;
     }
-    public ArrayList<String> getNamesCoordinators() {
-        String sql = "SELECT name FROM user WHERE roleName = coordinator;";
-        ArrayList<String> allCoordinators = new ArrayList<>();
+    public void updateCourse(Course course) {
+        String sql = "UPDATE course SET nameCourse = ?, idCoordinatorCourse = ? WHERE idCourse = ?";
+
         try {
             setupPreparedStatement(sql);
-            ResultSet resultSet = executeSelectStatement();
-
-            while (resultSet.next()) {
-                String name = resultSet.getString("roleName");
-                allCoordinators.add(name);
-            }
+            preparedStatement.setString(1, course.getNameCourse());
+            preparedStatement.setInt(2, course.getIdCoordinator());
+            preparedStatement.setInt(3, course.getIdCourse());
+            System.out.println(course);
+            executeManipulateStatement();
         } catch (SQLException sqlException) {
+            Alert foutmelding = new Alert(Alert.AlertType.ERROR);
+            if(sqlException.getMessage().contains("Duplicate")) {
+                foutmelding.setContentText("Deze cursus bestaat al! Cursus is niet gewijzigd.");
+            } else {
+                foutmelding.setContentText("Cursus kon niet worden gewijzigd.");
+            }
+            foutmelding.show();
             System.out.println(sqlException.getMessage());
         }
-        return allCoordinators;
     }
 
     }

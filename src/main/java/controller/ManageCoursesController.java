@@ -4,12 +4,15 @@ import database.mysql.CourseDAO;
 import database.mysql.DBAccess;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import model.Course;
 import view.Main;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 public class ManageCoursesController {
     private CourseDAO courseDAO;
@@ -40,19 +43,26 @@ public class ManageCoursesController {
     }
 
     public void doCreateCourse(){
-        Main.getSceneManager().showCreateUpdateCourseScene(courseList.getSelectionModel().getSelectedItem());
+        Main.getSceneManager().showCreateCourseScene();
     }
-
-
 
     public void doUpdateCourse(){
-        Main.getSceneManager().showCreateUpdateCourseScene(courseList.getSelectionModel().getSelectedItem());
+        Main.getSceneManager().showUpdateCourseScene(courseList.getSelectionModel().getSelectedItem());
     }
 
-    public void doDeleteCourse(){
-        Course removeCourse = courseList.getSelectionModel().getSelectedItem();
-        courseDAO.deleteCourse(removeCourse);
-        courseList.getItems().remove(removeCourse);
+
+
+    public void doDeleteCourse() {
+        Alert deleteAlert = new Alert(Alert.AlertType.CONFIRMATION);
+        deleteAlert.setTitle("Verwijderen cursus");
+        deleteAlert.setHeaderText(String.format("Weet je zeker dat je de cursus %s wilt verwijderen?",
+                courseList.getSelectionModel().getSelectedItem().toString()));
+        deleteAlert.setContentText("Dit kun je niet ongedaan maken.");
+        Optional<ButtonType> result = deleteAlert.showAndWait();
+        if(result.get() == ButtonType.OK) {
+            courseDAO.deleteCourse(courseList.getSelectionModel().getSelectedItem());
+            Main.getSceneManager().showManageCoursesScene();
+        }
 
     }
 
