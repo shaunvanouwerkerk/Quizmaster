@@ -18,7 +18,7 @@ public class QuestionDAO extends AbstractDAO implements GenericDAO<Question>{
 
     @Override
     public void storeOne(Question question) {
-        // Question op auto increment?
+
         String sql = "INSERT INTO question(idQuiz, questionString, answerA, answerB, answerC, answerD) " +
                 "VALUES(?, ?, ?, ?, ?, ?);";
         try {
@@ -176,20 +176,4 @@ public class QuestionDAO extends AbstractDAO implements GenericDAO<Question>{
         }
     }
 
-    public int getCurrentQuestionId () {
-        String sql = "Select MAX(idQuestion) From question;";
-        int currentQuestionId = 0;
-        try {
-            setupPreparedStatement(sql);
-            ResultSet resultSet = executeSelectStatement();
-            if (resultSet.next()) {
-                currentQuestionId = resultSet.getInt(1);
-            } else {
-                System.out.println("Er zijn geen vragen in de database");
-            }
-        } catch (SQLException sqlException) {
-            System.out.println(sqlException.getMessage());
-        }
-        return currentQuestionId;
-    }
 }

@@ -76,6 +76,16 @@ public class SceneManager {
         ManageCoursesController controller = loader.getController();
         controller.setup();
     }
+    public void showCreateCourseScene() {
+        FXMLLoader loader = getScene("/view/fxml/createUpdateCourse.fxml");
+        CreateUpdateCourseController controller = loader.getController();
+        controller.setupCreateCourse();
+    }
+    public void showUpdateCourseScene(Course course) {
+        FXMLLoader loader = getScene("/view/fxml/createUpdateCourse.fxml");
+        CreateUpdateCourseController controller = loader.getController();
+        controller.setupUpdateCourse(course);
+    }
 
     public void showCreateUpdateCourseScene(Course course) {
         FXMLLoader loader = getScene("/view/fxml/createUpdateCourse.fxml");

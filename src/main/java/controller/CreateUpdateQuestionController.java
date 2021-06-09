@@ -81,12 +81,8 @@ public class CreateUpdateQuestionController {
         try {
             // 1. Create Question Scenario
             if (hoofdTitel.getText().equals(NIEUWE_VRAAG_AANMAKEN)){
-                int nieuweIdQuestion = questionDAO.getCurrentQuestionId() + 1;
                 Question nieuweVraag = fillOutQuestionFields();
-                nieuweVraag.setIdQuestion(nieuweIdQuestion);
-                idQuestion.setText(String.valueOf(nieuweIdQuestion));
                 questionDAO.storeOne(nieuweVraag);
-
                 Alert bevestigAanmakenVraag = new Alert(Alert.AlertType.INFORMATION);
                 bevestigAanmakenVraag.setContentText("Vraag is succesvol aangemaakt");
                 bevestigAanmakenVraag.show();

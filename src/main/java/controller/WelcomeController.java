@@ -93,7 +93,6 @@ public class  WelcomeController {
         MenuItem item1 = new MenuItem("Beheer Quizzen");
         MenuItem item2 = new MenuItem("Beheer vragen");
 
-
         item1.setOnAction(event -> Main.getSceneManager().showManageQuizScene());
         item2.setOnAction(event -> Main.getSceneManager().showManageQuestionsScene());
 
