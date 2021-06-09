@@ -4,6 +4,7 @@ package database.mysql;
 * */
 
 import model.Course;
+import model.Question;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -71,6 +72,17 @@ public class CourseDAO extends AbstractDAO implements GenericDAO<Course>{
             System.out.println("SQL error " + sqlException.getMessage());
         }
     }
+    //methode voor het verwijderen van een Course
+    public void deleteCourse(Course course) {
+        String sql = "DELETE FROM course WHERE idCourse = ?;";
+        try {
+            setupPreparedStatement(sql);
+            preparedStatement.setInt(1, course.getIdCourse());
+            executeManipulateStatement();
+        } catch (SQLException sqlException) {
+            System.out.println(sqlException.getMessage());
+        }
+    }
 
     public ArrayList<Course> getCoursesByIdCoordinator(int id) {
         String sql = "SELECT * FROM Course Where idCoordinatorCourse = ?";
@@ -94,6 +106,22 @@ public class CourseDAO extends AbstractDAO implements GenericDAO<Course>{
             System.out.println("SQL error " + sqlException.getMessage());
         }
         return courses;
+    }
+    public ArrayList<String> getNamesCoordinators() {
+        String sql = "SELECT name FROM user WHERE roleName = coordinator;";
+        ArrayList<String> allCoordinators = new ArrayList<>();
+        try {
+            setupPreparedStatement(sql);
+            ResultSet resultSet = executeSelectStatement();
+
+            while (resultSet.next()) {
+                String name = resultSet.getString("roleName");
+                allCoordinators.add(name);
+            }
+        } catch (SQLException sqlException) {
+            System.out.println(sqlException.getMessage());
+        }
+        return allCoordinators;
     }
 
     }

@@ -51,6 +51,9 @@ public class Course {
 
     @Override
     public String toString() {
-        return String.format("Course id: %d\nCourse name: %s\nCourse Coordinator: %d\n",idCourse,nameCourse,idCoordinator);
+        StringBuilder resultString = new StringBuilder("");
+        resultString.append(idCourse + " ");
+        resultString.append(nameCourse);
+        return resultString.toString();
     }
 }
