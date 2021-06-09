@@ -4,7 +4,8 @@ package controller;
 Nog niet af! 
  */
 
-// TODO: 08/06/2021 :Als je over quiz gaat dat het aantal vragen wordt getoond. 
+// TODO: 08/06/2021 :Als je over quiz gaat dat het aantal vragen wordt getoond.
+// TODO: 09/06/2021 Zorgen dat je alleen de quizen ziet die behoort bij de coordinator 
 
 import database.mysql.DBAccess;
 import database.mysql.QuestionDAO;
@@ -29,6 +30,7 @@ public class  ManageQuizzesController {
     private DBAccess dbAccess;
 
 
+
     @FXML
     ListView<Quiz> quizList;
     @FXML
@@ -45,6 +47,15 @@ public class  ManageQuizzesController {
         }
 //         Om een nullpointer exception te vermijden
         quizList.getSelectionModel().selectFirst();
+
+        // Methode om aantal vragen te tonen per quiz:
+        // TODO: 09/06/2021 Moet alleen nog dat als je klikt/hoovert dat het toont.
+        this.questionDAO = new QuestionDAO(dbAccess);
+        Quiz quiz = quizList.getSelectionModel().getSelectedItem(); // Hoe kan ik bij opnieuw klikken weer het aantal tonen.
+        ArrayList<Question> totalQuestions = questionDAO.getAllperQuiz(quiz);
+        int itemCount = totalQuestions.size();
+        System.out.println("Het aantal vragen bij deze quiz is: " + itemCount); // Ff voor de test
+        warningText.setText(String.valueOf("Aantal vragen bij deze quiz: " + itemCount + " vragen."));
 
     }
 
