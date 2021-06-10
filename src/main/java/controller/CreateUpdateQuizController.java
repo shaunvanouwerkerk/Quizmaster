@@ -63,7 +63,7 @@ public class CreateUpdateQuizController {
         textfieldQuizId.setText(String.valueOf(quiz.getIdQuiz()));
         textfieldSuccesDefinition.setText(String.valueOf(quiz.getSuccesDefinition()));
         adQuiz.setText("Bewerken");
-        adQuiz.setOnAction(event -> doUpdateQuiz(quiz));// NIET ZEKER OF DIT GOED GAAT
+        adQuiz.setOnAction(event -> doUpdateQuiz(quiz));
         ComboBox<Course> keuzeDropDown = setCoursesDropList();
         courseButton.getSelectionModel().getSelectedItem();
         // TODO: 08/06/2021  Dit gaat nog niet goed. Eigenlijk moet er een extra veld komen waarin je ziet dat de QUIZ valt in de COURSE
@@ -85,8 +85,12 @@ public class CreateUpdateQuizController {
         doClear();
     }
 
-    public void doUpdateQuiz(Quiz quiz){
-
+    public void doUpdateQuiz(Quiz quiz) {
+        quiz.setNameQuiz(textfieldQuizName.getText());
+        quiz.setSuccesDefinition(Integer.parseInt(textfieldSuccesDefinition.getText()));
+        quiz.setIdCourse(courseButton.getSelectionModel().getSelectedItem().getIdCourse());
+        quizDAO.updateOne(quiz);
+        doClear();
     }
 
     public void doClear(){

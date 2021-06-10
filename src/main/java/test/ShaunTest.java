@@ -36,6 +36,10 @@ public class ShaunTest {
         Quiz quiz2 = quizDAO.getOneById(1);
         System.out.println(quiz2);
 
+        //3 Test kies quiz per course id
+        Quiz quiz3 = quizDAO.getOneByCourseId(2);
+        System.out.println(quiz3);
+
 
         // Sorry pik, ik heb ze ff uit gecomment want anders wilde mn test niet runnen :)
 
