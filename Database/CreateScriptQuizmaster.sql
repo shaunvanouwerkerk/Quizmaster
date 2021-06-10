@@ -173,7 +173,7 @@ CREATE TABLE usermakesquiz (
 
 -- Gebruiker definiëren en toegang verlenen
 CREATE USER 'userQuizmaster'@'localhost' IDENTIFIED BY 'pwQuizmaster';
-GRANT ALL PRIVILEGES ON Quizmaster.* TO 'userQuizmaster'@'localhost';
+GRANT ALL PRIVILEGES ON quizmaster.* TO 'userQuizmaster'@'localhost';
 
 -- Dump completed
 

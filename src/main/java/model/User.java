@@ -24,11 +24,7 @@ public class User {
 
     @Override
     public String toString() {
-        StringBuilder resultString = new StringBuilder("");
-        resultString.append(idUser + " ");
-        resultString.append(username + " ");
-        resultString.append(roleName);
-        return resultString.toString();
+        return username;
     }
 
     //Getters and Setters
