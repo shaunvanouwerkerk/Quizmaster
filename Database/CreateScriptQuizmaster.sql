@@ -97,7 +97,7 @@ CREATE TABLE quiz (
   nameQuiz varchar(45) NOT NULL,
   succesDefinition int NOT NULL,
   PRIMARY KEY (idQuiz,idCourse),
-  KEY fk_Quiz_Course1_idx (idCourse)
+  KEY fk_Quiz_Course1_idx (idCourse),
   CONSTRAINT fk_Group_Course1 FOREIGN KEY (idCourse) REFERENCES course (idCourse) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
