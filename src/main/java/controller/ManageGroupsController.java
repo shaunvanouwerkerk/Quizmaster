@@ -49,7 +49,6 @@ public class ManageGroupsController {
 
     public void doCreateGroup() {
         Main.getSceneManager().showCreateGroupScene();
-
     }
 
     public void doUpdateGroup() {

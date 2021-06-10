@@ -46,9 +46,9 @@ public class CreateUpdateGroupController {
 
     public void setupCreateGroup() {
         ComboBox<User> keuzeUserDropDown = setUserDropList();
-        ComboBox<Course> keuzeCourseDropDown = setCourseDropdownList();
         coordinatorButton.getSelectionModel().getSelectedItem();
         coordinatorButton.setOnAction(event -> keuzeUserDropDown.getSelectionModel().getSelectedItem().getIdUser());
+        ComboBox<Course> keuzeCourseDropDown = setCourseDropdownList();
         courseButton.getSelectionModel().getSelectedItem();
         courseButton.setOnAction(event -> keuzeCourseDropDown.getSelectionModel().getSelectedItem().getIdCourse());
     }
@@ -70,8 +70,6 @@ public class CreateUpdateGroupController {
 //        roleButton.getSelectionModel().select(user.getRoleName());
 //        roleButton.setOnAction(event -> keuzeBox.getSelectionModel().getSelectedItem());
 //}
-
-
     public void doMenu() {
         Main.getSceneManager().showWelcomeScene();
     }

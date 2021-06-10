@@ -6,29 +6,29 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CreateUpdateGroupController">
    <children>
-      <ComboBox fx:id="coordinatorButton" layoutX="430.0" layoutY="194.0" prefWidth="150.0" promptText="Kies een course" />
-      <ComboBox fx:id="courseButtonButton" layoutX="430.0" layoutY="242.0" prefWidth="150.0" promptText="Kies een coordinator" />
-      <Label layoutX="178.0" layoutY="193.0" text="Course waar group bij hoort:">
-         <font>
-            <Font size="18.0" />
-         </font></Label>
-      <Button layoutX="41.0" layoutY="50.0" mnemonicParsing="false" text="Menu">
-         <font>
-            <Font size="18.0" />
-         </font></Button>
-      <Label layoutX="178.0" layoutY="241.0" text="Coordinator van de group:">
-         <font>
-            <Font size="18.0" />
-         </font></Label>
       <Label layoutX="178.0" layoutY="113.0" prefHeight="48.0" prefWidth="199.0" text="Nieuwe Group maken ">
          <font>
             <Font size="18.0" />
          </font></Label>
+      <Label layoutX="178.0" layoutY="193.0" text="Course waar group bij hoort:">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <ComboBox fx:id="coordinatorButton" layoutX="430.0" layoutY="194.0" prefWidth="150.0" promptText="Kies een course" />
+      <Label layoutX="178.0" layoutY="241.0" text="Coordinator van de group:">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <ComboBox fx:id="courseButtonButton" layoutX="430.0" layoutY="242.0" prefWidth="150.0" promptText="Kies een coordinator" />
       <Button layoutX="178.0" layoutY="365.0" mnemonicParsing="false" text="Voeg group toe">
          <font>
             <Font size="18.0" />
          </font></Button>
       <Button layoutX="378.0" layoutY="365.0" mnemonicParsing="false" text="Maak invulvelden leeg">
+         <font>
+            <Font size="18.0" />
+         </font></Button>
+      <Button layoutX="41.0" layoutY="50.0" mnemonicParsing="false" text="Menu">
          <font>
             <Font size="18.0" />
          </font></Button>
