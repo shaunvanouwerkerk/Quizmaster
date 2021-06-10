@@ -176,4 +176,25 @@ public class QuestionDAO extends AbstractDAO implements GenericDAO<Question>{
         }
     }
 
+    public ArrayList<Integer> getQuizzesByLoggedInUser (int idCoordinator) {
+        ArrayList<Integer> idQuizzenUitDatabase = new ArrayList<>();
+        String sql = "Select idQuiz, idCourse, nameQuiz, succesDefinition" +
+                " from quiz WHERE idCourse IN ( Select idCourse from course where idCoordinatorCourse = ?);";
+        try {
+            setupPreparedStatement(sql);
+            preparedStatement.setInt(1, idCoordinator);
+            ResultSet resultSet = executeSelectStatement();
+            while (resultSet.next()) {
+                int idQuiz = resultSet.getInt(1);
+                idQuizzenUitDatabase.add(idQuiz);
+            }
+            if (idQuizzenUitDatabase.isEmpty()) {
+                System.out.println("Er zijn nog geen quizzen in de database");
+            }
+        } catch (SQLException sqlException) {
+            System.out.println(sqlException.getMessage());
+        }
+        return idQuizzenUitDatabase;
+    }
+
 }
