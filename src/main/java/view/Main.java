@@ -8,7 +8,6 @@ import model.User;
 
 import java.util.ArrayList;
 
-
 public class Main extends Application {
 
     private static SceneManager sceneManager = null;
