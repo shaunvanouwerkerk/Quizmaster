@@ -35,7 +35,7 @@ INSERT INTO question VALUES (7,4,'Which HTML element contains CSS sheets?','<sty
 -- Dumping data for table `quiz`
 --
 
-INSERT INTO quiz VALUES (4,2,'Programmin 1',8.00),(5,3,'Database ontwerp',7.00),(6,3,'Database bouw en gebruik',8.00),(7,4,'Advanced programming 1',8.00);
+INSERT INTO quiz (idCourse, nameQuiz, succesDefinition) VALUES (2,'Programmin 1',8.00),(3,'Database ontwerp',7.00),(3,'Database bouw en gebruik',8.00),(4,'Advanced programming 1',8.00);
 
 --
 -- Dumping data for table `role`

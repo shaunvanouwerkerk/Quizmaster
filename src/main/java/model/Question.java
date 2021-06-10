@@ -22,6 +22,7 @@ public class Question {
     public Question (int idQuestion, int idQuiz, String questionString,
                      String answerA, String answerB, String answerC, String answerD) {
         this.idQuestion = idQuestion;
+
         this.idQuiz = idQuiz;
         this.questionString = questionString;
         this.answerA = answerA;

@@ -150,7 +150,7 @@ public class CreateUpdateQuestionController {
                     antwoordD.getText().length() > LENGTE_INVULL_VELDEN) {
                 throw new SQLException();
             } else {
-                nieuweVraag = new Question(0,
+                nieuweVraag = new Question(Integer.valueOf(idQuiz.getSelectionModel().getSelectedItem()),
                         nieuweQuestionString, nieuweAntwoordA, nieuweAntwoordB, nieuweAntwoordC, nieuweAntwoordD);
                 correctFilledOut = true;
             }

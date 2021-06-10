@@ -81,24 +81,26 @@ public class  ManageQuizzesController {
        Main.getSceneManager().showUpdateQuizScene(quizList.getSelectionModel().getSelectedItem());
     }
 
-    public void doDeleteQuiz(){
+    public void doDeleteQuiz() {
         Quiz quiz = quizList.getSelectionModel().getSelectedItem();
         this.questionDAO = new QuestionDAO(dbAccess);
-        Question question = questionDAO.getOneById(quiz.getIdCourse());
+        boolean quizHasQuestion = questionDAO.getQuestionBasedOnIdQuiz(quiz.getIdQuiz());
+        System.out.println(quizHasQuestion);
+
 
         //Checkt eerst of er niet al quizvragen zijn aangemaakt.
-        if(question == null) {
+        if (!(quizHasQuestion)) {
             Alert deleteAlert = new Alert(Alert.AlertType.CONFIRMATION);
             deleteAlert.setTitle("Verwijder quiz");
             deleteAlert.setHeaderText("Weet je zeker dat je de quiz wilt verwijderen?");
             Optional<ButtonType> result = deleteAlert.showAndWait();
 
-            if(result.get() == ButtonType.OK){
+            if (result.get() == ButtonType.OK) {
                 quizDAO.deleteOne(quizList.getSelectionModel().getSelectedItem());
                 Main.getSceneManager().showManageQuizScene();
             }
 
-        }else{
+        } else {
             Alert deleteAlert = new Alert(Alert.AlertType.ERROR);
             deleteAlert.setTitle("Verwijder quiz niet mogelijk!");
             deleteAlert.setHeaderText("Deze quiz kan niet verwijderd worden\ner zijn al vragen aangemaakt.");

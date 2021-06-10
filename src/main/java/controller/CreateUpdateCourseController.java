@@ -45,7 +45,6 @@ public class CreateUpdateCourseController {
         ComboBox<User> keuzeDropDown = setUserDropList();
         userButton.getSelectionModel().getSelectedItem();
         userButton.setOnAction(event -> keuzeDropDown.getSelectionModel().getSelectedItem());
-
     }
 
     public void setupUpdateCourse(Course course){
@@ -138,21 +137,7 @@ public class CreateUpdateCourseController {
         return allFields;
     }
 
-    //methode om te controleren of de naam van de cursus is ingevuld
-    /*public boolean checkFieldsUpdateCourse() {
-        boolean coursName = false;
-
-        Alert foutmelding = new Alert(Alert.AlertType.ERROR);
-
-        if (!(nameCourseTextfield.getText().isEmpty())) {
-            coursName = true;
-        } else if(nameCourseTextfield.getText().isEmpty()) {
-            foutmelding.setContentText("Je hebt geen cursusnaam opgegeven");
-            foutmelding.show();
-        }
-        return coursName;
-    }*/
-}
+   }
 
 
 
