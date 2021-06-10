@@ -29,7 +29,7 @@ INSERT INTO `group` VALUES (2,5,2),(3,22,3),(4,23,4),(9,5,2),(10,22,3),(11,23,4)
 -- Dumping data for table `question`
 --
 
-INSERT INTO question VALUES (7,4,'Which HTML element contains CSS sheets?','<style>','<head>','<base>','<link>'),(8,4,'Test Vraag om te verwijderen?','A1','B1','C1','D1'),(9,6,'Programming Quiz 1?','A2','B2','C2','D2'),(10,6,'Programming Quiz 2?','A3','B3','C3','D3'),(11,7,'Advanced Programming Quiz 1?','A4','B4','C4','D4'),(12,7,'Advanced Programming Quiz 2?','A5','B5','C5','D5');
+INSERT INTO question VALUES (7,4,'Which HTML element contains CSS sheets?','<style>','<head>','<base>','<link>'),(8,4,'Test Vraag om te verwijderen?','A1','B1','C1','D1'),(9,6,'Programming Quiz 1?','A2','B2','C2','D2'),(10,6,'Programming Quiz 2?','A3','B3','C3','D3'),(11,7,'Advanced Programming Quiz 1?','A4','B4','C4','D4'),(12,7,'Advanced Programming Quiz 2?','A5','B5','C5','D5'),(12,8,'Advanced Programming 3 Quiz 1?','A4','B4','C4','D4'),(13,9,'Datbase Quiz 2?','A5','B5','C5','D5');
 
 --
 -- Dumping data for table `quiz`

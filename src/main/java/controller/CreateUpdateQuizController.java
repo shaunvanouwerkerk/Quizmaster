@@ -50,7 +50,7 @@ public class CreateUpdateQuizController {
     public void setupCreateQuiz(){
         ComboBox<Course> keuzeDropDown = setCoursesDropList();
         courseButton.getSelectionModel().getSelectedItem();
-        courseButton.setOnAction(event -> keuzeDropDown.getSelectionModel().getSelectedItem().getIdCourse());
+        courseButton.setOnAction(event -> keuzeDropDown.getSelectionModel().getSelectedItem()); // getIdCOurse eruit
 
     }
 
@@ -63,7 +63,8 @@ public class CreateUpdateQuizController {
         adQuiz.setOnAction(event -> doUpdateQuiz(quiz));
         ComboBox<Course> keuzeDropDown = setCoursesDropList();
         courseButton.getSelectionModel().selectFirst();
-        courseButton.getSelectionModel().getSelectedItem();
+//        courseButton.getSelectionModel().getSelectedItem();
+        courseButton.setOnAction(event -> keuzeDropDown.getSelectionModel().getSelectedItem());
     }
 
     public void doMenu() {
