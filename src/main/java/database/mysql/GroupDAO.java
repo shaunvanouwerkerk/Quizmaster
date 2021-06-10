@@ -4,6 +4,7 @@ package database.mysql;
  * */
 
 import javafx.scene.control.Alert;
+import model.Course;
 import model.Group;
 import model.Question;
 import model.User;
@@ -136,4 +137,21 @@ GroupDAO extends AbstractDAO implements GenericDAO<Group>{
             System.out.println(sqlException.getMessage());
         }
     }
+
+    public void updateGroup(Group group) {
+        String sql = "UPDATE `group` SET idCoordinatorGroup = ?, idCourse = ? WHERE idGroup = ?;";
+        try {
+            setupPreparedStatement(sql);
+            preparedStatement.setInt(1, group.getIdCooridnator());
+            preparedStatement.setInt(2, group.getIdCourse());
+            preparedStatement.setInt(3, group.getIdGroup());
+           System.out.println(group);
+            executeManipulateStatement();
+        } catch (SQLException sqlException) {
+            Alert foutmelding = new Alert(Alert.AlertType.ERROR);
+            foutmelding.show();
+            System.out.println(sqlException.getMessage());
+        }
+    }
+
 }

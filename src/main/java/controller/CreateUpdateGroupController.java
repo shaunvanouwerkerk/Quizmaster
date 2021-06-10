@@ -7,12 +7,9 @@ import database.mysql.UserDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import model.Course;
 import model.Group;
-import model.Quiz;
 import model.User;
 import view.Main;
 
@@ -28,14 +25,17 @@ public class CreateUpdateGroupController {
     private ArrayList<Course> allCourses;
 
     @FXML
-    private ComboBox<User> coordinatorButton;
+    private ComboBox <User> coordinatorButton;
+    @FXML
+    private ComboBox <Course> courseButton;
+    @FXML
+    private Button addGroup;
+    @FXML
+    private Button returnMenu;
     @FXML
     private TextField textfieldGroupId;
     @FXML
-    private ComboBox<Course> courseButton;
-    @FXML
     private Label titleUpdateLabel;
-
 
     public CreateUpdateGroupController() {
         this.dbAccess = Main.getDBaccess();
@@ -47,49 +47,67 @@ public class CreateUpdateGroupController {
     public void setupCreateGroup() {
         ComboBox<User> keuzeUserDropDown = setUserDropList();
         coordinatorButton.getSelectionModel().getSelectedItem();
-        coordinatorButton.setOnAction(event -> keuzeUserDropDown.getSelectionModel().getSelectedItem().getIdUser());
+        coordinatorButton.setOnAction(event -> keuzeUserDropDown.getSelectionModel().getSelectedItem());
         ComboBox<Course> keuzeCourseDropDown = setCourseDropdownList();
         courseButton.getSelectionModel().getSelectedItem();
-        courseButton.setOnAction(event -> keuzeCourseDropDown.getSelectionModel().getSelectedItem().getIdCourse());
+        courseButton.setOnAction(event -> keuzeCourseDropDown.getSelectionModel().getSelectedItem());
     }
 
     public void setupUpdateGroup(Group group) {
-        titleUpdateLabel.setText("Wijzig group");
+        titleUpdateLabel.setText("Wijzig group met Id: ");
         textfieldGroupId.setText(String.valueOf(group.getIdGroup()));
+        addGroup.setText("Wijzig group");
+        addGroup.setOnAction(event -> doUpdateGroup(group));
         ComboBox<User> keuzeUserDropDown = setUserDropList();
         coordinatorButton.getSelectionModel().getSelectedItem();
-        coordinatorButton.setOnAction(event -> keuzeUserDropDown.getSelectionModel().getSelectedItem().getIdUser());
+        coordinatorButton.setOnAction(event -> keuzeUserDropDown.getSelectionModel().getSelectedItem());
+        ComboBox<Course> keuzeCourseDropDown = setCourseDropdownList();
+        courseButton.getSelectionModel().getSelectedItem();
+        courseButton.setOnAction(event -> keuzeCourseDropDown.getSelectionModel().getSelectedItem());
     }
-//    welcomeLabel.setText("Wijzig gebruiker");
-//        userNameTextField.setText(user.getUsername());
-//        passwordTextField.setText(user.getPassword());
-//
-//        createUpdate.setText("Wijzig gebruker");
-//        createUpdate.setOnAction(event -> doUpdateUser(user));
-//    ComboBox<String> keuzeBox = setTaskMenuButtonRoles();
-//        roleButton.getSelectionModel().select(user.getRoleName());
-//        roleButton.setOnAction(event -> keuzeBox.getSelectionModel().getSelectedItem());
-//}
+
+    public void doCreateGroup() {
+        addGroup.setText("Wijzig group");
+        int coordinatorId = coordinatorButton.getSelectionModel().getSelectedItem().getIdUser();
+        int courseId = courseButton.getSelectionModel().getSelectedItem().getIdCourse();
+        Group group = new Group(coordinatorId, courseId);
+        groupDAO.storeOne(group);
+        Alert groupSuccesvolToegevoegd = new Alert(Alert.AlertType.INFORMATION);
+        groupSuccesvolToegevoegd.setTitle("");
+        groupSuccesvolToegevoegd.setHeaderText("De group is succesvol toegevoegd");
+        groupSuccesvolToegevoegd.show();
+        Main.getSceneManager().showManageGroupsScene();
+    }
+
+    public void doUpdateGroup(Group group) {
+        group.setIdCooridnator(coordinatorButton.getSelectionModel().getSelectedItem().getIdUser());
+        group.setIdCourse(courseButton.getSelectionModel().getSelectedItem().getIdCourse());
+        groupDAO.updateGroup(group);
+        Alert groupSuccesvolGewijzigd = new Alert(Alert.AlertType.INFORMATION);
+        groupSuccesvolGewijzigd.setTitle("");
+        groupSuccesvolGewijzigd.setHeaderText("De cursus is succesvol gewijzigd");
+        groupSuccesvolGewijzigd.show();
+        Main.getSceneManager().showManageGroupsScene();
+    }
+
     public void doMenu() {
         Main.getSceneManager().showWelcomeScene();
     }
-
-    public void doCreateUpdateGroup() {}
 
     public ComboBox<User> setUserDropList(){
         this.allUsers = userDAO.getAll();
         for (User coordinator : allUsers){
             if (coordinator.getRoleName().equals(Main.COORDINATOR_ROL)){
                 this.allCoordinators.add(coordinator);
-                }
             }
+        }
         ObservableList<User> observableList = FXCollections.observableList(allCoordinators);
         ComboBox<User> comboBox = new ComboBox<>(observableList);
         for (User user: observableList) {
             coordinatorButton.getItems().add(user);
         }
         return comboBox;
-        }
+    }
 
     public ComboBox <Course> setCourseDropdownList(){
         this.allCourses = courseDAO.getAll();
@@ -98,7 +116,36 @@ public class CreateUpdateGroupController {
         for (Course course : observableList) {
             courseButton.getItems().add(course);
         }
-        return null;
+        return combobox;
     }
+
+    //methode om te controleren of alle velden zijn gevuld bij het toevoegen/wijzigen van een nieuwe cursus
+    public boolean checkFields() {
+        boolean allFields = false;
+        boolean idCourse = false;
+        boolean idCoordinator = false;
+
+        Alert foutmelding = new Alert(Alert.AlertType.ERROR);
+
+        if(!(coordinatorButton.getSelectionModel().isEmpty())) {
+            idCoordinator = true;
+        } else if(coordinatorButton.getSelectionModel().isEmpty()) {
+            foutmelding.setContentText("Je hebt geen coördinator geselecteerd");
+            foutmelding.show();
+        }
+        if(!(courseButton.getSelectionModel().isEmpty())) {
+            idCoordinator = true;
+        } else if(courseButton.getSelectionModel().isEmpty()) {
+            foutmelding.setContentText("Je hebt geen course geselecteerd");
+            foutmelding.show();
+        }
+        if(idCoordinator && idCourse) {
+            allFields = true;
+        }
+        System.out.println(allFields);
+        return allFields;
+    }
+
+
 }
 

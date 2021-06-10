@@ -21,24 +21,31 @@ public class Group {
 
     @Override
     public String toString() {
-        return String.format("Course %d has a coordinator %d and part-taking group %d",
-                idCourse, idCooridnator, idGroup );
+        return String.format("Group id: %d", idGroup);
     }
 
     public int getIdGroup() {
         return idGroup;
     }
 
+    public void setIdGroup(int idGroup) {
+        this.idGroup = idGroup;
+    }
+
     public int getIdCooridnator() {
         return idCooridnator;
+    }
+
+    public void setIdCooridnator(int idCooridnator) {
+        this.idCooridnator = idCooridnator;
     }
 
     public int getIdCourse() {
         return idCourse;
     }
 
-    public void setIdGroup(int idGroup) {
-        this.idGroup = idGroup;
+    public void setIdCourse(int idCourse) {
+        this.idCourse = idCourse;
     }
 }
 
