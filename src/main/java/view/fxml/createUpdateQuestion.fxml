@@ -27,6 +27,6 @@
       <Button layoutX="279.0" layoutY="392.0" mnemonicParsing="false" onAction="#doCreateUpdateQuestion" text="Bevestigen" />
       <Button layoutX="373.0" layoutY="392.0" mnemonicParsing="false" onAction="#doClear" text="Leegmaken" />
       <Button layoutX="210.0" layoutY="392.0" mnemonicParsing="false" onAction="#doMenu" text="Menu" />
-      <ComboBox fx:id="idQuiz" editable="true" layoutX="301.0" layoutY="175.0" prefWidth="150.0" />
+      <ComboBox fx:id="quizzen" editable="false" layoutX="301.0" layoutY="175.0" prefWidth="150.0" />
    </children>
 </AnchorPane>
