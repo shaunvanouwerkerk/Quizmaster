@@ -77,7 +77,8 @@ public class  ManageQuizzesController {
     public void doDeleteQuiz(){
         Quiz quiz = quizList.getSelectionModel().getSelectedItem();
         this.questionDAO = new QuestionDAO(dbAccess);
-        Question question = questionDAO.getOneById(quiz.getIdCourse());
+        Question question = questionDAO.getOneById(quiz.getIdQuiz());
+        System.out.println(question);
 
         //Checkt eerst of er niet al quizvragen zijn aangemaakt.
         if(question == null) {

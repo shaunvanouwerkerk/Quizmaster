@@ -95,9 +95,10 @@ CREATE TABLE quiz (
   idQuiz int NOT NULL AUTO_INCREMENT,
   idCourse int NOT NULL,
   nameQuiz varchar(45) NOT NULL,
-  succesDefinition decimal(5,2) NOT NULL,
+  succesDefinition int NOT NULL,
   PRIMARY KEY (idQuiz,idCourse),
   KEY fk_Quiz_Course1_idx (idCourse)
+  CONSTRAINT fk_Group_Course1 FOREIGN KEY (idCourse) REFERENCES course (idCourse) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -173,7 +174,7 @@ CREATE TABLE usermakesquiz (
 
 -- Gebruiker definiëren en toegang verlenen
 CREATE USER 'userQuizmaster'@'localhost' IDENTIFIED BY 'pwQuizmaster';
-GRANT ALL PRIVILEGES ON quizmaster.* TO 'userQuizmaster'@'localhost';
+GRANT ALL PRIVILEGES ON Quizmaster.* TO 'userQuizmaster'@'localhost';
 
 -- Dump completed
 

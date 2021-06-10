@@ -200,4 +200,20 @@ public class QuestionDAO extends AbstractDAO implements GenericDAO<Question>{
         return idQuizzenUitDatabase;
     }
 
+    public boolean getQuestionBasedOnIdQuiz(int idQuiz) {
+        boolean questionsExistInDatabase = false;
+        String sql = "SELECT * FROM question WHERE idQuiz = ?;";
+        try {
+            setupPreparedStatement(sql);
+            preparedStatement.setInt(1, idQuiz);
+            ResultSet resultSet = executeSelectStatement();
+            if (resultSet.next()) {
+                questionsExistInDatabase = true;
+            }
+        } catch (SQLException sqlException) {
+            System.out.println(sqlException.getMessage());
+        }
+        return questionsExistInDatabase;
+    }
+
 }
