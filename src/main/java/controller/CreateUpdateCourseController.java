@@ -47,7 +47,7 @@ public class CreateUpdateCourseController {
     public void setupCreateCourse(){
         ComboBox<User> keuzeDropDown = setUserDropList();
         userButton.getSelectionModel().getSelectedItem();
-        userButton.setOnAction(event -> keuzeDropDown.getSelectionModel().getSelectedItem().getIdUser());
+        userButton.setOnAction(event -> keuzeDropDown.getSelectionModel().getSelectedItem());
 
     }
 
