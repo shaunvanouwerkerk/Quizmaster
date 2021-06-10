@@ -5,7 +5,7 @@ Nog niet af!
  */
 
 // TODO: 08/06/2021 :Als je over quiz gaat dat het aantal vragen wordt getoond.
-// TODO: 09/06/2021 Zorgen dat je alleen de quizen ziet die behoort bij de coordinator 
+
 
 import database.mysql.CourseDAO;
 import database.mysql.DBAccess;
