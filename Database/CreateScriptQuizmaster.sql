@@ -176,5 +176,8 @@ CREATE TABLE usermakesquiz (
 CREATE USER 'userQuizmaster'@'localhost' IDENTIFIED BY 'pwQuizmaster';
 GRANT ALL PRIVILEGES ON Quizmaster.* TO 'userQuizmaster'@'localhost';
 
+CREATE USER 'userQuizmaster1'@'localhost' IDENTIFIED BY 'pwQuizmaster';
+GRANT ALL PRIVILEGES ON Quizmaster.* TO 'userQuizmaster'@'localhost';
+
 -- Dump completed
 
