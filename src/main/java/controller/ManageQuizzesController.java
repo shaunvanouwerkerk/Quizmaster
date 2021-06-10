@@ -31,6 +31,8 @@ public class  ManageQuizzesController {
     private QuestionDAO questionDAO;
     private DBAccess dbAccess;
     private CourseDAO courseDAO;
+    private ArrayList<Course> allCourses= new ArrayList<>();
+    private ArrayList <Quiz> allQuizes = new ArrayList<>();
 
 
 
@@ -44,12 +46,17 @@ public class  ManageQuizzesController {
 
     public void setup() {
         this.quizDAO = new QuizDAO(dbAccess);
-        ArrayList<Quiz> allQuizes = quizDAO.getAll();
-//        ArrayList<Course> allCoursesFromUser = courseDAO.getCoursesByIdCoordinator(Main.loggedInUser.getIdUser());
-        for (Quiz quiz : allQuizes){
+
+        this.courseDAO = new CourseDAO (dbAccess);
+        allCourses = courseDAO.getCoursesByIdCoordinator(Main.loggedInUser.getIdUser());
+
+        for(Course course : allCourses){
+            allQuizes.add(quizDAO.getOneByCourseId(course.getIdCourse()));
+        }
+        for (Quiz quiz : allQuizes) {
             quizList.getItems().add(quiz);
         }
-//         Om een nullpointer exception te vermijden
+        // Om een nullpointer exception te vermijden
         quizList.getSelectionModel().selectFirst();
 
         // Methode om aantal vragen te tonen per quiz:
