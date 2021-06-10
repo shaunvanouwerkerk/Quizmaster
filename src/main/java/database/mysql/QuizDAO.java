@@ -78,7 +78,7 @@ public class QuizDAO extends AbstractDAO implements GenericDAO <Quiz> {
                 String namequiz = resultSet.getString("nameQuiz");
                 int succesdefinition = resultSet.getInt("succesDefinition");
                 int idquiz = resultSet.getInt("idQuiz");
-                quiz = new Quiz(namequiz, succesdefinition, courseId, idquiz);
+                quiz = new Quiz(namequiz, succesdefinition,idquiz,courseId);
 
             } else {
                 System.out.println("Er bestaat geen gebruiker met dit courseId");
@@ -111,7 +111,7 @@ public class QuizDAO extends AbstractDAO implements GenericDAO <Quiz> {
 
     public void updateOne(Quiz quiz) {
 
-        String sql = "UPDATE quiz SET idCourse = ?, nameQuiz = ?, succesDefinition = ? WHERE idQuiz ?";
+        String sql = "UPDATE quiz SET idCourse = ?, nameQuiz = ?, succesDefinition = ? WHERE idQuiz = ?";
 
         try {
             setupPreparedStatementWithKey(sql);
