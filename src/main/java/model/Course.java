@@ -51,7 +51,6 @@ public class Course {
     @Override
     public String toString() {
         StringBuilder resultString = new StringBuilder("");
-        resultString.append(idCourse + " ");
         resultString.append(nameCourse);
         return resultString.toString();
     }
