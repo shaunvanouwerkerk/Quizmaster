@@ -48,12 +48,12 @@ public class ManageGroupsController {
     }
 
     public void doCreateGroup() {
-        Main.getSceneManager().showCreateUpdateGroupScene(groupList.getSelectionModel().getSelectedItem());
+        Main.getSceneManager().showCreateGroupScene();
 
     }
 
     public void doUpdateGroup() {
-        Main.getSceneManager().showCreateUpdateGroupScene(groupList.getSelectionModel().getSelectedItem());
+        Main.getSceneManager().showUpdateGroupScene(groupList.getSelectionModel().getSelectedItem());
     }
 
     public void doDeleteGroup() {

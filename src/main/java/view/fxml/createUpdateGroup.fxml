@@ -6,8 +6,8 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CreateUpdateGroupController">
    <children>
-      <ComboBox layoutX="430.0" layoutY="194.0" prefWidth="150.0" promptText="Kies een course" />
-      <ComboBox layoutX="430.0" layoutY="242.0" prefWidth="150.0" promptText="Kies een coordinator" />
+      <ComboBox fx:id="coordinatorButton" layoutX="430.0" layoutY="194.0" prefWidth="150.0" promptText="Kies een course" />
+      <ComboBox fx:id="courseButtonButton" layoutX="430.0" layoutY="242.0" prefWidth="150.0" promptText="Kies een coordinator" />
       <Label layoutX="178.0" layoutY="193.0" text="Course waar group bij hoort:">
          <font>
             <Font size="18.0" />
