@@ -3,25 +3,26 @@ package controller;
 * @Author: Nijad Nazarli
 */
 
-import com.mysql.cj.jdbc.exceptions.SQLError;
-import com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping;
+import com.mysql.cj.result.StringConverter;
 import database.mysql.DBAccess;
 import database.mysql.QuestionDAO;
+import javafx.beans.Observable;
+import javafx.beans.value.ObservableIntegerValue;
+import javafx.beans.value.ObservableNumberValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableArray;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import model.Question;
 import view.Main;
-
-import java.sql.SQLDataException;
 import java.sql.SQLException;
-import java.util.InputMismatchException;
+import java.util.ArrayList;
 
 public class CreateUpdateQuestionController {
     private DBAccess dbAccess;
     private QuestionDAO questionDAO;
+    private ArrayList<Integer> allIdQuizzes;
     private static final String NIEUWE_VRAAG_AANMAKEN = "Een vraag aanmaken";
     private static final int LENGTE_INVULL_VELDEN = 45;
 
@@ -38,7 +39,7 @@ public class CreateUpdateQuestionController {
     @FXML
     private TextField antwoordD;
     @FXML
-    private TextField idQuiz;
+    private ComboBox<Integer> idQuiz;
     @FXML
     private TextField idQuestion;
 
@@ -49,17 +50,21 @@ public class CreateUpdateQuestionController {
 
     public void setup(Question question) {
         questionString.setText(question.getQuestionString());
-        idQuiz.setText(String.valueOf(question.getIdQuiz()));
         idQuestion.setText(String.valueOf(question.getIdQuestion()));
         antwoordA.setText(question.getAnswerA());
         antwoordB.setText(question.getAnswerB());
         antwoordC.setText(question.getAnswerC());
         antwoordD.setText(question.getAnswerD());
+        ComboBox<Integer> keuzeBox = setTaskMenuButtonRoles();
+        idQuiz.getSelectionModel().select(question.getIdQuiz());
+        idQuiz.setEditable(false);
     }
 
     public void setupCreateQuestion() {
         doClear();
         hoofdTitel.setText(NIEUWE_VRAAG_AANMAKEN);
+        ComboBox<Integer> keuzeBox = setTaskMenuButtonRoles();
+        idQuiz.setOnAction(event-> keuzeBox.getSelectionModel().getSelectedItem());
     }
 
     public void doMenu() {
@@ -69,7 +74,7 @@ public class CreateUpdateQuestionController {
     // Methode die alle velden leeg maakt
     public void doClear() {
         questionString.clear();
-        idQuiz.clear();
+        idQuiz.getSelectionModel().clearSelection();
         idQuestion.clear();
         antwoordA.clear();
         antwoordB.clear();
@@ -82,11 +87,13 @@ public class CreateUpdateQuestionController {
             // 1. Create Question Scenario
             if (hoofdTitel.getText().equals(NIEUWE_VRAAG_AANMAKEN)){
                 Question nieuweVraag = fillOutQuestionFields();
+                nieuweVraag.setIdQuiz(idQuiz.getSelectionModel().getSelectedItem());
                 questionDAO.storeOne(nieuweVraag);
                 Alert bevestigAanmakenVraag = new Alert(Alert.AlertType.INFORMATION);
                 bevestigAanmakenVraag.setContentText("Vraag is succesvol aangemaakt");
                 bevestigAanmakenVraag.show();
-                setup(nieuweVraag);
+                doClear();
+                // setup(nieuweVraag);
             } else {
                 // 2. Update Question Scenario
                 Question aangepasteVraag = fillOutQuestionFields();
@@ -96,7 +103,8 @@ public class CreateUpdateQuestionController {
                 Alert bevestigAanpassenVraag = new Alert(Alert.AlertType.INFORMATION);
                 bevestigAanpassenVraag.setContentText("Vraag is succesvol aangepast");
                 bevestigAanpassenVraag.show();
-                setup(aangepasteVraag);
+                doClear();
+                // setup(aangepasteVraag);
             }
         } catch (IllegalArgumentException foutLegeVuld) {
             Alert legeVuldAlert = new Alert(Alert.AlertType.ERROR);
@@ -119,7 +127,7 @@ public class CreateUpdateQuestionController {
 
         do {
             // Text velden laten invullen
-            int nieuweIdQuiz = Integer.parseInt(idQuiz.getText());
+            int nieuweIdQuiz = idQuiz.getSelectionModel().getSelectedItem();
             String nieuweQuestionString = questionString.getText();
             String nieuweAntwoordA = antwoordA.getText();
             String nieuweAntwoordB = antwoordB.getText();
@@ -127,7 +135,7 @@ public class CreateUpdateQuestionController {
             String nieuweAntwoordD = antwoordD.getText();
 
             // Testen of invulvelden leeg zijn
-            if (idQuiz.getText().isEmpty() ||
+            if (idQuiz.getSelectionModel().isEmpty() ||
                     questionString.getText().isEmpty() ||
                     antwoordA.getText().isEmpty() ||
                     antwoordB.getText().isEmpty() ||
@@ -150,5 +158,17 @@ public class CreateUpdateQuestionController {
 
         return nieuweVraag;
     }
+
+    public ComboBox<Integer> setTaskMenuButtonRoles() {
+        this.allIdQuizzes = questionDAO.getQuizzesByLoggedInUser(Main.loggedInUser.getIdUser());
+        ObservableList<Integer> observableList = FXCollections.observableArrayList(allIdQuizzes);
+        ComboBox<Integer> comboBox = new ComboBox<>(observableList);
+        for(Integer id: observableList) {
+            idQuiz.getItems().add(id);
+        }
+        return comboBox;
+    }
+
+
 
 }

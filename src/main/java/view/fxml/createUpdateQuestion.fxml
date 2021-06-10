@@ -6,27 +6,27 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CreateUpdateQuestionController">
    <children>
+      <TextField fx:id="idQuestion" editable="false" layoutX="301.0" layoutY="142.0" />
       <TextField fx:id="questionString" layoutX="301.0" layoutY="209.0" promptText="Voer hier je vraag in" />
       <TextField fx:id="antwoordA" layoutX="301.0" layoutY="242.0" promptText="Antwoord A" />
       <TextField fx:id="antwoordB" layoutX="301.0" layoutY="275.0" promptText="Antwoord B" />
       <TextField fx:id="antwoordC" layoutX="301.0" layoutY="308.0" promptText="Antwoord C" />
       <TextField fx:id="antwoordD" layoutX="301.0" layoutY="340.0" promptText="Antwoord D" />
-      <Label layoutX="210.0" layoutY="213.0" text="Vraag" />
-      <Label layoutX="210.0" layoutY="246.0" text="Antwoord A" />
-      <Label layoutX="210.0" layoutY="279.0" text="Antwoord B" />
-      <Label layoutX="210.0" layoutY="312.0" text="Antwoord C" />
-      <Label layoutX="210.0" layoutY="344.0" text="Antwoord D" />
-      <Label layoutX="210.0" layoutY="146.0" text="Vraag Nummer" />
-      <TextField fx:id="idQuestion" editable="false" layoutX="301.0" layoutY="142.0" />
       <Label fx:id="hoofdTitel" layoutX="210.0" layoutY="77.0" text="Een vraag bewerken">
          <font>
             <Font name="Arial Bold" size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="idQuiz" layoutX="301.0" layoutY="175.0" promptText="Voer quiz nummer in" />
+      <Label layoutX="210.0" layoutY="146.0" text="Vraag Nummer" />
       <Label layoutX="210.0" layoutY="179.0" text="Quiz Nummer" />
+      <Label layoutX="210.0" layoutY="213.0" text="Vraag" />
+      <Label layoutX="210.0" layoutY="246.0" text="Antwoord A" />
+      <Label layoutX="210.0" layoutY="279.0" text="Antwoord B" />
+      <Label layoutX="210.0" layoutY="312.0" text="Antwoord C" />
+      <Label layoutX="210.0" layoutY="344.0" text="Antwoord D" />
       <Button layoutX="279.0" layoutY="392.0" mnemonicParsing="false" onAction="#doCreateUpdateQuestion" text="Bevestigen" />
       <Button layoutX="373.0" layoutY="392.0" mnemonicParsing="false" onAction="#doClear" text="Leegmaken" />
       <Button layoutX="210.0" layoutY="392.0" mnemonicParsing="false" onAction="#doMenu" text="Menu" />
+      <ComboBox fx:id="idQuiz" editable="true" layoutX="301.0" layoutY="175.0" prefWidth="150.0" />
    </children>
 </AnchorPane>
