@@ -23,6 +23,7 @@ public class CreateUpdateCourseController {
     private UserDAO userDAO;
     private DBAccess dbAccess;
     private ArrayList<User>  allUsers;
+    private ArrayList<User>  allCoordinators = new ArrayList<>();
 
     @FXML
     private TextField nameCourseTextfield;
@@ -74,7 +75,12 @@ public class CreateUpdateCourseController {
 
     public ComboBox<User> setUserDropList(){
         this.allUsers = userDAO.getAll();
-        ObservableList<User> observableList = FXCollections.observableList(allUsers);
+        for (User coordinator : allUsers){
+            if (coordinator.getRoleName().equals(Main.COORDINATOR_ROL)){
+                this.allCoordinators.add(coordinator);
+            }
+        }
+        ObservableList<User> observableList = FXCollections.observableList(allCoordinators);
         ComboBox<User> comboBox = new ComboBox<>(observableList);
         for (User user: observableList) {
                 userButton.getItems().add(user);
