@@ -107,7 +107,7 @@ public class CreateUpdateCourseController {
             Main.getSceneManager().showManageCoursesScene();
         }
     }
-    //methode om te controleren of alle velden zijn gevuld bij het toevoegen van een nieuwe cursus
+    //methode om te controleren of alle velden zijn gevuld bij het toevoegen/wijzigen van een nieuwe cursus
     public boolean checkFields() {
         boolean allFields = false;
         boolean coursName = false;
