@@ -7,6 +7,7 @@ Nog niet af!
 // TODO: 08/06/2021 :Als je over quiz gaat dat het aantal vragen wordt getoond.
 // TODO: 09/06/2021 Zorgen dat je alleen de quizen ziet die behoort bij de coordinator 
 
+import database.mysql.CourseDAO;
 import database.mysql.DBAccess;
 import database.mysql.QuestionDAO;
 import database.mysql.QuizDAO;
@@ -16,6 +17,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.ListView;
 
 import javafx.scene.control.TextField;
+import model.Course;
 import model.Question;
 import model.Quiz;
 import view.Main;
@@ -28,6 +30,7 @@ public class  ManageQuizzesController {
     private QuizDAO quizDAO;
     private QuestionDAO questionDAO;
     private DBAccess dbAccess;
+    private CourseDAO courseDAO;
 
 
 
@@ -42,6 +45,7 @@ public class  ManageQuizzesController {
     public void setup() {
         this.quizDAO = new QuizDAO(dbAccess);
         ArrayList<Quiz> allQuizes = quizDAO.getAll();
+//        ArrayList<Course> allCoursesFromUser = courseDAO.getCoursesByIdCoordinator(Main.loggedInUser.getIdUser());
         for (Quiz quiz : allQuizes){
             quizList.getItems().add(quiz);
         }
@@ -49,7 +53,6 @@ public class  ManageQuizzesController {
         quizList.getSelectionModel().selectFirst();
 
         // Methode om aantal vragen te tonen per quiz:
-        // TODO: 09/06/2021 Moet alleen nog dat als je klikt/hoovert dat het toont.
         this.questionDAO = new QuestionDAO(dbAccess);
         Quiz quiz = quizList.getSelectionModel().getSelectedItem(); // Hoe kan ik bij opnieuw klikken weer het aantal tonen.
         ArrayList<Question> totalQuestions = questionDAO.getAllperQuiz(quiz);
@@ -78,7 +81,7 @@ public class  ManageQuizzesController {
 
         //Checkt eerst of er niet al quizvragen zijn aangemaakt.
         if(question == null) {
-            Alert deleteAlert = new Alert(Alert.AlertType.WARNING);
+            Alert deleteAlert = new Alert(Alert.AlertType.CONFIRMATION);
             deleteAlert.setTitle("Verwijder quiz");
             deleteAlert.setHeaderText("Weet je zeker dat je de quiz wilt verwijderen?");
             Optional<ButtonType> result = deleteAlert.showAndWait();

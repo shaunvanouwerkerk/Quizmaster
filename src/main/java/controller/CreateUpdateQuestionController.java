@@ -3,18 +3,14 @@ package controller;
 * @Author: Nijad Nazarli
 */
 
-import com.mysql.cj.result.StringConverter;
 import database.mysql.DBAccess;
 import database.mysql.QuestionDAO;
-import javafx.beans.Observable;
-import javafx.beans.value.ObservableIntegerValue;
-import javafx.beans.value.ObservableNumberValue;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import model.Question;
+import model.Quiz;
 import view.Main;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -22,7 +18,7 @@ import java.util.ArrayList;
 public class CreateUpdateQuestionController {
     private DBAccess dbAccess;
     private QuestionDAO questionDAO;
-    private ArrayList<Integer> allIdQuizzes;
+    private ArrayList<Quiz> allQuizzes;
     private static final String NIEUWE_VRAAG_AANMAKEN = "Een vraag aanmaken";
     private static final int LENGTE_INVULL_VELDEN = 45;
 
@@ -55,15 +51,20 @@ public class CreateUpdateQuestionController {
         antwoordB.setText(question.getAnswerB());
         antwoordC.setText(question.getAnswerC());
         antwoordD.setText(question.getAnswerD());
-        ComboBox<Integer> keuzeBox = setTaskMenuButtonRoles();
-        idQuiz.getSelectionModel().select(question.getIdQuiz());
-        idQuiz.setEditable(false);
+
+        ArrayList<Integer> integerQuiz = new ArrayList<>();
+        integerQuiz.add(question.getIdQuiz());
+        ObservableList<Integer> observableList = FXCollections.observableArrayList(integerQuiz);
+        ComboBox<Integer> keuzeBox = new ComboBox<>(observableList);
+        idQuiz.getItems().add(integerQuiz.get(0));
+        idQuiz.getSelectionModel().getSelectedItem();
     }
 
     public void setupCreateQuestion() {
         doClear();
         hoofdTitel.setText(NIEUWE_VRAAG_AANMAKEN);
         ComboBox<Integer> keuzeBox = setTaskMenuButtonRoles();
+        idQuiz.getSelectionModel().selectFirst();
         idQuiz.setOnAction(event-> keuzeBox.getSelectionModel().getSelectedItem());
     }
 
@@ -87,8 +88,8 @@ public class CreateUpdateQuestionController {
             // 1. Create Question Scenario
             if (hoofdTitel.getText().equals(NIEUWE_VRAAG_AANMAKEN)){
                 Question nieuweVraag = fillOutQuestionFields();
-                nieuweVraag.setIdQuiz(idQuiz.getSelectionModel().getSelectedItem());
                 questionDAO.storeOne(nieuweVraag);
+
                 Alert bevestigAanmakenVraag = new Alert(Alert.AlertType.INFORMATION);
                 bevestigAanmakenVraag.setContentText("Vraag is succesvol aangemaakt");
                 bevestigAanmakenVraag.show();
@@ -127,7 +128,6 @@ public class CreateUpdateQuestionController {
 
         do {
             // Text velden laten invullen
-            int nieuweIdQuiz = idQuiz.getSelectionModel().getSelectedItem();
             String nieuweQuestionString = questionString.getText();
             String nieuweAntwoordA = antwoordA.getText();
             String nieuweAntwoordB = antwoordB.getText();
@@ -135,13 +135,13 @@ public class CreateUpdateQuestionController {
             String nieuweAntwoordD = antwoordD.getText();
 
             // Testen of invulvelden leeg zijn
-            if (idQuiz.getSelectionModel().isEmpty() ||
-                    questionString.getText().isEmpty() ||
+            if ( questionString.getText().isEmpty() ||
                     antwoordA.getText().isEmpty() ||
                     antwoordB.getText().isEmpty() ||
                     antwoordC.getText().isEmpty() ||
                     antwoordD.getText().isEmpty()) {
                 throw new IllegalArgumentException();
+
             // Testen of ingevulde Strings langer dan 45 zijn
             } else if (questionString.getText().length() > LENGTE_INVULL_VELDEN ||
                     antwoordA.getText().length() > LENGTE_INVULL_VELDEN ||
@@ -150,7 +150,7 @@ public class CreateUpdateQuestionController {
                     antwoordD.getText().length() > LENGTE_INVULL_VELDEN) {
                 throw new SQLException();
             } else {
-                nieuweVraag = new Question(nieuweIdQuiz,
+                nieuweVraag = new Question(0,
                         nieuweQuestionString, nieuweAntwoordA, nieuweAntwoordB, nieuweAntwoordC, nieuweAntwoordD);
                 correctFilledOut = true;
             }
@@ -160,8 +160,12 @@ public class CreateUpdateQuestionController {
     }
 
     public ComboBox<Integer> setTaskMenuButtonRoles() {
-        this.allIdQuizzes = questionDAO.getQuizzesByLoggedInUser(Main.loggedInUser.getIdUser());
-        ObservableList<Integer> observableList = FXCollections.observableArrayList(allIdQuizzes);
+        this.allQuizzes = questionDAO.getQuizzesByLoggedInUser(Main.loggedInUser.getIdUser());
+        ArrayList<Integer> idQuizzes = new ArrayList<>();
+        for (Quiz quiz: allQuizzes) {
+            idQuizzes.add(quiz.getIdQuiz());
+        }
+        ObservableList<Integer> observableList = FXCollections.observableArrayList(idQuizzes);
         ComboBox<Integer> comboBox = new ComboBox<>(observableList);
         for(Integer id: observableList) {
             idQuiz.getItems().add(id);

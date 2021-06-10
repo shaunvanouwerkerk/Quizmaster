@@ -39,6 +39,12 @@ public class Quiz {
 
     public void setIdQuiz(int idQuiz) { this.idQuiz = idQuiz; }
 
+    public void setIdCourse(int idCourse) { this.idCourse = idCourse; }
+
+    public void setNameQuiz(String nameQuiz) { this.nameQuiz = nameQuiz; }
+
+    public void setSuccesDefinition(int succesDefinition) { this.succesDefinition = succesDefinition; }
+
     // Methode
     @Override
         public String toString () {

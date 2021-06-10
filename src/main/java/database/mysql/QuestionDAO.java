@@ -160,24 +160,23 @@ public class QuestionDAO extends AbstractDAO implements GenericDAO<Question>{
     }
 
     public void updateOne(Question question) {
-        String sql = "UPDATE question SET idQuiz = ?, questionString = ?, answerA = ?, answerB = ?, answerC = ?, answerD = ? WHERE idQuestion = ?;";
+        String sql = "UPDATE question SET questionString = ?, answerA = ?, answerB = ?, answerC = ?, answerD = ? WHERE idQuestion = ?;";
         try {
             setupPreparedStatement(sql);
-            preparedStatement.setInt(1, question.getIdQuiz());
-            preparedStatement.setString(2, question.getQuestionString());
-            preparedStatement.setString(3, question.getAnswerA());
-            preparedStatement.setString(4, question.getAnswerB());
-            preparedStatement.setString(5, question.getAnswerC());
-            preparedStatement.setString(6, question.getAnswerD());
-            preparedStatement.setInt(7, question.getIdQuestion());
+            preparedStatement.setString(1, question.getQuestionString());
+            preparedStatement.setString(2, question.getAnswerA());
+            preparedStatement.setString(3, question.getAnswerB());
+            preparedStatement.setString(4, question.getAnswerC());
+            preparedStatement.setString(5, question.getAnswerD());
+            preparedStatement.setInt(6, question.getIdQuestion());
             executeManipulateStatement();
         } catch (SQLException sqlException) {
             System.out.println(sqlException.getMessage());
         }
     }
 
-    public ArrayList<Integer> getQuizzesByLoggedInUser (int idCoordinator) {
-        ArrayList<Integer> idQuizzenUitDatabase = new ArrayList<>();
+    public ArrayList<Quiz> getQuizzesByLoggedInUser (int idCoordinator) {
+        ArrayList<Quiz> idQuizzenUitDatabase = new ArrayList<>();
         String sql = "Select idQuiz, idCourse, nameQuiz, succesDefinition" +
                 " from quiz WHERE idCourse IN ( Select idCourse from course where idCoordinatorCourse = ?);";
         try {
@@ -186,7 +185,11 @@ public class QuestionDAO extends AbstractDAO implements GenericDAO<Question>{
             ResultSet resultSet = executeSelectStatement();
             while (resultSet.next()) {
                 int idQuiz = resultSet.getInt(1);
-                idQuizzenUitDatabase.add(idQuiz);
+                int idCourse = resultSet.getInt(2);
+                String nameQuiz = resultSet.getString(3);
+                int succesDefinition = resultSet.getInt(4);
+                Quiz quiz = new Quiz(nameQuiz, succesDefinition, idQuiz, idCourse);
+                idQuizzenUitDatabase.add(quiz);
             }
             if (idQuizzenUitDatabase.isEmpty()) {
                 System.out.println("Er zijn nog geen quizzen in de database");

@@ -66,6 +66,30 @@ public class QuizDAO extends AbstractDAO implements GenericDAO <Quiz> {
         return quiz;
     }
 
+    public Quiz getOneByCourseId(int courseId) {
+        Quiz quiz = null;
+        String sql = "SELECT * FROM Quiz WHERE idCourse = ?";
+
+        try {
+            setupPreparedStatement(sql);
+            preparedStatement.setInt(1, courseId);
+            ResultSet resultSet = executeSelectStatement();
+            if (resultSet.next()) {
+                String namequiz = resultSet.getString("nameQuiz");
+                int succesdefinition = resultSet.getInt("succesDefinition");
+                int idquiz = resultSet.getInt("idQuiz");
+                quiz = new Quiz(namequiz, succesdefinition, courseId, idquiz);
+
+            } else {
+                System.out.println("Er bestaat geen gebruiker met dit courseId");
+
+            }
+        } catch (SQLException sqlException) {
+            System.out.println("SQL fout" + sqlException.getMessage());
+        }
+        return quiz;
+    }
+
 
     @Override
     public void storeOne(Quiz quiz) {
@@ -79,6 +103,23 @@ public class QuizDAO extends AbstractDAO implements GenericDAO <Quiz> {
             preparedStatement.setInt(3,quiz.getSuccesDefinition());
             quiz.setIdQuiz(executeInsertStatementWithKey());
 
+
+        } catch (SQLException sqlFout) {
+            System.out.println("SQL fout: " + sqlFout.getMessage());
+        }
+    }
+
+    public void updateOne(Quiz quiz) {
+
+        String sql = "UPDATE quiz SET idCourse = ?, nameQuiz = ?, succesDefinition = ? WHERE idQuiz ?";
+
+        try {
+            setupPreparedStatementWithKey(sql);
+            preparedStatement.setInt(1, quiz.getIdCourse());
+            preparedStatement.setString(2,quiz.getNameQuiz());
+            preparedStatement.setInt(3,quiz.getSuccesDefinition());
+            preparedStatement.setInt(4,quiz.getIdQuiz());
+            executeManipulateStatement();
 
         } catch (SQLException sqlFout) {
             System.out.println("SQL fout: " + sqlFout.getMessage());

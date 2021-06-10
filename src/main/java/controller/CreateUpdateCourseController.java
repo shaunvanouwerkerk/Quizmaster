@@ -7,10 +7,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import model.Course;
 import model.Quiz;
 import model.User;
@@ -66,10 +63,18 @@ public class CreateUpdateCourseController {
     }
 
     public void doCreateCourse() {
-        String courseName = nameCourseTextfield.getText();
-        int coordinatorId = userButton.getSelectionModel().getSelectedItem().getIdUser();
-        Course course = new Course(courseName,coordinatorId);
-        courseDAO.storeOne(course);
+        boolean correctFilledOut = checkFields();
+        if (correctFilledOut) {
+            String courseName = nameCourseTextfield.getText();
+            int coordinatorId = userButton.getSelectionModel().getSelectedItem().getIdUser();
+            Course course = new Course(courseName, coordinatorId);
+            courseDAO.storeOne(course);
+            Alert cursusSuccesvolToegevoegd = new Alert(Alert.AlertType.INFORMATION);
+            cursusSuccesvolToegevoegd.setTitle("");
+            cursusSuccesvolToegevoegd.setHeaderText("De cursus is succesvol toegevoegd");
+            cursusSuccesvolToegevoegd.show();
+            Main.getSceneManager().showManageCoursesScene();
+        }
     }
 
 
@@ -89,12 +94,65 @@ public class CreateUpdateCourseController {
     }
 
     public void doUpdateCourse(Course course) {
+        boolean correctFilledOut = checkFields();
+        if (correctFilledOut) {
             System.out.println(course);
             course.setNameCourse(nameCourseTextfield.getText());
             course.setIdCoordinator(userButton.getSelectionModel().getSelectedItem().getIdUser());
             courseDAO.updateCourse(course);
+            Alert cursusSuccesvolGewijzigd = new Alert(Alert.AlertType.INFORMATION);
+            cursusSuccesvolGewijzigd.setTitle("");
+            cursusSuccesvolGewijzigd.setHeaderText("De cursus is succesvol gewijzigd");
+            cursusSuccesvolGewijzigd.show();
+            Main.getSceneManager().showManageCoursesScene();
         }
     }
+    //methode om te controleren of alle velden zijn gevuld bij het toevoegen/wijzigen van een nieuwe cursus
+    public boolean checkFields() {
+        boolean allFields = false;
+        boolean coursName = false;
+        boolean idCoordinator = false;
+
+        Alert foutmelding = new Alert(Alert.AlertType.ERROR);
+
+        if (!(nameCourseTextfield.getText().isEmpty())) {
+            coursName = true;
+        } else if(nameCourseTextfield.getText().isEmpty()) {
+            foutmelding.setContentText("Je hebt geen cursusnaam opgegeven");
+            foutmelding.show();
+        }
+        if(!(userButton.getSelectionModel().isEmpty())) {
+            idCoordinator = true;
+        } else if(userButton.getSelectionModel().isEmpty()) {
+            foutmelding.setContentText("Je hebt geen coördinator geselecteerd");
+            foutmelding.show();
+        }
+        if(nameCourseTextfield.getText().isEmpty() && userButton.getSelectionModel().isEmpty()) {
+            foutmelding.setContentText("Je hebt geen cursusnaam én coördinator opgegeven");
+            foutmelding.show();
+        }
+        if(coursName && idCoordinator) {
+            allFields = true;
+        }
+        System.out.println(allFields);
+        return allFields;
+    }
+
+    //methode om te controleren of de naam van de cursus is ingevuld
+    /*public boolean checkFieldsUpdateCourse() {
+        boolean coursName = false;
+
+        Alert foutmelding = new Alert(Alert.AlertType.ERROR);
+
+        if (!(nameCourseTextfield.getText().isEmpty())) {
+            coursName = true;
+        } else if(nameCourseTextfield.getText().isEmpty()) {
+            foutmelding.setContentText("Je hebt geen cursusnaam opgegeven");
+            foutmelding.show();
+        }
+        return coursName;
+    }*/
+}
 
 
 
