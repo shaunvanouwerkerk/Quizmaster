@@ -50,7 +50,7 @@ public class Quiz {
         public String toString () {
 
             StringBuilder resultString = new StringBuilder("");
-            resultString.append("idQuiz: " + idQuiz + ". " + nameQuiz);
+            resultString.append(nameQuiz);
             return resultString.toString();
 
         }

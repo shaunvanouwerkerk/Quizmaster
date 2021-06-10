@@ -95,7 +95,7 @@ CREATE TABLE quiz (
   idQuiz int NOT NULL AUTO_INCREMENT,
   idCourse int NOT NULL,
   nameQuiz varchar(45) NOT NULL,
-  succesDefinition decimal(5,2) NOT NULL,
+  succesDefinition int NOT NULL,
   PRIMARY KEY (idQuiz,idCourse),
   KEY fk_Quiz_Course1_idx (idCourse)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
