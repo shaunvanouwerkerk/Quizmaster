@@ -11,7 +11,7 @@
       <TextField fx:id="antwoordB" layoutX="301.0" layoutY="275.0" promptText="Antwoord B" />
       <TextField fx:id="antwoordC" layoutX="301.0" layoutY="308.0" promptText="Antwoord C" />
       <TextField fx:id="antwoordD" layoutX="301.0" layoutY="340.0" promptText="Antwoord D" />
-      <Label fx:id="hoofdTitel" layoutX="210.0" layoutY="121.0" text="Een vraag bewerken">
+      <Label fx:id="hoofdTitel" layoutX="210.0" layoutY="77.0" text="Een vraag bewerken">
          <font>
             <Font name="Arial Bold" size="18.0" />
          </font>
@@ -25,6 +25,6 @@
       <Button layoutX="279.0" layoutY="392.0" mnemonicParsing="false" onAction="#doCreateUpdateQuestion" text="Bevestigen" />
       <Button layoutX="373.0" layoutY="392.0" mnemonicParsing="false" onAction="#doClear" text="Leegmaken" />
       <Button layoutX="210.0" layoutY="392.0" mnemonicParsing="false" onAction="#doMenu" text="Menu" />
-      <ComboBox fx:id="quizzen" editable="false" layoutX="301.0" layoutY="175.0" prefWidth="150.0" />
+      <ComboBox fx:id="quizzen" layoutX="301.0" layoutY="175.0" prefWidth="150.0" promptText="Kies een quiz" />
    </children>
 </AnchorPane>

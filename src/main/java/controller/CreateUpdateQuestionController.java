@@ -8,6 +8,7 @@ import database.mysql.QuestionDAO;
 import database.mysql.QuizDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import model.Question;
@@ -21,7 +22,6 @@ public class CreateUpdateQuestionController {
     private QuestionDAO questionDAO;
     private QuizDAO quizDAO;
     private ArrayList<Quiz> allQuizzes;
-    private int idQuiz;
     private int idQuestion;
     private static final String NIEUWE_VRAAG_AANMAKEN = "Een vraag aanmaken";
     private static final int LENGTE_INVULL_VELDEN = 45;
@@ -53,19 +53,16 @@ public class CreateUpdateQuestionController {
         antwoordB.setText(question.getAnswerB());
         antwoordC.setText(question.getAnswerC());
         antwoordD.setText(question.getAnswerD());
-        Quiz quiz = quizDAO.getOneById(question.getIdQuiz());
-        quizzen.getItems().add(quiz);
-        quizzen.getSelectionModel().selectFirst();
-        this.idQuiz = question.getIdQuiz();
         this.idQuestion = question.getIdQuestion();
+        setTaskMenuButtonQuizzes();
+        quizzen.getSelectionModel().getSelectedItem();
     }
 
     public void setupCreateQuestion() {
           doClear();
           hoofdTitel.setText(NIEUWE_VRAAG_AANMAKEN);
-          quizzen = setTaskMenuButtonQuizzes();
-          quizzen.getSelectionModel().selectFirst();
-          quizzen.setOnAction(event-> quizzen.getSelectionModel().getSelectedItem());
+          setTaskMenuButtonQuizzes();
+          quizzen.getSelectionModel().getSelectedItem();
     }
 
     public void doMenu() {
@@ -105,7 +102,7 @@ public class CreateUpdateQuestionController {
                     String updateAntwoordB = antwoordB.getText();
                     String updateAntwoordC = antwoordC.getText();
                     String updateAntwoordD = antwoordD.getText();
-                    Question updateQuestion = new Question(this.idQuestion, this.idQuiz, updateQuestionString, updateAntwoordA,
+                    Question updateQuestion = new Question(quizzen.getSelectionModel().getSelectedItem().getIdQuiz(), updateQuestionString, updateAntwoordA,
                             updateAntwoordB, updateAntwoordC, updateAntwoordD);
                     questionDAO.updateOne(updateQuestion);
 
@@ -128,7 +125,7 @@ public class CreateUpdateQuestionController {
 
     // Methode om gevulde dropdown met quizzen te krijgen
     public ComboBox<Quiz> setTaskMenuButtonQuizzes() {
-        allQuizzes = questionDAO.getQuizzesByLoggedInUser(Main.loggedInUser.getIdUser());
+        this.allQuizzes = questionDAO.getQuizzesByLoggedInUser(Main.loggedInUser.getIdUser());
         ObservableList<Quiz> observableList = FXCollections.observableList(allQuizzes);
         ComboBox<Quiz> comboBox = new ComboBox<>(observableList);
         for (Quiz quiz: observableList) {
