@@ -141,6 +141,21 @@ public class QuizDAO extends AbstractDAO implements GenericDAO <Quiz> {
         }
 
     }
+    public boolean getQuizBasedOnIdCourse(int idCourse) {
+        boolean questionsExistInDatabase = false;
+        String sql = "SELECT * FROM quiz WHERE idCourse = ?;";
+        try {
+            setupPreparedStatement(sql);
+            preparedStatement.setInt(1, idCourse);
+            ResultSet resultSet = executeSelectStatement();
+            if (resultSet.next()) {
+                questionsExistInDatabase = true;
+            }
+        } catch (SQLException sqlException) {
+            System.out.println(sqlException.getMessage());
+        }
+        return questionsExistInDatabase;
+    }
 
 
 }
