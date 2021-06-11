@@ -22,6 +22,7 @@ public class CreateUpdateQuestionController {
     private QuizDAO quizDAO;
     private ArrayList<Quiz> allQuizzes;
     private int idQuiz;
+    private int idQuestion;
     private static final String NIEUWE_VRAAG_AANMAKEN = "Een vraag aanmaken";
     private static final int LENGTE_INVULL_VELDEN = 45;
 
@@ -39,8 +40,6 @@ public class CreateUpdateQuestionController {
     private TextField antwoordD;
     @FXML
     private ComboBox<Quiz> quizzen;
-    @FXML
-    private TextField idQuestion;
 
     public CreateUpdateQuestionController () {
         this.dbAccess = Main.getDBaccess();
@@ -50,7 +49,6 @@ public class CreateUpdateQuestionController {
 
     public void setup(Question question) {
         questionString.setText(question.getQuestionString());
-        idQuestion.setText(String.valueOf(question.getIdQuestion()));
         antwoordA.setText(question.getAnswerA());
         antwoordB.setText(question.getAnswerB());
         antwoordC.setText(question.getAnswerC());
@@ -59,6 +57,7 @@ public class CreateUpdateQuestionController {
         quizzen.getItems().add(quiz);
         quizzen.getSelectionModel().selectFirst();
         this.idQuiz = question.getIdQuiz();
+        this.idQuestion = question.getIdQuestion();
     }
 
     public void setupCreateQuestion() {
@@ -106,10 +105,8 @@ public class CreateUpdateQuestionController {
                     String updateAntwoordB = antwoordB.getText();
                     String updateAntwoordC = antwoordC.getText();
                     String updateAntwoordD = antwoordD.getText();
-                    Question updateQuestion = new Question(this.idQuiz, updateQuestionString, updateAntwoordA,
+                    Question updateQuestion = new Question(this.idQuestion, this.idQuiz, updateQuestionString, updateAntwoordA,
                             updateAntwoordB, updateAntwoordC, updateAntwoordD);
-
-                    updateQuestion.setIdQuestion(Integer.parseInt(idQuestion.getText()));
                     questionDAO.updateOne(updateQuestion);
 
                     if (juisteLengte) {
@@ -117,6 +114,7 @@ public class CreateUpdateQuestionController {
                         bevestigAanpassenVraag.setContentText("Vraag is succesvol aangepast");
                         bevestigAanpassenVraag.show();
                         doClear();
+                        Main.getSceneManager().showManageQuestionsScene();
                     } else {
                         Alert bevestigAanmakenVraag = new Alert(Alert.AlertType.ERROR);
                         bevestigAanmakenVraag.setContentText("Vraag en/of antwoord mag niet langer dan 45 tekens zijn");
@@ -142,7 +140,6 @@ public class CreateUpdateQuestionController {
     // Methode die alle velden leeg maakt
     public void doClear() {
         questionString.clear();
-        idQuestion.clear();
         antwoordA.clear();
         antwoordB.clear();
         antwoordC.clear();

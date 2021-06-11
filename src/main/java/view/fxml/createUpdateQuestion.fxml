@@ -6,18 +6,16 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CreateUpdateQuestionController">
    <children>
-      <TextField fx:id="idQuestion" editable="false" layoutX="301.0" layoutY="142.0" />
       <TextField fx:id="questionString" layoutX="301.0" layoutY="209.0" promptText="Voer hier je vraag in" />
       <TextField fx:id="antwoordA" layoutX="301.0" layoutY="242.0" promptText="Antwoord A" />
       <TextField fx:id="antwoordB" layoutX="301.0" layoutY="275.0" promptText="Antwoord B" />
       <TextField fx:id="antwoordC" layoutX="301.0" layoutY="308.0" promptText="Antwoord C" />
       <TextField fx:id="antwoordD" layoutX="301.0" layoutY="340.0" promptText="Antwoord D" />
-      <Label fx:id="hoofdTitel" layoutX="210.0" layoutY="77.0" text="Een vraag bewerken">
+      <Label fx:id="hoofdTitel" layoutX="210.0" layoutY="121.0" text="Een vraag bewerken">
          <font>
             <Font name="Arial Bold" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="210.0" layoutY="146.0" text="Vraag Nummer" />
       <Label layoutX="210.0" layoutY="179.0" text="Quiz Nummer" />
       <Label layoutX="210.0" layoutY="213.0" text="Vraag" />
       <Label layoutX="210.0" layoutY="246.0" text="Antwoord A" />
