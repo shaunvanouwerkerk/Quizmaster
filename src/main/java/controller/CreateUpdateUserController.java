@@ -43,6 +43,7 @@ public class CreateUpdateUserController {
 
 
     public void setupCreateUser() {
+        ComboBox<String> keuzebox = setTaskMenuButtonRoles();
         roleButton = setTaskMenuButtonRoles();
         roleButton.getSelectionModel().select(Main.STUDENT_ROL);
         roleButton.setOnAction(event -> roleButton.getSelectionModel().getSelectedItem());
@@ -70,7 +71,9 @@ public class CreateUpdateUserController {
             String username = userNameTextField.getText();
             String password = passwordTextField.getText();
             String role = roleButton.getSelectionModel().getSelectedItem();
+            System.out.println(role);
             User user = new User(password, username, role);
+            System.out.println(user.getRoleName());
             userDAO.storeOne(user);
             doClear();
         }
