@@ -146,4 +146,24 @@ public class UserDAO extends AbstractDAO implements GenericDAO<User>{
             System.out.println(sqlException.getMessage());
         }
     }
+
+    public ArrayList<Integer> getAllCourseId(int idStudent) {
+        System.out.println("Begin van pull courses");
+        ArrayList<Integer> allCourseId = new ArrayList<>();
+        int courseId;
+        String sql = "SELECT * FROM studentincourse WHERE idStudent = ?";
+        try {
+            setupPreparedStatement(sql);
+            preparedStatement.setInt(1, idStudent);
+            ResultSet resultSet = executeSelectStatement();
+
+            while (resultSet.next()) {
+                courseId = resultSet.getInt("idCourse");
+                allCourseId.add(courseId);
+            }
+        } catch (SQLException sqlException) {
+            System.out.println(sqlException.getMessage());
+        }
+        return allCourseId;
+    }
 }
