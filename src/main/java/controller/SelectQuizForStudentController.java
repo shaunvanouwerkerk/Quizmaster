@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public class SelectQuizForStudentController {
 
-    private ArrayList<Quiz> quizes;
+    private ArrayList<Quiz> quizes = new ArrayList<>();
     private ArrayList<Course> courses;
     private DBAccess dbAccess = Main.getDBaccess();
     private CourseDAO courseDAO = new CourseDAO(dbAccess);
@@ -26,13 +26,24 @@ public class SelectQuizForStudentController {
     ListView<Quiz> quizList;
 
     public void setup() {
-        ArrayList<Integer> courseId = userDAO.getAllCourseId(Main.loggedInUser.getIdUser());
-        System.out.println(courseId);
-
-
+        fillQuizesForStudent();
+        for(Quiz quiz : quizes) {
+            quizList.getItems().add(quiz);
+        }
     }
 
     public void doMenu() {}
 
     public void doQuiz() {}
+
+    public void fillQuizesForStudent() {
+        ArrayList<Integer> allCourseId = userDAO.getAllCourseId(Main.loggedInUser.getIdUser());
+        for(Integer courseId: allCourseId) {
+            ArrayList<Quiz> quizzesPerCourse = quizDAO.getQuizesByCourseId(courseId);
+            for(Quiz quiz : quizzesPerCourse) {
+                quizes.add(quiz);
+            }
+        }
+        System.out.println(quizes);
+    }
 }
