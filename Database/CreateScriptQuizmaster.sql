@@ -136,7 +136,6 @@ DROP TABLE IF EXISTS studentincourse;
 CREATE TABLE studentincourse (
   idCourse int NOT NULL,
   idStudent int NOT NULL,
-  PRIMARY KEY (idCourse,idStudent),
   KEY fk_Course_has_User_User1_idx (idStudent),
   KEY fk_Course_has_User_Course1_idx (idCourse),
   CONSTRAINT fk_Course_has_User_Course1 FOREIGN KEY (idCourse) REFERENCES course (idCourse) ON DELETE RESTRICT ON UPDATE CASCADE,
