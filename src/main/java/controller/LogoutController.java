@@ -11,6 +11,7 @@ public class LogoutController {
     private TextField passwordField;
 
     public void doLogout(){
+        Main.loggedInUser = null;
         Main.getSceneManager().showLoginScene();
     }
 
