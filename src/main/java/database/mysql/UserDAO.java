@@ -81,8 +81,8 @@ public class UserDAO extends AbstractDAO implements GenericDAO<User>{
             int key = executeInsertStatementWithKey();
             user.setIdUser(key);
             Alert opgeslagen = new Alert(Alert.AlertType.CONFIRMATION);
-            opgeslagen.setContentText(String.format("Gebruiker met ID: %d, username %s met als rol %s " +
-                    "is opgeslagen!", user.getIdUser(), user.getUsername(), user.getRoleName()));
+            opgeslagen.setHeaderText(String.format("Gebruiker %s is opgeslagen", user.getUsername()));
+            opgeslagen.setContentText(String.format("ID: %d, Rol: %s", user.getIdUser(),user.getRoleName()));
             opgeslagen.show();
         } catch (SQLException sqlException) {
             Alert foutmelding = new Alert(Alert.AlertType.ERROR);
