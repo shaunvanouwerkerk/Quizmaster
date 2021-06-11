@@ -1,0 +1,1532 @@
+[33mcommit 6a2edc8e4b2ca5be75ceae75001be301c3cbfb58[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Merge: 89447e3 c6afc17
+Author: Fiona Lampers <fiona.lampers@hva.nl>
+Date:   Thu Jun 10 20:17:31 2021 +0200
+
+    Merge branch 'Fiona'
+
+[33mcommit c6afc17a1df0918d087671da218aaa71a2a4be0f[m
+Author: Fiona Lampers <fiona.lampers@hva.nl>
+Date:   Thu Jun 10 20:17:01 2021 +0200
+
+    Alles lijkt te werken
+
+[33mcommit 89447e3f6dce4137655c31cec077df0b0106758a[m
+Merge: 2997f4c 22657b0
+Author: Branko Visser <b.visser@kwigy.com>
+Date:   Thu Jun 10 18:59:12 2021 +0200
+
+    Merge branch 'master' of gitlab.fdmci.hva.nl:MIW2/cohort-24-se/quizmaster/team-1/quizmaster_upstream
+
+[33mcommit 2997f4c1e599b0ef7587c0e5bebe876e008ebff2[m
+Author: Branko Visser <b.visser@kwigy.com>
+Date:   Thu Jun 10 18:59:08 2021 +0200
+
+    minor change
+
+[33mcommit 22657b076adf48dce570b03d7801c5aed13b9daf[m
+Author: Shaun van Ouwerkerk <shaun.van.ouwerkerk@hva.nl>
+Date:   Thu Jun 10 18:57:34 2021 +0200
+
+    dbacces aangepast
+
+[33mcommit 635951d896e4ce7d8ee36d913bdbf4a27f3d6c44[m
+Merge: 7de07c0 dc65296
+Author: Shaun van Ouwerkerk <shaun.van.ouwerkerk@hva.nl>
+Date:   Thu Jun 10 18:51:09 2021 +0200
+
+    donderdag
+
+[33mcommit 7de07c03d10d6ea120ca8ed08a521015e7fe2935[m
+Author: Shaun van Ouwerkerk <shaun.van.ouwerkerk@hva.nl>
+Date:   Thu Jun 10 18:46:51 2021 +0200
+
+    donderdag kleine toevoeging
+
+[33mcommit dc65296277191f8bc8ee4256d1d0aa36d0c708dc[m
+Author: Branko Visser <b.visser@kwigy.com>
+Date:   Thu Jun 10 18:37:46 2021 +0200
+
+    update insert script quiz
+
+[33mcommit 3d3c399203fe4333f2639a84cc7aac6cc128995c[m
+Author: Branko Visser <b.visser@kwigy.com>
+Date:   Thu Jun 10 18:07:50 2021 +0200
+
+    nog een user toegevoegd, anders krijg ik steeds issues
+
+[33mcommit 69c2771a152a874ddb650d7864dbfd7c656ba26c[m
+Author: Branko Visser <b.visser@kwigy.com>
+Date:   Thu Jun 10 18:06:02 2021 +0200
+
+    nog een scriptfoutje er uit gehaald
+
+[33mcommit 9375eaa36ea9abf49b3bbab4cb5c938d7bb3cad3[m
+Author: Branko Visser <b.visser@kwigy.com>
+Date:   Thu Jun 10 18:03:45 2021 +0200
+
+    script comma vergeten, nu toegevoegd
+
+[33mcommit ea74cf874d17a3ad69cc4a1bc703c8decbee4cb6[m
+Merge: 826dcab 4a7a7b5
+Author: Branko Visser <b.visser@kwigy.com>
+Date:   Thu Jun 10 18:00:19 2021 +0200
+
+    Merge branch 'master' of gitlab.fdmci.hva.nl:MIW2/cohort-24-se/quizmaster/team-1/quizmaster_upstream
+    
+    # Conflicts:
+    #       src/main/java/view/Main.java
+
+[33mcommit 826dcab9787d30c00cb3c1773cccd595d247bd30[m
+Author: Branko Visser <b.visser@kwigy.com>
+Date:   Thu Jun 10 17:49:16 2021 +0200
+
+    CreateScript aangepast, zowel INT als FK toegevoegd aan Quiz
+
+[33mcommit 4a7a7b5b258f751fc28fde6854cb797edb230987[m
+Author: Harold Stevens <harold.stevens@hva.nl>
+Date:   Thu Jun 10 17:04:13 2021 +0200
+
+    unittest
+
+[33mcommit 83e6314797a3acfbb74c9e106cd6bfb4fc4ee140[m
+Merge: d43d35f 0a1ab83
+Author: Fiona Lampers <fiona.lampers@hva.nl>
+Date:   Thu Jun 10 16:05:35 2021 +0200
+
+    Merge branch 'master' into Fiona
+
+[33mcommit d43d35f22cde62cc981c625b9ecf60593d6cec68[m
+Author: Fiona Lampers <fiona.lampers@hva.nl>
+Date:   Thu Jun 10 16:04:40 2021 +0200
+
+    tussentijds
+
+[33mcommit 0a1ab83fa472a2b1e466b19f85508914f3d4533b[m
+Author: Shaun van Ouwerkerk <shaun.van.ouwerkerk@hva.nl>
+Date:   Thu Jun 10 15:52:44 2021 +0200
+
+    DBACCES quiz aangepast
+
+[33mcommit 78227d933e269b0879539e624397b2a0b66d7099[m
+Merge: cf8a1ce efffb16
+Author: Shaun van Ouwerkerk <shaun.van.ouwerkerk@hva.nl>
+Date:   Thu Jun 10 15:41:25 2021 +0200
+
+    Update quiz aangepast en tonen quizen
+
+[33mcommit efffb1632d87c530ba62072605c91254a3093b95[m
+Author: Shaun van Ouwerkerk <shaun.van.ouwerkerk@hva.nl>
+Date:   Thu Jun 10 15:40:20 2021 +0200
+
+    Update quiz aangepast en tonen quizen
+
+[33mcommit a3ea5a02a46a4fb5c7045d9cb8d9386c57be0771[m
+Merge: 3a4bd58 cf8a1ce
+Author: Fiona Lampers <fiona.lampers@hva.nl>
+Date:   Thu Jun 10 15:24:29 2021 +0200
+
+    Merge branch 'master' into Fiona
+
+[33mcommit 3a4bd5801a0e3c467370c7301b26dec176b4b54b[m
+Author: Fiona Lampers <fiona.lampers@hva.nl>
+Date:   Thu Jun 10 15:23:23 2021 +0200
+
+    Tussentijds
+
+[33mcommit cf8a1ce427ea24d2a61a036c1567a36881d4ed94[m
+Author: Branko Visser <b.visser@kwigy.com>
+Date:   Thu Jun 10 15:11:57 2021 +0200
+
+    kleine aanpassing
+
+[33mcommit 554f2cbf678609bffa27c3ad7e9f99cee94ca5b0[m
+Merge: c339687 3bf0a3b
+Author: Harold Stevens <harold.stevens@hva.nl>
+Date:   Thu Jun 10 15:02:05 2021 +0200
+
+    Merge branch 'donderdagmiddag'
+
+[33mcommit c339687f28595d1fa7f208a037d40a1be592c1f1[m
+Author: Harold Stevens <harold.stevens@hva.nl>
+Date:   Thu Jun 10 15:01:51 2021 +0200
+
+    updates
+
+[33mcommit 3bf0a3beb8fe8520c51deb88cb7c5ac9d3bab6a4[m
+Author: Harold Stevens <harold.stevens@hva.nl>
+Date:   Thu Jun 10 14:57:16 2021 +0200
+
+    controle meldingen toegevoed
+
+[33mcommit f989bc3a22f95f05f4175a9b56889d4fc16ecf78[m
+Author: Harold Stevens <harold.stevens@hva.nl>
+Date:   Thu Jun 10 14:56:41 2021 +0200
+
+    controle meldingen toegevoed
+
+[33mcommit 7a3783eed6f539d09df9b65a270b27170d1b01b8[m
+Author: Nijad Nazarli <nijad.nazarli@hva.nl>
+Date:   Thu Jun 10 14:06:22 2021 +0200
+
+    Aanpassing CreateScript
+
+[33mcommit 8501f9181dcefe0a2d1eedb7ab0bbf0859c8b0de[m
+Merge: 9dcafcb 2f69df0
+Author: Shaun van Ouwerkerk <shaun.van.ouwerkerk@hva.nl>
+Date:   Thu Jun 10 13:51:25 2021 +0200
+
+    aanpassingen Manage Quizes
+
+[33mcommit 2f69df04227ca542c65a35478f821067f83bbcba[m
+Author: Shaun van Ouwerkerk <shaun.van.ouwerkerk@hva.nl>
+Date:   Thu Jun 10 13:48:48 2021 +0200
+
+    Aanpassingen Manage Quizzes
+
+[33mcommit 9dcafcb995bf1c4813cdb59e2c617497eed73d2d[m
+Merge: 424a654 1e86e8d
+Author: Branko Visser <b.visser@kwigy.com>
+Date:   Thu Jun 10 13:32:20 2021 +0200
+
+    Merge branch 'donderdag'
+
+[33mcommit 1e86e8df6fae622ad35d6b23a9d4ec9b86614433[m
+Author: Branko Visser <b.visser@kwigy.com>
+Date:   Thu Jun 10 13:32:08 2021 +0200
+
+    Create and Insert script gemaakt voor het project.
+
+[33mcommit 424a654a2304eaec41d8d9b419c4d96024d6221a[m
+Merge: 41c1bb3 d1f5ee0
+Author: Harold Stevens <harold.stevens@hva.nl>
+Date:   Thu Jun 10 13:17:57 2021 +0200
+
+    Merge branch 'master' of gitlab.fdmci.hva.nl:MIW2/cohort-24-se/quizmaster/team-1/quizmaster_upstream
+
+[33mcommit 41c1bb34caff5d6cab01d1ca69b5f3c1df6caea7[m
+Author: Harold Stevens <harold.stevens@hva.nl>
+Date:   Thu Jun 10 13:14:42 2021 +0200
+
+    arraylist gefixed
+
+[33mcommit 587b4850810cc301ac1a62ec80889f497fc189a4[m
+Author: Harold Stevens <harold.stevens@hva.nl>
+Date:   Thu Jun 10 12:04:05 2021 +0200
+
+    wijzigingen
+
+[33mcommit d1f5ee063e89b85e067154169a3889616926369f[m
+Merge: 6307691 87483e6
+Author: Nijad Nazarli <nijad.nazarli@hva.nl>
+Date:   Thu Jun 10 11:47:35 2021 +0200
+
+    Merge branch 'Nijad'
+
+[33mcommit 87483e60851680619f221fbc107060e87a93c90a[m
+Author: Nijad Nazarli <nijad.nazarli@hva.nl>
+Date:   Thu Jun 10 11:46:21 2021 +0200
+
+    Question controller aangepast
+
+[33mcommit 6307691c844ae0282e68707dd1f8a82198c6fc18[m
+Merge: c41712b 097ecc0
+Author: Fiona Lampers <fiona.lampers@hva.nl>
+Date:   Wed Jun 9 22:18:02 2021 +0200
+
+    Merge branch 'Fiona'
+
+[33mcommit 097ecc00fa3c32a73539c0785bdd64af224c9826[m
+Author: Fiona Lampers <fiona.lampers@hva.nl>
+Date:   Wed Jun 9 22:17:02 2021 +0200
+
+    Werk aan de Group controllers en FXML
+
+[33mcommit c41712b226a3c4cc694b28100e9fa1ccc05b3d56[m
+Merge: 419108d 6cfb02a
+Author: Harold Stevens <harold.stevens@hva.nl>
+Date:   Wed Jun 9 22:15:21 2021 +0200
+
+    Merge branch 'update1managecoursecontroller'
+
+[33mcommit 6cfb02a3dc0927eccf937a79a1f81dd5a7de9087[m
+Author: Harold Stevens <harold.stevens@hva.nl>
+Date:   Wed Jun 9 22:13:30 2021 +0200
+
+    diverse updates courseDAO en createUpdateCourse Controller
+
+[33mcommit 419108d27a44e31a3ff8207a8b00ddc6a1dc89b5[m
+Merge: 6c2b8b1 b05f3b6
+Author: Shaun van Ouwerkerk <shaun.van.ouwerkerk@hva.nl>
+Date:   Wed Jun 9 17:00:45 2021 +0200
+
+    Shauns toevoeging
+
+[33mcommit 6c2b8b105dcaa5fa0dba3229415c906bf6d56eb8[m
+Author: Shaun van Ouwerkerk <shaun.van.ouwerkerk@hva.nl>
+Date:   Wed Jun 9 17:00:00 2021 +0200
+
+    Shaun toevoeging
+
+[33mcommit b05f3b602abe74898b9a8b757ff5e8d70449e139[m
+Merge: e1bf4fc 5d1a12e
+Author: Shaun van Ouwerkerk <shaun.van.ouwerkerk@hva.nl>
+Date:   Wed Jun 9 16:54:53 2021 +0200
+
+    Aantalvragen tonen
+
+[33mcommit e1bf4fcb78e417bcf9b48f33a9b8d17efa3b9028[m
+Author: Shaun van Ouwerkerk <shaun.van.ouwerkerk@hva.nl>
+Date:   Wed Jun 9 16:47:47 2021 +0200
+
+    Aantal vragen tonen
+
+[33mcommit 5d1a12ea0e56aa16c5dbd9951e37af9a0912a5e1[m
+Merge: 57281e9 0d51dee
+Author: Nijad Nazarli <nijad.nazarli@hva.nl>
+Date:   Wed Jun 9 16:11:13 2021 +0200
+
+    Merge branch 'Nijad'
+
+[33mcommit 57281e9db04fab0a12018cb81766f2fe5144279d[m
+Merge: fcd92e9 de79e2f
+Author: Fiona Lampers <fiona.lampers@hva.nl>
+Date:   Wed Jun 9 16:04:47 2021 +0200
+
+    Merge branch 'master' of gitlab.fdmci.hva.nl:MIW2/cohort-24-se/quizmaster/team-1/quizmaster_upstream
+
+[33mcommit 0d51deeaa41c782a6dd46879402c521aa9a36c91[m
+Author: Nijad Nazarli <nijad.nazarli@hva.nl>
+Date:   Wed Jun 9 16:03:37 2021 +0200
+
+    Nijad laatste update
+
+[33mcommit fcd92e95fc9a627a07dd73428b14783b52f66bca[m
+Author: Fiona Lampers <fiona.lampers@hva.nl>
+Date:   Wed Jun 9 16:02:08 2021 +0200
+
+    GroupController filled
+
+[33mcommit de79e2f8fa72a4c405c79523a4faa7589468885c[m
+Author: Branko Visser <b.visser@kwigy.com>
+Date:   Wed Jun 9 15:31:30 2021 +0200
+
+    ok ik snap toch niet wat ik nu moet doen met testen
+
+[33mcommit 776337a23e1540b1a4e444bcdc2687a709800ccb[m
+Author: Branko Visser <b.visser@kwigy.com>
+Date:   Wed Jun 9 15:09:00 2021 +0200
+
+    test klasse UserDAO aangemaakt
+
+[33mcommit 84d97f3e1bd8b73bb249d1928709af57bc06bf0b[m
+Author: Harold Stevens <harold.stevens@hva.nl>
+Date:   Wed Jun 9 14:40:23 2021 +0200
+
+    scenemanager aangepast
+
+[33mcommit 6c5cd5c4f58c6e7d9ac62efb40331590d0b93a3c[m
+Merge: a75da8f fc2381c
+Author: Harold Stevens <harold.stevens@hva.nl>
+Date:   Wed Jun 9 14:22:52 2021 +0200
+
+    Merge branch 'master' of gitlab.fdmci.hva.nl:MIW2/cohort-24-se/quizmaster/team-1/quizmaster_upstream
+
+[33mcommit a75da8fe67cd7a2fe9ff39731c15a55e15d74610[m
+Author: Harold Stevens <harold.stevens@hva.nl>
+Date:   Wed Jun 9 14:22:01 2021 +0200
+
+    fout eruit gehaald
+
+[33mcommit fc2381c8b18f21f3c8722f76b12d670c10dbb8f3[m
+Merge: 8100b06 118a88b
+Author: Shaun van Ouwerkerk <shaun.van.ouwerkerk@hva.nl>
+Date:   Wed Jun 9 14:17:37 2021 +0200
+
+    Course Dao aanpassing
+
+[33mcommit 118a88bd9c63740179dbab827da7d382b72c4f06[m
+Author: Shaun van Ouwerkerk <shaun.van.ouwerkerk@hva.nl>
+Date:   Wed Jun 9 14:16:02 2021 +0200
+
+    Course Dao aanpassing
+
+[33mcommit 8100b064eda0844fa89fbe4af67ffb80e7ca5328[m
+Merge: 2836d37 779d596
+Author: Harold Stevens <harold.stevens@hva.nl>
+Date:   Wed Jun 9 13:27:10 2021 +0200
+
+    merge conflict opgelost
+
+[33mcommit 779d596486ac82f8e6fd0bcf0a556feaba27494a[m
+Author: Harold Stevens <harold.stevens@hva.nl>
+Date:   Wed Jun 9 13:22:51 2021 +0200
+
+    laatste wijzigingen controllers Course
+
+[33mcommit 2836d379d4015148dcf4a617879b856a63625a71[m
+Merge: 72a0dfd 532c4c6
+Author: Branko Visser <b.visser@kwigy.com>
+Date:   Wed Jun 9 09:01:18 2021 +0200
+
+    group
+
+[33mcommit 72a0dfd1f30e9812e9858ad657707d179ac3d12b[m
+Author: Branko Visser <b.visser@kwigy.com>
+Date:   Wed Jun 9 08:59:32 2021 +0200
+
+    blijkbaar kleine aanpssing gedaan waardoor ik niet kon pullen
+
+[33mcommit 532c4c64b5f29aa701b2771d094262a81659ae90[m
+Author: Fiona Lampers <fiona.lampers@hva.nl>
+Date:   Wed Jun 9 08:55:24 2021 +0200
+
+    GroupDao met backticks
+
+[33mcommit e6988733e0ca77d94c6a4e63776a9a8d456b1099[m
+Merge: c21d7e9 7519ea8
+Author: Fiona Lampers <fiona.lampers@hva.nl>
+Date:   Tue Jun 8 22:11:24 2021 +0200
+
+    Merge branch 'MAnageGroupController'
+
+[33mcommit c21d7e9b0234a2f7477a2957f41604c09e57f53a[m
+Merge: 15ed260 66f4029
+Author: Shaun van Ouwerkerk <shaun.van.ouwerkerk@hva.nl>
+Date:   Tue Jun 8 21:59:51 2021 +0200
+
+    Create Quiz werkend
+
+[33mcommit 66f4029a27ee1efc00f40e1f93dfd4f2e341eb6f[m
+Author: Shaun van Ouwerkerk <shaun.van.ouwerkerk@hva.nl>
+Date:   Tue Jun 8 21:58:38 2021 +0200
+
+    Create Quiz werkend
+
+[33mcommit 7519ea8e72ef8e03e6ea176d1239a830f24208d7[m
+Author: Fiona Lampers <fiona.lampers@hva.nl>
+Date:   Tue Jun 8 21:56:55 2021 +0200
+
+    GroupDAO and ManageGroupController updated
+
+[33mcommit 15ed260b6f404036d8000a664b59e73f46845920[m
+Author: Nijad Nazarli <nijad.nazarli@hva.nl>
+Date:   Tue Jun 8 20:35:05 2021 +0200
+
+    Error bij het invullen afhandelen
+
+[33mcommit 252d9cb614f855f2a7eedc4c201e888b1b16740f[m
+Author: Nijad Nazarli <nijad.nazarli@hva.nl>
+Date:   Tue Jun 8 19:09:35 2021 +0200
+
+    Conflict Shaun test opgelost
+
+[33mcommit 437c937aa5577039f2fd20e1507f6f095fbd595d[m
+Merge: 8f5e68b 494e839
+Author: Nijad Nazarli <nijad.nazarli@hva.nl>
+Date:   Tue Jun 8 18:49:27 2021 +0200
+
+    Aangepaste ManageQuestion scherm
+
+[33mcommit 494e839f07dcecd65f709bba63099ad9bbe3ece6[m
+Author: Nijad Nazarli <nijad.nazarli@hva.nl>
+Date:   Tue Jun 8 18:40:53 2021 +0200
+
+    Manage Question scherm aangepast
+
+[33mcommit 8f5e68b5dc67e160a60515229475c17d4e6467b8[m
+Merge: 8d89ef9 fbbdaed
+Author: Branko Visser <b.visser@kwigy.com>
+Date:   Tue Jun 8 18:02:29 2021 +0200
+
+    Merge branch 'master' of gitlab.fdmci.hva.nl:MIW2/cohort-24-se/quizmaster/team-1/quizmaster_upstream
+
+[33mcommit 8d89ef9edbe8118973ca1d59889c8f3f5d39036a[m
+Author: Branko Visser <b.visser@kwigy.com>
+Date:   Tue Jun 8 18:02:27 2021 +0200
+
+    kleine aanpassing
+
+[33mcommit fbbdaed03bbd52fc30633f3166b4354b9a372bfb[m
+Merge: 64d4b06 f212535
+Author: Shaun van Ouwerkerk <shaun.van.ouwerkerk@hva.nl>
+Date:   Tue Jun 8 17:35:34 2021 +0200
+
+    Shaun merge
+
+[33mcommit 9ce1ffdba6e587d49f19a4cb948cdd214216d3e5[m
+Author: Nijad Nazarli <nijad.nazarli@hva.nl>
+Date:   Tue Jun 8 17:34:36 2021 +0200
+
+    Aanpassen Question
+
+[33mcommit f212535033f1201a93ab438fad9c7d3e09bcdf33[m
+Author: Shaun van Ouwerkerk <shaun.van.ouwerkerk@hva.nl>
+Date:   Tue Jun 8 17:33:41 2021 +0200
+
+    Deletequizes en Managequize funtioneel
+
+[33mcommit c65875f928798b0d4cb25c982561ad619b6f667b[m
+Merge: 0b14f92 64d4b06
+Author: Harold Stevens <harold.stevens@hva.nl>
+Date:   Mon Jun 7 23:37:50 2021 +0200
+
+    Merge branch 'master' into managecoursecontroller
+
+[33mcommit 0b14f92a946c9c84b7e53fa241ea6b7b69ea2645[m
+Author: Harold Stevens <harold.stevens@hva.nl>
+Date:   Mon Jun 7 23:36:39 2021 +0200
+
+    laatste wijzigingen 7 juni
+
+[33mcommit 64d4b062987bc19aab9508fb257fc396a80c9a92[m
+Merge: 98a766f 0443701
+Author: Fiona Lampers <fiona.lampers@hva.nl>
+Date:   Mon Jun 7 22:36:15 2021 +0200
+
+    Merge branch 'QuizResults'
+
+[33mcommit 04437016ba332f391a82ec0f4ea44fbd70627a97[m
+Author: Fiona Lampers <fiona.lampers@hva.nl>
+Date:   Mon Jun 7 22:34:09 2021 +0200
+
+    Fill QuizResults Class
+
+[33mcommit 98a766f726eb902dbbddc659f8f450936a430566[m
+Merge: f4762ba 0a8d52c
+Author: Nijad Nazarli <nijad.nazarli@hva.nl>
+Date:   Mon Jun 7 21:40:12 2021 +0200
+
+    Merge branch 'QuestionController'
+
+[33mcommit 0a8d52c8be1eeedce6856f332864840306af3c36[m
+Author: Nijad Nazarli <nijad.nazarli@hva.nl>
+Date:   Mon Jun 7 21:32:24 2021 +0200
+
+    Vraag aanmaken en bewerken werkend krijgen
+
+[33mcommit f4762bace84742c8da5bd9dca3a7ecba4462c412[m
+Author: Shaun van Ouwerkerk <shaun.van.ouwerkerk@hva.nl>
+Date:   Mon Jun 7 21:09:54 2021 +0200
+
+    Database quizen toegevoegd
+
+[33mcommit 9bb79222171a08ea8ef577392284c89530badcd4[m
+Merge: bc86e8d 6434f35
+Author: Shaun van Ouwerkerk <shaun.van.ouwerkerk@hva.nl>
+Date:   Mon Jun 7 20:39:40 2021 +0200
+
+    ShaunmergeMaster
+
+[33mcommit 6434f35d8efbd1972595e4f0e8ae63df9bfc2dc6[m
+Author: Shaun van Ouwerkerk <shaun.van.ouwerkerk@hva.nl>
+Date:   Mon Jun 7 20:37:12 2021 +0200
+
+    QuiDao aanpassing, Update en Manage Controller, createUpdatequizview
+
+[33mcommit bc86e8d4b9779e59088c63854ec1d8cc885c208a[m
+Author: Branko Visser <b.visser@kwigy.com>
+Date:   Mon Jun 7 17:44:04 2021 +0200
+
+    courseDAO aangepast
+
+[33mcommit 0fcde12180c7a643243ccf9f5dde7bfac038bfb8[m
+Author: Branko Visser <b.visser@kwigy.com>
+Date:   Mon Jun 7 17:15:33 2021 +0200
+
+    kleine toevoegingen
+
+[33mcommit 0cffb9791c2f6c86d99b436f1ca5dcce5d967973[m
+Author: Branko Visser <b.visser@kwigy.com>
+Date:   Mon Jun 7 17:01:26 2021 +0200
+
+    ff een courseDAO toegevoegd
+
+[33mcommit 15e7eba5055fdfe6b1db7894d81b8b0d10d67bff[m
+Author: Nijad Nazarli <nijad.nazarli@hva.nl>
+Date:   Mon Jun 7 16:58:24 2021 +0200
+
+    wat aanpassingen aan Vraag functionaliteit
+
+[33mcommit 71ace09989d0b59bf818e69a312f4294f03e468f[m
+Author: Branko Visser <b.visser@kwigy.com>
+Date:   Mon Jun 7 16:44:18 2021 +0200
+
+    confirmation alert met bevestiging toegevoegd
+
+[33mcommit 4614d384cff6a7f1ea31361d0fd8770829c07bc6[m
+Author: Branko Visser <b.visser@kwigy.com>
+Date:   Mon Jun 7 15:44:28 2021 +0200
+
+    deleten van user werkt, nu nog een keuzebevestiging inbouwen...
+
+[33mcommit 0be3a531ce3a4fbad276b4d57219483eabccda01[m
+Author: Nijad Nazarli <nijad.nazarli@hva.nl>
+Date:   Mon Jun 7 15:35:47 2021 +0200
+
+    Maak een vraag functionaliteit toegevoegd
+
+[33mcommit fb40ded8fd3e36316b9b5e5fb0c99ccee46d274a[m
+Author: Branko Visser <b.visser@kwigy.com>
+Date:   Mon Jun 7 15:25:20 2021 +0200
+
+    userDAO delete mogelijkheid gemaakt
+
+[33mcommit a9f1a11947079ed01bb11e8805b9e42298c159db[m
+Author: Branko Visser <b.visser@kwigy.com>
+Date:   Mon Jun 7 15:13:40 2021 +0200
+
+    test Directory aangemaakt incl geraamte UserDAO test
+
+[33mcommit 358d380edd8f14375a78c4e5b37d708505e7178f[m
+Author: Branko Visser <b.visser@kwigy.com>
+Date:   Mon Jun 7 14:46:31 2021 +0200
+
+    Welkomsttekst bij het inloggen aangepast
+
+[33mcommit 5757e9992433f38f74cff0c0786f354efe03d137[m
+Merge: 00b20ad cd03cac
+Author: Harold Stevens <harold.stevens@hva.nl>
+Date:   Mon Jun 7 14:13:59 2021 +0200
+
+    Merge branch 'managecoursecontroller'
+
+[33mcommit 00b20ad370293c504c9a762dd12381b9065f6627[m
+Merge: 0b0d0da ec618b7
+Author: Harold Stevens <harold.stevens@hva.nl>
+Date:   Mon Jun 7 14:12:40 2021 +0200
+
+    conflict
+
+[33mcommit cd03cacc1d7f81c67b1f5eae04e0bd2332121151[m
+Author: Harold Stevens <harold.stevens@hva.nl>
+Date:   Mon Jun 7 14:01:57 2021 +0200
+
+    insert script toegevoegd
+
+[33mcommit ec618b767af16fc8cc1247e7672aaba8958949db[m
+Merge: 1fbefbf 71520ec
+Author: Shaun van Ouwerkerk <shaun.van.ouwerkerk@hva.nl>
+Date:   Mon Jun 7 13:55:35 2021 +0200
+
+    MergeMasterShaun
+
+[33mcommit 71520ec2ae3637b8482b1c90570589a5466b3a28[m
+Author: Shaun van Ouwerkerk <shaun.van.ouwerkerk@hva.nl>
+Date:   Mon Jun 7 13:52:40 2021 +0200
+
+    eerste opzet ManageQuizesController
+
+[33mcommit 9d0b6d5973c2604dfafed1b8bc0a09a4c10c77ab[m
+Author: Harold Stevens <harold.stevens@hva.nl>
+Date:   Mon Jun 7 13:46:42 2021 +0200
+
+    harold
+
+[33mcommit 1fbefbfa288d6f4d89005818654f29b5fee1097c[m
+Merge: ed76513 f5e57fb
+Author: Fiona Lampers <fiona.lampers@hva.nl>
+Date:   Sun Jun 6 21:31:18 2021 +0200
+
+    Merge branch 'Fiona'
+
+[33mcommit f5e57fb5349d5f702d8d9a3b9f6469eb86f4096b[m
+Author: Fiona Lampers <fiona.lampers@hva.nl>
+Date:   Sun Jun 6 21:30:38 2021 +0200
+
+    Commit Group class and GroupDAO
+
+[33mcommit ed765139abf36f07f1d35f54272f89821d261220[m
+Author: Nijad Nazarli <nijad.nazarli@hva.nl>
+Date:   Sun Jun 6 20:23:54 2021 +0200
+
+    CreateUpdate Vraag scherm aangemaakt, DAO aangepast
+
+[33mcommit 88ccc514a1a85fd21eaf21f969800f03eb4a4346[m
+Author: Branko Visser <b.visser@kwigy.com>
+Date:   Sun Jun 6 12:48:14 2021 +0200
+
+    Update user vanuit beheer toegevoegd
+
+[33mcommit 93bebde59f8ef56023295db993b0b7273a433c2f[m
+Author: Branko Visser <b.visser@kwigy.com>
+Date:   Sun Jun 6 11:08:16 2021 +0200
+
+    Meldingen bij het opslaan van gebruiker toegevoegd
+
+[33mcommit 672ef156321878c7941ecabbff77a43327bb25cd[m
+Author: Nijad Nazarli <nijad.nazarli@hva.nl>
+Date:   Sat Jun 5 20:44:00 2021 +0200
+
+    alle QuestionDAO methodes getest
+
+[33mcommit 26766ae36e1ad12ae8ae345b051d396f2b41cf32[m
+Author: Branko Visser <b.visser@kwigy.com>
+Date:   Sat Jun 5 16:24:19 2021 +0200
+
+    Opslaan gebruiker via invulscherm + foutmeldingen
+
+[33mcommit bda1843f08867ea2487f326acc12b8d6ce7460ee[m
+Author: Branko Visser <b.visser@kwigy.com>
+Date:   Sat Jun 5 15:43:13 2021 +0200
+
+    knoppen toegevoegd
+
+[33mcommit 9b5ed4a79b8ec5c3f537f5bde2c7b6d7c432e90b[m
+Author: Branko Visser <b.visser@kwigy.com>
+Date:   Sat Jun 5 12:55:32 2021 +0200
+
+    regel verwijderd
+
+[33mcommit c3962a72340d2610297f1eb8e29dc841b01eb4a2[m
+Author: Branko Visser <b.visser@kwigy.com>
+Date:   Sat Jun 5 12:53:58 2021 +0200
+
+    whooooop, drop down werkend gekregen!
+
+[33mcommit eb9d580326da891514fb46187d9080ec2bd50731[m
+Author: Branko Visser <b.visser@kwigy.com>
+Date:   Fri Jun 4 21:52:12 2021 +0200
+
+    user verder proberen af te maken, gestuit op wat issues...
+
+[33mcommit 36c9627fe5cf9ff944f1d364a43de0f0b0e0eff5[m
+Author: Branko Visser <b.visser@kwigy.com>
+Date:   Fri Jun 4 20:45:06 2021 +0200
+
+    testen userDAO om alle rollen uit de db te krijgen
+
+[33mcommit 1312436f76f1cba7fd88b1a7a0b662a280dd10b1[m
+Author: Branko Visser <b.visser@kwigy.com>
+Date:   Fri Jun 4 20:23:26 2021 +0200
+
+    Gebruikers toegevoegd aan het beheerscherm van TB + menu button werkend
+
+[33mcommit 65faed4a05ff036b2e662ceebac73bb9b918b2d6[m
+Author: Branko Visser <b.visser@kwigy.com>
+Date:   Fri Jun 4 20:00:09 2021 +0200
+
+    Logout knop laat gebruiker terugkeren naar inlogscherm
+
+[33mcommit 3bc737003d8999e09304b918bbd752ea6e268f39[m
+Author: Branko Visser <b.visser@kwigy.com>
+Date:   Fri Jun 4 17:18:40 2021 +0200
+
+    nog een test
+
+[33mcommit 4032f6e6b93fb574cc22addf0b1ba8cedaf4fc97[m
+Author: Branko Visser <b.visser@kwigy.com>
+Date:   Fri Jun 4 17:16:32 2021 +0200
+
+    test branches
+
+[33mcommit 6c03fc74a60433e7fa55e92773f23c07c2eb01fc[m
+Author: Shaun van Ouwerkerk <shaun.van.ouwerkerk@hva.nl>
+Date:   Fri Jun 4 15:54:58 2021 +0200
+
+    Dao aangepast en Model aangepast
+
+[33mcommit 0b0d0daa014b128645f67317b24080b30d5aae4a[m
+Merge: ed35c05 8b57835
+Author: Harold Stevens <harold.stevens@hva.nl>
+Date:   Fri Jun 4 12:08:08 2021 +0200
+
+    Merge branch 'master' of gitlab.fdmci.hva.nl:MIW2/cohort-24-se/quizmaster/team-1/quizmaster_upstream
+
+[33mcommit ed35c0596cbd17dba637535274a1de214a3ffe36[m
+Author: Harold Stevens <harold.stevens@hva.nl>
+Date:   Fri Jun 4 12:07:18 2021 +0200
+
+    wijzigingen harold
+
+[33mcommit 8b57835100f539f68583b3bea69b71407f2e6bd9[m
+Merge: 312b9eb ff81dc9
+Author: Branko Visser <b.visser@kwigy.com>
+Date:   Fri Jun 4 12:02:19 2021 +0200
+
+    ff wat recht moeten zetten in quiz
+
+[33mcommit 312b9eb94dd3465020ec6a4cc8ea46ddee72a3b0[m
+Author: Branko Visser <b.visser@kwigy.com>
+Date:   Fri Jun 4 11:59:43 2021 +0200
+
+    blijkbaar lig ik achter
+
+[33mcommit ff81dc9ac54a34301a7a423b78c3a7fc005d9d81[m
+Author: Shaun van Ouwerkerk <shaun.van.ouwerkerk@hva.nl>
+Date:   Fri Jun 4 11:56:44 2021 +0200
+
+    Shaun nieuwe branch
+
+[33mcommit f1c07bd17012233da6f831ed9d3fa98f0e39a234[m
+Merge: bea0929 06c6ba7
+Author: Shaun van Ouwerkerk <shaun.van.ouwerkerk@hva.nl>
+Date:   Fri Jun 4 11:35:13 2021 +0200
+
+    Shauns Dao en Workbench
+
+[33mcommit bea09294f06c765ee789726e20aac3ebfaffb3eb[m
+Author: Shaun van Ouwerkerk <shaun.van.ouwerkerk@hva.nl>
+Date:   Fri Jun 4 11:30:55 2021 +0200
+
+    Shauns Daos
+
+[33mcommit 06c6ba783d0ec35891571d04606c8160f997a38a[m
+Author: Nijad Nazarli <nijad.nazarli@hva.nl>
+Date:   Fri Jun 4 11:19:51 2021 +0200
+
+    Question update
+
+[33mcommit 6b6c9f7b34b22fdd5ef61c2e9f618682cc5c58e3[m
+Author: Shaun van Ouwerkerk <shaun.van.ouwerkerk@hva.nl>
+Date:   Fri Jun 4 09:50:42 2021 +0200
+
+    Workbench aangepast
+
+[33mcommit 683429ef90761d1f478ff30cc642791693dcc544[m
+Merge: fe961e3 fdc57db
+Author: Nijad Nazarli <nijad.nazarli@hva.nl>
+Date:   Thu Jun 3 18:45:18 2021 +0200
+
+    Merge branch 'NijadQuestion'
+
+[33mcommit fdc57db1a19671453585521f96b713d8802aa1a1[m
+Author: Nijad Nazarli <nijad.nazarli@hva.nl>
+Date:   Thu Jun 3 18:44:53 2021 +0200
+
+    Question en Question DAO aangepast2
+
+[33mcommit e6baf785a530573af313464e8d76e42f7ebcdca5[m
+Author: Nijad Nazarli <nijad.nazarli@hva.nl>
+Date:   Thu Jun 3 18:41:24 2021 +0200
+
+    Question model en Question DAO aangepast
+
+[33mcommit fe961e32839505123a812ae0b1a5c83d2e5ce76a[m
+Merge: 6bb03e9 8429a5b
+Author: Harold Stevens <harold.stevens@hva.nl>
+Date:   Thu Jun 3 17:53:12 2021 +0200
+
+    Merge branch 'course_model_en_dao'
+
+[33mcommit 8429a5b61b1e286c33705dacb2f31cf584b5fd02[m
+Author: Harold Stevens <harold.stevens@hva.nl>
+Date:   Thu Jun 3 17:47:40 2021 +0200
+
+    model course en courseDAO klaar en getest
+
+[33mcommit 6bb03e995a04100faf25fb1643b070d40a729842[m
+Author: Branko Visser <b.visser@kwigy.com>
+Date:   Thu Jun 3 17:20:17 2021 +0200
+
+    ff de main opgeschoond van oude test
+
+[33mcommit a7107a714804a1cb626f6ba16ddf9b057329160d[m
+Author: Branko Visser <b.visser@kwigy.com>
+Date:   Thu Jun 3 17:18:18 2021 +0200
+
+    alle rollen krijgen twee keuzes uit het vervolgscherm en kunnen doorklikken
+
+[33mcommit f292a97429158f46d30c7cd680527d2ceeed7248[m
+Author: Nijad Nazarli <nijad.nazarli@hva.nl>
+Date:   Thu Jun 3 17:10:10 2021 +0200
+
+    Nijad Question Klasse ge-updated
+
+[33mcommit fe0e910215943a6853266bd9e223d9a44b0f217a[m
+Author: Branko Visser <b.visser@kwigy.com>
+Date:   Thu Jun 3 17:08:22 2021 +0200
+
+    alle rollen van het vervolgscherm voorzien
+
+[33mcommit 7ec61dd1803e23255aed0794f9e6478e7de816ac[m
+Author: Branko Visser <b.visser@kwigy.com>
+Date:   Thu Jun 3 16:55:53 2021 +0200
+
+    setup Admin + docent keuzeschem
+
+[33mcommit fca288db8154accb130bfab3062cd4c8effd3994[m
+Author: Branko Visser <b.visser@kwigy.com>
+Date:   Thu Jun 3 16:36:46 2021 +0200
+
+    Logout Scherm gemaakt
+
+[33mcommit 2e30882eff1f72f0bd75d86a5ab0b5a4e85bb253[m
+Author: Harold Stevens <harold.stevens@hva.nl>
+Date:   Thu Jun 3 15:48:51 2021 +0200
+
+    Password aanpassen
+
+[33mcommit 8c7f4b46ca6526b4e1e8ae9acde8e0d650d7e7a5[m
+Merge: 2483971 4f3d3e0
+Author: Harold Stevens <harold.stevens@hva.nl>
+Date:   Thu Jun 3 15:45:49 2021 +0200
+
+    Merge branch 'master' into course_model_en_dao
+
+[33mcommit 2483971165d3d05ad70702ecd9b1721e2f375aa6[m
+Author: Harold Stevens <harold.stevens@hva.nl>
+Date:   Thu Jun 3 15:41:13 2021 +0200
+
+    toevoeging course
+
+[33mcommit 8f4332629f9cc9a95b60efaeb334443afb5e44c8[m
+Author: Branko Visser <b.visser@kwigy.com>
+Date:   Thu Jun 3 15:34:50 2021 +0200
+
+    test StoreUser verwijderd
+
+[33mcommit 577d38eb336b3bc04d1d4b8683b10f6765113fc7[m
+Author: Branko Visser <b.visser@kwigy.com>
+Date:   Thu Jun 3 15:33:01 2021 +0200
+
+    UserDAO afgemaakt
+
+[33mcommit 4f3d3e00334060686d7d896b20b9a481c0be38c0[m
+Merge: 015bc13 9e4de47
+Author: Branko Visser <b.visser@kwigy.com>
+Date:   Thu Jun 3 14:41:42 2021 +0200
+
+    Werkende inlog + volgend scherm met student:)
+
+[33mcommit 015bc13cf3993a4fb4383ae4f10f5bf8348206e9[m
+Merge: 2ba168f 18eba83
+Author: Shaun van Ouwerkerk <shaun.van.ouwerkerk@hva.nl>
+Date:   Thu Jun 3 14:36:24 2021 +0200
+
+    Shaun toegevoegd
+
+[33mcommit 18eba83cb614b246633aadf476ad55236304f933[m
+Author: Shaun van Ouwerkerk <shaun.van.ouwerkerk@hva.nl>
+Date:   Thu Jun 3 14:29:25 2021 +0200
+
+    Shaun's Basic Quiz Dao
+
+[33mcommit 2ba168fe10b6edabb4f924214c47951731ce7072[m
+Merge: 4fbf7f0 7825724
+Author: Nijad Nazarli <nijad.nazarli@hva.nl>
+Date:   Thu Jun 3 14:26:57 2021 +0200
+
+    Merge branch 'NijadTest'
+
+[33mcommit 7825724123ba6fc77457d2436be112a118e0ec8b[m
+Author: Nijad Nazarli <nijad.nazarli@hva.nl>
+Date:   Thu Jun 3 14:26:08 2021 +0200
+
+    Question aangespast
+
+[33mcommit 9e4de4799830c9694486a7fd81f3be05f9b246d7[m
+Author: Branko Visser <b.visser@kwigy.com>
+Date:   Thu Jun 3 14:24:03 2021 +0200
+
+    alles werkt!!!!
+
+[33mcommit 4fbf7f0305c49e4a0df11de3edf38442d9f7ffc3[m
+Merge: fc6f31e 3a98e05
+Author: Nijad Nazarli <nijad.nazarli@hva.nl>
+Date:   Thu Jun 3 14:22:37 2021 +0200
+
+    Merge branch 'NijadTest'
+
+[33mcommit 3a98e05d30db783d905b9596be34c6f511b61bc8[m
+Author: Nijad Nazarli <nijad.nazarli@hva.nl>
+Date:   Thu Jun 3 14:20:09 2021 +0200
+
+    QuestionDAO updated
+
+[33mcommit f0f67ca379ed678f445479fd77785c06b357a3e2[m
+Author: Branko Visser <b.visser@kwigy.com>
+Date:   Thu Jun 3 11:56:17 2021 +0200
+
+    testen welcomeController student
+
+[33mcommit 247d4cc5e5da024157b02924be6a17638c105c93[m
+Author: Nijad Nazarli <nijad.nazarli@hva.nl>
+Date:   Wed Jun 2 22:50:14 2021 +0200
+
+    QuestionDAO eerste versie Nijad
+
+[33mcommit 14dcee6e8bc1cc8110b7fe5d165a6306f0a89df5[m
+Author: Nijad Nazarli <nijad.nazarli@hva.nl>
+Date:   Wed Jun 2 22:43:50 2021 +0200
+
+    Klasse Question eerste versie Nijad
+
+[33mcommit 9394e3778b1e87b32575e1e4f4445c184cc899a3[m
+Author: Branko Visser <b.visser@kwigy.com>
+Date:   Wed Jun 2 20:59:11 2021 +0200
+
+    Connectie met DB en inloggen bestaande users gelukt.
+
+[33mcommit 685a603a99b5fff89429794170191814366cc9ea[m
+Author: Branko Visser <b.visser@kwigy.com>
+Date:   Wed Jun 2 20:23:35 2021 +0200
+
+    Connectie gemaakt, werkt nog niet helemaal zoals het zou moeten maargoed
+
+[33mcommit 2b0a4f4e1fa773a82568a9f332c13dbd5d4a0556[m
+Author: Branko Visser <b.visser@kwigy.com>
+Date:   Wed Jun 2 17:56:14 2021 +0200
+
+    volgende stapjes
+
+[33mcommit 7518258fc7813521a6253277c9d9f5e2c3ec9840[m
+Author: Branko Visser <b.visser@kwigy.com>
+Date:   Wed Jun 2 17:55:23 2021 +0200
+
+    eerste stapjes
+
+[33mcommit fc6f31eee407945b24c484bcc626f1d43c47567a[m
+Author: Branko Visser <b.visser@kwigy.com>
+Date:   Wed Jun 2 17:22:14 2021 +0200
+
+    ERD.png
+
+[33mcommit ae457e5fae5d890c75bfacebe8c19e30aa0cdc79[m
+Author: Nijad Nazarli <nijad.nazarli@hva.nl>
+Date:   Wed Jun 2 16:04:12 2021 +0200
+
+    CreateInsertScript User en Role tabellen en userGegevens
+
+[33mcommit 0b1c1402b8d977191804332fb56a28d782d5acdd[m
+Author: Nijad Nazarli <nijad.nazarli@hva.nl>
+Date:   Wed Jun 2 15:51:55 2021 +0200
+
+    CreateInsert Met User en Role ver2
+
+[33mcommit dd2be6d4fc3165d49f643d4cbc9817779fd4e81b[m
+Author: Nijad Nazarli <nijad.nazarli@hva.nl>
+Date:   Wed Jun 2 15:28:40 2021 +0200
+
+    CreateInsert Met User en Role
+
+[33mcommit acf19270e9b0290164de5c948c75e5db7352683a[m
+Author: Branko Visser <b.visser@kwigy.com>
+Date:   Wed Jun 2 15:26:11 2021 +0200
+
+    Nu het echte Insert Script
+
+[33mcommit 0a86c3e3c72dd6d05c16279a127ed0d486289ad8[m
+Author: Branko Visser <b.visser@kwigy.com>
+Date:   Wed Jun 2 15:16:00 2021 +0200
+
+    Insert met alle inlogcodes
+
+[33mcommit f67923a5314605d589856db0d23d2e5e16387c91[m
+Author: Branko Visser <b.visser@kwigy.com>
+Date:   Wed Jun 2 15:12:48 2021 +0200
+
+    onvolledig insert script
+
+[33mcommit a145a96824bcf4f827c8d5f4a736d5878a5fcebd[m
+Author: Branko Visser <b.visser@kwigy.com>
+Date:   Wed Jun 2 14:42:49 2021 +0200
+
+    Create Script revision 1 - werkte bij Branko
+
+[33mcommit 33c28a0be5410d0403382478e2c31c3ec38adc79[m
+Author: Branko Visser <b.visser@kwigy.com>
+Date:   Wed Jun 2 14:39:09 2021 +0200
+
+    ERD goedgekeurd door M.
+
+[33mcommit c02bcc7243aeccfcec6c58d68151fcd2a9176e03[m
+Author: Shaun van Ouwerkerk <shaun.van.ouwerkerk@hva.nl>
+Date:   Wed Jun 2 12:47:03 2021 +0200
+
+    Toevoeging Shaun 2 juni
+
+[33mcommit 161fbc0a144e14c3a51f4bc8afa70228e2c52026[m
+Merge: bcde30d f5bf01d
+Author: Fiona Lampers <fiona.lampers@hva.nl>
+Date:   Tue Jun 1 17:14:49 2021 +0200
+
+    Merge branch 'master' of gitlab.fdmci.hva.nl:MIW2/cohort-24-se/quizmaster/team-1/quizmaster_upstream
+
+[33mcommit f5bf01df3b79af5d6921fc622929a436f8042cbb[m
+Merge: 48682e5 d13ea7c
+Author: Shaun van Ouwerkerk <shaun.van.ouwerkerk@hva.nl>
+Date:   Tue Jun 1 17:15:03 2021 +0200
+
+    Test
+
+[33mcommit bcde30da4c4af97bd39b00cd34abc8443ba41981[m
+Merge: 48682e5 1d372fc
+Author: Fiona Lampers <fiona.lampers@hva.nl>
+Date:   Tue Jun 1 17:12:07 2021 +0200
+
+    Merge branch 'FionaTest'
+
+[33mcommit d13ea7ced5208f0fdd9c49a559d65989ba80274d[m
+Author: Shaun van Ouwerkerk <shaun.van.ouwerkerk@hva.nl>
+Date:   Tue Jun 1 17:10:47 2021 +0200
+
+    Shauns toevoeging
+
+[33mcommit 1d372fc51b32d3a5cc7ed3d2e6c645b6b807eb70[m[33m ([m[1;32mFionaTest[m[33m)[m
+Author: Fiona Lampers <fiona.lampers@hva.nl>
+Date:   Tue Jun 1 17:10:44 2021 +0200
+
+    FionTest
+
+[33mcommit 148a5401261b21f7ab96ffc6ed405909d85cdb36[m
+Author: Shaun van Ouwerkerk <shaun.van.ouwerkerk@hva.nl>
+Date:   Tue Jun 1 16:59:18 2021 +0200
+
+    Testje Shaun
+
+[33mcommit 48682e5ad8a2b8318c0902baf4f167d27ea34a16[m
+Merge: 3e56e5e 86e56cf
+Author: Harold Stevens <harold.stevens@hva.nl>
+Date:   Tue Jun 1 16:56:11 2021 +0200
+
+    Merge branch 'HaroldTest'
+
+[33mcommit 86e56cf6e68eddc87197986e731755c14e6ce321[m
+Author: Harold Stevens <harold.stevens@hva.nl>
+Date:   Tue Jun 1 16:53:44 2021 +0200
+
+    test harold
+
+[33mcommit 3e56e5e6f921b317b6651c6dd42c7e73a1cd8c66[m
+Author: Nijad Nazarli <nijad.nazarli@hva.nl>
+Date:   Tue Jun 1 16:53:24 2021 +0200
+
+    NijadTest
+
+[33mcommit 90275d9f908d4ef63ec27aaec4e1fac79e7b33a5[m
+Author: Branko Visser <b.visser@kwigy.com>
+Date:   Tue Jun 1 16:44:22 2021 +0200
+
+    testje
+
+[33mcommit 5f31578b0e028fa900ec5478df10325256a8a71e[m
+Author: Branko Visser <b.visser@kwigy.com>
+Date:   Tue Jun 1 16:27:00 2021 +0200
+
+    CreateScript
+
+[33mcommit 7eac15005735b49fcd48cc08a51d4730560c4ec7[m
+Author: Branko Visser <b.visser@kwigy.com>
+Date:   Tue Jun 1 16:22:31 2021 +0200
+
+    ERD inclusief Constraints
+
+[33mcommit cfb0146f57cb938ae8ef361b73532256f58dfe73[m
+Author: Branko Visser <b.visser@kwigy.com>
+Date:   Tue Jun 1 15:59:06 2021 +0200
+
+    ERD weer aangepast
+
+[33mcommit 5f94c396b800f81ff10625b1161f2a119a5973e5[m
+Author: Branko Visser <b.visser@kwigy.com>
+Date:   Tue Jun 1 15:05:35 2021 +0200
+
+    database directory
+
+[33mcommit 4a9025eb743c1978e9dd931d99f5d49ec88f52b7[m
+Author: Huub <huub@timeless-way.nl>
+Date:   Mon Mar 15 09:28:09 2021 +0100
+
+    Verouderde specificaties verwijderd.
+
+[33mcommit 0e66a0ddfad5458b61730a89b474af20a22d25cd[m
+Author: Huub <huub@timeless-way.nl>
+Date:   Mon Jun 8 18:31:47 2020 +0200
+
+    Integratie werk Gerke en Michael.
+
+[33mcommit 88909a6bf811b00f95a71f4854e4098124989381[m
+Merge: b0ae5cf a063f5c
+Author: Huub <huub@timeless-way.nl>
+Date:   Mon Jun 17 17:12:46 2019 +0200
+
+    Merge commit 'a063f5cf0b1f4672c10390bae6a7b6c0ec4cf3eb'
+    
+    * commit 'a063f5cf0b1f4672c10390bae6a7b6c0ec4cf3eb':
+      Database dependencies toegevoegd.
+      Coordinator dashboard.
+
+[33mcommit b0ae5cf0462a1a6a2909b5ea53d4a9e9f113bf2b[m
+Author: Huub <huub@timeless-way.nl>
+Date:   Mon Jun 17 17:10:45 2019 +0200
+
+    ManageCourseController eleganter gemaakt.
+
+[33mcommit a063f5cf0b1f4672c10390bae6a7b6c0ec4cf3eb[m
+Author: Huub <huub@timeless-way.nl>
+Date:   Thu Jun 13 10:31:23 2019 +0200
+
+    Database dependencies toegevoegd.
+
+[33mcommit 8b8957fb41cd5e5d85db4c5dddbb6ecf306b27ed[m[33m ([m[1;33mtag: Start_cohort_16[m[33m)[m
+Author: Huub <huub@timeless-way.nl>
+Date:   Thu Jun 6 16:18:19 2019 +0200
+
+    Coordinator dashboard.
+
+[33mcommit 1b91cf0ddaad75a642238125930705a3a39d1b9a[m
+Merge: 325edcb 76ef5ee
+Author: Huub <huub@timeless-way.nl>
+Date:   Tue May 28 17:32:22 2019 +0200
+
+    Merge branch 'master' of gitlab.fdmci.hva.nl:MIW2/quizmaster_upstream
+    
+    * 'master' of gitlab.fdmci.hva.nl:MIW2/quizmaster_upstream:
+      Quiz invulscherm gemaakt.
+
+[33mcommit 76ef5ee625262109cb9e9de142d51c060c11ebfd[m
+Author: Huub <huub@timeless-way.nl>
+Date:   Tue May 28 17:31:34 2019 +0200
+
+    Quiz invulscherm gemaakt.
+
+[33mcommit 325edcbcf388a3c1581f55aa105fb58791d8d596[m
+Merge: d461352 e4e6e32
+Author: Huub <huub@timeless-way.nl>
+Date:   Mon May 27 17:29:35 2019 +0200
+
+    Merge branch 'master' of gitlab.fdmci.hva.nl:MIW2/quizmaster_upstream
+    
+    * 'master' of gitlab.fdmci.hva.nl:MIW2/quizmaster_upstream:
+      SceneManager uitgebreid.
+    
+    # Conflicts:
+    #       src/main/java/view/SceneManager.java
+
+[33mcommit e4e6e3275f4d53f8e2e36b604ff1884b56f29269[m
+Author: Huub <huub@timeless-way.nl>
+Date:   Mon May 27 17:28:43 2019 +0200
+
+    SceneManager uitgebreid.
+
+[33mcommit d461352230fb9e3227f28cdb6a27c96d5a66e6f8[m
+Merge: 7986960 4023015
+Author: Huub <huub@timeless-way.nl>
+Date:   Mon May 27 17:28:00 2019 +0200
+
+    Merge branch 'master' of gitlab.fdmci.hva.nl:MIW2/quizmaster_upstream
+    
+    * 'master' of gitlab.fdmci.hva.nl:MIW2/quizmaster_upstream:
+      Onvolledige commit aangevuld.
+
+[33mcommit 4023015dd21539085ecd914c9ae069f02fcd04f9[m
+Author: Huub <huub@timeless-way.nl>
+Date:   Mon May 27 17:17:21 2019 +0200
+
+    Onvolledige commit aangevuld.
+
+[33mcommit 798696011e00126ea187416579e654612885ecd8[m
+Merge: d0aa0ea 760ac1b
+Author: Huub <huub@timeless-way.nl>
+Date:   Mon May 27 16:33:29 2019 +0200
+
+    Merge branch 'master' of gitlab.fdmci.hva.nl:MIW2/quizmaster_upstream
+    
+    * 'master' of gitlab.fdmci.hva.nl:MIW2/quizmaster_upstream:
+      SelectQuizForStudent verbeterd.
+      SelectQuizForStudent toegevoegd.
+
+[33mcommit 760ac1bde51663b4bc95e3f9ad904e99388b91ae[m
+Author: Huub <huub@timeless-way.nl>
+Date:   Mon May 27 16:27:03 2019 +0200
+
+    SelectQuizForStudent verbeterd.
+
+[33mcommit 834b83c6db133637b474e54a319ddd02d099c3c5[m
+Author: Huub <huub@timeless-way.nl>
+Date:   Mon May 27 15:59:40 2019 +0200
+
+    SelectQuizForStudent toegevoegd.
+
+[33mcommit d0aa0ea0f595d575ca305e31046a713fd049c746[m
+Author: Huub <huub@timeless-way.nl>
+Date:   Mon May 27 14:51:32 2019 +0200
+
+    Student WelcomeController aangepast.
+
+[33mcommit 0e4364e0e073abad822e362edb8fe98557af13a8[m
+Author: Huub <huub@timeless-way.nl>
+Date:   Mon May 27 14:48:36 2019 +0200
+
+    Overbodige controllers verwijderd.
+
+[33mcommit c0f66403f24861c28da73d8eeb0b73288190ad9e[m
+Merge: df890e3 52361ac
+Author: Huub <huub@timeless-way.nl>
+Date:   Mon May 27 14:46:56 2019 +0200
+
+    Merge branch 'master' of gitlab.fdmci.hva.nl:MIW2/quizmaster_upstream
+    
+    * 'master' of gitlab.fdmci.hva.nl:MIW2/quizmaster_upstream:
+      Overbodige controller verwijderd.
+    
+    # Conflicts:
+    #       src/main/java/controller/StudentSignOutController.java
+
+[33mcommit 52361acff425ae6eee09b9e9c45420e10f518c44[m
+Author: Huub <huub@timeless-way.nl>
+Date:   Mon May 27 14:45:01 2019 +0200
+
+    Overbodige controller verwijderd.
+
+[33mcommit df890e348fe7d4e24ef035017e7b6ae4a282d4aa[m
+Merge: d0be841 1940f2a
+Author: Huub <huub@timeless-way.nl>
+Date:   Mon May 27 14:18:40 2019 +0200
+
+    Merge branch 'master' of gitlab.fdmci.hva.nl:MIW2/quizmaster_upstream
+    
+    * 'master' of gitlab.fdmci.hva.nl:MIW2/quizmaster_upstream:
+      Student signin en signout gecombineerd tot één scherm.
+      Documentatie bijgewerkt.
+    
+    # Conflicts:
+    #       src/main/java/controller/StudentSignInController.java
+
+[33mcommit 1940f2abb2c9e1f5f31860d128008ad0ece866f5[m
+Author: Huub <huub@timeless-way.nl>
+Date:   Mon May 27 14:15:30 2019 +0200
+
+    Student signin en signout gecombineerd tot één scherm.
+
+[33mcommit 6de8e54fddd62b7116eba1d9d624e5cde46397bc[m
+Author: Huub <huub@timeless-way.nl>
+Date:   Mon May 27 12:07:00 2019 +0200
+
+    Documentatie bijgewerkt.
+
+[33mcommit d0be841aab1da52e1b8a6dd442607ac59a836657[m
+Merge: c345e9b 28956cf
+Author: Huub van Thienen <h.a.van.thienen@hva.nl>
+Date:   Wed Apr 10 14:13:23 2019 +0200
+
+    Merge commit '28956cf19970bf264e7770e499c90058a6b68300'
+    
+    * commit '28956cf19970bf264e7770e499c90058a6b68300':
+      Documentatie up-to-date gemaakt.
+      NewQuestion gemaakt.
+      NewQuiz afgemaakt.
+
+[33mcommit 28956cf19970bf264e7770e499c90058a6b68300[m
+Author: Huub van Thienen <h.a.van.thienen@hva.nl>
+Date:   Wed Apr 10 13:56:32 2019 +0200
+
+    Documentatie up-to-date gemaakt.
+
+[33mcommit 3dc11bb60369c5bc3893800d4f6cb3eda0e50369[m
+Author: Huub van Thienen <h.a.van.thienen@hva.nl>
+Date:   Wed Apr 10 13:33:50 2019 +0200
+
+    NewQuestion gemaakt.
+
+[33mcommit 5d8b245384b9f89030951ff203ad792538f8971b[m
+Author: Huub van Thienen <h.a.van.thienen@hva.nl>
+Date:   Wed Apr 10 13:19:44 2019 +0200
+
+    NewQuiz afgemaakt.
+
+[33mcommit c345e9bc84f3766ced71546b36e0c1cd1e10d471[m
+Merge: ebb36d9 ec2e187
+Author: Huub van Thienen <h.a.van.thienen@hva.nl>
+Date:   Tue Mar 26 17:19:43 2019 +0100
+
+    Merge commit 'ec2e1870f653a864ca845c9b82b01eb03393b491'
+    
+    * commit 'ec2e1870f653a864ca845c9b82b01eb03393b491':
+      pdf files are no longer ignored.
+      New Question and New Quiz.
+
+[33mcommit ec2e1870f653a864ca845c9b82b01eb03393b491[m
+Author: Huub van Thienen <h.a.van.thienen@hva.nl>
+Date:   Tue Mar 26 15:43:18 2019 +0100
+
+    pdf files are no longer ignored.
+
+[33mcommit d2ee7a9ff4138fc46e43eb1ad6dd274625bddf08[m
+Author: Huub van Thienen <h.a.van.thienen@hva.nl>
+Date:   Tue Mar 19 15:31:31 2019 +0100
+
+    New Question and New Quiz.
+
+[33mcommit ebb36d98a94f3560419904d64dd1046f712e2207[m
+Merge: eebbc17 63e37d0
+Author: Huub van Thienen <h.a.van.thienen@hva.nl>
+Date:   Tue Mar 19 14:35:51 2019 +0100
+
+    Merge branch 'master' of gitlab.fdmci.hva.nl:MIW2/quizmaster_upstream
+    
+    * 'master' of gitlab.fdmci.hva.nl:MIW2/quizmaster_upstream:
+      Quiz en Question overviews.
+
+[33mcommit 63e37d01f32a26ac1ef0b6fdb24f3078a6aec440[m
+Author: Huub van Thienen <h.a.van.thienen@hva.nl>
+Date:   Tue Mar 19 14:35:13 2019 +0100
+
+    Quiz en Question overviews.
+
+[33mcommit eebbc1798aaf287bd185d24312e568d0f9d9befc[m
+Merge: 64309a7 a40ccb7
+Author: Huub van Thienen <h.a.van.thienen@hva.nl>
+Date:   Tue Mar 19 12:51:57 2019 +0100
+
+    Merge branch 'master' of gitlab.fdmci.hva.nl:MIW2/quizmaster_upstream
+    
+    * 'master' of gitlab.fdmci.hva.nl:MIW2/quizmaster_upstream:
+      Coordinator-related scenes added upstream.
+
+[33mcommit 64309a7d2587105bc358d1f63bcf128a411084fb[m
+Merge: 9f27a7f f66eedf
+Author: Huub van Thienen <h.a.van.thienen@hva.nl>
+Date:   Tue Mar 19 12:51:30 2019 +0100
+
+    Merge branch 'master' of gitlab.fdmci.hva.nl:MIW2/quizmaster_upstream
+    
+    * 'master' of gitlab.fdmci.hva.nl:MIW2/quizmaster_upstream:
+      Scherm Excel aangepast.
+      Schermen voor de coordinator toegevoegd.
+
+[33mcommit a40ccb724effad3793ae8a8009e2318051e4eaa9[m
+Author: Huub van Thienen <h.a.van.thienen@hva.nl>
+Date:   Tue Mar 19 12:50:32 2019 +0100
+
+    Coordinator-related scenes added upstream.
+
+[33mcommit 9f27a7febcf32d1866773ef8633457e3dc69e725[m
+Author: Huub van Thienen <h.a.van.thienen@hva.nl>
+Date:   Tue Mar 19 12:45:11 2019 +0100
+
+    Coordinator-related scenes created.
+
+[33mcommit f66eedfaee766279d42a3ade9fcd14640456f9b0[m
+Author: Huub van Thienen <h.a.van.thienen@hva.nl>
+Date:   Tue Mar 19 12:01:09 2019 +0100
+
+    Scherm Excel aangepast.
+
+[33mcommit c3a7bc94e3c73c34f4a524241235105f52ac8fcd[m
+Author: Huub van Thienen <h.a.van.thienen@hva.nl>
+Date:   Tue Mar 19 11:57:09 2019 +0100
+
+    Schermen voor de coordinator toegevoegd.
+
+[33mcommit 4fafaae957926e3d61fb12ec0dcbff2d98039200[m
+Merge: 033a8d9 601c0ee
+Author: Huub van Thienen <h.a.van.thienen@hva.nl>
+Date:   Fri Mar 15 13:54:36 2019 +0100
+
+    Merge commit '601c0ee1cf962a6bf34c6ea3d8cb80814d5774d7'
+    
+    * commit '601c0ee1cf962a6bf34c6ea3d8cb80814d5774d7':
+      Improved adherence to naming conventions.
+
+[33mcommit 601c0ee1cf962a6bf34c6ea3d8cb80814d5774d7[m
+Author: Huub van Thienen <h.a.van.thienen@hva.nl>
+Date:   Fri Mar 15 13:53:15 2019 +0100
+
+    Improved adherence to naming conventions.
+
+[33mcommit 033a8d9b46d22a99e8f4529a7835fcdb90c619ff[m
+Merge: 9f5e96b 35ab218
+Author: Huub van Thienen <h.a.van.thienen@hva.nl>
+Date:   Fri Mar 15 13:44:43 2019 +0100
+
+    Merge commit '35ab218550aa7741be2141d35e1f98181af3bf20'
+    
+    * commit '35ab218550aa7741be2141d35e1f98181af3bf20':
+      SceneManager for Coordinator Course Overview added.
+
+[33mcommit 9f5e96b7bfec768686b42e5e28b6bb7a2f0a1217[m
+Author: Huub van Thienen <h.a.van.thienen@hva.nl>
+Date:   Fri Mar 15 13:44:08 2019 +0100
+
+    Klaarmaken voor merge.
+
+[33mcommit 35ab218550aa7741be2141d35e1f98181af3bf20[m
+Author: Huub van Thienen <h.a.van.thienen@hva.nl>
+Date:   Fri Mar 15 13:43:13 2019 +0100
+
+    SceneManager for Coordinator Course Overview added.
+
+[33mcommit b2399743841f7a8d8c000d3f0a6d27a784933191[m
+Merge: 3b259ac b224248
+Author: Huub van Thienen <h.a.van.thienen@hva.nl>
+Date:   Fri Mar 15 13:34:23 2019 +0100
+
+    Merge commit 'b2242482f7ccaa6e241edda1a2443c341f028d37'
+    
+    * commit 'b2242482f7ccaa6e241edda1a2443c341f028d37':
+      Coordinator Course Overview added.
+
+[33mcommit 3b259ac97ee3d03571f5532efc663c8292ca5c15[m
+Author: Huub van Thienen <h.a.van.thienen@hva.nl>
+Date:   Fri Mar 15 13:33:51 2019 +0100
+
+    Initieel datamodel voor quizes.
+
+[33mcommit b2242482f7ccaa6e241edda1a2443c341f028d37[m
+Author: Huub van Thienen <h.a.van.thienen@hva.nl>
+Date:   Fri Mar 15 13:32:38 2019 +0100
+
+    Coordinator Course Overview added.
+
+[33mcommit 48ecdde46f3487297c73f781de3a9dd38d627f5b[m
+Merge: cb76829 4b16792
+Author: Huub van Thienen <huub@timeless-way.nl>
+Date:   Fri Mar 15 11:03:42 2019 +0100
+
+    Merge commit '4b16792fd08cf9b6fca5389329457e04eef930e3'
+    
+    * commit '4b16792fd08cf9b6fca5389329457e04eef930e3':
+      Improved adherence to naming conventions.
+      Scene overview document up-to-date gemaakt.
+
+[33mcommit 4b16792fd08cf9b6fca5389329457e04eef930e3[m
+Author: Huub van Thienen <huub@timeless-way.nl>
+Date:   Fri Mar 15 11:02:45 2019 +0100
+
+    Improved adherence to naming conventions.
+
+[33mcommit 406fa5cd152f16b56b6a4e461193b3a8377970f9[m
+Author: Huub van Thienen <huub@timeless-way.nl>
+Date:   Fri Mar 15 10:59:06 2019 +0100
+
+    Scene overview document up-to-date gemaakt.
+
+[33mcommit cb768292112a3ac8aff7658ebbdbf802e7e92c34[m
+Author: Huub van Thienen <huub@timeless-way.nl>
+Date:   Fri Mar 15 10:57:13 2019 +0100
+
+    Scene overview document up-to-date gemaakt.
+
+[33mcommit 51ebffc7cebc73c9e60c54fd1cdaa82311a851fc[m
+Merge: 809707b 9005a09
+Author: Huub van Thienen <huub@timeless-way.nl>
+Date:   Fri Mar 15 10:47:15 2019 +0100
+
+    Merge commit '9005a099c7e29dabef6753d222dadb83aa79c53d'
+    
+    * commit '9005a099c7e29dabef6753d222dadb83aa79c53d':
+      Improved adherence to naming conventions.
+    
+    # Conflicts:
+    #       src/main/java/view/fxml/studentSignIn.fxml
+    #       src/main/java/view/fxml/studentSignOut.fxml
+
+[33mcommit 9005a099c7e29dabef6753d222dadb83aa79c53d[m
+Author: Huub van Thienen <huub@timeless-way.nl>
+Date:   Fri Mar 15 10:42:27 2019 +0100
+
+    Improved adherence to naming conventions.
+
+[33mcommit 809707b2f14574de64c5060fe8c58af8474c3bff[m
+Author: Huub van Thienen <huub@timeless-way.nl>
+Date:   Fri Mar 15 09:45:36 2019 +0100
+
+    Bestaande uitwerkingen naar nieuwe structuur gekopieerd.
+
+[33mcommit 99de1859c56ac1cde5e80cac36467c177278329d[m
+Author: Huub van Thienen <huub@timeless-way.nl>
+Date:   Thu Mar 14 16:30:36 2019 +0100
+
+    First upstream commit.

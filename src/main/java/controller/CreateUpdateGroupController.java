@@ -31,7 +31,13 @@ public class CreateUpdateGroupController {
     @FXML
     private Button addGroup;
     @FXML
-    private Button returnMenu;
+    private Label labelIdCoordinator;
+    @FXML
+    private TextField textfieldCurrentCoordinatorId;
+    @FXML
+    private Label labelIdCourse;
+    @FXML
+    private TextField textfieldCurrentCourseId;
     @FXML
     private TextField textfieldGroupId;
     @FXML
@@ -56,6 +62,10 @@ public class CreateUpdateGroupController {
     public void setupUpdateGroup(Group group) {
         titleUpdateLabel.setText("Wijzig group met Id: ");
         textfieldGroupId.setText(String.valueOf(group.getIdGroup()));
+        labelIdCoordinator.setText("Huidige coordinator");
+        textfieldCurrentCoordinatorId.setText(String.valueOf(userDAO.getOneById(group.getIdCooridnator())));
+        labelIdCourse.setText("Huidige course");
+        textfieldCurrentCourseId.setText(String.valueOf(courseDAO.getOneById(group.getIdCourse())));
         addGroup.setText("Wijzig group");
         addGroup.setOnAction(event -> doUpdateGroup(group));
         ComboBox<User> keuzeUserDropDown = setUserDropList();
