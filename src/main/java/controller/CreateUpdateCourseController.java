@@ -70,10 +70,6 @@ public class CreateUpdateCourseController {
             int coordinatorId = userButton.getSelectionModel().getSelectedItem().getIdUser();
             Course course = new Course(courseName, coordinatorId);
             courseDAO.storeOne(course);
-            Alert cursusSuccesvolToegevoegd = new Alert(Alert.AlertType.INFORMATION);
-            cursusSuccesvolToegevoegd.setTitle("");
-            cursusSuccesvolToegevoegd.setHeaderText("De cursus is succesvol toegevoegd");
-            cursusSuccesvolToegevoegd.show();
             Main.getSceneManager().showManageCoursesScene();
         }
     }

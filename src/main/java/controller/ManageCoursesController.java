@@ -58,29 +58,14 @@ public class ManageCoursesController {
 
 
 
-    /*public void doDeleteCourse() {
-        Alert deleteAlert = new Alert(Alert.AlertType.CONFIRMATION);
-        deleteAlert.setTitle("Verwijderen cursus");
-        deleteAlert.setHeaderText(String.format("Weet je zeker dat je de cursus %s wilt verwijderen?",
-                courseList.getSelectionModel().getSelectedItem().toString()));
-        deleteAlert.setContentText("Dit kun je niet ongedaan maken.");
-        Optional<ButtonType> result = deleteAlert.showAndWait();
-        if(result.get() == ButtonType.OK) {
-            courseDAO.deleteCourse(courseList.getSelectionModel().getSelectedItem());
-            Main.getSceneManager().showManageCoursesScene();
-        }
-
-    }*/
-
-
     public void doDeleteCourse() {
         Course course = courseList.getSelectionModel().getSelectedItem();
         this.quizDAO = new QuizDAO(dBaccess);
         boolean courseHasQuizzes = quizDAO.getQuizBasedOnIdCourse(course.getIdCourse());
-        System.out.println(courseHasQuizzes);
 
 
-        //Checkt eerst of er niet al quizvragen zijn aangemaakt.
+
+        //Checkt eerst of er niet al quizzen zijn aangemaakt.
         if (!(courseHasQuizzes)) {
             Alert deleteAlert = new Alert(Alert.AlertType.CONFIRMATION);
             deleteAlert.setTitle("Verwijder course");
