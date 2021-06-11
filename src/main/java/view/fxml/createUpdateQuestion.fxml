@@ -22,7 +22,7 @@
       <Label layoutX="210.0" layoutY="279.0" text="Antwoord B" />
       <Label layoutX="210.0" layoutY="312.0" text="Antwoord C" />
       <Label layoutX="210.0" layoutY="344.0" text="Antwoord D" />
-      <Button layoutX="279.0" layoutY="392.0" mnemonicParsing="false" onAction="#doCreateUpdateQuestion" text="Bevestigen" />
+      <Button fx:id="createUpdateQuestionButton" layoutX="279.0" layoutY="392.0" mnemonicParsing="false" onAction="#doCreateUpdateQuestion" text="Bevestigen" />
       <Button layoutX="373.0" layoutY="392.0" mnemonicParsing="false" onAction="#doClear" text="Leegmaken" />
       <Button layoutX="210.0" layoutY="392.0" mnemonicParsing="false" onAction="#doMenu" text="Menu" />
       <ComboBox fx:id="quizzen" layoutX="301.0" layoutY="175.0" prefWidth="150.0" promptText="Kies een quiz" />

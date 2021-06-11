@@ -55,9 +55,9 @@ public class NijadTest {
         // Een vraag in aanpassen
         DBAccess dbAccess = Main.getDBaccess();
         QuestionDAO questionDAO = new QuestionDAO(dbAccess);
-        Question question = new Question(12, 5, "Dit is een aangepaste vraag", "juiste antwoord",
+        Question question = new Question(11, 5, "Dit is een aangepaste vraag", "juiste antwoord",
                 "b", "c", "d");
-        // questionDAO.updateOne(question);
+        questionDAO.updateOne(question);
 
 
     }
