@@ -142,4 +142,5 @@ public class QuizDAO extends AbstractDAO implements GenericDAO <Quiz> {
 
     }
 
+
 }

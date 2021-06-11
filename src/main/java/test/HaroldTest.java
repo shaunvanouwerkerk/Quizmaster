@@ -5,6 +5,8 @@ import database.mysql.DBAccess;
 import database.mysql.UserDAO;
 import model.Course;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class HaroldTest{
@@ -35,6 +37,21 @@ public class HaroldTest{
 
 
 
+    }
+    public boolean getQuizBasedOnIdCourse(int idCourse) {
+        boolean questionsExistInDatabase = false;
+        String sql = "SELECT * FROM quiz WHERE idCourse = ?;";
+        try {
+            setupPreparedStatement(sql);
+            preparedStatement.setInt(1, idCourse);
+            ResultSet resultSet = executeSelectStatement();
+            if (resultSet.next()) {
+                questionsExistInDatabase = true;
+            }
+        } catch (SQLException sqlException) {
+            System.out.println(sqlException.getMessage());
+        }
+        return questionsExistInDatabase;
     }
 
     //Dit is Harold's test

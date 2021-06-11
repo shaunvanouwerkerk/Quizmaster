@@ -1,5 +1,7 @@
 package controller;
-
+/*
+ * Author Harold Stevens
+ * */
 import database.mysql.CourseDAO;
 import database.mysql.DBAccess;
 import database.mysql.UserDAO;
