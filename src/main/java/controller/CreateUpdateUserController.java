@@ -43,9 +43,9 @@ public class CreateUpdateUserController {
 
 
     public void setupCreateUser() {
-        roleButton = setTaskMenuButtonRoles();
+        ComboBox<String> keuzebox = setTaskMenuButtonRoles();
         roleButton.getSelectionModel().select(Main.STUDENT_ROL);
-        roleButton.setOnAction(event -> roleButton.getSelectionModel().getSelectedItem());
+        roleButton.setOnAction(event -> keuzebox.getSelectionModel().getSelectedItem());
 
     }
 

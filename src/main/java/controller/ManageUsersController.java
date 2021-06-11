@@ -39,11 +39,11 @@ public class ManageUsersController {
             userList.getItems().add(user);
         }
         userList.getSelectionModel().selectFirst();
+        setLabelRoleCount(userList.getSelectionModel().getSelectedItem().getRoleName());
         userList.setOnMouseClicked(mouseEvent -> setLabelRoleCount(userList.getSelectionModel()
                 .getSelectedItem().getRoleName()));
         userList.setOnKeyPressed(keyEvent -> setLabelRoleCount(userList.getSelectionModel()
                 .getSelectedItem().getRoleName()));
-
     }
 
     public void doMenu() {
