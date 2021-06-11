@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class UserDAO extends AbstractDAO implements GenericDAO<User>{
+public class UserDAO extends AbstractDAO implements GenericDAO<User> {
 
     public UserDAO(DBAccess dbAccess) {
         super(dbAccess);
@@ -25,7 +25,7 @@ public class UserDAO extends AbstractDAO implements GenericDAO<User>{
 
             ResultSet resultSet = executeSelectStatement();
 
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 String password = resultSet.getString("password");
                 String username = resultSet.getString("name");
                 String roleName = resultSet.getString("roleName");
@@ -53,7 +53,7 @@ public class UserDAO extends AbstractDAO implements GenericDAO<User>{
             setupPreparedStatement(sql);
             preparedStatement.setInt(1, id);
             ResultSet resultSet = executeSelectStatement();
-            if(resultSet.next()) {
+            if (resultSet.next()) {
                 int idUser = resultSet.getInt("idUser");
                 String password = resultSet.getString("password");
                 String username = resultSet.getString("name");
@@ -82,11 +82,11 @@ public class UserDAO extends AbstractDAO implements GenericDAO<User>{
             user.setIdUser(key);
             Alert opgeslagen = new Alert(Alert.AlertType.CONFIRMATION);
             opgeslagen.setHeaderText(String.format("Gebruiker %s is opgeslagen", user.getUsername()));
-            opgeslagen.setContentText(String.format("ID: %d, Rol: %s", user.getIdUser(),user.getRoleName()));
+            opgeslagen.setContentText(String.format("ID: %d, Rol: %s", user.getIdUser(), user.getRoleName()));
             opgeslagen.show();
         } catch (SQLException sqlException) {
             Alert foutmelding = new Alert(Alert.AlertType.ERROR);
-            if(sqlException.getMessage().contains("Duplicate")) {
+            if (sqlException.getMessage().contains("Duplicate")) {
                 foutmelding.setContentText("Deze gebuikersnaam bestaat al! Gebruiker is niet opgslagen.");
             } else {
                 foutmelding.setContentText("Gebruiker kon niet worden opgeslagen.");
@@ -109,7 +109,7 @@ public class UserDAO extends AbstractDAO implements GenericDAO<User>{
             executeManipulateStatement();
         } catch (SQLException sqlException) {
             Alert foutmelding = new Alert(Alert.AlertType.ERROR);
-            if(sqlException.getMessage().contains("Duplicate")) {
+            if (sqlException.getMessage().contains("Duplicate")) {
                 foutmelding.setContentText("Deze gebuikersnaam bestaat al! Gebruiker is niet gewijzigd.");
             } else {
                 foutmelding.setContentText("Gebruiker kon niet worden gewijzigd.");
@@ -136,14 +136,20 @@ public class UserDAO extends AbstractDAO implements GenericDAO<User>{
         return allRoles;
     }
 
-    public void deleteUser(User user) {
+    public boolean deleteUser(User user) {
+        boolean userDeleted = false;
         String sql = "DELETE FROM user WHERE idUser = ?";
         try {
             setupPreparedStatement(sql);
             preparedStatement.setInt(1, user.getIdUser());
             executeManipulateStatement();
+            userDeleted = true;
         } catch (SQLException sqlException) {
+            Alert foutmelding = new Alert(Alert.AlertType.ERROR);
+            foutmelding.setContentText("Gebruiker kon niet worden verwijderd.");
+            foutmelding.show();
             System.out.println(sqlException.getMessage());
         }
+        return userDeleted;
     }
 }
