@@ -31,7 +31,7 @@
             <Font size="18.0" />
         </font>
     </Label>
-    <ComboBox fx:id="roleButton" layoutX="350.0" layoutY="212.0" prefHeight="25.0" prefWidth="335.0" promptText="Kies een rol" />
+    <ComboBox fx:id="roleButton" layoutX="350.0" layoutY="212.0" prefHeight="25.0" prefWidth="335.0" promptText="student" />
     <Button fx:id="createUpdate" layoutX="350.0" layoutY="292.0" mnemonicParsing="false" onAction="#doCreateUser" text="Voeg gebruiker toe">
         <font>
             <Font size="14.0" />
