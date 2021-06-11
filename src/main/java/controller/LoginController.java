@@ -50,5 +50,12 @@ public class LoginController {
         }
     }
 
-    public void doQuit() {}
+    public void doQuit() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Afsluiten Quizmaster");
+        alert.setHeaderText("Je sluit Quizmaster af.");
+        alert.setContentText("Euh nee, je hebt zelf op stop geklikt. Balen...");
+        alert.showAndWait();
+        System.exit(0);
+    }
 }
