@@ -66,7 +66,8 @@ public class QuizDAO extends AbstractDAO implements GenericDAO <Quiz> {
         return quiz;
     }
 
-    public Quiz getOneByCourseId(int courseId) {
+    public ArrayList<Quiz> getQuizesByCourseId(int courseId) {
+        ArrayList<Quiz> allQuizes = new ArrayList<>();
         Quiz quiz = null;
         String sql = "SELECT * FROM Quiz WHERE idCourse = ?";
 
@@ -74,20 +75,21 @@ public class QuizDAO extends AbstractDAO implements GenericDAO <Quiz> {
             setupPreparedStatement(sql);
             preparedStatement.setInt(1, courseId);
             ResultSet resultSet = executeSelectStatement();
-            if (resultSet.next()) {
+            while (resultSet.next()) {
                 String namequiz = resultSet.getString("nameQuiz");
                 int succesdefinition = resultSet.getInt("succesDefinition");
                 int idquiz = resultSet.getInt("idQuiz");
                 quiz = new Quiz(namequiz, succesdefinition,idquiz,courseId);
+                allQuizes.add(quiz);
 
-            } else {
+            } if (allQuizes.isEmpty()) {
                 System.out.println("Er bestaat geen gebruiker met dit courseId");
 
             }
         } catch (SQLException sqlException) {
             System.out.println("SQL fout" + sqlException.getMessage());
         }
-        return quiz;
+        return allQuizes;
     }
 
 

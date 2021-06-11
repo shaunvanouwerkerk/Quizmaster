@@ -47,27 +47,42 @@ public class  ManageQuizzesController {
     public void setup() {
         this.quizDAO = new QuizDAO(dbAccess);
 
-        this.courseDAO = new CourseDAO (dbAccess);
+        this.courseDAO = new CourseDAO(dbAccess);
         allCourses = courseDAO.getCoursesByIdCoordinator(Main.loggedInUser.getIdUser());
 
-        for(Course course : allCourses){
-            allQuizes.add(quizDAO.getOneByCourseId(course.getIdCourse()));
-        }
-        for (Quiz quiz : allQuizes) {
-            quizList.getItems().add(quiz);
-        }
-        // Om een nullpointer exception te vermijden
-        quizList.getSelectionModel().selectFirst();
+        // Checkt of de coordinator quizes beheerd
+        if (allCourses.isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("Er zijn geen quizen om te beheren.");
+            Optional<ButtonType> result = alert.showAndWait();
 
-        // Methode om aantal vragen te tonen per quiz:
-        this.questionDAO = new QuestionDAO(dbAccess);
-        Quiz quiz = quizList.getSelectionModel().getSelectedItem(); // Hoe kan ik bij opnieuw klikken weer het aantal tonen.
-        ArrayList<Question> totalQuestions = questionDAO.getAllperQuiz(quiz);
-        int itemCount = totalQuestions.size();
-        System.out.println("Het aantal vragen bij deze quiz is: " + itemCount); // Ff voor de test
-        warningText.setText(String.valueOf("Aantal vragen bij deze quiz: " + itemCount + " vragen."));
+            if (result.get() == ButtonType.OK) {
+                Main.getSceneManager().showWelcomeScene();
+            }
+        } else {
 
-    }
+                for (Course course : allCourses) {
+                    ArrayList<Quiz> allQuizes = quizDAO.getQuizesByCourseId(course.getIdCourse());
+
+                    for (Quiz quiz : allQuizes) {
+                        quizList.getItems().add(quiz);
+                    }
+                }
+
+                // Om een nullpointer exception te vermijden
+                quizList.getSelectionModel().selectFirst();
+
+                // Methode om aantal vragen te tonen per quiz:
+                this.questionDAO = new QuestionDAO(dbAccess);
+                Quiz quiz = quizList.getSelectionModel().getSelectedItem(); // Hoe kan ik bij opnieuw klikken weer het aantal tonen.
+                ArrayList<Question> totalQuestions = questionDAO.getAllperQuiz(quiz);
+                int itemCount = totalQuestions.size();
+                System.out.println("Het aantal vragen bij deze quiz is: " + itemCount); // Ff voor de test
+                warningText.setText(String.valueOf("Aantal vragen bij deze quiz: " + itemCount + " vragen."));
+
+            }
+        }
+
 
     public void doMenu(){
         Main.getSceneManager().showWelcomeScene();

@@ -3,17 +3,11 @@ package test;
  * @author Shaun van Ouwerkerk
  */
 
-import database.mysql.CourseDAO;
-import database.mysql.DBAccess;
 import database.mysql.QuizDAO;
 import database.mysql.UserDAO;
-import model.Course;
 import model.Quiz;
-import model.User;
 import view.Main;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class ShaunTest {
@@ -37,8 +31,8 @@ public class ShaunTest {
         System.out.println(quiz2);
 
         //3 Test kies quiz per course id
-        Quiz quiz3 = quizDAO.getOneByCourseId(2);
-        System.out.println(quiz3);
+//        Quiz quiz3 = quizDAO.getQuizesByCourseId(2);
+//        System.out.println(quiz3);
 
 
         // Sorry pik, ik heb ze ff uit gecomment want anders wilde mn test niet runnen :)
