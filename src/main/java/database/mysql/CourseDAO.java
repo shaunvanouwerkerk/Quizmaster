@@ -61,18 +61,7 @@ public class CourseDAO extends AbstractDAO implements GenericDAO<Course>{
         return result;
     }
 
-    /*@Override
-    public void storeOne(Course course) {
-        String sql = "Insert into Course(nameCourse, idCoordinatorCourse) values(?,?) ;";
-        try {
-            setupPreparedStatementWithKey(sql);
-            preparedStatement.setString(1, course.getNameCourse());
-            preparedStatement.setInt(2, course.getIdCoordinator());
-            int key = executeInsertStatementWithKey();
-        } catch (SQLException sqlException) {
-            System.out.println("SQL error " + sqlException.getMessage());
-        }
-    }*/
+
     @Override
     public void storeOne(Course course) {
         String sql = "Insert into Course(nameCourse, idCoordinatorCourse) values(?,?) ;";
@@ -97,30 +86,7 @@ public class CourseDAO extends AbstractDAO implements GenericDAO<Course>{
         }
     }
 
-    public void storeOne(User user) {
-        String sql = "INSERT INTO user(password, name, roleName) VALUES(?, ?, ?);";
-        try {
-            setupPreparedStatementWithKey(sql);
-            preparedStatement.setString(1, user.getPassword());
-            preparedStatement.setString(2, user.getUsername());
-            preparedStatement.setString(3, user.getRoleName());
-            int key = executeInsertStatementWithKey();
-            user.setIdUser(key);
-            Alert opgeslagen = new Alert(Alert.AlertType.CONFIRMATION);
-            opgeslagen.setContentText(String.format("Gebruiker met ID: %d, username %s met als rol %s " +
-                    "is opgeslagen!", user.getIdUser(), user.getUsername(), user.getRoleName()));
-            opgeslagen.show();
-        } catch (SQLException sqlException) {
-            Alert foutmelding = new Alert(Alert.AlertType.ERROR);
-            if(sqlException.getMessage().contains("Duplicate")) {
-                foutmelding.setContentText("Deze gebuikersnaam bestaat al! Gebruiker is niet opgslagen.");
-            } else {
-                foutmelding.setContentText("Gebruiker kon niet worden opgeslagen.");
-            }
-            foutmelding.show();
-            System.out.println(sqlException.getMessage());
-        }
-    }
+
     //methode voor het verwijderen van een Course
     public void deleteCourse(Course course) {
         String sql = "DELETE FROM course WHERE idCourse = ?;";
