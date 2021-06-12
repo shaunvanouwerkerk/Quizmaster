@@ -85,6 +85,7 @@ public class CreateUpdateQuestionController {
                 bevestigAanmakenVraag.setContentText("Vraag is succesvol aangemaakt");
                 bevestigAanmakenVraag.show();
                 doClear();
+                quizzen.getSelectionModel().getSelectedItem();
             } else {
                 Alert bevestigAanmakenVraag = new Alert(Alert.AlertType.ERROR);
                 bevestigAanmakenVraag.setContentText("Vraag en/of antwoord mag niet langer dan 45 tekens zijn");

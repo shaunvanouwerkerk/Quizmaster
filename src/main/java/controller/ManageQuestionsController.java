@@ -9,6 +9,7 @@ import database.mysql.QuizDAO;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import model.Question;
 import view.Main;
 
@@ -21,6 +22,8 @@ public class ManageQuestionsController {
 
     @FXML
     private ListView<Question> questionList;
+    @FXML
+    private TextField aantalVragen;
 
     public ManageQuestionsController () {
         this.dbAccess = Main.getDBaccess();
@@ -34,11 +37,20 @@ public class ManageQuestionsController {
         }
         questionList.getSelectionModel().selectFirst();
 
+        // Aantal vragen in een quiz dynamisch laten tonen
+        aantalVragen.setText(String.format("Deze quiz bestaat uit %d vraag(en).",
+                questionDAO.getNumberOfQuestionsInAquiz(questionList.getSelectionModel().getSelectedItem().getIdQuiz())));
+        questionList.setOnMouseClicked(mouseEvent -> aantalVragen.setText(String.format("Deze quiz bestaat" +
+                " uit %d vraag(en).", questionDAO.getNumberOfQuestionsInAquiz(questionList.getSelectionModel().getSelectedItem().getIdQuiz()))));
+        questionList.setOnKeyPressed(keyEvent -> aantalVragen.setText(String.format("Deze quiz bestaat" +
+                " uit %d vraag(en).", questionDAO.getNumberOfQuestionsInAquiz(questionList.getSelectionModel().getSelectedItem().getIdQuiz()))));
+
         if (alleVragen.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setContentText("Er zijn geen door jou gemaakte vragen in de database. " +
-                    "\nDruk op 'Nieuw' om een nieuwe vraag aan te kunnen maken");
-            alert.show();
+            alert.setContentText("Er zijn geen door jou aangemaakte vragen in de database. " +
+                    "\nEr moeten eerst quizzen aangemaakt worden");
+            alert.showAndWait();
+            Main.getSceneManager().showWelcomeScene();
         }
     }
 
