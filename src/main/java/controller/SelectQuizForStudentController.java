@@ -1,12 +1,11 @@
 package controller;
 
-import database.mysql.CourseDAO;
 import database.mysql.DBAccess;
 import database.mysql.QuizDAO;
 import database.mysql.UserDAO;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ListView;
-import model.Course;
 import model.Quiz;
 import view.Main;
 
@@ -28,6 +27,14 @@ public class SelectQuizForStudentController {
         for(Quiz quiz : quizes) {
             quizList.getItems().add(quiz);
         }
+        if (quizes.isEmpty()) {
+            System.out.println("lekker hoor");
+            Alert geenQuizes = new Alert(Alert.AlertType.WARNING);
+            geenQuizes.setHeaderText("Je hebt geen Quizen om te selecteren!");
+            geenQuizes.setContentText("Schrijf je eerst in voor een cursus.");
+            geenQuizes.show();
+            Main.getSceneManager().showStudentSignInOutScene();
+        }
         quizList.getSelectionModel().selectFirst();
     }
 
@@ -47,6 +54,6 @@ public class SelectQuizForStudentController {
                 quizes.add(quiz);
             }
         }
-        System.out.println(quizes);
     }
+
 }
