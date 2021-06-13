@@ -23,6 +23,7 @@ public class CreateUpdateGroupController {
     private ArrayList<User> allUsers;
     private ArrayList<User> allCoordinators = new ArrayList<>();
     private ArrayList<Course> allCourses;
+    private static final int MAX_CHAR_GROUP_NAME = 45;
 
     @FXML
     private ComboBox <User> coordinatorButton;
@@ -39,7 +40,7 @@ public class CreateUpdateGroupController {
     @FXML
     private TextField textfieldCurrentCourseId;
     @FXML
-    private TextField textfieldGroupId;
+    private TextField textfieldGroupName;
     @FXML
     private Label titleUpdateLabel;
 
@@ -52,56 +53,58 @@ public class CreateUpdateGroupController {
 
     public void setupCreateGroup() {
         ComboBox<User> keuzeUserDropDown = setUserDropList();
-        coordinatorButton.getSelectionModel().getSelectedItem();
+        coordinatorButton.getSelectionModel().selectFirst();
         coordinatorButton.setOnAction(event -> keuzeUserDropDown.getSelectionModel().getSelectedItem());
         ComboBox<Course> keuzeCourseDropDown = setCourseDropdownList();
-        courseButton.getSelectionModel().getSelectedItem();
+        courseButton.getSelectionModel().selectFirst();
         courseButton.setOnAction(event -> keuzeCourseDropDown.getSelectionModel().getSelectedItem());
     }
 
     public void setupUpdateGroup(Group group) {
-        titleUpdateLabel.setText("Wijzig group met Id: ");
-        textfieldGroupId.setText(String.valueOf(group.getIdGroup()));
-        labelIdCoordinator.setText("Huidige coordinator");
+        titleUpdateLabel.setText("Wijzig groep");
+        textfieldGroupName.setText(group.getNameGroup());
+        textfieldGroupName.setEditable(true);
+        labelIdCoordinator.setText("Huidige coördinator");
         textfieldCurrentCoordinatorId.setText(String.valueOf(userDAO.getOneById(group.getIdCooridnator())));
-        labelIdCourse.setText("Huidige course");
+        labelIdCourse.setText("Huidige cursus");
         textfieldCurrentCourseId.setText(String.valueOf(courseDAO.getOneById(group.getIdCourse())));
-        addGroup.setText("Wijzig group");
+        addGroup.setText("Wijzig groep");
         addGroup.setOnAction(event -> doUpdateGroup(group));
         ComboBox<User> keuzeUserDropDown = setUserDropList();
-        coordinatorButton.getSelectionModel().getSelectedItem();
+        coordinatorButton.getSelectionModel().select(userDAO.getOneById(group.getIdCooridnator()));
         coordinatorButton.setOnAction(event -> keuzeUserDropDown.getSelectionModel().getSelectedItem());
         ComboBox<Course> keuzeCourseDropDown = setCourseDropdownList();
-        courseButton.getSelectionModel().getSelectedItem();
+        courseButton.getSelectionModel().select(courseDAO.getOneById(group.getIdCourse()));
         courseButton.setOnAction(event -> keuzeCourseDropDown.getSelectionModel().getSelectedItem());
     }
 
     public void doCreateGroup() {
-        addGroup.setText("Wijzig group");
-        int coordinatorId = coordinatorButton.getSelectionModel().getSelectedItem().getIdUser();
-        int courseId = courseButton.getSelectionModel().getSelectedItem().getIdCourse();
-        Group group = new Group(coordinatorId, courseId);
-        groupDAO.storeOne(group);
-        Alert groupSuccesvolToegevoegd = new Alert(Alert.AlertType.INFORMATION);
-        groupSuccesvolToegevoegd.setTitle("");
-        groupSuccesvolToegevoegd.setHeaderText("De group is succesvol toegevoegd");
-        groupSuccesvolToegevoegd.show();
-        Main.getSceneManager().showManageGroupsScene();
+      if (checkFields()) {
+            String nameGroup = textfieldGroupName.getText();
+            int coordinatorId = coordinatorButton.getSelectionModel().getSelectedItem().getIdUser();
+            int courseId = courseButton.getSelectionModel().getSelectedItem().getIdCourse();
+            Group group = new Group(nameGroup, coordinatorId, courseId);
+            groupDAO.storeOne(group);
+            Main.getSceneManager().showCreateGroupScene();
+        }
     }
 
     public void doUpdateGroup(Group group) {
-        group.setIdCooridnator(coordinatorButton.getSelectionModel().getSelectedItem().getIdUser());
-        group.setIdCourse(courseButton.getSelectionModel().getSelectedItem().getIdCourse());
-        groupDAO.updateGroup(group);
-        Alert groupSuccesvolGewijzigd = new Alert(Alert.AlertType.INFORMATION);
-        groupSuccesvolGewijzigd.setTitle("");
-        groupSuccesvolGewijzigd.setHeaderText("De cursus is succesvol gewijzigd");
-        groupSuccesvolGewijzigd.show();
-        Main.getSceneManager().showManageGroupsScene();
+        if (checkFields()) {
+            group.setNameGroup(textfieldGroupName.getText());
+            group.setIdCooridnator(coordinatorButton.getSelectionModel().getSelectedItem().getIdUser());
+            group.setIdCourse(courseButton.getSelectionModel().getSelectedItem().getIdCourse());
+            groupDAO.updateGroup(group);
+            Alert groupSuccesvolGewijzigd = new Alert(Alert.AlertType.INFORMATION);
+            groupSuccesvolGewijzigd.setTitle("");
+            groupSuccesvolGewijzigd.setHeaderText("De groep is succesvol gewijzigd");
+            groupSuccesvolGewijzigd.show();
+            Main.getSceneManager().showManageGroupsScene();
+        }
     }
 
     public void doMenu() {
-        Main.getSceneManager().showWelcomeScene();
+        Main.getSceneManager().showManageGroupsScene();
     }
 
     public ComboBox<User> setUserDropList(){
@@ -129,30 +132,28 @@ public class CreateUpdateGroupController {
         return combobox;
     }
 
-    //methode om te controleren of alle velden zijn gevuld bij het toevoegen/wijzigen van een nieuwe cursus
+    //methode om te controleren of alle velden zijn gevuld bij het toevoegen/wijzigen van een nieuwe groep
     public boolean checkFields() {
         boolean allFields = false;
-        boolean idCourse = false;
-        boolean idCoordinator = false;
+        boolean groupName = false;
+        boolean nameGroupLengthCorrect = false;
 
         Alert foutmelding = new Alert(Alert.AlertType.ERROR);
-
-        if(!(coordinatorButton.getSelectionModel().isEmpty())) {
-            idCoordinator = true;
-        } else if(coordinatorButton.getSelectionModel().isEmpty()) {
-            foutmelding.setContentText("Je hebt geen coördinator geselecteerd");
+        if (!(textfieldGroupName.getText().isEmpty())) {
+            groupName =true;
+        } else {
+            foutmelding.setContentText("Je hebt geen groepnaam opgegeven");
             foutmelding.show();
         }
-        if(!(courseButton.getSelectionModel().isEmpty())) {
-            idCoordinator = true;
-        } else if(courseButton.getSelectionModel().isEmpty()) {
-            foutmelding.setContentText("Je hebt geen course geselecteerd");
+        if (textfieldGroupName.getLength() < MAX_CHAR_GROUP_NAME) {
+            nameGroupLengthCorrect = true;
+        } else {
+            foutmelding.setContentText("De groepsnaam mag niet langer dan 45 tekens zijn");
             foutmelding.show();
         }
-        if(idCoordinator && idCourse) {
+        if(groupName && nameGroupLengthCorrect) {
             allFields = true;
         }
-        System.out.println(allFields);
         return allFields;
     }
 
