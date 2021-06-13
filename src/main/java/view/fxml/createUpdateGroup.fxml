@@ -6,37 +6,42 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CreateUpdateGroupController">
    <children>
-      <Label fx:id="titleUpdateLabel" layoutX="161.0" layoutY="114.0" prefHeight="48.0" prefWidth="199.0" text="Nieuwe Group maken ">
+      <Label fx:id="titleUpdateLabel" layoutX="161.0" layoutY="114.0" prefHeight="48.0" prefWidth="255.0" text="Maak een nieuwe group aan">
          <font>
             <Font size="18.0" />
          </font></Label>
-      <TextField fx:id="textfieldGroupId" disable="true" layoutX="413.0" layoutY="125.0" text="" />
-      <Label fx:id="labelIdCoordinator" layoutX="160.0" layoutY="207.0" text="">
-         <font>
-            <Font size="18.0" />
-         </font></Label>
-      <TextField fx:id="textfieldCurrentCoordinatorId" disable="true" layoutX="411.0" layoutY="208.0" />
-      <Label layoutX="161.0" layoutY="242.0" text="Coordinator van de group:">
-         <font>
-            <Font size="18.0" />
-         </font></Label>
-      <ComboBox fx:id="coordinatorButton" layoutX="410.0" layoutY="244.0" prefWidth="150.0" promptText="Kies een coordinator" />
-      <Label fx:id= "labelIdCourse" layoutX="159.0" layoutY="309.0" text="">
+      <Label layoutX="161.0" layoutY="181.0" text="Naam van de groep">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="textfieldCurrentCourseId" disable="true" layoutX="411.0" layoutY="310.0" />
-      <Label layoutX="159.0" layoutY="347.0" text="Course waar group bij hoort:">
+      <TextField fx:id="textfieldGroupName" disable="false" layoutX="412.0" layoutY="182.0" text="" />
+      <Label fx:id="labelIdCoordinator" layoutX="162.0" layoutY="251.0" prefHeight="27.0" prefWidth="235.0">
          <font>
             <Font size="18.0" />
          </font></Label>
-      <ComboBox fx:id="courseButton" layoutX="410.0" layoutY="348.0" prefWidth="150.0" promptText="Kies een course" />
-      <Button fx:id="addGroup" layoutX="312.0" layoutY="429.0" mnemonicParsing="false" onAction="#doCreateGroup" text="Voeg group toe">
+      <TextField fx:id="textfieldCurrentCoordinatorId" disable="true" layoutX="412.0" layoutY="252.0" />
+      <Label layoutX="162.0" layoutY="286.0" prefHeight="27.0" prefWidth="235.0" text="Coördinator van de groep:">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <ComboBox fx:id="coordinatorButton" layoutX="411.0" layoutY="288.0" prefWidth="150.0" promptText="Kies een coördinator" />
+      <Label fx:id="labelIdCourse" layoutX="161.0" layoutY="353.0" prefHeight="27.0" prefWidth="235.0" text="">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="textfieldCurrentCourseId" disable="true" layoutX="412.0" layoutY="354.0" />
+      <Label layoutX="162.0" layoutY="391.0" prefHeight="27.0" prefWidth="242.0" text="Course waar groep bij hoort:">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <ComboBox fx:id="courseButton" layoutX="411.0" layoutY="392.0" prefWidth="150.0" promptText="Kies een cursus" />
+      <Button fx:id="addGroup" layoutX="314.0" layoutY="491.0" mnemonicParsing="false" onAction="#doCreateGroup" text="Voeg groep toe">
          <font>
             <Font size="18.0" />
          </font></Button>
-      <Button fx:id="returnMenu" layoutX="41.0" layoutY="50.0" mnemonicParsing="false" onAction="#doMenu" text="Menu">
+      <Button fx:id="returnMenu" layoutX="41.0" layoutY="50.0" mnemonicParsing="false" onAction="#doMenu" text="Terug naar menu">
          <font>
             <Font size="18.0" />
          </font></Button>

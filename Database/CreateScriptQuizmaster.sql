@@ -74,15 +74,17 @@ DROP TABLE IF EXISTS `group`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `group` (
-  idGroup int NOT NULL AUTO_INCREMENT,
-  idCoordinatorGroup int NOT NULL,
-  idCourse int NOT NULL,
-  PRIMARY KEY (idGroup),
-  KEY fk_Group_Gebruiker1_idx (idCoordinatorGroup),
-  KEY fk_Group_Course1_idx (idCourse),
-  CONSTRAINT fk_Group_Course1 FOREIGN KEY (idCourse) REFERENCES course (idCourse) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT fk_Group_Gebruiker1 FOREIGN KEY (idCoordinatorGroup) REFERENCES `user` (idUser) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+  `idGroup` int NOT NULL AUTO_INCREMENT,
+  `nameGroup` varchar(45) NOT NULL,
+  `idCoordinatorGroup` int NOT NULL,
+  `idCourse` int NOT NULL,
+  PRIMARY KEY (`idGroup`),
+  UNIQUE KEY `nameGroup_UNIQUE` (`nameGroup`),
+  KEY `fk_Group_Gebruiker1_idx` (`idCoordinatorGroup`),
+  KEY `fk_Group_Course1_idx` (`idCourse`),
+  CONSTRAINT `fk_Group_Course1` FOREIGN KEY (`idCourse`) REFERENCES `course` (`idCourse`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_Group_Gebruiker1` FOREIGN KEY (`idCoordinatorGroup`) REFERENCES `user` (`idUser`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb3
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --

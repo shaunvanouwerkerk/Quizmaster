@@ -31,10 +31,11 @@ GroupDAO extends AbstractDAO implements GenericDAO<Group>{
             setupPreparedStatement(sql);
             ResultSet resultSet = executeSelectStatement();
             while (resultSet.next()){
-                int idGroup= resultSet.getInt("idGroup");
+                int idGroup = resultSet.getInt("idGroup");
+                String nameGroup = resultSet.getString("nameGroup");
                 int idCoordinatorGroup = resultSet.getInt("idCoordinatorGroup");
                 int idCourse = resultSet.getInt("idCourse");
-                group = new Group(idGroup, idCoordinatorGroup, idCourse);
+                group = new Group(idGroup, nameGroup, idCoordinatorGroup, idCourse);
                 groups.add(group);
             }
         } catch (SQLException sqlException) {
@@ -52,9 +53,10 @@ GroupDAO extends AbstractDAO implements GenericDAO<Group>{
             preparedStatement.setInt(1, idGroup);
             ResultSet resultSet = executeSelectStatement();
             if (resultSet.next()) {
+                String nameGroup = resultSet.getString("nameGroup");
                 int idCoordinatorGroup = resultSet.getInt("idCoordinatorGroup");
                 int idCourse = resultSet.getInt("idCourse");
-                result = new Group(idGroup, idCoordinatorGroup, idCourse);
+                result = new Group(idGroup, nameGroup, idCoordinatorGroup, idCourse);
             } else {
                 Alert foutmelding = new Alert(Alert.AlertType.ERROR);
                 foutmelding.setContentText("Er is geen groep met deze groep ID in de database");
@@ -69,14 +71,25 @@ GroupDAO extends AbstractDAO implements GenericDAO<Group>{
 
     @Override
     public void storeOne(Group group) {
-              String sql = "Insert INTO `group`(idCoordinatorGroup, idCourse) VALUES (?, ?);";
+              String sql = "Insert INTO `group`(nameGroup, idCoordinatorGroup, idCourse) VALUES (?, ?, ?);";
             try{
                 setupPreparedStatementWithKey(sql);
-                preparedStatement.setInt(1, group.getIdCooridnator());
-                preparedStatement.setInt(2, group.getIdCourse());
+                preparedStatement.setString(1, group.getNameGroup());
+                preparedStatement.setInt(2, group.getIdCooridnator());
+                preparedStatement.setInt(3, group.getIdCourse());
                 int primaryKey = executeInsertStatementWithKey();
                 group.setIdGroup(primaryKey);
+                Alert opgeslagen = new Alert(Alert.AlertType.CONFIRMATION);
+                opgeslagen.setContentText(String.format("Groep %s is opgeslagen!", group.getNameGroup()));
+                opgeslagen.show();
             } catch (SQLException sqlException) {
+                Alert foutmelding = new Alert(Alert.AlertType.ERROR);
+                if(sqlException.getMessage().contains("Duplicate")) {
+                    foutmelding.setContentText("Deze groep bestaat al! De groep is niet opgeslagen.");
+                } else {
+                    foutmelding.setContentText("Groep kan niet worden opgeslagen.");
+                }
+                foutmelding.show();
                 System.out.println(sqlException.getMessage());
             }
     }
@@ -90,8 +103,9 @@ GroupDAO extends AbstractDAO implements GenericDAO<Group>{
             ResultSet resultSet = executeSelectStatement();
             if (resultSet.next()) {
                 int idGroup = resultSet.getInt("idGroup");
+                String nameGroup = resultSet.getString("nameGroup");
                 int idCourse = resultSet.getInt("idCourse");
-                groupWithCoordinator = new Group(idGroup, idCoordinator, idCourse);
+                groupWithCoordinator = new Group(idGroup, nameGroup, idCoordinator, idCourse);
             } else {
                 Alert foutmelding = new Alert(Alert.AlertType.ERROR);
                 foutmelding.setContentText("Er is geen groep met deze coordinator in de database");
@@ -113,8 +127,9 @@ GroupDAO extends AbstractDAO implements GenericDAO<Group>{
             ResultSet resultSet = executeSelectStatement();
             if (resultSet.next()) {
                 int idGroup = resultSet.getInt("idGroup");
+                String nameGroup = resultSet.getString("nameGroup");
                 int idCoordinator = resultSet.getInt("idCoordinator");
-                groupInCourse = new Group(idGroup, idCoordinator, idCourse);
+                groupInCourse = new Group(idGroup, nameGroup, idCoordinator, idCourse);
             } else {
                 Alert foutmelding = new Alert(Alert.AlertType.ERROR);
                 foutmelding.setContentText("Er is geen groep in deze course in de database");
@@ -139,16 +154,22 @@ GroupDAO extends AbstractDAO implements GenericDAO<Group>{
     }
 
     public void updateGroup(Group group) {
-        String sql = "UPDATE `group` SET idCoordinatorGroup = ?, idCourse = ? WHERE idGroup = ?;";
+        String sql = "UPDATE `group` SET nameGroup = ?, idCoordinatorGroup = ?, idCourse = ? WHERE idGroup = ?;";
         try {
             setupPreparedStatement(sql);
-            preparedStatement.setInt(1, group.getIdCooridnator());
-            preparedStatement.setInt(2, group.getIdCourse());
-            preparedStatement.setInt(3, group.getIdGroup());
+           preparedStatement.setString(1, group.getNameGroup());
+            preparedStatement.setInt(2, group.getIdCooridnator());
+            preparedStatement.setInt(3, group.getIdCourse());
+            preparedStatement.setInt(4, group.getIdGroup());
            System.out.println(group);
             executeManipulateStatement();
         } catch (SQLException sqlException) {
             Alert foutmelding = new Alert(Alert.AlertType.ERROR);
+            if(sqlException.getMessage().contains("Duplicate")) {
+                foutmelding.setContentText("Deze Groep bestaat al! Groep is niet gewijzigd.");
+            } else {
+                foutmelding.setContentText("Groep kan niet worden gewijzigd.");
+            }
             foutmelding.show();
             System.out.println(sqlException.getMessage());
         }

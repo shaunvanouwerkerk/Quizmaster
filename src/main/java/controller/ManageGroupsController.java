@@ -1,14 +1,8 @@
 package controller;
 
-import database.mysql.CourseDAO;
-import database.mysql.DBAccess;
-import database.mysql.GroupDAO;
-import database.mysql.QuestionDAO;
+import database.mysql.*;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import model.Course;
 import model.Group;
 import model.Question;
@@ -22,12 +16,15 @@ public class ManageGroupsController {
 
     private GroupDAO groupDAO;
     private DBAccess dBaccess;
+    private UserDAO userDAO;
+    private CourseDAO courseDAO;
 
     @FXML
     ListView<Group> groupList;
-
     @FXML
-    TextField warningText;
+    private TextField textfieldCourseName;
+    @FXML
+    private TextField textfieldCoordinatorName;
 
     public ManageGroupsController() {
         this.dBaccess = Main.getDBaccess();
@@ -41,6 +38,8 @@ public class ManageGroupsController {
         }
         // Om een nullpointer exception te vermijden
         groupList.getSelectionModel().selectFirst();
+//        textfieldCoordinatorName.setText(String.valueOf(userDAO.getOneById(group.getIdCooridnator())));
+//        textfieldCourseName.setText(String.valueOf(courseDAO.getOneById(group.getIdCourse())));
     }
 
     public void doMenu() {
@@ -58,14 +57,15 @@ public class ManageGroupsController {
     public void doDeleteGroup() {
         Group groupToDelete = groupList.getSelectionModel().getSelectedItem();
         Alert deleteAlert = new Alert(Alert.AlertType.CONFIRMATION);
-        deleteAlert.setTitle("Verwijder group");
-        deleteAlert.setHeaderText("Weet je zeker dat je de group wilt verwijderen?");
+        deleteAlert.setTitle("Verwijder groep");
+        deleteAlert.setHeaderText("Weet je zeker dat je de groep wilt verwijderen?");
         Optional<ButtonType> result = deleteAlert.showAndWait();
         if (result.get() == ButtonType.OK) {
             groupDAO.deleteGroup(groupToDelete);
             Main.getSceneManager().showManageGroupsScene();
         }
     }
+
 
 
 }
