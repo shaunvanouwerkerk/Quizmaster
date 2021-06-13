@@ -12,11 +12,8 @@ import database.mysql.DBAccess;
 import database.mysql.QuestionDAO;
 import database.mysql.QuizDAO;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
 
-import javafx.scene.control.TextField;
 import model.Course;
 import model.Question;
 import model.Quiz;
@@ -39,7 +36,7 @@ public class  ManageQuizzesController {
     @FXML
     ListView<Quiz> quizList;
     @FXML
-    TextField warningText;
+    Label amountQuestionText;
 
     public ManageQuizzesController() {this.dbAccess = Main.getDBaccess();}
 
@@ -53,7 +50,7 @@ public class  ManageQuizzesController {
         // Checkt of de coordinator quizes beheerd
         if (allCourses.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setContentText("Er zijn geen quizen om te beheren.");
+            alert.setContentText("Je hebt nog geen rol als coordinator bij een cursus.\n Hierdoor kun je nog geen quizen aanmaken");
             Optional<ButtonType> result = alert.showAndWait();
 
             if (result.get() == ButtonType.OK) {
@@ -73,12 +70,13 @@ public class  ManageQuizzesController {
                 quizList.getSelectionModel().selectFirst();
 
                 // Methode om aantal vragen te tonen per quiz:
+
+                Quiz quiz = quizList.getSelectionModel().getSelectedItem();
                 this.questionDAO = new QuestionDAO(dbAccess);
-                Quiz quiz = quizList.getSelectionModel().getSelectedItem(); // Hoe kan ik bij opnieuw klikken weer het aantal tonen.
                 ArrayList<Question> totalQuestions = questionDAO.getAllperQuiz(quiz);
                 int itemCount = totalQuestions.size();
                 System.out.println("Het aantal vragen bij deze quiz is: " + itemCount); // Ff voor de test
-                warningText.setText(String.valueOf("Aantal vragen bij deze quiz: " + itemCount + " vragen."));
+                amountQuestionText.setText(String.valueOf("Aantal vragen bij deze quiz: " + itemCount + " vragen."));
 
             }
         }
@@ -122,4 +120,7 @@ public class  ManageQuizzesController {
             Optional<ButtonType> result = deleteAlert.showAndWait();
         }
     }
+
+
+
 }

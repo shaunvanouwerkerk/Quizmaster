@@ -32,8 +32,6 @@ public class CreateUpdateQuizController {
     @FXML
     private Button adQuiz;
     @FXML
-    private TextField textfieldQuizId;
-    @FXML
     private ComboBox<Course> courseButton;
 
 
@@ -57,13 +55,11 @@ public class CreateUpdateQuizController {
     public void setupUpdateQuiz (Quiz quiz) {
         titelCreateUpdate.setText("Quiz bewerken");
         textfieldQuizName.setText(quiz.getNameQuiz());
-        textfieldQuizId.setText(String.valueOf(quiz.getIdQuiz()));
         textfieldSuccesDefinition.setText(String.valueOf(quiz.getSuccesDefinition()));
         adQuiz.setText("Bewerken");
         adQuiz.setOnAction(event -> doUpdateQuiz(quiz));
         ComboBox<Course> keuzeDropDown = setCoursesDropList();
         courseButton.getSelectionModel().selectFirst();
-//        courseButton.getSelectionModel().getSelectedItem();
         courseButton.setOnAction(event -> keuzeDropDown.getSelectionModel().getSelectedItem());
     }
 
