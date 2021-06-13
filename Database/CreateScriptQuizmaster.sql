@@ -45,7 +45,7 @@ CREATE TABLE `user` (
   UNIQUE KEY name_UNIQUE (`name`),
   KEY fk_Gebruiker_Rol1_idx (roleName),
   CONSTRAINT fk_Gebruiker_Rol1 FOREIGN KEY (roleName) REFERENCES `role` (roleName) ON DELETE RESTRICT ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -62,7 +62,7 @@ CREATE TABLE course (
   PRIMARY KEY (idCourse),
   KEY fk_Cursus_Gebruiker1_idx (idCoordinatorCourse),
   CONSTRAINT fk_Cursus_Gebruiker1 FOREIGN KEY (idCoordinatorCourse) REFERENCES `user` (idUser) ON DELETE RESTRICT ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -100,7 +100,7 @@ CREATE TABLE quiz (
   KEY fk_Quiz_Course1_idx (idCourse),
   UNIQUE KEY nameQuiz_UNIQUE (`nameQuiz`),
   CONSTRAINT fk_Group_Course2 FOREIGN KEY (idCourse) REFERENCES course (idCourse) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 
@@ -122,7 +122,7 @@ CREATE TABLE question (
   PRIMARY KEY (idQuestion,idQuiz),
   KEY fk_Vraag_Quiz1_idx (idQuiz),
   CONSTRAINT fk_Vraag_Quiz1 FOREIGN KEY (idQuiz) REFERENCES quiz (idQuiz) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 
@@ -161,7 +161,7 @@ CREATE TABLE usermakesquiz (
   KEY fk_Quiz_has_Gebruiker_Quiz1_idx (idQuiz),
   CONSTRAINT fk_Quiz_has_Gebruiker_Gebruiker1 FOREIGN KEY (idGebruiker) REFERENCES `user` (idUser) ON DELETE RESTRICT ON UPDATE CASCADE,
   CONSTRAINT fk_Quiz_has_Gebruiker_Quiz1 FOREIGN KEY (idQuiz) REFERENCES quiz (idQuiz) ON DELETE RESTRICT ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;

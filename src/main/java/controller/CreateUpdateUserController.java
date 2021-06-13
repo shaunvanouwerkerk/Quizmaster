@@ -79,11 +79,11 @@ public class CreateUpdateUserController {
     public void doUpdateUser(User user) {
         boolean correctFilledOut = checkFields();
         if (correctFilledOut) {
-            System.out.println(user);
             user.setPassword(passwordTextField.getText());
             user.setUsername(userNameTextField.getText());
             user.setRoleName(roleButton.getSelectionModel().getSelectedItem());
             userDAO.updateUser(user);
+            Main.getSceneManager().showWelcomeScene();
         }
     }
 
@@ -122,7 +122,6 @@ public class CreateUpdateUserController {
         if(userName && password) {
             allFields = true;
         }
-        System.out.println(allFields);
         return allFields;
     }
 

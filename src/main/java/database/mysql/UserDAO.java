@@ -2,6 +2,7 @@ package database.mysql;
 
 import javafx.scene.control.Alert;
 import model.User;
+import view.Main;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -105,7 +106,6 @@ public class UserDAO extends AbstractDAO implements GenericDAO<User> {
             preparedStatement.setString(2, user.getUsername());
             preparedStatement.setString(3, user.getRoleName());
             preparedStatement.setInt(4, user.getIdUser());
-            System.out.println(user);
             executeManipulateStatement();
         } catch (SQLException sqlException) {
             Alert foutmelding = new Alert(Alert.AlertType.ERROR);
@@ -147,6 +147,15 @@ public class UserDAO extends AbstractDAO implements GenericDAO<User> {
         } catch (SQLException sqlException) {
             Alert foutmelding = new Alert(Alert.AlertType.ERROR);
             foutmelding.setContentText("Gebruiker kon niet worden verwijderd.");
+            if(sqlException.getMessage().contains("constraint")){
+                if(user.getRoleName().equals(Main.COORDINATOR_ROL)){
+                    foutmelding.setHeaderText("Gebruiker kan niet worden verwijderd.");
+                    foutmelding.setContentText(String.format("Is %s van een cursus of groep.", Main.COORDINATOR_ROL));
+                } else if(user.getRoleName().equals(Main.STUDENT_ROL)){
+                    foutmelding.setHeaderText("Gebruiker kan niet worden verwijderd.");
+                    foutmelding.setContentText(String.format("De %s heeft al testuitslagen.", Main.STUDENT_ROL));
+                }
+            }
             foutmelding.show();
             System.out.println(sqlException.getMessage());
         }
