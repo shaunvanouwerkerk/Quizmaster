@@ -16,7 +16,6 @@ public class SelectQuizForStudentController {
 
     private ArrayList<Quiz> quizes = new ArrayList<>();
     private DBAccess dbAccess = Main.getDBaccess();
-    private CourseDAO courseDAO = new CourseDAO(dbAccess);
     private UserDAO userDAO = new UserDAO(dbAccess);
     private QuizDAO quizDAO = new QuizDAO(dbAccess);
 

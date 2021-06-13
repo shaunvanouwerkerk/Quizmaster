@@ -81,7 +81,8 @@ public class UserDAO extends AbstractDAO implements GenericDAO<User> {
         } catch (SQLException sqlException) {
             Alert foutmelding = new Alert(Alert.AlertType.ERROR);
             if (sqlException.getMessage().contains("Duplicate")) {
-                foutmelding.setContentText("Deze gebuikersnaam bestaat al! Gebruiker is niet opgslagen.");
+                foutmelding.setHeaderText("Deze gebuikersnaam bestaat al!");
+                foutmelding.setContentText("Gebruiker is niet opgslagen.");
             } else {
                 foutmelding.setContentText("Gebruiker kon niet worden opgeslagen.");
             }
@@ -107,7 +108,8 @@ public class UserDAO extends AbstractDAO implements GenericDAO<User> {
         } catch (SQLException sqlException) {
             Alert foutmelding = new Alert(Alert.AlertType.ERROR);
             if (sqlException.getMessage().contains("Duplicate")) {
-                foutmelding.setContentText("Deze gebuikersnaam bestaat al! Gebruiker is niet gewijzigd.");
+                foutmelding.setHeaderText("Deze gebuikersnaam bestaat al!");
+                foutmelding.setContentText("Gebruiker is niet opgslagen.");
             } else {
                 foutmelding.setContentText("Gebruiker kon niet worden gewijzigd.");
             }
