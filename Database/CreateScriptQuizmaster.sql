@@ -60,6 +60,7 @@ CREATE TABLE course (
   nameCourse varchar(45) NOT NULL,
   idCoordinatorCourse int NOT NULL,
   PRIMARY KEY (idCourse),
+  UNIQUE KEY nameCourse_UNIQUE(`nameCourse`),
   KEY fk_Cursus_Gebruiker1_idx (idCoordinatorCourse),
   CONSTRAINT fk_Cursus_Gebruiker1 FOREIGN KEY (idCoordinatorCourse) REFERENCES `user` (idUser) ON DELETE RESTRICT ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
