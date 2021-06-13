@@ -23,26 +23,19 @@ public class UserDAO extends AbstractDAO implements GenericDAO<User> {
 
         try {
             setupPreparedStatement(sql);
-
             ResultSet resultSet = executeSelectStatement();
-
             while (resultSet.next()) {
                 String password = resultSet.getString("password");
                 String username = resultSet.getString("name");
                 String roleName = resultSet.getString("roleName");
-
                 user = new User(password, username, roleName);
                 int idUser = resultSet.getInt("idUser");
                 user.setIdUser(idUser);
-
                 users.add(user);
-
             }
-
         } catch (SQLException sqlException) {
             System.out.println(sqlException.getMessage());
         }
-
         return users;
     }
 
@@ -82,8 +75,8 @@ public class UserDAO extends AbstractDAO implements GenericDAO<User> {
             int key = executeInsertStatementWithKey();
             user.setIdUser(key);
             Alert opgeslagen = new Alert(Alert.AlertType.CONFIRMATION);
-            opgeslagen.setHeaderText(String.format("Gebruiker %s is opgeslagen", user.getUsername()));
-            opgeslagen.setContentText(String.format("ID: %d, Rol: %s", user.getIdUser(), user.getRoleName()));
+            opgeslagen.setHeaderText("Gebruiker is opgeslagen");
+            opgeslagen.setContentText(String.format("Gebruikersnaam %s, Rol: %s", user.getUsername(), user.getRoleName()));
             opgeslagen.show();
         } catch (SQLException sqlException) {
             Alert foutmelding = new Alert(Alert.AlertType.ERROR);
@@ -99,7 +92,6 @@ public class UserDAO extends AbstractDAO implements GenericDAO<User> {
 
     public void updateUser(User user) {
         String sql = "UPDATE user SET password = ?, name = ?, roleName = ? WHERE idUser = ?";
-
         try {
             setupPreparedStatement(sql);
             preparedStatement.setString(1, user.getPassword());
@@ -107,6 +99,11 @@ public class UserDAO extends AbstractDAO implements GenericDAO<User> {
             preparedStatement.setString(3, user.getRoleName());
             preparedStatement.setInt(4, user.getIdUser());
             executeManipulateStatement();
+            Alert updateUser = new Alert(Alert.AlertType.CONFIRMATION);
+            updateUser.setHeaderText("Gebruiker is gewijzigd");
+            updateUser.setContentText(String.format("Gebruikersnaam %s, Rol: %s",
+                    user.getUsername(), user.getRoleName()));
+            updateUser.show();
         } catch (SQLException sqlException) {
             Alert foutmelding = new Alert(Alert.AlertType.ERROR);
             if (sqlException.getMessage().contains("Duplicate")) {
@@ -162,6 +159,7 @@ public class UserDAO extends AbstractDAO implements GenericDAO<User> {
         return userDeleted;
     }
 
+    //Methode haalt (en retourneert) alle courseId's van een bepaalde student uit de studentinCourse Tabel in workbench
     public ArrayList<Integer> getAllCourseId(int idStudent) {
         ArrayList<Integer> allCourseId = new ArrayList<>();
         int courseId;

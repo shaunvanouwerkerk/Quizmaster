@@ -29,13 +29,16 @@ public class SelectQuizForStudentController {
         for(Quiz quiz : quizes) {
             quizList.getItems().add(quiz);
         }
+        quizList.getSelectionModel().selectFirst();
     }
 
     public void doMenu() {
         Main.getSceneManager().showWelcomeScene();
     }
 
-    public void doQuiz() {}
+    public void doQuiz() {
+        Main.getSceneManager().showFillOutQuiz(quizList.getSelectionModel().getSelectedItem());
+    }
 
     public void fillQuizesForStudent() {
         ArrayList<Integer> allCourseId = userDAO.getAllCourseId(Main.loggedInUser.getIdUser());
