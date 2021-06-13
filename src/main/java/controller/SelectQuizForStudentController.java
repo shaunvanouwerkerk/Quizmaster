@@ -15,7 +15,6 @@ import java.util.ArrayList;
 public class SelectQuizForStudentController {
 
     private ArrayList<Quiz> quizes = new ArrayList<>();
-    private ArrayList<Course> courses;
     private DBAccess dbAccess = Main.getDBaccess();
     private CourseDAO courseDAO = new CourseDAO(dbAccess);
     private UserDAO userDAO = new UserDAO(dbAccess);
@@ -32,7 +31,9 @@ public class SelectQuizForStudentController {
         }
     }
 
-    public void doMenu() {}
+    public void doMenu() {
+        Main.getSceneManager().showWelcomeScene();
+    }
 
     public void doQuiz() {}
 
