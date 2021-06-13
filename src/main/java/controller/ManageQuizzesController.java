@@ -43,7 +43,6 @@ public class  ManageQuizzesController {
 
     public void setup() {
         this.quizDAO = new QuizDAO(dbAccess);
-
         this.courseDAO = new CourseDAO(dbAccess);
         allCourses = courseDAO.getCoursesByIdCoordinator(Main.loggedInUser.getIdUser());
 
@@ -70,14 +69,7 @@ public class  ManageQuizzesController {
                 quizList.getSelectionModel().selectFirst();
 
                 // Methode om aantal vragen te tonen per quiz:
-
-                Quiz quiz = quizList.getSelectionModel().getSelectedItem();
-                this.questionDAO = new QuestionDAO(dbAccess);
-                ArrayList<Question> totalQuestions = questionDAO.getAllperQuiz(quiz);
-                int itemCount = totalQuestions.size();
-                System.out.println("Het aantal vragen bij deze quiz is: " + itemCount); // Ff voor de test
-                amountQuestionText.setText(String.valueOf("Aantal vragen bij deze quiz: " + itemCount + " vragen."));
-
+                quizList.setOnMouseClicked(mouseEvent -> amountOfQuestions(quizList.getSelectionModel().getSelectedItem()));
             }
         }
 
@@ -120,7 +112,13 @@ public class  ManageQuizzesController {
             Optional<ButtonType> result = deleteAlert.showAndWait();
         }
     }
-
+    // Methode om het aantal vragen te tonen
+    public void amountOfQuestions (Quiz quiz) {
+        this.questionDAO = new QuestionDAO(dbAccess);
+        ArrayList<Question> totalQuestions = questionDAO.getAllperQuiz(quiz);
+        int itemCount = totalQuestions.size();
+        amountQuestionText.setText(String.valueOf("Aantal vragen bij deze quiz: " + itemCount + " vragen."));
+    }
 
 
 }

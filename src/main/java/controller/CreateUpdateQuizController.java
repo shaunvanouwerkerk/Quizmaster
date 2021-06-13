@@ -48,7 +48,7 @@ public class CreateUpdateQuizController {
     public void setupCreateQuiz(){
         ComboBox<Course> keuzeDropDown = setCoursesDropList();
         courseButton.getSelectionModel().getSelectedItem();
-        courseButton.setOnAction(event -> keuzeDropDown.getSelectionModel().getSelectedItem()); // getIdCOurse eruit
+        courseButton.setOnAction(event -> keuzeDropDown.getSelectionModel().getSelectedItem());
 
     }
 
@@ -59,7 +59,7 @@ public class CreateUpdateQuizController {
         adQuiz.setText("Bewerken");
         adQuiz.setOnAction(event -> doUpdateQuiz(quiz));
         ComboBox<Course> keuzeDropDown = setCoursesDropList();
-        courseButton.getSelectionModel().selectFirst();
+        courseButton.getSelectionModel().select(courseDAO.getOneById(quiz.getIdCourse()));
         courseButton.setOnAction(event -> keuzeDropDown.getSelectionModel().getSelectedItem());
     }
 
