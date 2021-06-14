@@ -2,6 +2,7 @@ package view;
 
 import database.couchDB.CouchDBaccess;
 import database.couchDB.CouchUserDAO;
+import model.User;
 
 public class CouchDBUserLauncher {
 
@@ -16,7 +17,10 @@ public class CouchDBUserLauncher {
     public static void main(String[] args) {
         CouchDBUserLauncher userLauncher = new CouchDBUserLauncher();
         userLauncher.run();
-        userLauncher.couchUserDAO.createUserAsJson();
+        //userLauncher.couchUserDAO.createUserAsJson();
+
+        User testUser = new User("password", "branko", Main.STUDENT_ROL);
+        userLauncher.couchUserDAO.saveSingleUser(testUser);
     }
 
     public void run() {

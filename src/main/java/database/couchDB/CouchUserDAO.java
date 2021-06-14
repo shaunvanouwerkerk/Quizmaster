@@ -1,6 +1,8 @@
 package database.couchDB;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import database.mysql.UserDAO;
 import model.User;
 import view.Main;
@@ -30,6 +32,16 @@ public class CouchUserDAO {
         for(User user : users) {
             printUserInJson(user);
         }
+    }
+
+    public String saveSingleUser(User user) {
+        String jsonstring = gson.toJson(user);
+        System.out.println(jsonstring);
+        JsonParser jsonParser = new JsonParser();
+        JsonObject jsonObject = jsonParser.parse(jsonstring).getAsJsonObject();
+        System.out.println(jsonObject);
+        String doc_Id = couchDBaccess.saveDocument(jsonObject);
+        return doc_Id;
     }
 
 
