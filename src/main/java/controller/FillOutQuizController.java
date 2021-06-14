@@ -11,8 +11,6 @@ import javafx.scene.control.*;
 import model.Question;
 import model.Quiz;
 import view.Main;
-
-import java.sql.Array;
 import java.util.*;
 
 public class FillOutQuizController {
@@ -51,6 +49,13 @@ public class FillOutQuizController {
     }
 
     public void setup(Quiz quiz) {
+        if(questionDAO.getNumberOfQuestionsInAquiz(quiz.getIdQuiz()) == 0) {
+            Alert geenVragen = new Alert(Alert.AlertType.INFORMATION);
+            geenVragen.setContentText("Er zijn nog geen vragen in deze quiz");
+            geenVragen.showAndWait();
+            Main.getSceneManager().showSelectQuizForStudent();
+        }
+
         huidigeQuiz = quiz;
         // Haal alle vragen per Quiz uit de database
         vragenUitQuiz = questionDAO.getAllperQuiz(quiz);
@@ -63,6 +68,12 @@ public class FillOutQuizController {
         // Een vraag uit quiz tonen
         if (huidigeVraagNr < vragenUitQuiz.size()) {
             showQuestion(huidigeVraagNr);
+        }
+
+        if(labelHuidigeVraagNr == vragenUitQuiz.size()) {
+            volgende.setText("Afronden");
+        } else {
+            volgende.setText("Volgende");
         }
     }
 
@@ -94,12 +105,17 @@ public class FillOutQuizController {
         } else if (huidigeVraagNr == vragenUitQuiz.size() || huidigeVraagNr > vragenUitQuiz.size()){
           Alert quizAfronden = new Alert(Alert.AlertType.CONFIRMATION);
           quizAfronden.setContentText("Weet je zeker dat je deze quiz wil afsluiten en verzenden?");
+          quizAfronden.setHeaderText("Quiz afronden");
+          quizAfronden.setTitle("Bevestiging");
           Optional<ButtonType> decision = quizAfronden.showAndWait();
           if (decision.get() == ButtonType.OK) {
+              compareAndCountCorrectAnswers();
               Main.getSceneManager().showStudentFeedback(huidigeQuiz);
           } else {
-              doPreviousQuestion();
-              volgende.setText("Volgende");
+              huidigeVraagNr = 0;
+              labelHuidigeVraagNr = 1;
+              setup(huidigeQuiz);
+              System.out.println(huidigeVraagNr);
           }
         }
     }
@@ -140,6 +156,14 @@ public class FillOutQuizController {
                 vragenUitQuiz.get(huidigeVraagNr).toString(), antwoordKeuzes[0], antwoordKeuzes[1],
                 antwoordKeuzes[2], antwoordKeuzes[3]));
         titleLabel.setText(String.format("Vraag %d", labelHuidigeVraagNr));
+    }
+
+    public void compareAndCountCorrectAnswers(){
+        for (int teller = 0; teller < vragenUitQuiz.size(); teller++) {
+            if (studentAntwoorden.get(teller).equals(juisteAntwoorden.get(teller))) {
+                aantalJuisteAntwoorden++;
+            }
+        }
     }
 
 }
