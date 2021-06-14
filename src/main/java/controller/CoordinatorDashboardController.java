@@ -42,6 +42,9 @@ public class CoordinatorDashboardController {
                         System.out.println("Geselecteerde cursus: " + observableValue + ", " + oldCourse + ", " + newCourse);
 
                         courseList.setOnMouseClicked(mouseEvent -> getQuizListNewCourse(newCourse).getSelectionModel().getSelectedItem());
+                        
+                        // OPTIONEEL:
+//                        courseList.setOnMouseClicked(mouseEvent -> getQuizListNewCourse2(newCourse,oldCourse).getSelectionModel().getSelectedItem());
                         }
                 });
 
@@ -96,19 +99,19 @@ public class CoordinatorDashboardController {
     }
 
     // OPTIONEEL:
-    public ListView<Quiz> getQuizListNewCourse (Course courseNew, Course courseOld) {
-        this.quizDAO = new QuizDAO(this.dBaccess);
-
-        ArrayList<Quiz> allQuizesNew = quizDAO.getQuizesByCourseId(courseNew.getIdCourse());
-        for (Quiz quiz : allQuizesNew) {
-            quizList.getItems().add(quiz);
-        }
-        ArrayList<Quiz> allQuizesOld = quizDAO.getQuizesByCourseId(courseOld.getIdCourse());
-        for (Quiz quiz : allQuizesOld) {
-            quizList.getItems().remove(quiz);
-        }
-        return quizList;
+//    public ListView<Quiz> getQuizListNewCourse2 (Course courseNew, Course courseOld) {
+//        this.quizDAO = new QuizDAO(this.dBaccess);
+//
+//        ArrayList<Quiz> allQuizesNew = quizDAO.getQuizesByCourseId(courseNew.getIdCourse());
+//        for (Quiz quiz : allQuizesNew) {
+//            quizList.getItems().add(quiz);
+//        }
+//        ArrayList<Quiz> allQuizesOld = quizDAO.getQuizesByCourseId(courseOld.getIdCourse());
+//        for (Quiz quiz : allQuizesOld) {
+//            quizList.getItems().remove(quiz);
+//        }
+//        return quizList;
     }
-}
+
 
 
