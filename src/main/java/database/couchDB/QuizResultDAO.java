@@ -10,12 +10,12 @@ import view.Main;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CouchUserDAO {
+public class QuizResultDAO {
 
     private CouchDBaccess couchDBaccess;
     private Gson gson;
 
-    public CouchUserDAO(CouchDBaccess couchDBaccess) {
+    public QuizResultDAO(CouchDBaccess couchDBaccess) {
         this.couchDBaccess = couchDBaccess;
         this.gson = new Gson();
     }

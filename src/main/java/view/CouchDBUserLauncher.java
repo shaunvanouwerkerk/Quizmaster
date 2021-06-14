@@ -1,20 +1,19 @@
 package view;
 
 import database.couchDB.CouchDBaccess;
-import database.couchDB.CouchUserDAO;
+import database.couchDB.QuizResultDAO;
 import model.User;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class CouchDBUserLauncher {
 
     private CouchDBaccess couchDBaccess;
-    private CouchUserDAO couchUserDAO;
+    private QuizResultDAO couchUserDAO;
 
     public CouchDBUserLauncher() {
         this.couchDBaccess = new CouchDBaccess();
-        this.couchUserDAO = new CouchUserDAO(couchDBaccess);
+        this.couchUserDAO = new QuizResultDAO(couchDBaccess);
     }
 
     public static void main(String[] args) {

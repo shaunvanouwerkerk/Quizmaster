@@ -29,7 +29,7 @@ public class CouchDBaccess {
         //uncomment to set the username
          properties.setUsername("admin");
         //uncomment to set the password
-         properties.setPassword("admin");
+         properties.setPassword("Gerke");
         //Create the database client and setup the connection with given 
         //properties
 
