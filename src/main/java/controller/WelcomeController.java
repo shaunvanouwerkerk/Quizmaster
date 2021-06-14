@@ -2,6 +2,7 @@ package controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import model.Course;
@@ -92,12 +93,15 @@ public class  WelcomeController {
     public void setupCoordinator() {
         MenuItem item1 = new MenuItem("Beheer Quizzen");
         MenuItem item2 = new MenuItem("Beheer vragen");
+        MenuItem item3 = new MenuItem("Coördinator Dashboard");
 
         item1.setOnAction(event -> Main.getSceneManager().showManageQuizScene());
         item2.setOnAction(event -> Main.getSceneManager().showManageQuestionsScene());
+        item3.setOnAction(event -> Main.getSceneManager().showCoordinatorDashboard());
 
         taskMenuButton.getItems().add(item1);
         taskMenuButton.getItems().add(item2);
+        taskMenuButton.getItems().add(item3);
     }
 
     public void setup() {

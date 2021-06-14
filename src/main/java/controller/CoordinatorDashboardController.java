@@ -1,5 +1,8 @@
 package controller;
 
+import database.mysql.CourseDAO;
+import database.mysql.DBAccess;
+import database.mysql.QuizDAO;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
@@ -7,8 +10,16 @@ import javafx.scene.control.ListView;
 import model.Course;
 import model.Question;
 import model.Quiz;
+import view.Main;
+
+import java.util.ArrayList;
 
 public class CoordinatorDashboardController {
+    // SHAUNS TOEVOEGING
+//    private CourseDAO courseDAO;
+//    private QuizDAO quizDAO;
+//    private DBAccess dBaccess;
+
 
     @FXML
     private ListView<Course> courseList;
@@ -17,7 +28,12 @@ public class CoordinatorDashboardController {
     @FXML
     private ListView<Question> questionList;
 
+    // SHAUNS TOEVOEGING
+//    public CoordinatorDashboardController() {this.dBaccess = Main.getDBaccess();}
+
     public void setup() {
+
+
         courseList.getSelectionModel().selectedItemProperty().addListener(
                 new ChangeListener<Course>() {
                     @Override
@@ -34,14 +50,31 @@ public class CoordinatorDashboardController {
                     }
                 });
     }
+    // SHAUNS TOEVOEGING
+    //        this.courseDAO = new CourseDAO(this.dBaccess);
+//        ArrayList<Course> allCourses = courseDAO.getAll();
+//        for (Course course : allCourses) {
+//            courseList.getItems().add(course);
+//        }
+//        courseList.getSelectionModel().selectFirst();
 
-    public void doNewQuiz() { }
+    public void doNewQuiz() {
+        Main.getSceneManager().showCreateQuizScene(quizList.getSelectionModel().getSelectedItem());
+    }
 
-    public void doEditQuiz() { }
+    public void doEditQuiz() {
+        Main.getSceneManager().showUpdateQuizScene(quizList.getSelectionModel().getSelectedItem());
+    }
 
-    public void doNewQuestion() { }
+    public void doNewQuestion() {
+        Main.getSceneManager().showCreateQuestionScene();
+    }
 
-    public void doEditQuestion() { }
+    public void doEditQuestion() {
+        Main.getSceneManager().showUpdateQuestionScene(questionList.getSelectionModel().getSelectedItem());
+    }
 
-    public void doMenu() { }
+    public void doMenu() {
+        Main.getSceneManager().showWelcomeScene();
+    }
 }
