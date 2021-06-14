@@ -21,8 +21,11 @@ public class HaroldTest{
 
         //controle werking methode gettAll in CourseDAO class
         CourseDAO test = new CourseDAO(dbAccess);
+        System.out.println(test.getAll());
 
-        //System.out.println(test.getAll());
+        //controle werking methode getCoursesStudentSignIn
+        System.out.println(test.getCoursesStudentSignIn(1));
+        System.out.println(test.getCoursesStudentSignOut(1));
 
         //controle werking methode getNamesCoordinator in UserDAO class
         //UserDAO test1 = new UserDAO(dbAccess);
@@ -32,7 +35,7 @@ public class HaroldTest{
         //System.out.println(test.getOneById(4));
 
         //controle werking methode returnNumberOfStudentsByIdCourse
-        System.out.println(test.returnNumberOfStudentsByIdCourse(8));
+        //System.out.println(test.returnNumberOfStudentsByIdCourse(8));
 
         //controle werking methode storeOne
         //test.storeOne(cursus1);
