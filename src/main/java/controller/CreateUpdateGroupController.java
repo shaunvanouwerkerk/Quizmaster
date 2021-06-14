@@ -65,8 +65,10 @@ public class CreateUpdateGroupController {
         textfieldGroupName.setText(group.getNameGroup());
         textfieldGroupName.setEditable(true);
         labelIdCoordinator.setText("Huidige coördinator");
+        textfieldCurrentCoordinatorId.setVisible(true);
         textfieldCurrentCoordinatorId.setText(String.valueOf(userDAO.getOneById(group.getIdCooridnator())));
         labelIdCourse.setText("Huidige cursus");
+        textfieldCurrentCourseId.setVisible(true);
         textfieldCurrentCourseId.setText(String.valueOf(courseDAO.getOneById(group.getIdCourse())));
         addGroup.setText("Wijzig groep");
         addGroup.setOnAction(event -> doUpdateGroup(group));
