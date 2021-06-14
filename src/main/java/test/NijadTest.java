@@ -7,7 +7,11 @@ import model.Question;
 import model.Quiz;
 import view.Main;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 public class NijadTest {
 
@@ -55,14 +59,31 @@ public class NijadTest {
         // Een vraag in aanpassen
         DBAccess dbAccess = Main.getDBaccess();
         QuestionDAO questionDAO = new QuestionDAO(dbAccess);
-        Question question = new Question(11, 5, "Dit is een aangepaste vraag", "juiste antwoord",
-                "b", "c", "d");
-        questionDAO.updateOne(question);
+        // Question question = new Question(11, 5, "Dit is een aangepaste vraag", "juiste antwoord",
+        //        "b", "c", "d");
+        // questionDAO.updateOne(question);
+        Question question = questionDAO.getOneById(2);
+        String[] answers = setUpShuffledAnswers(question);
+        for (int i = 0; i < 4; i++) {
+            System.out.println(answers[i]);
+        }
 
 
     }
 
+    public static String[] setUpShuffledAnswers (Question question) {
+        String[] antwoorden = new String[4];
+        antwoorden[0] = question.getAnswerA();
+        antwoorden[1] = question.getAnswerB();
+        antwoorden[2] = question.getAnswerC();
+        antwoorden[3] = question.getAnswerD();
 
+        // Shuffle answers
+        List<String> listToBeShuffled = Arrays.asList(antwoorden);
+        Collections.shuffle(listToBeShuffled);
+        listToBeShuffled.toArray(antwoorden);
 
+        return antwoorden;
+    }
 
 }
