@@ -154,7 +154,6 @@ public class CourseDAO extends AbstractDAO implements GenericDAO<Course>{
             ResultSet resultSet = executeSelectStatement();
             while (resultSet.next()) {
                 aantalStudenten = resultSet.getInt("aantalStudenten");
-
             }
             if (!(resultSet.next())) {
                 return aantalStudenten;
@@ -164,6 +163,54 @@ public class CourseDAO extends AbstractDAO implements GenericDAO<Course>{
         }
         return aantalStudenten;
     }
+
+    //methode om cursussen te tonen waar een student zich voor kan inschrijven
+    public ArrayList<Course> getCoursesStudentSignIn(int idStudent) {
+        String sql = "SELECT * FROM course WHERE idCourse NOT IN (SELECT idCourse FROM studentincourse WHERE idStudent = ?);";
+        ArrayList<Course> courses = new ArrayList<>();
+        Course result = null;
+        try {
+            setupPreparedStatement(sql);
+            preparedStatement.setInt(1, idStudent);
+            ResultSet resultSet = executeSelectStatement();
+            while (resultSet.next()) {
+                String nameCourse = resultSet.getString("nameCourse");
+                int idCourse = resultSet.getInt("idCourse");
+                result = new Course(nameCourse,idCourse);
+                courses.add(result);
+            }
+        }
+        catch (SQLException sqlException){
+            System.out.println("SQL error " + sqlException.getMessage());
+        }
+        return courses;
+    }
+
+    //methode om cursussen te tonen waar een student zich voor kan uitschrijven
+    public ArrayList<Course> getCoursesStudentSignOut(int idStudent) {
+        String sql = "SELECT * FROM course C LEFT JOIN studentincourse S ON C.idCourse = S.idCourse WHERE idStudent = ?;";
+        ArrayList<Course> courses = new ArrayList<>();
+        Course result = null;
+        try {
+            setupPreparedStatement(sql);
+            preparedStatement.setInt(1, idStudent);
+            ResultSet resultSet = executeSelectStatement();
+            while (resultSet.next()) {
+                String nameCourse = resultSet.getString("nameCourse");
+                int idCourse = resultSet.getInt("idCourse");
+                result = new Course(nameCourse,idCourse);
+                courses.add(result);
+            }
+        }
+        catch (SQLException sqlException){
+            System.out.println("SQL error " + sqlException.getMessage());
+        }
+        return courses;
+    }
+
+    //methode voor het opslaan van inschrijvingen/uitschrijvingen studenten
+
+
 }
 
 
