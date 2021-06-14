@@ -16,6 +16,7 @@ public class CouchDBUserLauncher {
     public static void main(String[] args) {
         CouchDBUserLauncher userLauncher = new CouchDBUserLauncher();
         userLauncher.run();
+        userLauncher.couchUserDAO.createUserAsJson();
     }
 
     public void run() {

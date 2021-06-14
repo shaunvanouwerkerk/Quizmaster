@@ -13,7 +13,7 @@ public class CouchDBaccess {
         CouchDbProperties properties = new CouchDbProperties();
 
         //Set the database name
-        properties.setDbName("Quizmaster");
+        properties.setDbName("quizmaster");
 
         //Create the database if it didn't already exist
         properties.setCreateDbIfNotExist(true);
