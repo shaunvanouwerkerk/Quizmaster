@@ -84,7 +84,7 @@ CREATE TABLE `group` (
   KEY `fk_Group_Course1_idx` (`idCourse`),
   CONSTRAINT `fk_Group_Course1` FOREIGN KEY (`idCourse`) REFERENCES `course` (`idCourse`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_Group_Gebruiker1` FOREIGN KEY (`idCoordinatorGroup`) REFERENCES `user` (`idUser`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb3
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
