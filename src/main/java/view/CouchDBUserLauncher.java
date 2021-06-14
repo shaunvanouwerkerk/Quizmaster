@@ -17,10 +17,11 @@ public class CouchDBUserLauncher {
     public static void main(String[] args) {
         CouchDBUserLauncher userLauncher = new CouchDBUserLauncher();
         userLauncher.run();
-        userLauncher.couchUserDAO.createUserAsJson();
 
-/*        User testUser = new User("password", "branko", Main.STUDENT_ROL);
-        userLauncher.couchUserDAO.saveSingleUser(testUser);*/
+        //Onderstaande regel run je om alle gebruikers die we hebben aangemaakt in de SQL DB,
+        // ook in de CouchDB quizmaster te plaatsen
+             //userLauncher.couchUserDAO.saveAllUsersFromSQLDatabase();
+
     }
 
     public void run() {

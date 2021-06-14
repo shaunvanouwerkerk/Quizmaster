@@ -26,6 +26,7 @@ public class CouchUserDAO {
     }
 
     //Methode om alle users uit de SQL DB te halen en te printen mbv printUser methode
+    //deze methode heb ik geschreven om 'te spelen' met couchDB en het te begrijpen
     public void createUserAsJson() {
         UserDAO userDAO = new UserDAO(Main.getDBaccess());
         ArrayList<User> users = userDAO.getAll();
@@ -34,14 +35,18 @@ public class CouchUserDAO {
         }
     }
 
-    public String saveSingleUser(User user) {
-        String jsonstring = gson.toJson(user);
-        System.out.println(jsonstring);
+    public void saveSingleUser(User user) {
         JsonParser jsonParser = new JsonParser();
-        JsonObject jsonObject = jsonParser.parse(jsonstring).getAsJsonObject();
-        System.out.println(jsonObject);
-        String doc_Id = couchDBaccess.saveDocument(jsonObject);
-        return doc_Id;
+        JsonObject jsonObject = jsonParser.parse(gson.toJson(user)).getAsJsonObject();
+        couchDBaccess.saveDocument(jsonObject);
+    }
+
+    public void saveAllUsersFromSQLDatabase() {
+        UserDAO userDAO = new UserDAO(Main.getDBaccess());
+        ArrayList<User> users = userDAO.getAll();
+        for(User user : users) {
+            saveSingleUser(user);
+        }
     }
 
 
