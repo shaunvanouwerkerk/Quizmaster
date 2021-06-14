@@ -16,7 +16,7 @@ public class CourseDAO extends AbstractDAO implements GenericDAO<Course>{
 
     public CourseDAO (DBAccess dbAccess) {super(dbAccess);}
 
-
+    //methode om alle cursussen te selecteren
     @Override
     public ArrayList<Course> getAll() {
         String sql = "SELECT * FROM Course";
@@ -38,6 +38,7 @@ public class CourseDAO extends AbstractDAO implements GenericDAO<Course>{
         return listCourses;
     }
 
+    //methode om een cursus te selecteren op basis van het id
     @Override
     public Course getOneById(int id) {
         String sql = "SELECT * FROM Course Where idCourse = ?";
@@ -61,7 +62,7 @@ public class CourseDAO extends AbstractDAO implements GenericDAO<Course>{
         return result;
     }
 
-
+    //methode om een nieuwe cursus op te slaan
     @Override
     public void storeOne(Course course) {
         String sql = "Insert into Course(nameCourse, idCoordinatorCourse) values(?,?) ;";
@@ -86,6 +87,27 @@ public class CourseDAO extends AbstractDAO implements GenericDAO<Course>{
         }
     }
 
+    //methode om een cursus te wijzigen
+    public void updateCourse(Course course) {
+        String sql = "UPDATE course SET nameCourse = ?, idCoordinatorCourse = ? WHERE idCourse = ?";
+        try {
+            setupPreparedStatement(sql);
+            preparedStatement.setString(1, course.getNameCourse());
+            preparedStatement.setInt(2, course.getIdCoordinator());
+            preparedStatement.setInt(3, course.getIdCourse());
+            System.out.println(course);
+            executeManipulateStatement();
+        } catch (SQLException sqlException) {
+            Alert foutmelding = new Alert(Alert.AlertType.ERROR);
+            if(sqlException.getMessage().contains("Duplicate")) {
+                foutmelding.setContentText("Deze cursus bestaat al! Cursus is niet gewijzigd.");
+            } else {
+                foutmelding.setContentText("Cursus kon niet worden gewijzigd.");
+            }
+            foutmelding.show();
+            System.out.println(sqlException.getMessage());
+        }
+    }
 
     //methode voor het verwijderen van een Course
     public void deleteCourse(Course course) {
@@ -99,7 +121,7 @@ public class CourseDAO extends AbstractDAO implements GenericDAO<Course>{
         }
     }
 
-
+    //???? waar is deze methode voor bedoelt?
     public ArrayList<Course> getCoursesByIdCoordinator(int id) {
         String sql = "SELECT * FROM Course Where idCoordinatorCourse = ?";
         ArrayList<Course> courses = new ArrayList<>();
@@ -121,27 +143,29 @@ public class CourseDAO extends AbstractDAO implements GenericDAO<Course>{
         }
         return courses;
     }
-    public void updateCourse(Course course) {
-        String sql = "UPDATE course SET nameCourse = ?, idCoordinatorCourse = ? WHERE idCourse = ?";
 
+    //methode om het aantal studenten per cursus op te vragen
+    public int returnNumberOfStudentsByIdCourse (int idCourse){
+        String sql = "SELECT idCourse, COUNT(*) aantalStudenten FROM studentincourse WHERE idCourse = ?;";
+        int aantalStudenten = 0;
         try {
             setupPreparedStatement(sql);
-            preparedStatement.setString(1, course.getNameCourse());
-            preparedStatement.setInt(2, course.getIdCoordinator());
-            preparedStatement.setInt(3, course.getIdCourse());
-            System.out.println(course);
-            executeManipulateStatement();
-        } catch (SQLException sqlException) {
-            Alert foutmelding = new Alert(Alert.AlertType.ERROR);
-            if(sqlException.getMessage().contains("Duplicate")) {
-                foutmelding.setContentText("Deze cursus bestaat al! Cursus is niet gewijzigd.");
-            } else {
-                foutmelding.setContentText("Cursus kon niet worden gewijzigd.");
+            preparedStatement.setInt(1, idCourse);
+            ResultSet resultSet = executeSelectStatement();
+            while (resultSet.next()) {
+                aantalStudenten = resultSet.getInt("aantalStudenten");
+
             }
-            foutmelding.show();
+            if (!(resultSet.next())) {
+                return aantalStudenten;
+            }
+        } catch (SQLException sqlException) {
             System.out.println(sqlException.getMessage());
         }
+        return aantalStudenten;
     }
+}
 
-    }
+
+
 
