@@ -56,6 +56,8 @@ public class ManageCoursesController {
         Main.getSceneManager().showUpdateCourseScene(courseList.getSelectionModel().getSelectedItem());
     }
 
+    public void showNumberOfStudentsPerCourse (){}
+
 
 
     public void doDeleteCourse() {

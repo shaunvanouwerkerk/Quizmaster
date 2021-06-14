@@ -144,6 +144,13 @@ public class CourseDAO extends AbstractDAO implements GenericDAO<Course>{
         return courses;
     }
 
+    //methode om het aantal studenten per cursus op te vragen
+    public int returnNumberOfStudentsByIdCourse (int id){
+        String sql = "SELECT * FROM Course Where idCoordinatorCourse = ?";
+        int aantalStudenten;
+
+    }
+
 
     }
 

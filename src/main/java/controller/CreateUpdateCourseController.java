@@ -70,7 +70,7 @@ public class CreateUpdateCourseController {
             int coordinatorId = userButton.getSelectionModel().getSelectedItem().getIdUser();
             Course course = new Course(courseName, coordinatorId);
             courseDAO.storeOne(course);
-            Main.getSceneManager().showManageCoursesScene();
+            doClear();
         }
     }
 
@@ -133,6 +133,12 @@ public class CreateUpdateCourseController {
         }
         System.out.println(allFields);
         return allFields;
+    }
+
+    //methode om de invoervelden leeg te maken
+    public void doClear() {
+        nameCourseTextfield.clear();
+        userButton.getSelectionModel().clearSelection();
     }
 
    }
