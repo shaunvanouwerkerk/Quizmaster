@@ -59,15 +59,27 @@ public class ManageUsersController {
     }
 
     public void doDeleteUser() {
+        boolean userDeleted = false;
+        User userToDelete = userList.getSelectionModel().getSelectedItem();
+
         Alert deleteAlert = new Alert(Alert.AlertType.CONFIRMATION);
         deleteAlert.setTitle("Verwijderen gebruiker");
         deleteAlert.setHeaderText(String.format("Weet je zeker dat je gebruiker %s wilt verwijderen?",
-                userList.getSelectionModel().getSelectedItem().toString()));
+                userToDelete));
         deleteAlert.setContentText("Dit kun je niet ongedaan maken.");
+
         Optional<ButtonType> result = deleteAlert.showAndWait();
         if(result.get() == ButtonType.OK) {
-            userDAO.deleteUser(userList.getSelectionModel().getSelectedItem());
+            userDeleted = userDAO.deleteUser(userToDelete);
         }
+
+        Alert deleteInformation = new Alert(Alert.AlertType.INFORMATION);
+        if (userDeleted) {
+            deleteInformation.setTitle("Gebruiker verwijderd");
+            deleteInformation.setHeaderText(String.format("Gebruiker %s is verwijderd", userToDelete.toString()));
+            deleteInformation.show();
+        }
+        Main.getSceneManager().showManageUserScene();
     }
 
     public void setLabelRoleCount(String role) {

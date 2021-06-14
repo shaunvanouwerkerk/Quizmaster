@@ -21,7 +21,7 @@ public class CreateUpdateQuestionController {
     private QuestionDAO questionDAO;
     private QuizDAO quizDAO;
     private ArrayList<Quiz> allQuizzes;
-    private int idQuiz;
+    private int idQuestion;
     private static final String NIEUWE_VRAAG_AANMAKEN = "Een vraag aanmaken";
     private static final int LENGTE_INVULL_VELDEN = 45;
 
@@ -40,7 +40,7 @@ public class CreateUpdateQuestionController {
     @FXML
     private ComboBox<Quiz> quizzen;
     @FXML
-    private TextField idQuestion;
+    private Button createUpdateQuestionButton;
 
     public CreateUpdateQuestionController () {
         this.dbAccess = Main.getDBaccess();
@@ -50,87 +50,82 @@ public class CreateUpdateQuestionController {
 
     public void setup(Question question) {
         questionString.setText(question.getQuestionString());
-        idQuestion.setText(String.valueOf(question.getIdQuestion()));
         antwoordA.setText(question.getAnswerA());
         antwoordB.setText(question.getAnswerB());
         antwoordC.setText(question.getAnswerC());
         antwoordD.setText(question.getAnswerD());
-        Quiz quiz = quizDAO.getOneById(question.getIdQuiz());
-        quizzen.getItems().add(quiz);
-        quizzen.getSelectionModel().selectFirst();
-        this.idQuiz = question.getIdQuiz();
+        this.idQuestion = question.getIdQuestion();
+        ComboBox<Quiz> keuzeBox = setTaskMenuButtonQuizzes();
+        quizzen.setOnAction(event-> keuzeBox.getSelectionModel().getSelectedItem());
+        createUpdateQuestionButton.setOnAction(event-> updateQuestion());
     }
 
     public void setupCreateQuestion() {
-          doClear();
-          hoofdTitel.setText(NIEUWE_VRAAG_AANMAKEN);
-          quizzen = setTaskMenuButtonQuizzes();
-          quizzen.getSelectionModel().selectFirst();
-          quizzen.setOnAction(event-> quizzen.getSelectionModel().getSelectedItem());
+        doClear();
+        hoofdTitel.setText(NIEUWE_VRAAG_AANMAKEN);
+        setTaskMenuButtonQuizzes();
+        quizzen.getSelectionModel().getSelectedItem();
     }
-
-    public void doMenu() {
-        Main.getSceneManager().showManageQuestionsScene();
-    }
-
 
     public void doCreateUpdateQuestion() {
         boolean correctFilledOut = checkFields();
         boolean juisteLengte = checkLengteInvuldVelden();
         if (correctFilledOut) {
-                if (hoofdTitel.getText().equals(NIEUWE_VRAAG_AANMAKEN)) {
-                    String nieuweQuestionString = questionString.getText();
-                    String nieuweAntwoordA = antwoordA.getText();
-                    String nieuweAntwoordB = antwoordB.getText();
-                    String nieuweAntwoordC = antwoordC.getText();
-                    String nieuweAntwoordD = antwoordD.getText();
-                    Question nieuweQuestion = new Question(quizzen.getSelectionModel().getSelectedItem().getIdQuiz(), nieuweQuestionString,
-                            nieuweAntwoordA, nieuweAntwoordB, nieuweAntwoordC, nieuweAntwoordD);
-                    questionDAO.storeOne(nieuweQuestion);
+            String nieuweQuestionString = questionString.getText();
+            String nieuweAntwoordA = antwoordA.getText();
+            String nieuweAntwoordB = antwoordB.getText();
+            String nieuweAntwoordC = antwoordC.getText();
+            String nieuweAntwoordD = antwoordD.getText();
+            Question nieuweQuestion = new Question(quizzen.getSelectionModel().getSelectedItem().getIdQuiz(), nieuweQuestionString,
+                    nieuweAntwoordA, nieuweAntwoordB, nieuweAntwoordC, nieuweAntwoordD);
+            questionDAO.storeOne(nieuweQuestion);
 
-                    if (juisteLengte) {
-                        Alert bevestigAanmakenVraag = new Alert(Alert.AlertType.INFORMATION);
-                        bevestigAanmakenVraag.setContentText("Vraag is succesvol aangemaakt");
-                        bevestigAanmakenVraag.show();
-                        doClear();
-                    } else {
-                        Alert bevestigAanmakenVraag = new Alert(Alert.AlertType.ERROR);
-                        bevestigAanmakenVraag.setContentText("Vraag en/of antwoord mag niet langer dan 45 tekens zijn");
-                        bevestigAanmakenVraag.showAndWait();
-                        doClear();
-                    }
-                } else {
-                    // 2. Update Question Scenario
-                    String updateQuestionString = questionString.getText();
-                    String updateAntwoordA = antwoordA.getText();
-                    String updateAntwoordB = antwoordB.getText();
-                    String updateAntwoordC = antwoordC.getText();
-                    String updateAntwoordD = antwoordD.getText();
-                    Question updateQuestion = new Question(this.idQuiz, updateQuestionString, updateAntwoordA,
-                            updateAntwoordB, updateAntwoordC, updateAntwoordD);
-
-                    updateQuestion.setIdQuestion(Integer.parseInt(idQuestion.getText()));
-                    questionDAO.updateOne(updateQuestion);
-
-                    if (juisteLengte) {
-                        Alert bevestigAanpassenVraag = new Alert(Alert.AlertType.INFORMATION);
-                        bevestigAanpassenVraag.setContentText("Vraag is succesvol aangepast");
-                        bevestigAanpassenVraag.show();
-                        doClear();
-                    } else {
-                        Alert bevestigAanmakenVraag = new Alert(Alert.AlertType.ERROR);
-                        bevestigAanmakenVraag.setContentText("Vraag en/of antwoord mag niet langer dan 45 tekens zijn");
-                        bevestigAanmakenVraag.showAndWait();
-                        doClear();
-                    }
-                }
+            if (juisteLengte) {
+                Alert bevestigAanmakenVraag = new Alert(Alert.AlertType.INFORMATION);
+                bevestigAanmakenVraag.setContentText("Vraag is succesvol aangemaakt");
+                bevestigAanmakenVraag.show();
+                doClear();
+                quizzen.getSelectionModel().getSelectedItem();
+            } else {
+                Alert bevestigAanmakenVraag = new Alert(Alert.AlertType.ERROR);
+                bevestigAanmakenVraag.setContentText("Vraag en/of antwoord mag niet langer dan 45 tekens zijn");
+                bevestigAanmakenVraag.showAndWait();
+                doClear();
+            }
         }
     }
 
+    public void updateQuestion() {
+        boolean correctFilledOut = checkFields();
+        boolean juisteLengte = checkLengteInvuldVelden();
+        if (correctFilledOut) {
+            String updateQuestionString = questionString.getText();
+            String updateAntwoordA = antwoordA.getText();
+            String updateAntwoordB = antwoordB.getText();
+            String updateAntwoordC = antwoordC.getText();
+            String updateAntwoordD = antwoordD.getText();
+            Question updateQuestion = new Question(this.idQuestion, quizzen.getSelectionModel().getSelectedItem().getIdQuiz(), updateQuestionString, updateAntwoordA,
+                    updateAntwoordB, updateAntwoordC, updateAntwoordD);
+            questionDAO.updateOne(updateQuestion);
+
+            if (juisteLengte) {
+                Alert bevestigAanpassenVraag = new Alert(Alert.AlertType.INFORMATION);
+                bevestigAanpassenVraag.setContentText("Vraag is succesvol aangepast");
+                bevestigAanpassenVraag.show();
+                doClear();
+                Main.getSceneManager().showManageQuestionsScene();
+            } else {
+                Alert bevestigAanmakenVraag = new Alert(Alert.AlertType.ERROR);
+                bevestigAanmakenVraag.setContentText("Vraag en/of antwoord mag niet langer dan 45 tekens zijn");
+                bevestigAanmakenVraag.showAndWait();
+                doClear();
+            }
+        }
+    }
 
     // Methode om gevulde dropdown met quizzen te krijgen
     public ComboBox<Quiz> setTaskMenuButtonQuizzes() {
-        allQuizzes = questionDAO.getQuizzesByLoggedInUser(Main.loggedInUser.getIdUser());
+        this.allQuizzes = questionDAO.getQuizzesByLoggedInUser(Main.loggedInUser.getIdUser());
         ObservableList<Quiz> observableList = FXCollections.observableList(allQuizzes);
         ComboBox<Quiz> comboBox = new ComboBox<>(observableList);
         for (Quiz quiz: observableList) {
@@ -142,11 +137,14 @@ public class CreateUpdateQuestionController {
     // Methode die alle velden leeg maakt
     public void doClear() {
         questionString.clear();
-        idQuestion.clear();
         antwoordA.clear();
         antwoordB.clear();
         antwoordC.clear();
         antwoordD.clear();
+    }
+
+    public void doMenu() {
+        Main.getSceneManager().showManageQuestionsScene();
     }
 
     public boolean checkFields() throws IllegalArgumentException {
@@ -203,16 +201,12 @@ public class CreateUpdateQuestionController {
     }
 
     public boolean checkLengteInvuldVelden () {
-        boolean juisteLengte = false;
-        if (questionString.getText().length() <= LENGTE_INVULL_VELDEN
+        boolean juisteLengte = questionString.getText().length() <= LENGTE_INVULL_VELDEN
                 && antwoordA.getText().length() <= LENGTE_INVULL_VELDEN
                 && antwoordB.getText().length() <= LENGTE_INVULL_VELDEN
                 && antwoordC.getText().length() <= LENGTE_INVULL_VELDEN
-                && antwoordD.getText().length() <= LENGTE_INVULL_VELDEN) {
-            juisteLengte = true;
-        }
+                && antwoordD.getText().length() <= LENGTE_INVULL_VELDEN;
         return juisteLengte;
     }
-
 
 }

@@ -37,11 +37,6 @@
             <Font size="14.0" />
         </font>
     </Button>
-    <Button layoutX="527.0" layoutY="292.0" mnemonicParsing="false" onAction="#doClear" text="Maak invulvelden leeg">
-        <font>
-            <Font size="14.0" />
-        </font>
-    </Button>
    <AnchorPane prefHeight="200.0" prefWidth="200.0">
       <children>
           <Button layoutX="42.0" layoutY="36.0" mnemonicParsing="false" onAction="#doMenu" text="Menu">

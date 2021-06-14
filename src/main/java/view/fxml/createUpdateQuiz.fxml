@@ -13,11 +13,9 @@
          <font>
             <Font size="18.0" />
          </font></Label>
-      <Label fx:id="quizId" layoutX="204.0" layoutY="247.0" text="Quiz ID" />
-      <Label fx:id="courseId" layoutX="204.0" layoutY="157.0" text="Course ID*" />
+      <Label fx:id="courseId" layoutX="204.0" layoutY="157.0" text="Course:*" />
       <Label fx:id="quizName" layoutX="204.0" layoutY="278.0" text="Quiz Naam" />
       <Label fx:id="succesDefinition" layoutX="204.0" layoutY="309.0" text="Succesdefinitie" />
-      <TextField fx:id="textfieldQuizId" disable="true" layoutX="312.0" layoutY="243.0" prefHeight="25.0" prefWidth="215.0" />
       <TextField fx:id="textfieldQuizName" layoutX="312.0" layoutY="274.0" prefHeight="25.0" prefWidth="215.0" promptText="Voer hier je quiznaam in" />
       <TextField fx:id="textfieldSuccesDefinition" layoutX="312.0" layoutY="305.0" prefHeight="25.0" prefWidth="215.0" promptText="Voer hier de succesdefinitie toe" />
       <Button layoutX="201.0" layoutY="374.0" mnemonicParsing="false" onAction="#doMenu" text="Menu" />

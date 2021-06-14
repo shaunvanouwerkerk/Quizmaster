@@ -5,6 +5,7 @@ import database.mysql.DBAccess;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import model.Course;
+import view.Main;
 
 import java.util.ArrayList;
 

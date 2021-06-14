@@ -79,6 +79,8 @@ INSERT INTO user(password, name, roleName) VALUES ('s1','s1','student'),('d1','d
 --
 -- Dumping data for table `usermakesquiz`
 --
+INSERT INTO `quizmaster`.`studentincourse` (`idCourse`, `idStudent`) VALUES ('1', '1'),('2', '1'),('3', '1'),('4', '5')
+,('1', '6'),('1', '7'),('1', '8'),('1', '8'),('2', '6'),('2', '7'),('2', '8'),('2', '9');
 
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;

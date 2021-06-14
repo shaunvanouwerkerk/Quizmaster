@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ManageGroupsController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ManageGroupsController">
     <Label layoutX="14.0" layoutY="14.0" text="Groepenbeheer">
         <font>
             <Font size="18.0" />
@@ -36,4 +36,22 @@
             <Font size="14.0" />
         </font>
     </Button>
+<!--   <Label layoutX="333.0" layoutY="78.0" text="Coordinator van deze groep">-->
+<!--      <font>-->
+<!--         <Font size="14.0" />-->
+<!--      </font>-->
+<!--   </Label>-->
+<!--   <TextField fx:id="textfieldCoordinatorName" layoutX="333.0" layoutY="98.0" text=""/>-->
+<!--   <Label layoutX="334.0" layoutY="156.0" text="Cursus waar deze groep in zit">-->
+<!--      <font>-->
+<!--         <Font size="14.0" />-->
+<!--      </font>-->
+<!--   </Label>-->
+<!--   <TextField fx:id="textfieldCourseName 334.0" layoutY="176.0" text=""/>-->
+<!--   <Label layoutX="333.0" layoutY="200.0" text="Aantal groepen in deze cursus">-->
+<!--      <font>-->
+<!--         <Font size="14.0" />-->
+<!--      </font>-->
+<!--   </Label>-->
+<!--   <TextField layoutX="333.0" layoutY="220.0" text=""/>-->
 </AnchorPane>
