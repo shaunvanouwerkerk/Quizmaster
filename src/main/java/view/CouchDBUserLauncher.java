@@ -4,6 +4,9 @@ import database.couchDB.CouchDBaccess;
 import database.couchDB.CouchUserDAO;
 import model.User;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 public class CouchDBUserLauncher {
 
     private CouchDBaccess couchDBaccess;
@@ -17,10 +20,12 @@ public class CouchDBUserLauncher {
     public static void main(String[] args) {
         CouchDBUserLauncher userLauncher = new CouchDBUserLauncher();
         userLauncher.run();
-        userLauncher.couchUserDAO.createUserAsJson();
+        ArrayList<User> allStudents = userLauncher.couchUserDAO.getAllStudents();
 
-/*        User testUser = new User("password", "branko", Main.STUDENT_ROL);
-        userLauncher.couchUserDAO.saveSingleUser(testUser);*/
+        //Onderstaande regel run je om alle gebruikers die we hebben aangemaakt in de SQL DB,
+        // ook in de CouchDB quizmaster te plaatsen
+             //userLauncher.couchUserDAO.saveAllUsersFromSQLDatabase();
+
     }
 
     public void run() {
