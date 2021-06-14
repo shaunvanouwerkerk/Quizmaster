@@ -6,6 +6,7 @@ package database.mysql;
 // TODO: 08/06/2021 1.Update DAO MAKEN
 
 
+import model.Question;
 import model.Quiz;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -156,6 +157,5 @@ public class QuizDAO extends AbstractDAO implements GenericDAO <Quiz> {
         }
         return questionsExistInDatabase;
     }
-
 
 }

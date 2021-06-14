@@ -5,9 +5,12 @@ package test;
 
 import database.mysql.QuizDAO;
 import database.mysql.UserDAO;
+import model.Question;
 import model.Quiz;
 import view.Main;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class ShaunTest {
@@ -71,6 +74,34 @@ public class ShaunTest {
 //        return result;
     }
 }
+
+//    // METHODE SHAUN, NOG EVEN LATEN STAAN VOOR DE ZEKERHEID.
+//    public ArrayList<Question> getQuestionByQuizeId(int quizId) {
+//        ArrayList<Question> allQuestion = new ArrayList<>();
+//        Question question = null;
+//        String sql = "SELECT * FROM Questions WHERE idQuiz = ?";
+//
+//        try {
+//            setupPreparedStatement(sql);
+//            preparedStatement.setInt(1, quizId);
+//            ResultSet resultSet = executeSelectStatement();
+//            while (resultSet.next()) {
+//                int idQuestion = resultSet.getInt("idQuestion");
+//                String questionString = resultSet.getString("questionString");
+//                String answerA = resultSet.getString("answerA");
+//                String answerB = resultSet.getString("answerB");
+//                String answerC = resultSet.getString("answerC");
+//                String answerD = resultSet.getString("answerD");
+//                question = new Question(idQuestion, quizId, questionString,
+//                        answerA, answerB, answerC, answerD);
+//                allQuestion.add(question);
+//            }
+//
+//        } catch (SQLException sqlException) {
+//            System.out.println("SQL fout" + sqlException.getMessage());
+//        }
+//        return allQuestion;
+//    }
 
 
 
