@@ -8,6 +8,7 @@ import model.User;
 import view.Main;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class CouchUserDAO {
 
@@ -51,11 +52,31 @@ public class CouchUserDAO {
         }
     }
 
+    //De methode heb ik uit gecomment omdat die werkt als er in de couchDB alléén users staan. Zodra je meerdere objecten
+    //gaat aanmaken in dezelfde DB, werkt dit niet meer.
     public ArrayList<User> getAllUsers() {
         ArrayList<User> allUsers = new ArrayList<>();
-
-
+        User user = null;
+        List<JsonObject> allUsersCouchDb = couchDBaccess.getClient()
+                .view("_all_docs").includeDocs(true)
+                .query(JsonObject.class);
+        System.out.println(allUsersCouchDb);
+        for(JsonObject object : allUsersCouchDb) {
+            user = gson.fromJson(object, User.class);
+            allUsers.add(user);
+        }
         return allUsers;
+    }
+
+    public ArrayList<User> getAllStudents() {
+        ArrayList<User> users = getAllUsers();
+        ArrayList<User> students = new ArrayList<>();
+        for(User user : users) {
+            if(user.getRoleName().equals(Main.STUDENT_ROL)) {
+                students.add(user);
+            }
+        }
+        return students;
     }
 
 
