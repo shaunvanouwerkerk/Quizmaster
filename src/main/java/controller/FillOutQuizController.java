@@ -7,17 +7,13 @@ package controller;
 import database.mysql.DBAccess;
 import database.mysql.QuestionDAO;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import model.Question;
 import model.Quiz;
 import view.Main;
 
 import java.sql.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class FillOutQuizController {
 
@@ -27,9 +23,10 @@ public class FillOutQuizController {
     private ArrayList<String> juisteAntwoorden;
     private ArrayList<String> studentAntwoorden;
     private String[] antwoordKeuzes;
+    private Quiz huidigeQuiz;
     private int aantalJuisteAntwoorden;
     private int aantalVragenInEenQuiz;
-    // twee aparte huidigeVraagNr: omdat een array met 0 begint
+    // twee aparte huidigeVraagNr: omdat een array met 0 begint en label met 1
     private int huidigeVraagNr;
     private int labelHuidigeVraagNr;
     private static final int AANTAL_ANTWOORDEN = 4;
@@ -38,6 +35,8 @@ public class FillOutQuizController {
     private Label titleLabel;
     @FXML
     private TextArea questionArea;
+    @FXML
+    private Button volgende;
 
     public FillOutQuizController(){
         this.dbAccess = Main.getDBaccess();
@@ -52,6 +51,7 @@ public class FillOutQuizController {
     }
 
     public void setup(Quiz quiz) {
+        huidigeQuiz = quiz;
         // Haal alle vragen per Quiz uit de database
         vragenUitQuiz = questionDAO.getAllperQuiz(quiz);
 
@@ -59,26 +59,61 @@ public class FillOutQuizController {
         for (Question question: vragenUitQuiz) {
             juisteAntwoorden.add(question.getAnswerA());
         }
+
         // Een vraag uit quiz tonen
-        showQuestion(huidigeVraagNr);
+        if (huidigeVraagNr < vragenUitQuiz.size()) {
+            showQuestion(huidigeVraagNr);
+        }
     }
 
-    public void doRegisterA() {}
+    public void doRegisterA() {
+        studentAntwoorden.add(huidigeVraagNr, antwoordKeuzes[0]);
+        doNextQuestion();
+    }
 
-    public void doRegisterB() {}
+    public void doRegisterB() {
+        studentAntwoorden.add(huidigeVraagNr, antwoordKeuzes[1]);
+        doNextQuestion();
+    }
 
-    public void doRegisterC() {}
+    public void doRegisterC() {
+        studentAntwoorden.add(huidigeVraagNr, antwoordKeuzes[2]);
+        doNextQuestion();
+    }
 
-    public void doRegisterD() {}
+    public void doRegisterD() {
+        studentAntwoorden.add(huidigeVraagNr, antwoordKeuzes[3]);
+        doNextQuestion();
+    }
 
     public void doNextQuestion() {
-
-
+        huidigeVraagNr++;
+        labelHuidigeVraagNr++;
+        if(huidigeVraagNr < vragenUitQuiz.size()) {
+            setup(huidigeQuiz);
+        } else if (huidigeVraagNr == vragenUitQuiz.size() || huidigeVraagNr > vragenUitQuiz.size()){
+          Alert quizAfronden = new Alert(Alert.AlertType.CONFIRMATION);
+          quizAfronden.setContentText("Weet je zeker dat je deze quiz wil afsluiten en verzenden?");
+          Optional<ButtonType> decision = quizAfronden.showAndWait();
+          if (decision.get() == ButtonType.OK) {
+              Main.getSceneManager().showStudentFeedback(huidigeQuiz);
+          } else {
+              doPreviousQuestion();
+              volgende.setText("Volgende");
+          }
+        }
     }
 
     public void doPreviousQuestion() {
-
-
+        if (labelHuidigeVraagNr > 1) {
+            huidigeVraagNr--;
+            labelHuidigeVraagNr--;
+            setup(huidigeQuiz);
+        } else if (labelHuidigeVraagNr == 1) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("Dit is de eerste vraag van de quiz");
+            alert.show();
+        }
     }
 
     public void doMenu() {
@@ -91,19 +126,17 @@ public class FillOutQuizController {
         antwoorden[1] = question.getAnswerB();
         antwoorden[2] = question.getAnswerC();
         antwoorden[3] = question.getAnswerD();
-
         // Shuffle answers
         List<String> listToBeShuffled = Arrays.asList(antwoorden);
         Collections.shuffle(listToBeShuffled);
         listToBeShuffled.toArray(antwoorden);
-
         return antwoorden;
     }
 
     public void showQuestion(int vraagNr) {
         antwoordKeuzes = setUpShuffledAnswers(vragenUitQuiz.get(huidigeVraagNr));
 
-        questionArea.setText(String.format("%s\nAntwoord A: %s\nAntwoord B: %s\nAntwoord C: %s\nAntwoord D:%s\n",
+        questionArea.setText(String.format("%s\n\nAntwoord A: %s\nAntwoord B: %s\nAntwoord C: %s\nAntwoord D: %s\n",
                 vragenUitQuiz.get(huidigeVraagNr).toString(), antwoordKeuzes[0], antwoordKeuzes[1],
                 antwoordKeuzes[2], antwoordKeuzes[3]));
         titleLabel.setText(String.format("Vraag %d", labelHuidigeVraagNr));
