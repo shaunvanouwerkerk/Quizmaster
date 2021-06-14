@@ -21,6 +21,7 @@ public class CouchDBUserLauncher {
         CouchDBUserLauncher userLauncher = new CouchDBUserLauncher();
         userLauncher.run();
         ArrayList<User> allStudents = userLauncher.couchUserDAO.getAllStudents();
+        System.out.println(allStudents);
 
         //Onderstaande regel run je om alle gebruikers die we hebben aangemaakt in de SQL DB,
         // ook in de CouchDB quizmaster te plaatsen
