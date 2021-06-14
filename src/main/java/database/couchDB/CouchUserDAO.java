@@ -35,12 +35,14 @@ public class CouchUserDAO {
         }
     }
 
+    //Methode om een user op te slaan in couchDB
     public void saveSingleUser(User user) {
         JsonParser jsonParser = new JsonParser();
         JsonObject jsonObject = jsonParser.parse(gson.toJson(user)).getAsJsonObject();
         couchDBaccess.saveDocument(jsonObject);
     }
 
+    //Hulpmethode om alle users uit de SQL db te halen en in CouchDB op te slaan
     public void saveAllUsersFromSQLDatabase() {
         UserDAO userDAO = new UserDAO(Main.getDBaccess());
         ArrayList<User> users = userDAO.getAll();
@@ -48,6 +50,15 @@ public class CouchUserDAO {
             saveSingleUser(user);
         }
     }
+
+    public ArrayList<User> getAllUsers() {
+        ArrayList<User> allUsers = new ArrayList<>();
+
+
+        return allUsers;
+    }
+
+
 
 
 
