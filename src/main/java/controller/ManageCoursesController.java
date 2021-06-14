@@ -8,11 +8,9 @@ import database.mysql.QuestionDAO;
 import database.mysql.QuizDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import model.Course;
+import model.Question;
 import model.Quiz;
 import view.Main;
 
@@ -30,6 +28,9 @@ public class ManageCoursesController {
     @FXML
     TextField warningText;
 
+    @FXML
+    Label aantalStudentenText;
+
     public ManageCoursesController() {
         this.dBaccess = Main.getDBaccess();
     }
@@ -41,6 +42,8 @@ public class ManageCoursesController {
             courseList.getItems().add(course);
         }
         courseList.getSelectionModel().selectFirst();
+
+        courseList.setOnMouseClicked(mouseEvent -> numberOfStudents());
     }
 
     public void doMenu(ActionEvent actionEvent){
@@ -56,7 +59,9 @@ public class ManageCoursesController {
         Main.getSceneManager().showUpdateCourseScene(courseList.getSelectionModel().getSelectedItem());
     }
 
-    public void showNumberOfStudentsPerCourse (){}
+    public void showNumberOfStudentsPerCourse (){
+
+    }
 
 
 
@@ -85,6 +90,19 @@ public class ManageCoursesController {
             deleteAlert.setHeaderText("Deze cursus kan niet verwijderd worden\ner zijn al quizzen aangemaakt.");
             Optional<ButtonType> result = deleteAlert.showAndWait();
         }
+    }
+    // Methode om het aantal studenten per cursus te tonen
+    public void numberOfStudents () {
+        int aantalStudenten = courseDAO.returnNumberOfStudentsByIdCourse
+                (courseList.getSelectionModel().getSelectedItem().getIdCourse());
+        if (aantalStudenten == 1){
+            aantalStudentenText.setText(String.valueOf(aantalStudenten +
+                    " student heeft zich ingeschreven voor deze cursus "));
+        } else if (aantalStudenten == 0){
+            aantalStudentenText.setText(String.valueOf("Er zijn nog geen studenten ingeschreven voor deze cursus "));
+        } else
+        aantalStudentenText.setText(String.valueOf(aantalStudenten +
+                " studenten hebben zich ingeschreven voor deze cursus "));
     }
 
 }

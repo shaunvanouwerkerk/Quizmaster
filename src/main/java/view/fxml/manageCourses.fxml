@@ -36,5 +36,8 @@
             <Font size="14.0" />
         </font>
     </Button>
-   <TextField fx:id="studentenPerCursus" layoutX="331.0" layoutY="165.0" prefHeight="25.0" prefWidth="225.0" promptText="Aantal studenten per cursus" />
+   <Label fx:id="aantalStudentenText" layoutX="14.0" layoutY="388.0" text="Klik op een cursus om het aantal ingeschreven studenten te zien">
+      <font>
+         <Font size="18.0" />
+      </font></Label>
 </AnchorPane>
