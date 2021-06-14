@@ -36,22 +36,9 @@
             <Font size="14.0" />
         </font>
     </Button>
-<!--   <Label layoutX="333.0" layoutY="78.0" text="Coordinator van deze groep">-->
-<!--      <font>-->
-<!--         <Font size="14.0" />-->
-<!--      </font>-->
-<!--   </Label>-->
-<!--   <TextField fx:id="textfieldCoordinatorName" layoutX="333.0" layoutY="98.0" text=""/>-->
-<!--   <Label layoutX="334.0" layoutY="156.0" text="Cursus waar deze groep in zit">-->
-<!--      <font>-->
-<!--         <Font size="14.0" />-->
-<!--      </font>-->
-<!--   </Label>-->
-<!--   <TextField fx:id="textfieldCourseName 334.0" layoutY="176.0" text=""/>-->
-<!--   <Label layoutX="333.0" layoutY="200.0" text="Aantal groepen in deze cursus">-->
-<!--      <font>-->
-<!--         <Font size="14.0" />-->
-<!--      </font>-->
-<!--   </Label>-->
-<!--   <TextField layoutX="333.0" layoutY="220.0" text=""/>-->
+    <Label fx:id="aantalGroupen" layoutX="320.0" layoutY="78.0" prefHeight="30.0" prefWidth="570.0" text="">
+        <font>
+            <Font size="18.0" />
+        </font>
+    </Label>
 </AnchorPane>

@@ -3,10 +3,7 @@ package controller;
 import database.mysql.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import model.Course;
-import model.Group;
-import model.Question;
-import model.Quiz;
+import model.*;
 import view.Main;
 
 import java.util.ArrayList;
@@ -15,16 +12,15 @@ import java.util.Optional;
 public class ManageGroupsController {
 
     private GroupDAO groupDAO;
-    private DBAccess dBaccess;
-    private UserDAO userDAO;
     private CourseDAO courseDAO;
+    private DBAccess dBaccess;
+    private ArrayList<Group> allGroups;
 
     @FXML
     ListView<Group> groupList;
     @FXML
-    private TextField textfieldCourseName;
-    @FXML
-    private TextField textfieldCoordinatorName;
+    private Label aantalGroupen;
+
 
     public ManageGroupsController() {
         this.dBaccess = Main.getDBaccess();
@@ -32,14 +28,16 @@ public class ManageGroupsController {
 
     public void setup() {
         this.groupDAO = new GroupDAO(dBaccess);
-        ArrayList<Group> allGroups = groupDAO.getAll();
+        allGroups = groupDAO.getAll();
         for (Group group : allGroups) {
             groupList.getItems().add(group);
         }
-        // Om een nullpointer exception te vermijden
         groupList.getSelectionModel().selectFirst();
-//        textfieldCoordinatorName.setText(String.valueOf(userDAO.getOneById(group.getIdCooridnator())));
-//        textfieldCourseName.setText(String.valueOf(courseDAO.getOneById(group.getIdCourse())));
+        setLabelGroupCount(groupList.getSelectionModel().getSelectedItem().getIdCourse());
+        groupList.setOnMouseClicked(mouseEvent -> setLabelGroupCount(groupList.getSelectionModel()
+                .getSelectedItem().getIdCourse()));
+        groupList.setOnKeyPressed(keyEvent -> setLabelGroupCount(groupList.getSelectionModel()
+                .getSelectedItem().getIdCourse()));
     }
 
     public void doMenu() {
@@ -66,6 +64,15 @@ public class ManageGroupsController {
         }
     }
 
-
-
+    public void setLabelGroupCount(int idCourse) {
+        courseDAO = new CourseDAO(dBaccess);
+        int sumGroup = 0;
+        for (Group group : allGroups) {
+            if (group.getIdCourse() == idCourse) {
+                sumGroup++;
+            }
+        }
+        aantalGroupen.setText(String.format("Het aantal groepen in dezelde cursus: %s is %d", String.valueOf
+                (courseDAO.getOneById(idCourse)), sumGroup));
+    }
 }
