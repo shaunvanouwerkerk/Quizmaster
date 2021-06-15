@@ -31,6 +31,7 @@ public class CouchDBQuizResultsLauncher {
         System.out.println(allResults);
         quizResultLauncher.quizResultsCouchDAO.printQuizResultInJson(result1);
 
+        // ArrayList<QuizResult> alleQuizResults = quizResultLauncher.quizResultsCouchDAO.getAllResultsbyQuizIdWithStudentId();
 
     }
 
@@ -42,6 +43,14 @@ public class CouchDBQuizResultsLauncher {
             System.out.println("Er is iets mis gegaan");
             exception.printStackTrace();
         }
+    }
+
+    public CouchDBaccessQuizResults getCouchDBaccessQuizResults() {
+        return couchDBaccessQuizResults;
+    }
+
+    public QuizResultsCouchDAO getQuizResultsCouchDAO() {
+        return quizResultsCouchDAO;
     }
 }
 

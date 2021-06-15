@@ -70,6 +70,10 @@ public class QuizResultsCouchDAO {
                 .view("_all_docs").includeDocs(true)
                 .query(JsonObject.class);
         System.out.println(allQuizresultsCouchDb );
+        gson = new GsonBuilder().registerTypeAdapter(LocalDateTime.class, (JsonDeserializer<LocalDateTime>)
+                (json, typeOfT, context) -> LocalDateTime.parse(json.getAsString(), DateTimeFormatter.ISO_LOCAL_DATE_TIME))
+                .registerTypeAdapter(LocalDateTime.class, (JsonSerializer<LocalDateTime>) (src, typeOfSrc, context) ->
+                        new JsonPrimitive(src.format(DateTimeFormatter.ISO_DATE))).create();
         for(JsonObject object : allQuizresultsCouchDb ) {
             quizResult = gson.fromJson(object, QuizResult.class);
             allQuizresults.add(quizResult);
