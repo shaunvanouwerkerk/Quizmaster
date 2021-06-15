@@ -10,6 +10,7 @@ public class Quiz {
     private int idCourse;
     private String nameQuiz;
     private int succesDefinition;
+    private String [] categorie;
 
     //Constructor
     public Quiz(String nameQuiz, int succesDefinition, int idQuiz, int idCourse) {
@@ -44,6 +45,8 @@ public class Quiz {
     public void setNameQuiz(String nameQuiz) { this.nameQuiz = nameQuiz; }
 
     public void setSuccesDefinition(int succesDefinition) { this.succesDefinition = succesDefinition; }
+
+    public void setCategorie(String[] categorie) { this.categorie = categorie; }
 
     // Methode
     @Override
