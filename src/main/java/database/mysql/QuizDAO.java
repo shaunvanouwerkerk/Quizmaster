@@ -3,12 +3,9 @@ package database.mysql;
 /**
  * @author Shaun van Ouwerkerk
  */
-// TODO: 08/06/2021 1.Update DAO MAKEN
-
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
-import model.Question;
 import model.Quiz;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -98,7 +95,6 @@ public class QuizDAO extends AbstractDAO implements GenericDAO <Quiz> {
         }
         return allQuizes;
     }
-
 
     @Override
     public void storeOne(Quiz quiz) {
