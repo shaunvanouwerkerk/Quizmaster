@@ -5,7 +5,7 @@ import org.lightcouch.CouchDbClient;
 import org.lightcouch.CouchDbProperties;
 import org.lightcouch.Response;
 
-public class CouchDBaccess {
+public class CouchDBaccessUser {
 
 	private CouchDbClient client;
 	

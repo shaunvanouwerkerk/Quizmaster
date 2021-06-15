@@ -1,19 +1,19 @@
 package view;
 
-import database.couchDB.CouchDBaccess;
-import database.couchDB.QuizResultDAO;
+import database.couchDB.CouchDBaccessUser;
+import database.couchDB.UserCouchDAO;
 import model.User;
 
 import java.util.ArrayList;
 
 public class CouchDBUserLauncher {
 
-    private CouchDBaccess couchDBaccess;
-    private QuizResultDAO couchUserDAO;
+    private CouchDBaccessUser couchDBaccessUser;
+    private UserCouchDAO couchUserDAO;
 
     public CouchDBUserLauncher() {
-        this.couchDBaccess = new CouchDBaccess();
-        this.couchUserDAO = new QuizResultDAO(couchDBaccess);
+        this.couchDBaccessUser = new CouchDBaccessUser();
+        this.couchUserDAO = new UserCouchDAO(couchDBaccessUser);
     }
 
     public static void main(String[] args) {
@@ -30,7 +30,7 @@ public class CouchDBUserLauncher {
 
     public void run() {
         try {
-            couchDBaccess.setupConnection();
+            couchDBaccessUser.setupConnection();
             System.out.println("Connectie open");
         } catch (Exception exception) {
             System.out.println("Er is iets mis gegaan");

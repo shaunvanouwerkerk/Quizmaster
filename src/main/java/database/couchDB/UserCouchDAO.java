@@ -3,19 +3,18 @@ package database.couchDB;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import database.mysql.UserDAO;
 import model.User;
 import view.Main;
 import java.util.ArrayList;
 import java.util.List;
 
-public class QuizResultDAO {
+public class UserCouchDAO {
 
-    private CouchDBaccess couchDBaccess;
+    private CouchDBaccessUser couchDBaccessUser;
     private Gson gson;
 
-    public QuizResultDAO(CouchDBaccess couchDBaccess) {
-        this.couchDBaccess = couchDBaccess;
+    public UserCouchDAO(CouchDBaccessUser couchDBaccessUser) {
+        this.couchDBaccessUser = couchDBaccessUser;
         this.gson = new Gson();
     }
 
@@ -28,7 +27,7 @@ public class QuizResultDAO {
     //Methode om alle users uit de SQL DB te halen en te printen mbv printUser methode
     //deze methode heb ik geschreven om 'te spelen' met couchDB en het te begrijpen
     public void createUserAsJson() {
-        UserDAO userDAO = new UserDAO(Main.getDBaccess());
+        database.mysql.UserDAO userDAO = new database.mysql.UserDAO(Main.getDBaccess());
         ArrayList<User> users = userDAO.getAll();
         for(User user : users) {
             printUserInJson(user);
@@ -39,12 +38,12 @@ public class QuizResultDAO {
     public void saveSingleUser(User user) {
         JsonParser jsonParser = new JsonParser();
         JsonObject jsonObject = jsonParser.parse(gson.toJson(user)).getAsJsonObject();
-        couchDBaccess.saveDocument(jsonObject);
+        couchDBaccessUser.saveDocument(jsonObject);
     }
 
     //Hulpmethode om alle users uit de SQL db te halen en in CouchDB op te slaan
     public void saveAllUsersFromSQLDatabase() {
-        UserDAO userDAO = new UserDAO(Main.getDBaccess());
+        database.mysql.UserDAO userDAO = new database.mysql.UserDAO(Main.getDBaccess());
         ArrayList<User> users = userDAO.getAll();
         for(User user : users) {
             saveSingleUser(user);
@@ -56,7 +55,7 @@ public class QuizResultDAO {
     public ArrayList<User> getAllUsers() {
         ArrayList<User> allUsers = new ArrayList<>();
         User user = null;
-        List<JsonObject> allUsersCouchDb = couchDBaccess.getClient()
+        List<JsonObject> allUsersCouchDb = couchDBaccessUser.getClient()
                 .view("_all_docs").includeDocs(true)
                 .query(JsonObject.class);
         System.out.println(allUsersCouchDb);
