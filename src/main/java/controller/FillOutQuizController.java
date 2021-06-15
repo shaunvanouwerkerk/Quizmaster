@@ -10,7 +10,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import model.Question;
 import model.Quiz;
+import model.QuizResult;
 import view.Main;
+
+import java.time.LocalDateTime;
 import java.util.*;
 
 public class FillOutQuizController {
@@ -22,6 +25,7 @@ public class FillOutQuizController {
     private ArrayList<String> studentAntwoorden;
     private String[] antwoordKeuzes;
     private Quiz huidigeQuiz;
+    private QuizResult huidigeQuizResult;
     private int aantalJuisteAntwoorden;
     private int aantalVragenInEenQuiz;
     private int huidigeVraagNr;
@@ -42,6 +46,7 @@ public class FillOutQuizController {
         this.juisteAntwoorden = new ArrayList<>();
         this.studentAntwoorden = new ArrayList<>();
         this.antwoordKeuzes = new String[AANTAL_ANTWOORDEN];
+        this.huidigeQuizResult = null;
         this.aantalJuisteAntwoorden = 0;
         this.huidigeVraagNr = 0;
         this.labelHuidigeVraagNr = 1;
@@ -109,6 +114,9 @@ public class FillOutQuizController {
           Optional<ButtonType> decision = quizAfronden.showAndWait();
           if (decision.get() == ButtonType.OK) {
               compareAndCountCorrectAnswers();
+//              huidigeQuizResult = new QuizResult(1, huidigeQuiz.getIdQuiz(),
+//                      Main.loggedInUser.getIdUser(), aantalJuisteAntwoorden, LocalDateTime.now());
+              // TODO: Sla huidigeQuizResult in de database
               Main.getSceneManager().showStudentFeedback(huidigeQuiz);
           } else {
               huidigeVraagNr = 0;
