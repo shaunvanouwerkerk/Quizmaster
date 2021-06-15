@@ -24,7 +24,6 @@ public class FillOutQuizController {
     private Quiz huidigeQuiz;
     private int aantalJuisteAntwoorden;
     private int aantalVragenInEenQuiz;
-    // twee aparte huidigeVraagNr: omdat een array met 0 begint en label met 1
     private int huidigeVraagNr;
     private int labelHuidigeVraagNr;
     private static final int AANTAL_ANTWOORDEN = 4;
@@ -102,7 +101,7 @@ public class FillOutQuizController {
         labelHuidigeVraagNr++;
         if(huidigeVraagNr < vragenUitQuiz.size()) {
             setup(huidigeQuiz);
-        } else if (huidigeVraagNr == vragenUitQuiz.size() || huidigeVraagNr > vragenUitQuiz.size()){
+        } else if (huidigeVraagNr >= vragenUitQuiz.size()){
           Alert quizAfronden = new Alert(Alert.AlertType.CONFIRMATION);
           quizAfronden.setContentText("Weet je zeker dat je deze quiz wil afsluiten en verzenden?");
           quizAfronden.setHeaderText("Quiz afronden");
