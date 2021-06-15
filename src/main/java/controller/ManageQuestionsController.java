@@ -66,6 +66,10 @@ public class ManageQuestionsController {
         Main.getSceneManager().showUpdateQuestionScene(questionList.getSelectionModel().getSelectedItem());
     }
 
+    public void showCoordinatorDashboard() {
+        Main.getSceneManager().showCoordinatorDashboard();
+    }
+
     public void doDeleteQuestion(){
         Question vraagOmTeVerwijderen = questionList.getSelectionModel().getSelectedItem();
         Alert vraagVerwijderen = new Alert(Alert.AlertType.CONFIRMATION);

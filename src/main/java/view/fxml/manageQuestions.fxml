@@ -16,12 +16,12 @@
         </font>
     </Label>
     <ListView fx:id="questionList" layoutX="14.0" layoutY="78.0" prefHeight="200.0" prefWidth="313.0" />
-    <Button layoutX="13.0" layoutY="285.0" mnemonicParsing="false" onAction="#doCreateQuestion" text="Nieuw">
+    <Button layoutX="90.0" layoutY="285.0" mnemonicParsing="false" onAction="#doCreateQuestion" text="Nieuw">
         <font>
             <Font size="14.0" />
         </font>
     </Button>
-    <Button layoutX="135.0" layoutY="285.0" mnemonicParsing="false" onAction="#doUpdateQuestion" text="Wijzig">
+    <Button layoutX="170.0" layoutY="285.0" mnemonicParsing="false" onAction="#doUpdateQuestion" text="Wijzig">
         <font>
             <Font size="14.0" />
         </font>
@@ -31,10 +31,11 @@
             <Font size="14.0" />
         </font>
     </Button>
-    <Button layoutX="14.0" layoutY="329.0" mnemonicParsing="false" onAction="#doMenu" text="Menu">
+    <Button layoutX="14.0" layoutY="285.0" mnemonicParsing="false" onAction="#doMenu" text="Menu">
         <font>
             <Font size="14.0" />
         </font>
     </Button>
    <TextField fx:id="aantalVragen" editable="false" layoutX="113.0" layoutY="332.0" prefHeight="25.0" prefWidth="214.0" promptText="Aantal vragen in deze quiz" />
+   <Button layoutX="14.0" layoutY="332.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="79.0" text="Dashboard" onAction="#showCoordinatorDashboard"/>
 </AnchorPane>
