@@ -78,6 +78,8 @@ public class  ManageQuizzesController {
         Main.getSceneManager().showWelcomeScene();
     }
 
+    public void doDashboard(){Main.getSceneManager().showCoordinatorDashboard();}
+
     public void doCreateQuiz(){
         Main.getSceneManager().showCreateQuizScene(quizList.getSelectionModel().getSelectedItem());
     }
