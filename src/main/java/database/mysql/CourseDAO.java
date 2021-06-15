@@ -208,10 +208,34 @@ public class CourseDAO extends AbstractDAO implements GenericDAO<Course>{
         return courses;
     }
 
-    //methode voor het opslaan van inschrijvingen/uitschrijvingen studenten
+   /* //methode voor het opslaan van inschrijvingen/uitschrijvingen studenten
+    public void updateCoursesStudentSignOut(int idCourse, int idStudent) {
+        String sql = "DELETE * FROM studentincourse WHERE idStudent = ? " +
+                "INSERT INTO studentincourse(idCourse,idStudent) values (?,?);";
+        try {
+            setupPreparedStatement(sql);
+            preparedStatement.setInt(1, idCourse);
+            preparedStatement.setInt(2, idStudent);
+            executeManipulateStatement();
+
+            Alert opgeslagen = new Alert(Alert.AlertType.CONFIRMATION);
+            opgeslagen.setContentText(String.format("Cursus %s is opgeslagen!", course.getNameCourse()));
+            opgeslagen.show();
+        } catch (SQLException sqlException) {
+            Alert foutmelding = new Alert(Alert.AlertType.ERROR);
+            if(sqlException.getMessage().contains("Duplicate")) {
+                foutmelding.setContentText("Deze cursus bestaat al! Cursus is niet opgeslagen.");
+            } else {
+                foutmelding.setContentText("Cursus kon niet worden opgeslagen.");
+            }
+            foutmelding.show();
+            System.out.println(sqlException.getMessage());
+        }
+    }*/
+    }
 
 
-}
+
 
 
 
