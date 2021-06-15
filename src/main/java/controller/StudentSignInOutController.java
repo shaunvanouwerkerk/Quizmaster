@@ -4,11 +4,13 @@ import database.mysql.CourseDAO;
 import database.mysql.DBAccess;
 import javafx.beans.Observable;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.control.MultipleSelectionModel;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.input.MouseEvent;
 import model.Course;
@@ -18,7 +20,9 @@ import java.util.ArrayList;
 
 public class StudentSignInOutController {
     private CourseDAO courseDAO;
-    private DBAccess dBaccess = Main.getDBaccess();
+    private DBAccess dBaccess;
+    private ArrayList<Course> coursesSignIn;
+    private ArrayList<Course> coursesSignOut;
 
     @FXML
     private ListView<Course> signedOutCourseList;
@@ -27,22 +31,25 @@ public class StudentSignInOutController {
     @FXML
     private Button signIn;
 
-    public void setup() {
+    public StudentSignInOutController(){
+        this.dBaccess =  Main.getDBaccess();
         this.courseDAO = new CourseDAO(dBaccess);
-        ArrayList<Course> CoursesSignIn = courseDAO.getCoursesStudentSignIn(Main.loggedInUser.getIdUser());
-        for (Course course : CoursesSignIn) {
+        this.coursesSignIn = new ArrayList<>();
+        this.coursesSignOut = new ArrayList<>();
+    }
+
+    public void setup() {
+        coursesSignIn = courseDAO.getCoursesStudentSignIn(Main.loggedInUser.getIdUser());
+        for (Course course : coursesSignIn) {
             signedOutCourseList.getItems().add(course);
         }
 
-        ArrayList<Course> CoursesSignOut = courseDAO.getCoursesStudentSignOut(Main.loggedInUser.getIdUser());
-        for (Course course : CoursesSignOut) {
+        coursesSignOut = courseDAO.getCoursesStudentSignOut(Main.loggedInUser.getIdUser());
+        for (Course course : coursesSignOut) {
             signedInCourseList.getItems().add(course);
         }
         signedOutCourseList.getSelectionModel().selectFirst();
         signedOutCourseList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-
-
-
 
     }
 
@@ -50,15 +57,48 @@ public class StudentSignInOutController {
     public void doMenu() {Main.getSceneManager().showWelcomeScene();}
 
     public void doSignIn() {
-       /* ObservableList<Course> selectedItem = signedOutCourseList.getSelectionModel().getSelectedItems();
+        /*int idStudent = Main.loggedInUser.getIdUser();
+        ArrayList <Course> test = new ArrayList<>();
+        signIn.setOnAction(Event -> test.add(signedInCourseList.getSelectionModel().getSelectedItem()));
+                    signedInCourseList.refresh();
+                }
+
+            coursesSignIn.add
+            if (selection != null) {
+                signedInCourseList.getSelectionModel().clearSelection();
+                coursesSignIn.remove(selection);
+                coursesSignOut.add(selection);
+            }
+        });*/
+
+
+
+        /*Course selectedCourses = signedInCourseList.getSelectionModel().getSelectedItem();
+        coursesSignIn.add(selectedCourses);
+        coursesSignOut.remove(selectedCourses);
+        ListView<c>*/
+
+
+        coursesSignIn.add(signedOutCourseList.getSelectionModel().getSelectedItem());
+        coursesSignIn.remove(signedOutCourseList.getSelectionModel().getSelectedItem());
+        signedOutCourseList.refresh();
+        signedInCourseList.refresh();
+        System.out.println(coursesSignOut);
+        System.out.println(coursesSignIn);
+
+
+
+        /*ObservableList<Course> content = signedOutCourseList.getSelectionModel().getSelectedItems();
+        signedInCourseList.(content);
+        ObservableList<Course> selectedItem = signedOutCourseList.getSelectionModel().getSelectedItems();
         signedOutCourseList.remove(selectedItem);
         signedInCourseList.add(selectedItem);
 
         signIn.setOnAction(Event -> signedOutCourseList.getSelectionModel().getSelectedItems().add(course));
+
 */
+    }
 
-
-        }
 
     public void doSignOut() {}
 }
