@@ -38,7 +38,7 @@
             <Font size="14.0" />
         </font>
     </Button>
-   <Label fx:id="amountQuestionText" layoutX="113.0" layoutY="335.0" text="" />
+   <Label fx:id="amountQuestionText" layoutX="338.0" layoutY="84.0" prefHeight="17.0" prefWidth="500.0" text="" />
    <Button layoutX="208.0" layoutY="330.0" mnemonicParsing="false" onAction="#doDashboard" text="Dashboard">
       <font>
          <Font size="14.0" />

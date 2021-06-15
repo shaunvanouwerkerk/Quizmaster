@@ -6,6 +6,7 @@ package database.mysql;
 // TODO: 08/06/2021 1.Update DAO MAKEN
 
 
+import javafx.scene.control.Alert;
 import model.Question;
 import model.Quiz;
 import java.sql.ResultSet;
@@ -84,10 +85,13 @@ public class QuizDAO extends AbstractDAO implements GenericDAO <Quiz> {
                 allQuizes.add(quiz);
 
             } if (allQuizes.isEmpty()) {
-                System.out.println("Er bestaat geen gebruiker met dit courseId");
+                Alert foutmelding = new Alert(Alert.AlertType.ERROR);
+                foutmelding.setContentText("Er bestaat geen quiz bij deze course");
+                System.out.println("Er bestaat geen guiz bij deze course");
 
             }
         } catch (SQLException sqlException) {
+
             System.out.println("SQL fout" + sqlException.getMessage());
         }
         return allQuizes;
