@@ -1,5 +1,9 @@
 package model;
 
+import database.mysql.DBAccess;
+import database.mysql.QuizDAO;
+import view.Main;
+
 import java.time.LocalDateTime;
 
 public class QuizResult {
@@ -18,7 +22,10 @@ public class QuizResult {
 
     @Override
     public String toString() {
-        return String.format("Datum van indiening: %s\nAantal juiste antwoorden: %d", dateTimeQuiz.withNano(0), numberAnswersRight);
+        StringBuilder result = new StringBuilder();
+        result.append(String.format("Datum van indiening: %s\n", dateTimeQuiz.withNano(0)));
+        result.append(String.format("Aantal juiste antwoorden: %d\n", numberAnswersRight));
+        return result.toString();
     }
 
     public int getIdQuiz() {
