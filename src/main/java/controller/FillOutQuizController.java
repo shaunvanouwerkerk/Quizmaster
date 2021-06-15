@@ -4,6 +4,8 @@ package controller;
 * @author Nijad
 */
 
+import database.couchDB.CouchDBaccessQuizResults;
+import database.couchDB.QuizResultsCouchDAO;
 import database.mysql.DBAccess;
 import database.mysql.QuestionDAO;
 import javafx.fxml.FXML;
@@ -11,6 +13,7 @@ import javafx.scene.control.*;
 import model.Question;
 import model.Quiz;
 import model.QuizResult;
+import view.CouchDBQuizResultsLauncher;
 import view.Main;
 
 import java.time.LocalDateTime;
@@ -20,6 +23,7 @@ public class FillOutQuizController {
 
     private DBAccess dbAccess;
     private QuestionDAO questionDAO;
+    private CouchDBQuizResultsLauncher couchDBQuizResultsLauncher;
     private ArrayList<Question> vragenUitQuiz;
     private ArrayList<String> juisteAntwoorden;
     private ArrayList<String> studentAntwoorden;
@@ -42,6 +46,7 @@ public class FillOutQuizController {
     public FillOutQuizController(){
         this.dbAccess = Main.getDBaccess();
         this.questionDAO = new QuestionDAO(dbAccess);
+        this.couchDBQuizResultsLauncher = new CouchDBQuizResultsLauncher();
         this.vragenUitQuiz = new ArrayList<>();
         this.juisteAntwoorden = new ArrayList<>();
         this.studentAntwoorden = new ArrayList<>();
@@ -68,7 +73,8 @@ public class FillOutQuizController {
         for (Question question: vragenUitQuiz) {
             juisteAntwoorden.add(question.getAnswerA());
         }
-
+        // Voorkomt indexoutofbound en laat de gebruiker antwoorden herschrijven
+        studentAntwoorden.ensureCapacity(vragenUitQuiz.size());
         // Een vraag uit quiz tonen
         if (huidigeVraagNr < vragenUitQuiz.size()) {
             showQuestion(huidigeVraagNr);
@@ -82,23 +88,23 @@ public class FillOutQuizController {
     }
 
     public void doRegisterA() {
-        studentAntwoorden.add(huidigeVraagNr, antwoordKeuzes[0]);
-        doNextQuestion();
+            studentAntwoorden.add(huidigeVraagNr, antwoordKeuzes[0]);
+            doNextQuestion();
     }
 
     public void doRegisterB() {
-        studentAntwoorden.add(huidigeVraagNr, antwoordKeuzes[1]);
-        doNextQuestion();
+            studentAntwoorden.add(huidigeVraagNr, antwoordKeuzes[1]);
+            doNextQuestion();
     }
 
     public void doRegisterC() {
-        studentAntwoorden.add(huidigeVraagNr, antwoordKeuzes[2]);
-        doNextQuestion();
+            studentAntwoorden.add(huidigeVraagNr, antwoordKeuzes[2]);
+            doNextQuestion();
     }
 
     public void doRegisterD() {
-        studentAntwoorden.add(huidigeVraagNr, antwoordKeuzes[3]);
-        doNextQuestion();
+            studentAntwoorden.add(huidigeVraagNr, antwoordKeuzes[0]);
+            doNextQuestion();
     }
 
     public void doNextQuestion() {
@@ -114,9 +120,11 @@ public class FillOutQuizController {
           Optional<ButtonType> decision = quizAfronden.showAndWait();
           if (decision.get() == ButtonType.OK) {
               compareAndCountCorrectAnswers();
-//              huidigeQuizResult = new QuizResult(1, huidigeQuiz.getIdQuiz(),
-//                      Main.loggedInUser.getIdUser(), aantalJuisteAntwoorden, LocalDateTime.now());
-              // TODO: Sla huidigeQuizResult in de database
+            huidigeQuizResult = new QuizResult(huidigeQuiz.getIdQuiz(),
+                    Main.loggedInUser.getIdUser(), aantalJuisteAntwoorden, LocalDateTime.now());
+              // Sla huidigeQuizResult in de database
+              couchDBQuizResultsLauncher.run();
+              couchDBQuizResultsLauncher.getQuizResultsCouchDAO().saveQuizResultInJson(huidigeQuizResult);
               Main.getSceneManager().showStudentFeedback(huidigeQuiz);
           } else {
               huidigeVraagNr = 0;
@@ -167,8 +175,12 @@ public class FillOutQuizController {
 
     public void compareAndCountCorrectAnswers(){
         for (int teller = 0; teller < vragenUitQuiz.size(); teller++) {
-            if (studentAntwoorden.get(teller).equals(juisteAntwoorden.get(teller))) {
-                aantalJuisteAntwoorden++;
+            try {
+                if (studentAntwoorden.get(teller).equals(juisteAntwoorden.get(teller))) {
+                    aantalJuisteAntwoorden++;
+                }
+            } catch (IndexOutOfBoundsException error) {
+                studentAntwoorden.add(teller, "geen antwoord opgegeven");
             }
         }
     }
