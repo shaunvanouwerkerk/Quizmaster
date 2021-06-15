@@ -40,11 +40,13 @@ public class StudentFeedbackController {
     public void setup(Quiz quiz) {
         feedbackLabel.setText(String.format("Feedback voor quiz %s", quiz.getNameQuiz()));
         // Haalt alle quizResults uit CouchDB
-        ArrayList<QuizResult> quizResultsTemp = couchDBQuizResultsLauncher.getQuizResultsCouchDAO().getAllResultsbyQuizIdWithStudentId();
+        ArrayList<QuizResult> quizResultsTemp = couchDBQuizResultsLauncher.getQuizResultsCouchDAO().getAllQuizResults();
         // Filtert het lijst alleen tot ingelogde student
         for (QuizResult quizresult: quizResultsTemp) {
             if (quizresult.getIdGebruiker() == Main.loggedInUser.getIdUser()) {
-                quizResults.add(quizresult);
+                if (quizresult.getIdQuiz() == quiz.getIdQuiz()) {
+                    quizResults.add(quizresult);
+                }
             }
         }
         feedbackList.getItems().addAll(quizResults);
@@ -58,7 +60,6 @@ public class StudentFeedbackController {
         feedbackList.setOnKeyPressed(keyEvent ->
                 uitslagQuiz.setText(checkAndPrintResult(feedbackList.getSelectionModel().getSelectedItem().getNumberAnswersRight(),
                         quiz.getSuccesDefinition())));
-
     }
     public void doMenu() {
         Main.getSceneManager().showSelectQuizForStudent();

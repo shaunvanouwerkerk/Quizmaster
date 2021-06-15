@@ -51,21 +51,10 @@ public class QuizResultsCouchDAO {
         return doc_Id;
     }
 
-
-
-
-
-
-
-
-
-
-
-    public ArrayList<QuizResult> getAllResultsbyQuizIdWithStudentId() {
+    public ArrayList<QuizResult> getAllQuizResults() {
         QuizDAO quizDAO = new QuizDAO(dbAccess);
         ArrayList<QuizResult> allQuizresults = new ArrayList<>();
         QuizResult quizResult = null;
-
         List<JsonObject> allQuizresultsCouchDb = couchDBaccessQuizResults.getClient()
                 .view("_all_docs").includeDocs(true)
                 .query(JsonObject.class);
