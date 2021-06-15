@@ -7,11 +7,13 @@ package database.mysql;
 
 
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import model.Question;
 import model.Quiz;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Optional;
 
 public class QuizDAO extends AbstractDAO implements GenericDAO <Quiz> {
 
@@ -85,10 +87,10 @@ public class QuizDAO extends AbstractDAO implements GenericDAO <Quiz> {
                 allQuizes.add(quiz);
 
             } if (allQuizes.isEmpty()) {
-                Alert foutmelding = new Alert(Alert.AlertType.ERROR);
-                foutmelding.setContentText("Er bestaat geen quiz bij deze course");
-                System.out.println("Er bestaat geen guiz bij deze course");
-
+                Alert deleteAlert = new Alert(Alert.AlertType.ERROR);
+                deleteAlert.setTitle("Geen quiz aanwezig");
+                deleteAlert.setHeaderText("Er bestaat geen quiz bij deze cursus.");
+                Optional<ButtonType> result = deleteAlert.showAndWait();
             }
         } catch (SQLException sqlException) {
 

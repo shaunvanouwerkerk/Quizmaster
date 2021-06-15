@@ -63,6 +63,7 @@ public class CoordinatorDashboardController {
                         public void changed(ObservableValue<? extends Quiz> observableValue, Quiz oldQuiz, Quiz newQuiz) {
                             System.out.println("Geselecteerde quiz: " + observableValue + ", " + oldQuiz + ", " + newQuiz);
                             quizList.setOnMouseClicked(mouseEvent -> getQuestionListNewQuiz(newQuiz).getSelectionModel().getSelectedItem());
+
                         }
                     });
         }
@@ -110,6 +111,9 @@ public class CoordinatorDashboardController {
         for (Question question : allQuestionsNew){
             questionList.getItems().add(question);
         }
+        if(questionList.getItems().isEmpty()) {
+            checkExistanceOfQuestions();
+        }
         return questionList;
     }
 
@@ -122,6 +126,14 @@ public class CoordinatorDashboardController {
             if (result.get() == ButtonType.OK) {
                 Main.getSceneManager().showWelcomeScene();
             }
+        }
+
+        // Methode die waarschuwing geeft als er geen quizvragen zijn
+        public void checkExistanceOfQuestions () {
+            Alert deleteAlert = new Alert(Alert.AlertType.ERROR);
+            deleteAlert.setTitle("Geen vragen aanwezig");
+            deleteAlert.setHeaderText("Er bestaan geen vragen bij deze quiz.");
+            Optional<ButtonType> result = deleteAlert.showAndWait();
         }
 }
 
