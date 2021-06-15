@@ -6,7 +6,6 @@ import com.google.gson.JsonParser;
 import database.mysql.UserDAO;
 import model.User;
 import view.Main;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -78,9 +77,5 @@ public class QuizResultDAO {
         }
         return students;
     }
-
-
-
-
 
 }
