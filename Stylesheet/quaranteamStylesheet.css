@@ -1,0 +1,48 @@
+/*
+@Author shaun
+ */
+
+/* Pallete of our colors*/
+
+* {
+    white: #FFFFFF;
+    ambergold: #ffc107;
+    gold-color: #D4AF37;
+    lightblue: #cfd8dc;
+    midblue: #607d8b;
+    darkblue: #455a64;
+    blacklight: #212121;
+    blackreal: #000000;
+    darkgrey: #757575;
+
+}
+
+.root {
+    -fx-background-color: lightblue;
+}
+.button{
+    -fx-font: 14px "Futura";
+    -fx-text-fill: white;
+    -fx-padding: 7;
+    -fx-arc-height: 20;
+    -fx-background-color:midblue;
+    /*-fx-effect: dropshadow(one-pass-box, lightslategray, 14, 0.0, 6, 0);*/
+    /*-fx-background-radius: 8;*/
+}
+.label {
+    -fx-font: 14px "Futura";
+    -fx-text-fill: darkblue;
+    -fx-text-allignemenet: left;
+}
+.choice-box{
+    -fx-font: 20px "Futura";
+    -fx-text-fill: text-primaty-color;
+    -fx-text-allignemenet: left;
+    -fx-background-color: gold-color;
+
+}
+.teamlogo {-fx-background-image: url(TeamLogo.jpg);
+}
+
+
+
