@@ -80,12 +80,12 @@ public class CouchDBQuizLauncher {
 		saveAllQuizes();
 	}
 
-	// Voorbeeldmethode om een quiz op te slaan in CouchDB
+	// Methode om een quiz op te slaan in CouchDB
 	public void saveOneQuiz (Quiz quiz) {
 		quizCouchDAO.saveSingleQuiz(quiz);
 	}
 
-	// Voorbeeldmethode om alle quizen uit de database op de slaan in CouchDB
+	// Methode om alle quizen uit de database op de slaan in CouchDB
 	public void saveAllQuizes () {
 		this.quizDAO = new QuizDAO(dbAccess);
 		ArrayList<Quiz> allQuizesDatabase = quizDAO.getAll();

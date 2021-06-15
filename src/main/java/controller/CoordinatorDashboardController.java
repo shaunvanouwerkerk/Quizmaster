@@ -1,4 +1,7 @@
 package controller;
+/*
+@ Author Shaun
+ */
 
 import database.mysql.CourseDAO;
 import database.mysql.DBAccess;
@@ -43,9 +46,11 @@ public class CoordinatorDashboardController {
     public void setup() {
         allCourses = courseDAO.getCoursesByIdCoordinator(Main.loggedInUser.getIdUser());
         if (allCourses.isEmpty()) {
+            // Eert checken of Coordinator een Course heeft geregistreerd
             checkRegistrationCoordinator();
 
         } else {
+            // Lijst courses laden & bijbehorende quizen tonen
             listOfCourse();
             courseList.getSelectionModel().selectedItemProperty().addListener(
                     new ChangeListener<Course>() {
@@ -56,38 +61,29 @@ public class CoordinatorDashboardController {
                             questionList.getItems().clear();
                         }
                     });
-
+            // Lijst quizen laden & bijbehorende questions tonen
             quizList.getSelectionModel().selectedItemProperty().addListener(
                     new ChangeListener<Quiz>() {
                         @Override
                         public void changed(ObservableValue<? extends Quiz> observableValue, Quiz oldQuiz, Quiz newQuiz) {
                             System.out.println("Geselecteerde quiz: " + observableValue + ", " + oldQuiz + ", " + newQuiz);
                             quizList.setOnMouseClicked(mouseEvent -> getQuestionListNewQuiz(newQuiz).getSelectionModel().getSelectedItem());
-
                         }
                     });
         }
     }
 
-    public void doNewQuiz() {
-        Main.getSceneManager().showCreateQuizScene(quizList.getSelectionModel().getSelectedItem());
-    }
+    public void doNewQuiz() { Main.getSceneManager().showCreateQuizScene(quizList.getSelectionModel().getSelectedItem()); }
 
-    public void doEditQuiz() {
-        Main.getSceneManager().showUpdateQuizScene(quizList.getSelectionModel().getSelectedItem());
-    }
+    public void doEditQuiz() { Main.getSceneManager().showUpdateQuizScene(quizList.getSelectionModel().getSelectedItem()); }
 
-    public void doNewQuestion() {
-        Main.getSceneManager().showCreateQuestionScene();
-    }
+    public void doNewQuestion() { Main.getSceneManager().showCreateQuestionScene(); }
 
-    public void doEditQuestion() {
-        Main.getSceneManager().showUpdateQuestionScene(questionList.getSelectionModel().getSelectedItem());
-    }
+    public void doEditQuestion() { Main.getSceneManager().showUpdateQuestionScene(questionList.getSelectionModel().getSelectedItem()); }
 
-    public void doMenu() {
-        Main.getSceneManager().showWelcomeScene();
-    }
+    public void doMenu() { Main.getSceneManager().showWelcomeScene(); }
+
+
     // Methode om lijst met courses te tonen van een bepaalde gebruiker
     public void listOfCourse() {
         ArrayList<Course> allCourses = courseDAO.getCoursesByIdCoordinator(Main.loggedInUser.getIdUser());
@@ -95,6 +91,7 @@ public class CoordinatorDashboardController {
             courseList.getItems().add(course);
         }
     }
+
     // Methode om quizlijst te clearen en te tonen bij click op nieuwe course
     public ListView<Quiz> getQuizListNewCourse(Course courseNew) {
         this.quizList.getItems().clear();
@@ -104,6 +101,7 @@ public class CoordinatorDashboardController {
         }
         return quizList;
     }
+
     //Methode om questionlijst te clearen en te tonen bij click op nieuwe quize
     public ListView<Question> getQuestionListNewQuiz(Quiz quizeNew){
         this.questionList.getItems().clear();

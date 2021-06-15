@@ -1,17 +1,18 @@
 package controller;
+/*
+@ Author Shaun
+ */
 
 import database.mysql.CourseDAO;
 import database.mysql.DBAccess;
 import database.mysql.QuestionDAO;
 import database.mysql.QuizDAO;
-import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import model.Course;
 import model.Quiz;
-import model.User;
 import view.Main;
 
 import java.util.ArrayList;
@@ -42,9 +43,6 @@ public class CreateUpdateQuizController {
         this.questionDAO = new QuestionDAO(dbAccess);
     }
 
-
-    public void setup(Quiz quiz) {}
-
     public void setupCreateQuiz(){
         ComboBox<Course> keuzeDropDown = setCoursesDropList();
         courseButton.getSelectionModel().getSelectedItem();
@@ -53,11 +51,13 @@ public class CreateUpdateQuizController {
     }
 
     public void setupUpdateQuiz (Quiz quiz) {
+        // Settings menu
         titelCreateUpdate.setText("Quiz bewerken");
         textfieldQuizName.setText(quiz.getNameQuiz());
         textfieldSuccesDefinition.setText(String.valueOf(quiz.getSuccesDefinition()));
         adQuiz.setText("Bewerken");
         adQuiz.setOnAction(event -> doUpdateQuiz(quiz));
+        // Dropdown
         ComboBox<Course> keuzeDropDown = setCoursesDropList();
         courseButton.getSelectionModel().select(courseDAO.getOneById(quiz.getIdCourse()));
         courseButton.setOnAction(event -> keuzeDropDown.getSelectionModel().getSelectedItem());
@@ -75,6 +75,7 @@ public class CreateUpdateQuizController {
             int succesDefinition = Integer.parseInt(textfieldSuccesDefinition.getText());
             Quiz quiz = new Quiz(quizeName, succesDefinition, courseId);
             quizDAO.storeOne(quiz);
+            // Alert bericht
             Alert quizStored = new Alert(Alert.AlertType.INFORMATION);
             quizStored.setHeaderText("De quiz is toegevoegd");
             quizStored.show();
@@ -89,6 +90,7 @@ public class CreateUpdateQuizController {
             quiz.setSuccesDefinition(Integer.parseInt(textfieldSuccesDefinition.getText()));
             quiz.setIdCourse(courseButton.getSelectionModel().getSelectedItem().getIdCourse());
             quizDAO.updateOne(quiz);
+            // Alert bericht
             Alert quizStored = new Alert(Alert.AlertType.INFORMATION);
             quizStored.setHeaderText("De quiz is aangepast");
             quizStored.show();
@@ -112,13 +114,12 @@ public class CreateUpdateQuizController {
         return comboBox;
     }
 
-//    methode om te controleren of alle velden zijn gevuld bij het toevoegen/wijzigen van een nieuwe quiz
+//    Methode om te controleren of alle velden zijn gevuld bij het toevoegen/wijzigen van een nieuwe quiz
         public boolean checkFields() {
         boolean allFields = false;
         boolean quizname = false;
         boolean succesdefinition = false;
         boolean courseid = false;
-
 
         Alert foutmelding = new Alert(Alert.AlertType.ERROR);
 
