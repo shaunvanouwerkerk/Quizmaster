@@ -63,16 +63,23 @@ INSERT INTO `group`(nameGroup, idCoordinatorGroup, idCourse) VALUES ('TR',23,7),
 -- Dumping data for table `question`
 --
 
-INSERT INTO question (idQuiz, questionString, answerA, answerB, answerC, answerD) 
-VALUES (1,'Which HTML element contains CSS sheets?','<style>','<head>','<base>','<link>'),
-(2,'Database Question 1?','A1','B1','C1','D1'),
-(2,'Database Question 2?','A2','B2','C2','D2'),
-(2,'Database Question 3?','A3','B3','C3','D3'),
-(4,'Advanced Programming 1 Question 1?','a1','b1','c1','d1'),
-(4,'Advanced Programming 1 Question 2?','a2','b2','c2','d2'),
-(5,'Advanced Programming 2 Question 1?','a3','b3','c3','d3'),
-(6,'JSON en CouchDB Question','a4','b4','c4','d4'),
-(7,'Test Vraag om te verwijderen?','a1','b1','c1','d1');
+INSERT INTO `question` VALUES (1,1,'Which HTML element contains CSS sheets?','<style>','<head>','<base>','<link>'),
+(2,1,'Which command will stop an infinite loop?','Ctrl-C','Alt-C','Shift-C','Esc'),
+(3,1,'Software requirements specify___','What the task must perform','How the program will accomplish task','How to divide tasks into subtasks','How to test program when it is done'),
+(4,1,'A loop that never ends is___','Infinite loop','While loop','Recursive loop','for loop'),
+(5,1,'What does the expression float a=35/0 return?','Infinity','Not a number','0','Run time exception'),
+(6,1,'In Java, jar stands for___','Java ARchive','Java Archive Runner','Java Application Runner','Java R'),
+(7,2,'An attribute is an?','Column of a table','Row of a table','Two dimensional table','Key of a table'),
+(8,2,'Row is synonymous with a term?','Record','Column','Relation','Field'),
+(9,2,'A relation is considered a___?','Two-dimensional table','Column','Three-dimensional table','One-dimensional table'),
+(10,2,'SQL stands for?','Structured Query Language','Structured Question Language','Sequential Query Language','Sequential Question Language'),
+(11,4,'Which is the challenge in a J2EE?','Reliability','Fault tolerance','Durability','Scalability'),
+(12,4,'Which is NOT a J2EE client?','JSP','Web applications','Applets','Java Web Start clients'),
+(13,4,'Which is NOT a reserved word?','then','while','goto','if'),
+(14,6,'JSON en CouchDB Question 1','antwoord a1','antwoord b1','antwoord c1','antwoord d1'),
+(15,6,'JSON en CouchDB Question 2','antwoord a2','antwoord b2','antwoord c2','antwoord d2'),
+(16,7,'Test Vraag om te verwijderen?','a1','b1','c1','d1'),
+(17,7,'Test Vraag om te verwijderen?','a1','b1','c1','d1');
 
 
 --
