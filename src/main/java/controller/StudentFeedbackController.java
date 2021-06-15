@@ -3,11 +3,8 @@ package controller;
 * @Author: Nijad Nazarli
 */
 
-
 import database.mysql.DBAccess;
 import database.mysql.QuizDAO;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -15,8 +12,6 @@ import model.Quiz;
 import model.QuizResult;
 import view.CouchDBQuizResultsLauncher;
 import view.Main;
-
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class StudentFeedbackController {
@@ -30,6 +25,8 @@ public class StudentFeedbackController {
     private Label feedbackLabel;
     @FXML
     private ListView<QuizResult> feedbackList;
+    @FXML
+    private Label uitslagQuiz;
 
 
     public StudentFeedbackController(){
@@ -51,13 +48,34 @@ public class StudentFeedbackController {
             }
         }
         feedbackList.getItems().addAll(quizResults);
-        ObservableList observableList = FXCollections.observableArrayList(feedbackList);
+        feedbackList.getSelectionModel().selectFirst();
+        uitslagQuiz.setText(checkAndPrintResult(feedbackList.getSelectionModel().getSelectedItem().getNumberAnswersRight(),
+                quiz.getSuccesDefinition()));
 
-
+        feedbackList.setOnMouseClicked(mouseEvent ->
+                uitslagQuiz.setText(checkAndPrintResult(feedbackList.getSelectionModel().getSelectedItem().getNumberAnswersRight(),
+                        quiz.getSuccesDefinition())));
+        feedbackList.setOnKeyPressed(keyEvent ->
+                uitslagQuiz.setText(checkAndPrintResult(feedbackList.getSelectionModel().getSelectedItem().getNumberAnswersRight(),
+                        quiz.getSuccesDefinition())));
 
     }
     public void doMenu() {
         Main.getSceneManager().showSelectQuizForStudent();
+    }
+
+    public String checkAndPrintResult(int aantalJuisteAntwoorden, int successDefinition) {
+        StringBuilder result = new StringBuilder();
+        result.append("Resultaat: ");
+
+        if (aantalJuisteAntwoorden >= successDefinition) {
+            result.append("Je bent voor deze quiz geslaagd!");
+        } else {
+            result.append("Helaas, je hebt het niet gehaald!");
+        }
+
+        return result.toString();
+
     }
 }
 

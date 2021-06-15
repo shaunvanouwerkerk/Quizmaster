@@ -4,8 +4,6 @@ package controller;
 * @author Nijad
 */
 
-import database.couchDB.CouchDBaccessQuizResults;
-import database.couchDB.QuizResultsCouchDAO;
 import database.mysql.DBAccess;
 import database.mysql.QuestionDAO;
 import javafx.fxml.FXML;
@@ -15,7 +13,6 @@ import model.Quiz;
 import model.QuizResult;
 import view.CouchDBQuizResultsLauncher;
 import view.Main;
-
 import java.time.LocalDateTime;
 import java.util.*;
 
