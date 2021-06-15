@@ -1,33 +1,41 @@
 package database.couchDB;
 
 import com.google.gson.Gson;
-import database.mysql.QuizDAO;
-import database.mysql.UserDAO;
-import model.Quiz;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import model.QuizResult;
-import model.User;
-import view.Main;
+
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class CouchQuizResultsDAO {
-    private CouchDBaccess couchDBaccess;
+    private CouchDBaccessQuizResults couchDBaccessQuizResults;
     private Gson gson;
 
-    public CouchQuizResultsDAO(CouchDBaccess couchDBaccess) {
-        this.couchDBaccess = couchDBaccess;
+    public CouchQuizResultsDAO(CouchDBaccessQuizResults couchDBaccessQuizResults) {
+        this.couchDBaccessQuizResults = couchDBaccessQuizResults;
         this.gson = new Gson();
     }
 
-    //Methode om alle Quizresults uit de SQL DB te halen met een QuizID
+    public void saveSingleResult(QuizResult quizResult) {
+        JsonParser jsonParser = new JsonParser();
+        JsonObject jsonObject = jsonParser.parse(gson.toJson(quizResult)).getAsJsonObject();
+        couchDBaccessQuizResults.saveDocument(jsonObject);
+    }
 
-//    public ArrayList <QuizResult> getAllbyQuizId (int idQuiz) {
-//        ArrayList<QuizResult> quizResultsbyQuizId = new ArrayList<>();
-//        for(QuizResult quizResult : quizResultsbyQuizId) {
-//
-//        }
-//    }
-
-
+    public ArrayList<QuizResult> getAllResultsbyQuizIdWithStudentId() {
+        ArrayList<QuizResult> allQuizresults = new ArrayList<>();
+        QuizResult quizResult = null;
+        List<JsonObject> allQuizresultsCouchDb = couchDBaccessQuizResults.getClient()
+                .view("_all_docs").includeDocs(true)
+                .query(JsonObject.class);
+        System.out.println(allQuizresultsCouchDb );
+        for(JsonObject object : allQuizresultsCouchDb ) {
+            quizResult = gson.fromJson(object, QuizResult.class);
+            allQuizresults.add(quizResult);
+        }
+        return allQuizresults;
+    }
 
 }
