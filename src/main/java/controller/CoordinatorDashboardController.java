@@ -35,10 +35,12 @@ public class CoordinatorDashboardController {
 
     public CoordinatorDashboardController() {
         this.dBaccess = Main.getDBaccess();
+        this.courseDAO = new CourseDAO(dBaccess);
+        this.quizDAO = new QuizDAO(dBaccess);
+        this.questionDAO = new QuestionDAO(dBaccess);
     }
 
     public void setup() {
-        courseDAO = new CourseDAO(dBaccess);
         allCourses = courseDAO.getCoursesByIdCoordinator(Main.loggedInUser.getIdUser());
         if (allCourses.isEmpty()) {
             checkRegistrationCoordinator();
@@ -51,6 +53,7 @@ public class CoordinatorDashboardController {
                         public void changed(ObservableValue<? extends Course> observableValue, Course oldCourse, Course newCourse) {
                             System.out.println("Geselecteerde cursus: " + observableValue + ", " + oldCourse + ", " + newCourse);
                             courseList.setOnMouseClicked(mouseEvent -> getQuizListNewCourse(newCourse).getSelectionModel().getSelectedItem());
+                            questionList.getItems().clear();
                         }
                     });
 
@@ -86,7 +89,6 @@ public class CoordinatorDashboardController {
     }
     // Methode om lijst met courses te tonen van een bepaalde gebruiker
     public void listOfCourse() {
-        this.courseDAO = new CourseDAO(this.dBaccess);
         ArrayList<Course> allCourses = courseDAO.getCoursesByIdCoordinator(Main.loggedInUser.getIdUser());
         for (Course course : allCourses) {
             courseList.getItems().add(course);
@@ -95,7 +97,6 @@ public class CoordinatorDashboardController {
     // Methode om quizlijst te clearen en te tonen bij click op nieuwe course
     public ListView<Quiz> getQuizListNewCourse(Course courseNew) {
         this.quizList.getItems().clear();
-        this.quizDAO = new QuizDAO(this.dBaccess);
         ArrayList<Quiz> allQuizesNew = quizDAO.getQuizesByCourseId(courseNew.getIdCourse());
         for (Quiz quiz : allQuizesNew) {
             quizList.getItems().add(quiz);
@@ -105,7 +106,6 @@ public class CoordinatorDashboardController {
     //Methode om questionlijst te clearen en te tonen bij click op nieuwe quize
     public ListView<Question> getQuestionListNewQuiz(Quiz quizeNew){
         this.questionList.getItems().clear();
-        this.questionDAO = new QuestionDAO(this.dBaccess);
         ArrayList<Question> allQuestionsNew = questionDAO.getAllperQuiz(quizeNew);
         for (Question question : allQuestionsNew){
             questionList.getItems().add(question);
