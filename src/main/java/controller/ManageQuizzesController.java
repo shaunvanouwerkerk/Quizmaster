@@ -37,6 +37,8 @@ public class  ManageQuizzesController {
     ListView<Quiz> quizList;
     @FXML
     Label amountQuestionText;
+    @FXML
+    public Button teamlogo;
 
     public ManageQuizzesController() {this.dbAccess = Main.getDBaccess();}
 
