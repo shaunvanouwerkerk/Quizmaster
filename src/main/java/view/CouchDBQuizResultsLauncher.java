@@ -22,14 +22,14 @@ public class CouchDBQuizResultsLauncher {
         CouchDBQuizResultsLauncher quizResultLauncher = new CouchDBQuizResultsLauncher();
         quizResultLauncher.run();
         // Om te testen is hier QuizResults aangemaakt
-        QuizResult result1 = new QuizResult(1,1, 2, 30, LocalDateTime.of(2020, 12, 8, 12, 30));
-        QuizResult result2 = new QuizResult(2, 2, 2, 20, LocalDateTime.of(2020, 12, 8, 12, 30));
+        QuizResult result1 = new QuizResult(1,2, 30, LocalDateTime.of(2020, 12, 8, 12, 30));
+        QuizResult result2 = new QuizResult(2,2, 20, LocalDateTime.of(2020, 12, 8, 12, 30));
 
         ArrayList<QuizResult> allResults = new ArrayList<>();
         allResults.add(result1);
         allResults.add(result2);
         System.out.println(allResults);
-//        quizResultLauncher.quizResultsCouchDAO.printQuizResultInJson(result1);
+        quizResultLauncher.quizResultsCouchDAO.printQuizResultInJson(result1);
 
 
     }

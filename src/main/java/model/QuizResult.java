@@ -3,31 +3,22 @@ package model;
 import java.time.LocalDateTime;
 
 public class QuizResult {
-    private int takeTestNumber;
     private int idQuiz;
     private int idGebruiker;
     private int numberAnswersRight;
     private LocalDateTime dateTimeQuiz;
 
-    public QuizResult(int takeTestNumber, int idQuiz, int idGebruiker, int numberAnswersRight,
+    public QuizResult(int idQuiz, int idGebruiker, int numberAnswersRight,
                       LocalDateTime dateTimeQuiz) {
-        this.takeTestNumber = takeTestNumber;
         this.idQuiz = idQuiz;
         this.idGebruiker = idGebruiker;
         this.numberAnswersRight = numberAnswersRight;
         this.dateTimeQuiz = dateTimeQuiz;
     }
 
-    public QuizResult(int idQuiz, int idGebruiker, int numberAnswersRight, LocalDateTime dateTimeQuiz) {
-        this(0, idQuiz, idGebruiker, numberAnswersRight, dateTimeQuiz);
-    }
-
-    public int getTakeTestNumber() {
-        return takeTestNumber;
-    }
-
-    public void setTakeTestNumber(int takeTestNumber) {
-        this.takeTestNumber = takeTestNumber;
+    @Override
+    public String toString() {
+        return String.format("Date-time made: %s", dateTimeQuiz);
     }
 
     public int getIdQuiz() {
