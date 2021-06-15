@@ -165,7 +165,7 @@ public class CourseDAO extends AbstractDAO implements GenericDAO<Course>{
     }
 
     //methode om cursussen te tonen waar een student zich voor kan inschrijven
-    public ArrayList<Course> getCoursesStudentSignIn(int idStudent) {
+    public ArrayList<Course> getCoursesStudentToSignIn(int idStudent) {
         String sql = "SELECT * FROM course WHERE idCourse NOT IN (SELECT idCourse FROM studentincourse WHERE idStudent = ?);";
         ArrayList<Course> courses = new ArrayList<>();
         Course result = null;
@@ -176,7 +176,8 @@ public class CourseDAO extends AbstractDAO implements GenericDAO<Course>{
             while (resultSet.next()) {
                 String nameCourse = resultSet.getString("nameCourse");
                 int idCourse = resultSet.getInt("idCourse");
-                result = new Course(nameCourse,idCourse);
+                result = new Course(nameCourse,0);
+                result.setIdCourse(idCourse);
                 courses.add(result);
             }
         }
@@ -187,7 +188,7 @@ public class CourseDAO extends AbstractDAO implements GenericDAO<Course>{
     }
 
     //methode om cursussen te tonen waar een student zich voor kan uitschrijven
-    public ArrayList<Course> getCoursesStudentSignOut(int idStudent) {
+    public ArrayList<Course> getCoursesStudentToSignOut(int idStudent) {
         String sql = "SELECT * FROM course C LEFT JOIN studentincourse S ON C.idCourse = S.idCourse WHERE idStudent = ?;";
         ArrayList<Course> courses = new ArrayList<>();
         Course result = null;
@@ -198,7 +199,9 @@ public class CourseDAO extends AbstractDAO implements GenericDAO<Course>{
             while (resultSet.next()) {
                 String nameCourse = resultSet.getString("nameCourse");
                 int idCourse = resultSet.getInt("idCourse");
-                result = new Course(nameCourse,idCourse);
+                //Het id van de coordinator heeft geen toegevoegde waarde in dit course object.
+                result = new Course(nameCourse,0);
+                result.setIdCourse(idCourse);
                 courses.add(result);
             }
         }
@@ -208,31 +211,36 @@ public class CourseDAO extends AbstractDAO implements GenericDAO<Course>{
         return courses;
     }
 
-   /* //methode voor het opslaan van inschrijvingen/uitschrijvingen studenten
-    public void updateCoursesStudentSignOut(int idCourse, int idStudent) {
-        String sql = "DELETE * FROM studentincourse WHERE idStudent = ? " +
-                "INSERT INTO studentincourse(idCourse,idStudent) values (?,?);";
+    //methode voor het verwijderen van een inschrijving
+    public void deleteCoursesStudentSignOut(int idCourse, int idStudent) {
+        String sql = "DELETE FROM studentincourse \n" +
+                "WHERE idStudent = ? AND idCourse = ?;";
+        try {
+            setupPreparedStatement(sql);
+            preparedStatement.setInt(1, idStudent);
+            preparedStatement.setInt(2, idCourse);
+            executeManipulateStatement();
+
+        } catch (SQLException sqlException) {
+            System.out.println(sqlException.getMessage());
+        }
+    }
+
+    //methode voor het toevoegen van een inschrijving aan de tabel studentInCourse
+    public void addCourseStudentSignIn(int idCourse, int idStudent) {
+        String sql = "INSERT INTO studentincourse (idCourse, idStudent) VALUES(?, ?);";
+
         try {
             setupPreparedStatement(sql);
             preparedStatement.setInt(1, idCourse);
             preparedStatement.setInt(2, idStudent);
             executeManipulateStatement();
 
-            Alert opgeslagen = new Alert(Alert.AlertType.CONFIRMATION);
-            opgeslagen.setContentText(String.format("Cursus %s is opgeslagen!", course.getNameCourse()));
-            opgeslagen.show();
         } catch (SQLException sqlException) {
-            Alert foutmelding = new Alert(Alert.AlertType.ERROR);
-            if(sqlException.getMessage().contains("Duplicate")) {
-                foutmelding.setContentText("Deze cursus bestaat al! Cursus is niet opgeslagen.");
-            } else {
-                foutmelding.setContentText("Cursus kon niet worden opgeslagen.");
-            }
-            foutmelding.show();
             System.out.println(sqlException.getMessage());
         }
-    }*/
     }
+}
 
 
 

@@ -2,12 +2,6 @@ package test;
 
 import database.mysql.CourseDAO;
 import database.mysql.DBAccess;
-import database.mysql.UserDAO;
-import model.Course;
-
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 
 public class HaroldTest{
     public static void main(String[] args) {
@@ -24,8 +18,8 @@ public class HaroldTest{
         System.out.println(test.getAll());
 
         //controle werking methode getCoursesStudentSignIn
-        System.out.println(test.getCoursesStudentSignIn(1));
-        System.out.println(test.getCoursesStudentSignOut(1));
+        System.out.println(test.getCoursesStudentToSignIn(1));
+        System.out.println(test.getCoursesStudentToSignOut(1));
 
         //controle werking methode getNamesCoordinator in UserDAO class
         //UserDAO test1 = new UserDAO(dbAccess);

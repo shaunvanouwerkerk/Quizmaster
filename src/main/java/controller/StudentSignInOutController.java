@@ -5,20 +5,25 @@ import database.mysql.DBAccess;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import model.Course;
 import view.Main;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.concurrent.atomic.AtomicReference;
 
 public class StudentSignInOutController {
     private CourseDAO courseDAO;
     private DBAccess dBaccess;
     private ArrayList<Course> coursesToSignIn;
     private ArrayList<Course> coursesToSignOut;
+    private ObservableList<Course> selectedCoursesToSignIn;
+    private ObservableList<Course> selectedCoursesToSignOut;
+    private ArrayList<Course> coursesToCheckWhenSave;
+
 
     @FXML
     private ListView<Course> signedOutCourseListView;
@@ -32,16 +37,23 @@ public class StudentSignInOutController {
         this.courseDAO = new CourseDAO(dBaccess);
         this.coursesToSignIn = new ArrayList<>();
         this.coursesToSignOut = new ArrayList<>();
+        this.coursesToCheckWhenSave = new ArrayList<>();
     }
 
     public void setup() {
-        coursesToSignIn = courseDAO.getCoursesStudentSignIn(Main.loggedInUser.getIdUser());
-        coursesToSignOut = courseDAO.getCoursesStudentSignOut(Main.loggedInUser.getIdUser());
+        coursesToSignIn = courseDAO.getCoursesStudentToSignIn(Main.loggedInUser.getIdUser());
+        coursesToSignOut = courseDAO.getCoursesStudentToSignOut(Main.loggedInUser.getIdUser());
+
+        for (Course courseToSave : coursesToSignOut) {
+            coursesToCheckWhenSave.add(courseToSave);
+        }
+        System.out.println(coursesToCheckWhenSave);
 
         setupScreen();
     }
 
     public void setupScreen(){
+
         signedOutCourseListView.getItems().clear();
         for (Course course : coursesToSignIn) {
             signedOutCourseListView.getItems().add(course);
@@ -52,101 +64,96 @@ public class StudentSignInOutController {
             signedInCourseListView.getItems().add(course);
         }
         signedOutCourseListView.getSelectionModel().selectFirst();
+        signedInCourseListView.getSelectionModel().selectFirst();
         signedOutCourseListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         signedInCourseListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-        AtomicReference<ObservableList<Course>> selectedCoursesToSignIn = new AtomicReference<>(FXCollections.observableArrayList(coursesToSignIn));
-        selectedCoursesToSignIn.get().clear();
 
-                //signedOutCourseListView.getSelectionModel().selectFirst();
+        //Maak observable list aan
+        selectedCoursesToSignIn = FXCollections.observableArrayList(coursesToSignIn);
+        selectedCoursesToSignOut = FXCollections.observableArrayList(coursesToSignOut);
+        selectedCoursesToSignIn.clear();
+        selectedCoursesToSignOut.clear();
+
+        //Voeg de eerst geselecteerde toe
+        selectedCoursesToSignIn.add(signedOutCourseListView.getSelectionModel().getSelectedItem());
+        selectedCoursesToSignOut.add(signedInCourseListView.getSelectionModel().getSelectedItem());
 
         signedOutCourseListView.setOnMouseClicked(mouseEvent -> {
-            selectedCoursesToSignIn.set(signedOutCourseListView.getSelectionModel().getSelectedItems());
-            System.out.println(selectedCoursesToSignIn);
-
+            selectedCoursesToSignIn.clear();
+            selectedCoursesToSignIn.addAll(signedOutCourseListView.getSelectionModel().getSelectedItems());
         });
-       /* listView.setOnMouseClicked(new EventHandler<Event>() {
 
-            @Override
-            public void handle(Event event) {
-                ObservableList<String> selectedItems =  listView.getSelectionModel().getSelectedItems();
-
-                for(String s : selectedItems){
-                    System.out.println("selected item " + s);
-                }
-
-            }
-
-        });*/
+        signedInCourseListView.setOnMouseClicked(mouseEvent -> {
+            selectedCoursesToSignOut.clear();
+            selectedCoursesToSignOut.addAll(signedInCourseListView.getSelectionModel().getSelectedItems());
+        });
     }
 
 
-    public void doMenu() {Main.getSceneManager().showWelcomeScene();}
+    public void doMenu() {
+        /*
+        * De verandering tussen inschrijvingen checken
+        * als er een verandering is --> er is een inschrijving bijgekomen die er niet was --> moeten we toevoegen aan db
+        * als er een veradering is --> er is een inschrijving vanaf gegaan --> moeten we verwijderen uit db
+        *
+        * */
+
+
+        for(Course courseNew : coursesToSignOut) {
+            if(!(coursesToCheckWhenSave.contains(courseNew))) {
+                courseDAO.addCourseStudentSignIn(courseNew.getIdCourse(), Main.loggedInUser.getIdUser());
+            }
+        }
+
+        for(Course courseOld : coursesToCheckWhenSave) {
+            if(!(coursesToSignOut.contains(courseOld))) {
+                courseDAO.deleteCoursesStudentSignOut(courseOld.getIdCourse(), Main.loggedInUser.getIdUser());
+            }
+        }
+
+        if(!(coursesToCheckWhenSave.equals(coursesToSignOut))) {
+            Alert opgeslagen = new Alert(Alert.AlertType.CONFIRMATION);
+            opgeslagen.setHeaderText("Wijzigingen opgeslagen!");
+            opgeslagen.setContentText("Veel succes met de cursussen!");
+            opgeslagen.showAndWait();
+        }
+
+
+
+
+//        for (Course courseOldRegistred : coursesToCheckWhenSave) {
+//            System.out.println(courseOldRegistred.getIdCourse());
+//
+//
+//            for(Course courseNewRegistred : coursesToSignOut) {
+//                System.out.println(courseNewRegistred.getIdCourse());
+//                if(courseNewRegistred.getNameCourse().equals(courseNewRegistred.getNameCourse())) {
+//                    System.out.println("hallo!");
+//                }
+//            }
+//        }
+
+        Main.getSceneManager().showWelcomeScene();
+    }
 
     public void doSignIn() {
-
-        System.out.println(coursesToSignOut);
-        System.out.println(coursesToSignIn);
-        coursesToSignOut.add(signedOutCourseListView.getSelectionModel().getSelectedItem());
-        coursesToSignIn.remove(signedOutCourseListView.getSelectionModel().getSelectedItem());
-        setupScreen();
-
-
-
-
-
-
-
-        /*int idStudent = Main.loggedInUser.getIdUser();
-        ArrayList <Course> test = new ArrayList<>();
-        signIn.setOnAction(Event -> test.add(signedInCourseList.getSelectionModel().getSelectedItem()));
-                    signedInCourseList.refresh();
-                }
-
-            coursesSignIn.add
-            if (selection != null) {
-                signedInCourseList.getSelectionModel().clearSelection();
-                coursesSignIn.remove(selection);
-                coursesSignOut.add(selection);
+        for (Course course : selectedCoursesToSignIn) {
+            if (!(course == null)) {
+                coursesToSignOut.add(course);
+                coursesToSignIn.remove(course);
             }
-        });*/
-
-
-
-        /*Course selectedCourses = signedInCourseList.getSelectionModel().getSelectedItem();
-        coursesSignIn.add(selectedCourses);
-        coursesSignOut.remove(selectedCourses);
-        ListView<c>*/
-
-
-        /*coursesSignIn.add(signedOutCourseList.getSelectionModel().getSelectedItem());
-        coursesSignIn.remove(signedOutCourseList.getSelectionModel().getSelectedItem());
-        signedOutCourseList.refresh();
-        signedInCourseList.refresh();*/
-        System.out.println(coursesToSignOut);
-        System.out.println(coursesToSignIn);
-
-
-
-        /*ObservableList<Course> content = signedOutCourseList.getSelectionModel().getSelectedItems();
-        signedInCourseList.(content);
-        ObservableList<Course> selectedItem = signedOutCourseList.getSelectionModel().getSelectedItems();
-        signedOutCourseList.remove(selectedItem);
-        signedInCourseList.add(selectedItem);
-
-        signIn.setOnAction(Event -> signedOutCourseList.getSelectionModel().getSelectedItems().add(course));
-
-*/
+        }
+        setupScreen();
     }
 
 
     public void doSignOut() {
-        System.out.println(coursesToSignOut);
-        System.out.println(coursesToSignIn);
-        coursesToSignIn.add(signedInCourseListView.getSelectionModel().getSelectedItem());
-        coursesToSignOut.remove(signedInCourseListView.getSelectionModel().getSelectedItem());
-        System.out.println(coursesToSignOut);
-        System.out.println(coursesToSignIn);
+        for(Course course : selectedCoursesToSignOut) {
+            if(!(course == null)) {
+                coursesToSignIn.add(course);
+                coursesToSignOut.remove(course);
+            }
+        }
         setupScreen();
-
     }
 }
