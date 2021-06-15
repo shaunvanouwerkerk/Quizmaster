@@ -1,17 +1,20 @@
 package database.couchDB;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+import com.google.gson.*;
+import database.mysql.DBAccess;
+import database.mysql.QuizDAO;
 import model.QuizResult;
 import model.User;
 
 
+
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
 public class QuizResultsCouchDAO {
+    DBAccess dbAccess;
     private CouchDBaccessQuizResults couchDBaccessQuizResults;
     private Gson gson;
 
@@ -22,30 +25,56 @@ public class QuizResultsCouchDAO {
 
     //Test methode om te zien of het lukte om een quiz resultaat als Json te printen
     public void printQuizResultInJson(QuizResult quizResult) {
+        // Magic box om LocalDateTime naar string om te zetten.
+        Gson gson = new GsonBuilder().registerTypeAdapter(LocalDateTime.class, (JsonDeserializer<LocalDateTime>)
+                (json, typeOfT, context) -> LocalDateTime.parse(json.getAsString(), DateTimeFormatter.ISO_LOCAL_DATE))
+                .registerTypeAdapter(LocalDateTime.class, (JsonSerializer<LocalDateTime>) (src, typeOfSrc, context) ->
+                        new JsonPrimitive(src.format(DateTimeFormatter.ISO_DATE_TIME))).create();
         String quizResultJson = gson.toJson(quizResult);
         System.out.println("Resultaat is");
         System.out.println(quizResultJson);
     }
 
-////    QuizResult quizResult = saveSingleResult(2, 1, 30, LocalDateTime.now());
-//    public void saveSingleResult(QuizResult eenQuizResult) {
-//        JsonParser jsonParser = new JsonParser();
-//        JsonObject jsonObject = jsonParser.parse(gson.toJson(eenQuizResult)).getAsJsonObject();
-//        couchDBaccessQuizResults.saveDocument(jsonObject);
-//    }
+    //Methode om quiz resultaat op te slaan
+    public String saveQuizResultInJson(QuizResult quizResult) {
+        // Magic box om LocalDateTime naar string om te zetten.
+        Gson gson = new GsonBuilder().registerTypeAdapter(LocalDateTime.class, (JsonDeserializer<LocalDateTime>)
+                (json, typeOfT, context) -> LocalDateTime.parse(json.getAsString(), DateTimeFormatter.ISO_LOCAL_DATE))
+                .registerTypeAdapter(LocalDateTime.class, (JsonSerializer<LocalDateTime>) (src, typeOfSrc, context) ->
+                        new JsonPrimitive(src.format(DateTimeFormatter.ISO_DATE_TIME))).create();
+        String quizResultJson = gson.toJson(quizResult);
+        System.out.println("Resultaat is");
+        System.out.println(quizResultJson);
+        JsonParser parser = new JsonParser();
+        JsonObject jsonObject = parser.parse(quizResultJson).getAsJsonObject();
+        String doc_Id = couchDBaccessQuizResults.saveDocument(jsonObject);
+        return doc_Id;
+    }
 
-//    public ArrayList<QuizResult> getAllResultsbyQuizIdWithStudentId() {
-//        ArrayList<QuizResult> allQuizresults = new ArrayList<>();
-//        QuizResult quizResult = null;
-//        List<JsonObject> allQuizresultsCouchDb = couchDBaccessQuizResults.getClient()
-//                .view("_all_docs").includeDocs(true)
-//                .query(JsonObject.class);
-//        System.out.println(allQuizresultsCouchDb );
-//        for(JsonObject object : allQuizresultsCouchDb ) {
-//            quizResult = gson.fromJson(object, QuizResult.class);
-//            allQuizresults.add(quizResult);
-//        }
-//        return allQuizresults;
-//    }
+
+
+
+
+
+
+
+
+
+
+    public ArrayList<QuizResult> getAllResultsbyQuizIdWithStudentId() {
+        QuizDAO quizDAO = new QuizDAO(dbAccess);
+        ArrayList<QuizResult> allQuizresults = new ArrayList<>();
+        QuizResult quizResult = null;
+
+        List<JsonObject> allQuizresultsCouchDb = couchDBaccessQuizResults.getClient()
+                .view("_all_docs").includeDocs(true)
+                .query(JsonObject.class);
+        System.out.println(allQuizresultsCouchDb );
+        for(JsonObject object : allQuizresultsCouchDb ) {
+            quizResult = gson.fromJson(object, QuizResult.class);
+            allQuizresults.add(quizResult);
+        }
+        return allQuizresults;
+    }
 
 }

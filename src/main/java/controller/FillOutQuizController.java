@@ -114,8 +114,8 @@ public class FillOutQuizController {
           Optional<ButtonType> decision = quizAfronden.showAndWait();
           if (decision.get() == ButtonType.OK) {
               compareAndCountCorrectAnswers();
-              huidigeQuizResult = new QuizResult(1, huidigeQuiz.getIdQuiz(),
-                      Main.loggedInUser.getIdUser(), aantalJuisteAntwoorden, LocalDateTime.now());
+//              huidigeQuizResult = new QuizResult(1, huidigeQuiz.getIdQuiz(),
+//                      Main.loggedInUser.getIdUser(), aantalJuisteAntwoorden, LocalDateTime.now());
               // TODO: Sla huidigeQuizResult in de database
               Main.getSceneManager().showStudentFeedback(huidigeQuiz);
           } else {
