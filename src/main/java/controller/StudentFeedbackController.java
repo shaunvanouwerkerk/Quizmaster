@@ -32,8 +32,13 @@ public class StudentFeedbackController {
     public void setup(Quiz quiz) {
         feedbackLabel.setText(String.format("Feedback voor quiz %s", quiz.getNameQuiz()));
         ArrayList<QuizResult> quizResultsTemp = couchDBQuizResultsLauncher.getQuizResultsCouchDAO().getAllResultsbyQuizIdWithStudentId();
-        feedbackList.getItems().add(quizResultsTemp.get(0));
-        ObservableList observableList = FXCollections.observableArrayList(quizResultsTemp);
+        for (QuizResult quizresult: quizResultsTemp) {
+            if (quizresult.getIdGebruiker() == Main.loggedInUser.getIdUser()) {
+                quizResults.add(quizresult);
+            }
+        }
+        feedbackList.getItems().addAll(quizResults);
+        ObservableList observableList = FXCollections.observableArrayList(feedbackList);
 
     }
     public void doMenu() {

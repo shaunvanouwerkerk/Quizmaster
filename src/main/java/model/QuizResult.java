@@ -18,7 +18,7 @@ public class QuizResult {
 
     @Override
     public String toString() {
-        return String.format("Date-time made: %s", dateTimeQuiz.withNano(0));
+        return String.format("Datum van indiening: %s\nAantal juiste antwoorden: %d", dateTimeQuiz.withNano(0), numberAnswersRight);
     }
 
     public int getIdQuiz() {
