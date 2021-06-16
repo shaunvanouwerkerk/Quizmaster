@@ -1,13 +1,10 @@
 package database.mysql;
 /*
-* Author Harold Stevens
+* @Author Harold Stevens
 * */
 
 import javafx.scene.control.Alert;
 import model.Course;
-import model.Question;
-import model.User;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -109,7 +106,7 @@ public class CourseDAO extends AbstractDAO implements GenericDAO<Course>{
         }
     }
 
-    //methode voor het verwijderen van een Course
+    //methode voor het verwijderen van een cursus
     public void deleteCourse(Course course) {
         String sql = "DELETE FROM course WHERE idCourse = ?;";
         try {
@@ -121,7 +118,7 @@ public class CourseDAO extends AbstractDAO implements GenericDAO<Course>{
         }
     }
 
-    //???? waar is deze methode voor bedoelt?
+    //methode om cursussen op te vragen op basis van het id van de coordinator
     public ArrayList<Course> getCoursesByIdCoordinator(int id) {
         String sql = "SELECT * FROM Course Where idCoordinatorCourse = ?";
         ArrayList<Course> courses = new ArrayList<>();
@@ -229,7 +226,6 @@ public class CourseDAO extends AbstractDAO implements GenericDAO<Course>{
     //methode voor het toevoegen van een inschrijving aan de tabel studentInCourse
     public void addCourseStudentSignIn(int idCourse, int idStudent) {
         String sql = "INSERT INTO studentincourse (idCourse, idStudent) VALUES(?, ?);";
-
         try {
             setupPreparedStatement(sql);
             preparedStatement.setInt(1, idCourse);

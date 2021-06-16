@@ -1,17 +1,14 @@
 package controller;
 /*
- * Author Harold Stevens
+ * @Author Harold Stevens
  * */
 import database.mysql.CourseDAO;
 import database.mysql.DBAccess;
-import database.mysql.QuestionDAO;
 import database.mysql.QuizDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import model.Course;
-import model.Question;
-import model.Quiz;
 import view.Main;
 
 import java.util.ArrayList;
@@ -26,9 +23,6 @@ public class ManageCoursesController {
     ListView<Course> courseList;
 
     @FXML
-    TextField warningText;
-
-    @FXML
     Label aantalStudentenText;
 
     public ManageCoursesController() {
@@ -41,8 +35,9 @@ public class ManageCoursesController {
         for (Course course : allCourses) {
             courseList.getItems().add(course);
         }
+        //Om nullpointer execption te vermijden
         courseList.getSelectionModel().selectFirst();
-
+        //aanroepen methode om het aantal studenten te tonen
         courseList.setOnMouseClicked(mouseEvent -> numberOfStudents());
     }
 
@@ -58,32 +53,21 @@ public class ManageCoursesController {
     public void doUpdateCourse(){
         Main.getSceneManager().showUpdateCourseScene(courseList.getSelectionModel().getSelectedItem());
     }
-
-    public void showNumberOfStudentsPerCourse (){
-
-    }
-
-
-
+    //methode om een cursus te verwijderen
     public void doDeleteCourse() {
         Course course = courseList.getSelectionModel().getSelectedItem();
         this.quizDAO = new QuizDAO(dBaccess);
         boolean courseHasQuizzes = quizDAO.getQuizBasedOnIdCourse(course.getIdCourse());
-
-
-
         //Checkt eerst of er niet al quizzen zijn aangemaakt.
         if (!(courseHasQuizzes)) {
             Alert deleteAlert = new Alert(Alert.AlertType.CONFIRMATION);
             deleteAlert.setTitle("Verwijder course");
             deleteAlert.setHeaderText("Weet je zeker dat je de cursus wilt verwijderen?");
             Optional<ButtonType> result = deleteAlert.showAndWait();
-
             if (result.get() == ButtonType.OK) {
                 courseDAO.deleteCourse(courseList.getSelectionModel().getSelectedItem());
                 Main.getSceneManager().showManageCoursesScene();
             }
-
         } else {
             Alert deleteAlert = new Alert(Alert.AlertType.ERROR);
             deleteAlert.setTitle("Verwijderen van cursus niet mogelijk!");
