@@ -19,8 +19,9 @@ public class CreateUpdateCourseController {
     private CourseDAO courseDAO;
     private UserDAO userDAO;
     private DBAccess dbAccess;
-    private ArrayList<User>  allUsers;
-    private ArrayList<User>  allCoordinators = new ArrayList<>();
+    private ArrayList<User> allUsers;
+    private ArrayList<User> allCoordinators = new ArrayList<>();
+    private static final int MAX_CHAR_COURSE_NAME = 45;
 
     @FXML
     private TextField nameCourseTextfield;
@@ -38,15 +39,17 @@ public class CreateUpdateCourseController {
         this.courseDAO = new CourseDAO(dbAccess);
         this.userDAO = new UserDAO(dbAccess);
     }
+
     //methode voor het aanmaken van een nieuwe cursus
-    public void setupCreateCourse(){
+    public void setupCreateCourse() {
         ComboBox<User> keuzeDropDown = setUserDropList();
         coordinatorDropDown.getSelectionModel().selectFirst();
         coordinatorDropDown.getSelectionModel().getSelectedItem();
         coordinatorDropDown.setOnAction(event -> keuzeDropDown.getSelectionModel().getSelectedItem());
     }
+
     //methode voor het wijzigen van een bestaande cursus
-    public void setupUpdateCourse(Course course){
+    public void setupUpdateCourse(Course course) {
         titleLabel.setText("Wijzig cursus");
         nameCourseTextfield.setText(course.getNameCourse());
         addCourse.setText("Wijzig cursus");
@@ -56,7 +59,7 @@ public class CreateUpdateCourseController {
         coordinatorDropDown.setOnAction(event -> keuzeDropDown.getSelectionModel().getSelectedItem());
     }
 
-    public void doMenu(){
+    public void doMenu() {
         Main.getSceneManager().showManageCoursesScene();
     }
 
@@ -73,17 +76,17 @@ public class CreateUpdateCourseController {
     }
 
     //methode voor het vullen van de Combobox met coordinatoren
-    public ComboBox<User> setUserDropList(){
+    public ComboBox<User> setUserDropList() {
         this.allUsers = userDAO.getAll();
-        for (User coordinator : allUsers){
-            if (coordinator.getRoleName().equals(Main.COORDINATOR_ROL)){
+        for (User coordinator : allUsers) {
+            if (coordinator.getRoleName().equals(Main.COORDINATOR_ROL)) {
                 this.allCoordinators.add(coordinator);
             }
         }
         ObservableList<User> observableList = FXCollections.observableList(allCoordinators);
         ComboBox<User> comboBox = new ComboBox<>(observableList);
-        for (User user: observableList) {
-                coordinatorDropDown.getItems().add(user);
+        for (User user : observableList) {
+            coordinatorDropDown.getItems().add(user);
         }
         return comboBox;
     }
@@ -97,10 +100,6 @@ public class CreateUpdateCourseController {
             course.setNameCourse(nameCourseTextfield.getText());
             course.setIdCoordinator(coordinatorDropDown.getSelectionModel().getSelectedItem().getIdUser());
             courseDAO.updateCourse(course);
-            Alert cursusSuccesvolGewijzigd = new Alert(Alert.AlertType.INFORMATION);
-            cursusSuccesvolGewijzigd.setTitle("");
-            cursusSuccesvolGewijzigd.setHeaderText("De cursus is succesvol gewijzigd");
-            cursusSuccesvolGewijzigd.show();
             Main.getSceneManager().showManageCoursesScene();
         }
     }
@@ -109,30 +108,40 @@ public class CreateUpdateCourseController {
     public boolean checkFields() {
         boolean allFields = false;
         boolean coursName = false;
+        boolean nameCourseLengthCorrect = false;
 
         Alert foutmelding = new Alert(Alert.AlertType.ERROR);
 
         if (!(nameCourseTextfield.getText().isEmpty())) {
             coursName = true;
-        } else if(nameCourseTextfield.getText().isEmpty()) {
+        } else if (nameCourseTextfield.getText().isEmpty()) {
             foutmelding.setTitle("Ontbrekende gegevens");
             foutmelding.setHeaderText("Je hebt geen cursusnaam opgegeven");
             foutmelding.show();
         }
-        if(coursName) {
-            allFields = true;
+        if (nameCourseTextfield.getLength() < MAX_CHAR_COURSE_NAME) {
+            nameCourseLengthCorrect = true;
+        } else {
+            foutmelding.setContentText("De groepsnaam mag niet langer dan 45 tekens zijn");
+            foutmelding.show();
+
+            if (coursName && nameCourseLengthCorrect) {
+                allFields = true;
+            }
         }
-        System.out.println(allFields);
-        return allFields;
-    }
+            if (coursName && nameCourseLengthCorrect) {
+                allFields = true;
+            }
+            System.out.println(allFields);
+            return allFields;
+        }
 
+        //methode om de invoervelden leeg te maken
+        public void doClear(){
+            nameCourseTextfield.clear();
+        }
 
-    //methode om de invoervelden leeg te maken
-    public void doClear() {
-        nameCourseTextfield.clear();
-    }
-
-   }
+}
 
 
 

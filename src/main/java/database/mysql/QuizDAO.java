@@ -102,9 +102,21 @@ public class QuizDAO extends AbstractDAO implements GenericDAO <Quiz> {
             preparedStatement.setInt(3,quiz.getSuccesDefinition());
             quiz.setIdQuiz(executeInsertStatementWithKey());
 
+            Alert quizStored = new Alert(Alert.AlertType.INFORMATION);
+            quizStored.setHeaderText("De quiz is toegevoegd");
+            quizStored.show();
 
         } catch (SQLException sqlFout) {
-            System.out.println("SQL fout: " + sqlFout.getMessage());
+            Alert foutmelding = new Alert(Alert.AlertType.ERROR);
+            if (sqlFout.getMessage().contains("Duplicate")) {
+                foutmelding.setHeaderText("Deze quiz bestaat al");
+                foutmelding.setContentText("Deze quiz is niet opgeslagen.");
+            } else {
+                foutmelding.setContentText("Quiz kon niet worden gewijzigd.");
+            }
+            foutmelding.show();
+            System.out.println("SQL fout1: " + sqlFout.getMessage());
+
         }
     }
 
@@ -120,8 +132,22 @@ public class QuizDAO extends AbstractDAO implements GenericDAO <Quiz> {
             preparedStatement.setInt(4,quiz.getIdQuiz());
             executeManipulateStatement();
 
+            Alert quizStored = new Alert(Alert.AlertType.INFORMATION);
+            quizStored.setHeaderText("De quiz is aangepast");
+            quizStored.show();
+
         } catch (SQLException sqlFout) {
-            System.out.println("SQL fout: " + sqlFout.getMessage());
+
+            Alert foutmelding = new Alert(Alert.AlertType.ERROR);
+            if (sqlFout.getMessage().contains("Duplicate")) {
+                foutmelding.setHeaderText("Deze quiz bestaat al");
+                foutmelding.setContentText("Deze quiz is niet opgeslagen.");
+            } else {
+                foutmelding.setContentText("Quiz kon niet worden gewijzigd.");
+            }
+            foutmelding.show();
+            System.out.println("SQL fout1: " + sqlFout.getMessage());
+
         }
     }
 

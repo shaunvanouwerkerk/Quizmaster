@@ -25,9 +25,7 @@
     -fx-text-fill: white;
     -fx-padding: 7;
     -fx-arc-height: 20;
-    -fx-background-color:midblue;
-    /*-fx-effect: dropshadow(one-pass-box, lightslategray, 14, 0.0, 6, 0);*/
-    /*-fx-background-radius: 8;*/
+    -fx-background-color: midblue;
 }
 .label {
     -fx-font: 14px "Futura";
@@ -36,7 +34,7 @@
 }
 .choice-box{
     -fx-font: 20px "Futura";
-    -fx-text-fill: text-primaty-color;
+    -fx-text-fill: blackreal;
     -fx-text-allignemenet: left;
     -fx-background-color: gold-color;
 

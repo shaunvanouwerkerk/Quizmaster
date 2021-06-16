@@ -10,6 +10,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import model.Course;
@@ -32,8 +33,8 @@ public class StudentSignInOutController {
     private ListView<Course> signedOutCourseListView;
     @FXML
     private ListView <Course> signedInCourseListView;
-    //@FXML
-    //public Button teamlogo;
+    @FXML
+    public Button teamlogo;
 
 
     public StudentSignInOutController(){
