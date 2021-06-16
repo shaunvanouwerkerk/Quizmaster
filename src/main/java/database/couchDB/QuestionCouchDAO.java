@@ -8,7 +8,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import database.mysql.QuestionDAO;
 import model.Question;
-import model.User;
+
 import view.Main;
 
 import java.util.ArrayList;
