@@ -6,51 +6,53 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="900.0" stylesheets="@../../../../Stylesheet/quaranteamStylesheet.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CoordinatorDashboardController">
-    <Label layoutX="14.0" layoutY="14.0" text="Coördinator dashboard">
+<AnchorPane prefHeight="600.0" prefWidth="900.0" stylesheets="@../../../../src/Stylesheet/quaranteamStylesheet.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CoordinatorDashboardController">
+    <Label layoutX="14.0" layoutY="37.0" text="Coördinator dashboard">
         <font>
             <Font size="18.0" />
         </font>
     </Label>
-    <Label layoutX="14.0" layoutY="51.0" text="Selecteer cursus">
+    <Label layoutX="14.0" layoutY="100.0" text="Selecteer cursus">
         <font>
             <Font size="16.0" />
         </font>
     </Label>
-    <Label layoutX="315.0" layoutY="51.0" text="Selecteer quiz">
+    <Label layoutX="315.0" layoutY="100.0" text="Selecteer quiz">
         <font>
             <Font size="16.0" />
         </font>
     </Label>
-    <Label layoutX="615.0" layoutY="51.0" text="Selecteer vraag">
+    <Label layoutX="615.0" layoutY="100.0" text="Selecteer vraag">
         <font>
             <Font size="16.0" />
         </font>
     </Label>
-    <ListView fx:id="courseList" layoutX="15.0" layoutY="75.0" prefHeight="200.0" prefWidth="270.0" />
-    <ListView fx:id="quizList" layoutX="315.0" layoutY="75.0" prefHeight="200.0" prefWidth="270.0" />
-    <ListView fx:id="questionList" layoutX="615.0" layoutY="75.0" prefHeight="200.0" prefWidth="270.0" />
-    <Button layoutX="315.0" layoutY="279.0" mnemonicParsing="false" onAction="#doNewQuiz" text="Nieuwe quiz">
+    <ListView fx:id="courseList" layoutX="15.0" layoutY="124.0" prefHeight="200.0" prefWidth="270.0" />
+    <ListView fx:id="quizList" layoutX="315.0" layoutY="124.0" prefHeight="200.0" prefWidth="270.0" />
+    <ListView fx:id="questionList" layoutX="615.0" layoutY="124.0" prefHeight="200.0" prefWidth="270.0" />
+    <Button layoutX="-16.0" layoutY="451.0" mnemonicParsing="false" prefHeight="124.0" prefWidth="916.0" styleClass="teamlogo" />
+    <Button layoutX="315.0" layoutY="328.0" mnemonicParsing="false" onAction="#doNewQuiz" text="Nieuwe quiz">
+
         <font>
             <Font size="14.0" />
         </font>
     </Button>
-    <Button layoutX="493.0" layoutY="278.0" mnemonicParsing="false" onAction="#doEditQuiz" text="Wijzig quiz">
+    <Button layoutX="493.0" layoutY="327.0" mnemonicParsing="false" onAction="#doEditQuiz" text="Wijzig quiz">
         <font>
             <Font size="14.0" />
         </font>
     </Button>
-    <Button layoutX="615.0" layoutY="279.0" mnemonicParsing="false" onAction="#doNewQuestion" text="Nieuwe vraag">
+    <Button layoutX="615.0" layoutY="328.0" mnemonicParsing="false" onAction="#doNewQuestion" text="Nieuwe vraag">
         <font>
             <Font size="14.0" />
         </font>
     </Button>
-    <Button layoutX="784.0" layoutY="278.0" mnemonicParsing="false" onAction="#doEditQuestion" text="Wijzig vraag">
+    <Button layoutX="784.0" layoutY="327.0" mnemonicParsing="false" onAction="#doEditQuestion" text="Wijzig vraag">
         <font>
             <Font size="14.0" />
         </font>
     </Button>
-   <Button layoutX="15.0" layoutY="319.0" mnemonicParsing="false" onAction="#doMenu" text="Menu">
+   <Button layoutX="813.0" layoutY="33.0" mnemonicParsing="false" onAction="#doMenu" text="Menu">
       <font>
          <Font size="14.0" />
       </font>

@@ -82,12 +82,6 @@ public class QuizDAO extends AbstractDAO implements GenericDAO <Quiz> {
                 int idquiz = resultSet.getInt("idQuiz");
                 quiz = new Quiz(namequiz, succesdefinition,idquiz,courseId);
                 allQuizes.add(quiz);
-
-            } if (allQuizes.isEmpty()) {
-                Alert deleteAlert = new Alert(Alert.AlertType.ERROR);
-                deleteAlert.setTitle("Geen quiz aanwezig");
-                deleteAlert.setHeaderText("Er bestaat geen quiz bij deze cursus.");
-                Optional<ButtonType> result = deleteAlert.showAndWait();
             }
         } catch (SQLException sqlException) {
 

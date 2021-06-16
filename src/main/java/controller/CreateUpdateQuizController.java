@@ -34,6 +34,8 @@ public class CreateUpdateQuizController {
     private Button adQuiz;
     @FXML
     private ComboBox<Course> courseButton;
+    @FXML
+    public Button teamlogo;
 
 
     public CreateUpdateQuizController() {
@@ -70,12 +72,12 @@ public class CreateUpdateQuizController {
     public void doCreateQuiz() {
         boolean correctFilledOUt = checkFields();
         if (correctFilledOUt) {
-            int courseId = courseButton.getSelectionModel().getSelectedItem().getIdCourse();
+            int courseId = courseButton.getSelectionModel().getSelectedItem().getIdCourse();//
             String quizeName = textfieldQuizName.getText();
             int succesDefinition = Integer.parseInt(textfieldSuccesDefinition.getText());
-            Quiz quiz = new Quiz(quizeName, succesDefinition, courseId);
+            Quiz quiz = new Quiz(quizeName, succesDefinition, courseId);//
             quizDAO.storeOne(quiz);
-            // Alert bericht
+            // Melding als quiz is toegevoegd
             Alert quizStored = new Alert(Alert.AlertType.INFORMATION);
             quizStored.setHeaderText("De quiz is toegevoegd");
             quizStored.show();

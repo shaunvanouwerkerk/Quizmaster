@@ -7,9 +7,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="900.0" stylesheets="@../../../../Stylesheet/quaranteamStylesheet.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CreateUpdateQuizController">
+<AnchorPane prefHeight="600.0" prefWidth="900.0" stylesheets="@../../../../src/Stylesheet/quaranteamStylesheet.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CreateUpdateQuizController">
    <children>
-      <Label fx:id="titelCreateUpdate" layoutX="204.0" layoutY="75.0" text="Quiz maken">
+      <Label fx:id="titelCreateUpdate" layoutX="203.0" layoutY="99.0" text="Quiz maken">
          <font>
             <Font size="18.0" />
          </font></Label>
@@ -18,14 +18,16 @@
       <Label fx:id="succesDefinition" layoutX="204.0" layoutY="309.0" text="Succesdefinitie" />
       <TextField fx:id="textfieldQuizName" layoutX="312.0" layoutY="274.0" prefHeight="25.0" prefWidth="215.0" promptText="Voer hier je quiznaam in" />
       <TextField fx:id="textfieldSuccesDefinition" layoutX="312.0" layoutY="305.0" prefHeight="25.0" prefWidth="215.0" promptText="Voer hier de succesdefinitie toe" />
-      <Button layoutX="201.0" layoutY="374.0" mnemonicParsing="false" onAction="#doMenu" text="Menu" />
-      <Button fx:id="adQuiz" layoutX="282.0" layoutY="374.0" mnemonicParsing="false" onAction="#doCreateQuiz" text="Voeg quiz toe" />
-      <Button layoutX="398.0" layoutY="374.0" mnemonicParsing="false" onAction="#doClear" text="Invulveld leegmaken" />
+      <Button layoutX="813.0" layoutY="33.0" mnemonicParsing="false" onAction="#doMenu" text="Menu" />
+      <Button fx:id="adQuiz" layoutX="260.0" layoutY="367.0" mnemonicParsing="false" onAction="#doCreateQuiz" text="Voeg quiz toe" />
+      <Button layoutX="382.0" layoutY="367.0" mnemonicParsing="false" onAction="#doClear" text="Invulveld leegmaken" />
+   <Button layoutX="-16.0" layoutY="451.0" mnemonicParsing="false" prefHeight="124.0" prefWidth="916.0" styleClass="teamlogo" />
       <ComboBox fx:id="courseButton" layoutX="312.0" layoutY="153.0" prefHeight="25.0" prefWidth="215.0" promptText="Kies een course" />
       <Label layoutX="210.0" layoutY="185.0" text="*Deze quiz valt onder de volgende course:">
          <font>
             <Font size="11.0" />
          </font>
+
       </Label>
    </children>
 </AnchorPane>

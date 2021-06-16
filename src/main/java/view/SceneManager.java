@@ -24,7 +24,6 @@ public class SceneManager {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
             Parent root = loader.load();
             scene = new Scene(root);
-            scene.getStylesheets().add("src/Stylesheet/quaranteamStylesheet.css");
             primaryStage.setScene(scene);
             return loader;
         } catch (IOException ioException) {
