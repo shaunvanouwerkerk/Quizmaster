@@ -41,6 +41,8 @@ public class CouchDBQuizResultsLauncher {
         Collections.sort(alleQuizResults);
         System.out.println(alleQuizResults);
 
+
+
     }
 
     public void run() {

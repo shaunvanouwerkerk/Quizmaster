@@ -1,16 +1,14 @@
 package controller;
 
+//Author: Branko Visser
+
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import model.Course;
-import model.User;
 import view.Main;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+
 
 public class  WelcomeController {
-
-    private User userJava;
 
     @FXML
     private Label welcomeLabel;

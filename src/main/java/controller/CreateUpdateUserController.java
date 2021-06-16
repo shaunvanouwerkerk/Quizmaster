@@ -2,8 +2,6 @@ package controller;
 
 /*
 * @Author Branko
-*
-* UNDER CONSTRUCTION!
 * */
 
 import database.mysql.DBAccess;
@@ -18,12 +16,9 @@ import java.util.ArrayList;
 
 public class CreateUpdateUserController {
 
-
-
     private UserDAO userDAO;
     private DBAccess dbAccess;
     private ArrayList<String> allRoles;
-
 
     @FXML
     private Label welcomeLabel;
@@ -39,18 +34,15 @@ public class CreateUpdateUserController {
     public Button teamlogo;
 
 
-
     public CreateUpdateUserController() {
         this.dbAccess = Main.getDBaccess();
         this.userDAO = new UserDAO(dbAccess);
     }
 
-
     public void setupCreateUser() {
         ComboBox<String> keuzebox = setTaskMenuButtonRoles();
         roleButton.getSelectionModel().select(Main.STUDENT_ROL);
         roleButton.setOnAction(event -> keuzebox.getSelectionModel().getSelectedItem());
-
     }
 
     public void setupUpdateUser(User user) {

@@ -1,5 +1,7 @@
 package controller;
 
+//Authors: Harold Stevens & Branko Visser
+
 import database.mysql.CourseDAO;
 import database.mysql.DBAccess;
 import javafx.collections.FXCollections;
@@ -12,7 +14,7 @@ import javafx.scene.control.SelectionMode;
 import model.Course;
 import view.Main;
 
-import java.lang.reflect.Array;
+
 import java.util.ArrayList;
 
 public class StudentSignInOutController {

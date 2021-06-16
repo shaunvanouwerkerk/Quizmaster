@@ -1,4 +1,7 @@
 package controller;
+/*Author Branko Visser
+* */
+
 
 import database.mysql.DBAccess;
 import database.mysql.UserDAO;
@@ -41,7 +44,7 @@ public class LoginController {
         }
         if(!(Main.loggedInUser == null)) {
             Alert loginSuccessfull = new Alert(Alert.AlertType.INFORMATION);
-            loginSuccessfull.setContentText("Login succesvol! Lekker bezig!");
+            loginSuccessfull.setContentText("Login succesvol. Welkom bij Quizmaster!");
             loginSuccessfull.show();
 
             //geeft de ingelogte user door naar de welcomeController/welcomeScene

@@ -1,9 +1,11 @@
 package database.mysql;
 
+/*Author: Branko Visser
+* */
+
 import javafx.scene.control.Alert;
 import model.User;
 import view.Main;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
