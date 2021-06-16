@@ -185,7 +185,7 @@ public class UserDAO extends AbstractDAO implements GenericDAO<User> {
 
     public boolean checkNumberOfTecnicalAdmins() {
         boolean mayNotBeDeleted = false;
-        String sql = "SELECT COUNT(idUser) AS numberOfTecAdmin FROM `user` WHERE roleName = \"technischBeheerder\"";
+        String sql = "SELECT COUNT(idUser) AS numberOfTecAdmin FROM `user` WHERE roleName = \"technisch beheerder\"";
         int numberOfTecAdmin = 0;
         try {
             setupPreparedStatement(sql);

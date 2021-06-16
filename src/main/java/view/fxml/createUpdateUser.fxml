@@ -14,19 +14,19 @@
          <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
       </padding>
     </Label>
-    <Label layoutX="154.0" layoutY="148.0" text="Naam gebruiker:">
+    <Label layoutX="154.0" layoutY="148.0" text="Naam:">
         <font>
             <Font size="18.0" />
         </font>
     </Label>
     <TextField fx:id="userNameTextField" layoutX="350.0" layoutY="148.0" prefHeight="25.0" prefWidth="335.0" promptText="vul hier de gebruikernaam in" />
-    <Label layoutX="154.0" layoutY="180.0" text="Wachtwoord gebruiker:">
+    <Label layoutX="154.0" layoutY="180.0" text="Wachtwoord:">
         <font>
             <Font size="18.0" />
         </font>
     </Label>
     <TextField fx:id="passwordTextField" layoutX="350.0" layoutY="180.0" prefHeight="25.0" prefWidth="335.0" promptText="vul hier het wachtwoord in" />
-    <Label layoutX="154.0" layoutY="212.0" text="Rol gebruiker:">
+    <Label layoutX="154.0" layoutY="212.0" text="Rol:">
         <font>
             <Font size="18.0" />
         </font>

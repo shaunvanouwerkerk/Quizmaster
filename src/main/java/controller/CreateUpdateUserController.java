@@ -18,6 +18,8 @@ import java.util.ArrayList;
 
 public class CreateUpdateUserController {
 
+
+
     private UserDAO userDAO;
     private DBAccess dbAccess;
     private ArrayList<String> allRoles;
@@ -83,7 +85,7 @@ public class CreateUpdateUserController {
             user.setUsername(userNameTextField.getText());
             user.setRoleName(roleButton.getSelectionModel().getSelectedItem());
             userDAO.updateUser(user);
-            Main.getSceneManager().showWelcomeScene();
+            Main.getSceneManager().showManageUserScene();
         }
     }
 
