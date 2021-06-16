@@ -24,7 +24,7 @@
             <Font size="18.0" />
         </font>
     </Button>
-    <Button fx:id="signIn" layoutX="425.0" layoutY="227.0" mnemonicParsing="false" onAction="#doSignOut" text="&lt;-">
+    <Button layoutX="425.0" layoutY="227.0" mnemonicParsing="false" onAction="#doSignOut" text="&lt;-">
         <font>
             <Font size="18.0" />
         </font>

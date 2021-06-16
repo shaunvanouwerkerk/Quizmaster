@@ -21,9 +21,10 @@ public class ManageCoursesController {
 
     @FXML
     ListView<Course> courseList;
-
     @FXML
     Label aantalStudentenText;
+    @FXML
+    public Button teamlogo;
 
     public ManageCoursesController() {
         this.dBaccess = Main.getDBaccess();
@@ -37,6 +38,9 @@ public class ManageCoursesController {
         }
         //Om nullpointer execption te vermijden
         courseList.getSelectionModel().selectFirst();
+        numberOfStudents();
+
+
         //aanroepen methode om het aantal studenten te tonen
         courseList.setOnMouseClicked(mouseEvent -> numberOfStudents());
     }
@@ -77,6 +81,7 @@ public class ManageCoursesController {
     }
     // Methode om het aantal studenten per cursus te tonen
     public void numberOfStudents () {
+        courseList.getSelectionModel().getSelectedItem();
         int aantalStudenten = courseDAO.returnNumberOfStudentsByIdCourse
                 (courseList.getSelectionModel().getSelectedItem().getIdCourse());
         if (aantalStudenten == 1){

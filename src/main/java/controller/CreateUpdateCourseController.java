@@ -10,6 +10,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import model.Course;
+import model.Group;
 import model.User;
 import view.Main;
 
@@ -30,6 +31,8 @@ public class CreateUpdateCourseController {
     private Label titleLabel;
     @FXML
     private ComboBox<User> coordinatorDropDown;
+    @FXML
+    public Button teamlogo;
 
     public CreateUpdateCourseController() {
         this.dbAccess = Main.getDBaccess();
@@ -39,6 +42,7 @@ public class CreateUpdateCourseController {
     //methode voor het aanmaken van een nieuwe cursus
     public void setupCreateCourse(){
         ComboBox<User> keuzeDropDown = setUserDropList();
+        coordinatorDropDown.getSelectionModel().selectFirst();
         coordinatorDropDown.getSelectionModel().getSelectedItem();
         coordinatorDropDown.setOnAction(event -> keuzeDropDown.getSelectionModel().getSelectedItem());
     }
@@ -84,6 +88,8 @@ public class CreateUpdateCourseController {
         }
         return comboBox;
     }
+
+
     //methode voor het opslaan van wijzigingen in de database
     public void doUpdateCourse(Course course) {
         boolean correctFilledOut = checkFields();
@@ -99,11 +105,11 @@ public class CreateUpdateCourseController {
             Main.getSceneManager().showManageCoursesScene();
         }
     }
-    //methode om te controleren of alle velden zijn gevuld bij het toevoegen/wijzigen van een nieuwe cursus
+
+    //methode om te controleren of alle velden zijn gevuld bij het toevoegen van een nieuwe cursus
     public boolean checkFields() {
         boolean allFields = false;
         boolean coursName = false;
-        boolean idCoordinator = false;
 
         Alert foutmelding = new Alert(Alert.AlertType.ERROR);
 
@@ -114,29 +120,17 @@ public class CreateUpdateCourseController {
             foutmelding.setHeaderText("Je hebt geen cursusnaam opgegeven");
             foutmelding.show();
         }
-        if(!(coordinatorDropDown.getSelectionModel().isEmpty())) {
-            idCoordinator = true;
-        } else if(coordinatorDropDown.getSelectionModel().isEmpty()) {
-            foutmelding.setTitle("Ontbrekende gegevens");
-            foutmelding.setHeaderText("Je hebt geen coördinator geselecteerd");
-            foutmelding.show();
-        }
-        if(nameCourseTextfield.getText().isEmpty() && coordinatorDropDown.getSelectionModel().isEmpty()) {
-            foutmelding.setTitle("Ontbrekende gegevens");
-            foutmelding.setHeaderText("Je hebt geen cursusnaam én coördinator opgegeven");
-            foutmelding.show();
-        }
-        if(coursName && idCoordinator) {
+        if(coursName) {
             allFields = true;
         }
         System.out.println(allFields);
         return allFields;
     }
 
+
     //methode om de invoervelden leeg te maken
     public void doClear() {
         nameCourseTextfield.clear();
-        coordinatorDropDown.getSelectionModel().clearSelection();
     }
 
    }

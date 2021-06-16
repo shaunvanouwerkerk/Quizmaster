@@ -1,6 +1,8 @@
 package controller;
 
-//Authors: Harold Stevens & Branko Visser
+/*
+* @Author Harold Stevens/Branko Visser
+* */
 
 import database.mysql.CourseDAO;
 import database.mysql.DBAccess;
@@ -8,7 +10,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import model.Course;
@@ -31,10 +32,9 @@ public class StudentSignInOutController {
     private ListView<Course> signedOutCourseListView;
     @FXML
     private ListView <Course> signedInCourseListView;
-    @FXML
-    private Button signIn;
-    @FXML
-    public Button teamlogo;
+    //@FXML
+    //public Button teamlogo;
+
 
     public StudentSignInOutController(){
         this.dBaccess =  Main.getDBaccess();
@@ -43,26 +43,25 @@ public class StudentSignInOutController {
         this.coursesToSignOut = new ArrayList<>();
         this.coursesToCheckWhenSave = new ArrayList<>();
     }
-
+    //methode om twee arraylists te vullen met cursussen om in/uit te schrijven
+    //en een kopie klaarzetten van de cursussen waar de student al voor is ingeschreven
+    //zodat we die na de wijzigingen kunnen vergelijken met het origineel
     public void setup() {
         coursesToSignIn = courseDAO.getCoursesStudentToSignIn(Main.loggedInUser.getIdUser());
         coursesToSignOut = courseDAO.getCoursesStudentToSignOut(Main.loggedInUser.getIdUser());
-
         for (Course courseToSave : coursesToSignOut) {
             coursesToCheckWhenSave.add(courseToSave);
         }
         System.out.println(coursesToCheckWhenSave);
-
         setupScreen();
     }
-
+    //methode om het scherm(Listview) te vullen met de cursussen uit de arraylists van setup
+    //Multiple selection aanzetten
     public void setupScreen(){
-
         signedOutCourseListView.getItems().clear();
         for (Course course : coursesToSignIn) {
             signedOutCourseListView.getItems().add(course);
         }
-
         signedInCourseListView.getItems().clear();
         for (Course course : coursesToSignOut) {
             signedInCourseListView.getItems().add(course);
@@ -82,6 +81,7 @@ public class StudentSignInOutController {
         selectedCoursesToSignIn.add(signedOutCourseListView.getSelectionModel().getSelectedItem());
         selectedCoursesToSignOut.add(signedInCourseListView.getSelectionModel().getSelectedItem());
 
+
         signedOutCourseListView.setOnMouseClicked(mouseEvent -> {
             selectedCoursesToSignIn.clear();
             selectedCoursesToSignIn.addAll(signedOutCourseListView.getSelectionModel().getSelectedItems());
@@ -93,48 +93,23 @@ public class StudentSignInOutController {
         });
     }
 
-
     public void doMenu() {
-        /*
-        * De verandering tussen inschrijvingen checken
-        * als er een verandering is --> er is een inschrijving bijgekomen die er niet was --> moeten we toevoegen aan db
-        * als er een veradering is --> er is een inschrijving vanaf gegaan --> moeten we verwijderen uit db
-        *
-        * */
         for(Course courseNew : coursesToSignOut) {
             if(!(coursesToCheckWhenSave.contains(courseNew))) {
                 courseDAO.addCourseStudentSignIn(courseNew.getIdCourse(), Main.loggedInUser.getIdUser());
             }
         }
-
         for(Course courseOld : coursesToCheckWhenSave) {
             if(!(coursesToSignOut.contains(courseOld))) {
                 courseDAO.deleteCoursesStudentSignOut(courseOld.getIdCourse(), Main.loggedInUser.getIdUser());
             }
         }
-
         if(!(coursesToCheckWhenSave.equals(coursesToSignOut))) {
             Alert opgeslagen = new Alert(Alert.AlertType.CONFIRMATION);
             opgeslagen.setHeaderText("Wijzigingen opgeslagen!");
             opgeslagen.setContentText("Veel succes met de cursussen!");
             opgeslagen.showAndWait();
         }
-
-
-
-
-//        for (Course courseOldRegistred : coursesToCheckWhenSave) {
-//            System.out.println(courseOldRegistred.getIdCourse());
-//
-//
-//            for(Course courseNewRegistred : coursesToSignOut) {
-//                System.out.println(courseNewRegistred.getIdCourse());
-//                if(courseNewRegistred.getNameCourse().equals(courseNewRegistred.getNameCourse())) {
-//                    System.out.println("hallo!");
-//                }
-//            }
-//        }
-
         Main.getSceneManager().showWelcomeScene();
     }
 
@@ -147,7 +122,6 @@ public class StudentSignInOutController {
         }
         setupScreen();
     }
-
 
     public void doSignOut() {
         for(Course course : selectedCoursesToSignOut) {
