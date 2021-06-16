@@ -9,6 +9,8 @@ import database.mysql.QuizDAO;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import model.Question;
+import model.QuizResult;
+import view.CouchDBQuizResultsLauncher;
 import view.Main;
 
 import java.util.ArrayList;
@@ -18,6 +20,8 @@ public class ManageQuestionsController {
 
     private DBAccess dbAccess;
     private QuestionDAO questionDAO;
+    private CouchDBQuizResultsLauncher couchDBQuizResultsLauncher;
+    private ArrayList<QuizResult> quizResults;
 
     @FXML
     private ListView<Question> questionList;
@@ -27,6 +31,9 @@ public class ManageQuestionsController {
     public ManageQuestionsController () {
         this.dbAccess = Main.getDBaccess();
         this.questionDAO = new QuestionDAO(dbAccess);
+        this.couchDBQuizResultsLauncher = new CouchDBQuizResultsLauncher();
+        couchDBQuizResultsLauncher.run();
+        this.quizResults = new ArrayList<>();
     }
 
     public void setup() {
@@ -68,18 +75,32 @@ public class ManageQuestionsController {
 
     public void doDeleteQuestion(){
         Question vraagOmTeVerwijderen = questionList.getSelectionModel().getSelectedItem();
-        Alert vraagVerwijderen = new Alert(Alert.AlertType.CONFIRMATION);
-        vraagVerwijderen.setContentText("Weet je zeker dat je deze vraag wil verwijderen?");
-        vraagVerwijderen.setHeaderText("Vraag verwijderen");
-        vraagVerwijderen.setTitle("Bevestiging");
-        Optional<ButtonType> decision = vraagVerwijderen.showAndWait();
-        if (decision.get() == ButtonType.OK) {
-            questionDAO.deleteOne(vraagOmTeVerwijderen);
-            questionList.getItems().remove(vraagOmTeVerwijderen);
-            Alert bevestigVerwijderen = new Alert(Alert.AlertType.WARNING);
-            bevestigVerwijderen.setContentText("De vraag is succesvol verwijderd");
-            bevestigVerwijderen.show();
+        if (checkIfQuestionCanBeDeleted()) {
+            Alert vraagVerwijderen = new Alert(Alert.AlertType.CONFIRMATION);
+            vraagVerwijderen.setContentText("Weet je zeker dat je deze vraag wil verwijderen?");
+            vraagVerwijderen.setHeaderText("Vraag verwijderen");
+            vraagVerwijderen.setTitle("Bevestiging");
+            Optional<ButtonType> decision = vraagVerwijderen.showAndWait();
+            if (decision.get() == ButtonType.OK) {
+                questionDAO.deleteOne(vraagOmTeVerwijderen);
+                questionList.getItems().remove(vraagOmTeVerwijderen);
+                Alert bevestigVerwijderen = new Alert(Alert.AlertType.WARNING);
+                bevestigVerwijderen.setContentText("De vraag is succesvol verwijderd");
+                bevestigVerwijderen.setHeaderText("Een vraag verwijderen");
+                bevestigVerwijderen.setTitle("Een vraag verwijderen");
+                bevestigVerwijderen.show();
+                questionList.getItems().clear();
+                setup();
+            } else {
+                questionList.getItems().clear();
+                setup();
+            }
         } else {
+            Alert magNietVerwijderdWorden = new Alert(Alert.AlertType.ERROR);
+            magNietVerwijderdWorden.setContentText("Dit vraag mag niet verwijderd worden.\nEr staan al Quiz Results in de database");
+            magNietVerwijderdWorden.setHeaderText("Vraag verwijderen");
+            magNietVerwijderdWorden.setTitle("Vraag verwijderen");
+            magNietVerwijderdWorden.showAndWait();
             questionList.getItems().clear();
             setup();
         }
@@ -91,6 +112,19 @@ public class ManageQuestionsController {
         } else {
             aantalVragen.setText(String.format("Deze quiz bestaat uit %d vragen.", numberOfQuestions));
         }
+    }
+
+    public boolean checkIfQuestionCanBeDeleted() {
+        boolean canBeDeleted = true;
+        Question vraagOmTeVerwijderen = questionList.getSelectionModel().getSelectedItem();
+        ArrayList<QuizResult> quizResults = couchDBQuizResultsLauncher.getQuizResultsCouchDAO().getAllQuizResults();
+        for (QuizResult quizResult: quizResults ) {
+            if (quizResult.getIdQuiz() == vraagOmTeVerwijderen.getIdQuiz()) {
+                canBeDeleted = false;
+                return canBeDeleted;
+            }
+        }
+        return canBeDeleted;
     }
 
 }
