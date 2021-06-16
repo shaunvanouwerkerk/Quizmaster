@@ -84,19 +84,13 @@ public class ManageUsersController {
                 //Conditie die checkt of de te verwijderen user zowel een technisch beheerder is én of er na het verwijderen
                 //nog minimaal één technisch beheerder over zal zijn.
             if (userToDelteIsTechAdmin && deleteTechUser) {
-                Alert cannotDeleteTechAdmin = new Alert(Alert.AlertType.ERROR);
-                cannotDeleteTechAdmin.setTitle("Verwijdering onmogelijk");
-                cannotDeleteTechAdmin.setHeaderText("Gebruiker kan nu niet worden verwijderd.");
-                cannotDeleteTechAdmin.setContentText("Er moet minimaal één Technisch Beheerder zijn na verwijdering.");
-                cannotDeleteTechAdmin.show();
+                cannotDeleteAdmin();
+            } else if(!(checkIfStudentCanBeDeleted())) {
+                cannotDeleteStudent();
             } else {
                 userDeleted = userDAO.deleteUser(userToDelete);
-
-                Alert deleteInformation = new Alert(Alert.AlertType.INFORMATION);
                 if (userDeleted) {
-                    deleteInformation.setTitle("Gebruiker verwijderd");
-                    deleteInformation.setHeaderText(String.format("Gebruiker %s is verwijderd", userToDelete));
-                    deleteInformation.show();
+                    deleteUserAlert(userToDelete);
                 }
                 Main.getSceneManager().showManageUserScene();
             }
@@ -124,5 +118,28 @@ public class ManageUsersController {
             }
         }
         return canBeDeleted;
+    }
+
+    public void cannotDeleteStudent() {
+        Alert cannotDeleteStudent = new Alert(Alert.AlertType.ERROR);
+        cannotDeleteStudent.setTitle("Verwijdering onmogelijk");
+        cannotDeleteStudent.setHeaderText("Gebruiker kan nu niet worden verwijderd.");
+        cannotDeleteStudent.setContentText("De student heeft Quiz resultaten.");
+        cannotDeleteStudent.show();
+    }
+
+    public void cannotDeleteAdmin() {
+        Alert cannotDeleteTechAdmin = new Alert(Alert.AlertType.ERROR);
+        cannotDeleteTechAdmin.setTitle("Verwijdering onmogelijk");
+        cannotDeleteTechAdmin.setHeaderText("Gebruiker kan nu niet worden verwijderd.");
+        cannotDeleteTechAdmin.setContentText("Er moet minimaal één Technisch Beheerder zijn na verwijdering.");
+        cannotDeleteTechAdmin.show();
+    }
+
+    public void deleteUserAlert(User userToDelete) {
+        Alert deleteInformation = new Alert(Alert.AlertType.INFORMATION);
+        deleteInformation.setTitle("Gebruiker verwijderd");
+        deleteInformation.setHeaderText(String.format("Gebruiker %s is verwijderd", userToDelete));
+        deleteInformation.show();
     }
 }
