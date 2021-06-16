@@ -8,14 +8,17 @@ import database.mysql.UserDAO;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import model.Quiz;
 import model.QuizResult;
 import view.CouchDBQuizResultsLauncher;
 import view.Main;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Collections;
+
 
 public class SelectQuizForStudentController {
 
@@ -30,13 +33,14 @@ public class SelectQuizForStudentController {
     ListView<Quiz> quizList;
     @FXML
     public Button teamlogo;
+    @FXML
+    private Label resultLabel;
 
     public void setup() {
         couchDBQuizResultsLauncher.run();
         fillQuizesForStudent();
-        for(Quiz quiz : quizes) {
-            quizList.getItems().add(quiz);
-        }
+
+
         if (quizes.isEmpty()) {
             Alert geenQuizes = new Alert(Alert.AlertType.WARNING);
             geenQuizes.setHeaderText("Je hebt geen Quizen om te selecteren!");
@@ -44,9 +48,17 @@ public class SelectQuizForStudentController {
             geenQuizes.showAndWait();
             Main.getSceneManager().showStudentSignInOutScene();
         }
+
+        for(Quiz quiz : quizes) {
+            quizList.getItems().add(quiz);
+        }
         quizList.getSelectionModel().selectFirst();
-        setLabelQuizResult();
+        setLabelText();
+
+        quizList.setOnMouseClicked(mouseEvent -> setLabelText());
+        quizList.setOnKeyPressed(keyEvent -> setLabelText());
     }
+
 
     public void doMenu() {
         Main.getSceneManager().showWelcomeScene();
@@ -66,14 +78,63 @@ public class SelectQuizForStudentController {
         }
     }
 
-    public void setLabelQuizResult() {
+    public QuizResult findLatestQuizResult(int idQuiz) {
         ArrayList<QuizResult> quizResults = couchDBQuizResultsLauncher.getQuizResultsCouchDAO().getAllQuizResults();
+        QuizResult lastResult = null;
         for (QuizResult quizResult : quizResults) {
-            if(Main.loggedInUser.getIdUser() == quizResult.getIdGebruiker()){
-                System.out.println(quizResult);
-                System.out.println(quizResult.getIdGebruiker());
+            if(Main.loggedInUser.getIdUser() == quizResult.getIdGebruiker() && quizResult.getIdQuiz() == idQuiz){
+                lastResult = quizResult;
+                break;
             }
         }
+        return lastResult;
+    }
+
+    public String checkAndPrintResult(int aantalJuisteAntwoorden, int successDefinition) {
+        StringBuilder result = new StringBuilder();
+        String afnameInfo = "Afname info:";
+        result.append(String.format("%S\n\n",afnameInfo));
+        result.append("Vorig resultaat: ");
+
+        if (aantalJuisteAntwoorden >= successDefinition) {
+            result.append("gehaald");
+        } else {
+            result.append("niet gehaald");
+        }
+
+        result.append(String.format("\nJe had %d antwoorden goed.\n", aantalJuisteAntwoorden));
+        result.append(String.format(String.format("\nDe cescuur van deze Quiz is %d vrag(en) goed.",
+                successDefinition)));
+
+        return result.toString();
+    }
+
+    public void setLabelTextWithResult(QuizResult quizResult, Quiz quiz) {
+        StringBuilder stringBuilderResult = new StringBuilder();
+        String resultQuiz = checkAndPrintResult(quizResult.getNumberAnswersRight(), quiz.getSuccesDefinition());
+        stringBuilderResult.append(resultQuiz);
+        stringBuilderResult.append("\nAfgenomen op: ");
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        LocalDateTime dateResult = quizResult.getDateTimeQuiz();
+        String formatDateTime = dateResult.format(formatter);
+
+        stringBuilderResult.append(formatDateTime);
+
+        resultLabel.setText(stringBuilderResult.toString());
+    }
+
+    public void setLabelText() {
+        QuizResult result = findLatestQuizResult(quizList.getSelectionModel().getSelectedItem().getIdQuiz());
+        if(!(result == null)) {
+            setLabelTextWithResult(result, quizList.getSelectionModel().getSelectedItem());
+        } else {
+            setLabelTextNoResult();
+        }
+    }
+
+    public void setLabelTextNoResult() {
+        resultLabel.setText("Deze Quiz heb je nog niet eerder gemaakt!");
     }
 
 }
