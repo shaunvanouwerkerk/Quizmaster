@@ -39,6 +39,8 @@ public class FillOutQuizController {
     private TextArea questionArea;
     @FXML
     private Button volgende;
+    @FXML
+    public Button teamlogo;
 
     public FillOutQuizController(){
         this.dbAccess = Main.getDBaccess();

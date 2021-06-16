@@ -27,6 +27,8 @@ public class ManageQuestionsController {
     private ListView<Question> questionList;
     @FXML
     private Label aantalVragen;
+    @FXML
+    public Button teamlogo;
 
     public ManageQuestionsController () {
         this.dbAccess = Main.getDBaccess();
@@ -77,7 +79,7 @@ public class ManageQuestionsController {
         Question vraagOmTeVerwijderen = questionList.getSelectionModel().getSelectedItem();
         if (checkIfQuestionCanBeDeleted()) {
             Alert vraagVerwijderen = new Alert(Alert.AlertType.CONFIRMATION);
-            vraagVerwijderen.setContentText("Weet je zeker dat je deze vraag wil verwijderen?");
+            vraagVerwijderen.setContentText("Weet je zeker dat je deze vraag wilt verwijderen?");
             vraagVerwijderen.setHeaderText("Vraag verwijderen");
             vraagVerwijderen.setTitle("Bevestiging");
             Optional<ButtonType> decision = vraagVerwijderen.showAndWait();
