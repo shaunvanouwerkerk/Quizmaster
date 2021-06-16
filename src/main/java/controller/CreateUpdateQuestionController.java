@@ -13,7 +13,6 @@ import javafx.scene.control.*;
 import model.Question;
 import model.Quiz;
 import view.Main;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class CreateUpdateQuestionController {
@@ -212,12 +211,11 @@ public class CreateUpdateQuestionController {
     }
 
     public boolean checkLengteInvuldVelden () {
-        boolean juisteLengte = questionString.getText().length() <= LENGTE_INVULL_VELDEN
+        return questionString.getText().length() <= LENGTE_INVULL_VELDEN
                 && antwoordA.getText().length() <= LENGTE_INVULL_VELDEN
                 && antwoordB.getText().length() <= LENGTE_INVULL_VELDEN
                 && antwoordC.getText().length() <= LENGTE_INVULL_VELDEN
                 && antwoordD.getText().length() <= LENGTE_INVULL_VELDEN;
-        return juisteLengte;
     }
 
 }

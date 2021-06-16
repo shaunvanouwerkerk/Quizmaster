@@ -4,7 +4,6 @@ package controller;
 */
 
 import database.mysql.DBAccess;
-import database.mysql.QuizDAO;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -14,14 +13,12 @@ import model.QuizResult;
 import view.CouchDBQuizResultsLauncher;
 import view.Main;
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class StudentFeedbackController {
 
     private CouchDBQuizResultsLauncher couchDBQuizResultsLauncher;
     private ArrayList<QuizResult> quizResults;
     private DBAccess dbAccess;
-    private QuizDAO quizDAO;
 
     @FXML
     private Label feedbackLabel;
@@ -38,7 +35,6 @@ public class StudentFeedbackController {
         couchDBQuizResultsLauncher.run();
         this.quizResults = new ArrayList<>();
         this.dbAccess = Main.getDBaccess();
-        this.quizDAO = new QuizDAO(dbAccess);
     }
 
     public void setup(Quiz quiz) {

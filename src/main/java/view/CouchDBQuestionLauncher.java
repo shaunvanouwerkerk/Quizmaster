@@ -6,8 +6,7 @@ package view;
 import database.couchDB.CouchDBaccessQuestion;
 import database.couchDB.QuestionCouchDAO;
 import model.Question;
-
-import java.util.ArrayList;
+;
 
 public class CouchDBQuestionLauncher {
 

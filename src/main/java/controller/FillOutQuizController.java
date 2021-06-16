@@ -1,7 +1,7 @@
 package controller;
 
 /*
-* @author Nijad
+* @author Nijad Nazarli
 */
 
 import database.mysql.DBAccess;
@@ -28,7 +28,6 @@ public class FillOutQuizController {
     private Quiz huidigeQuiz;
     private QuizResult huidigeQuizResult;
     private int aantalJuisteAntwoorden;
-    private int aantalVragenInEenQuiz;
     private int huidigeVraagNr;
     private int labelHuidigeVraagNr;
     private static final int AANTAL_ANTWOORDEN = 4;
@@ -76,7 +75,7 @@ public class FillOutQuizController {
         studentAntwoorden.ensureCapacity(vragenUitQuiz.size());
         // Een vraag uit quiz tonen
         if (huidigeVraagNr < vragenUitQuiz.size()) {
-            showQuestion(huidigeVraagNr);
+            showQuestion();
         }
 
         if(labelHuidigeVraagNr == vragenUitQuiz.size()) {
@@ -163,7 +162,7 @@ public class FillOutQuizController {
         return antwoorden;
     }
 
-    public void showQuestion(int vraagNr) {
+    public void showQuestion() {
         antwoordKeuzes = setUpShuffledAnswers(vragenUitQuiz.get(huidigeVraagNr));
 
         questionArea.setText(String.format("%s\n\nAntwoord A: %s\nAntwoord B: %s\nAntwoord C: %s\nAntwoord D: %s\n",
