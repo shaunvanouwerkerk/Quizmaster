@@ -12,6 +12,7 @@ import javafx.scene.control.*;
 import model.Course;
 import model.Question;
 import model.Quiz;
+import model.QuizResult;
 import view.Main;
 import java.util.ArrayList;
 import java.util.Optional;
