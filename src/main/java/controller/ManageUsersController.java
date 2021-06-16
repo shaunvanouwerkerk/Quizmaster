@@ -15,13 +15,10 @@ import java.util.ArrayList;
 
 public class ManageUsersController {
 
-
     private UserDAO userDAO;
     private DBAccess dbAccess;
     private ArrayList<User> allUsers;
     private CouchDBQuizResultsLauncher couchDBQuizResultsLauncher;
-
-
 
     @FXML
     private ListView<User> userList;
@@ -35,7 +32,6 @@ public class ManageUsersController {
         this.couchDBQuizResultsLauncher = new CouchDBQuizResultsLauncher();
         couchDBQuizResultsLauncher.run();
     }
-
 
     public void setup() {
         this.userDAO = new UserDAO(dbAccess);

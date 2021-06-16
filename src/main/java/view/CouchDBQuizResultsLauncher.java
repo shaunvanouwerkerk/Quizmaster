@@ -39,7 +39,12 @@ public class CouchDBQuizResultsLauncher {
         System.out.println("-------------------------------------------------------------");
         System.out.println();
         Collections.sort(alleQuizResults);
-        System.out.println(alleQuizResults);
+
+        for(QuizResult quizResult: alleQuizResults) {
+            System.out.println(quizResult.getIdGebruiker());
+            System.out.println(quizResult.getIdQuiz());
+            System.out.println("");
+        }
 
 
 
