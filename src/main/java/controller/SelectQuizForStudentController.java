@@ -7,6 +7,7 @@ import database.mysql.QuizDAO;
 import database.mysql.UserDAO;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import model.Quiz;
 import view.Main;
@@ -23,6 +24,8 @@ public class SelectQuizForStudentController {
 
     @FXML
     ListView<Quiz> quizList;
+    @FXML
+    public Button teamlogo;
 
     public void setup() {
         fillQuizesForStudent();

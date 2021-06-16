@@ -31,6 +31,8 @@ public class StudentSignInOutController {
     private ListView <Course> signedInCourseListView;
     @FXML
     private Button signIn;
+    @FXML
+    public Button teamlogo;
 
     public StudentSignInOutController(){
         this.dBaccess =  Main.getDBaccess();

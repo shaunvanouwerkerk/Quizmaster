@@ -1,6 +1,7 @@
 package controller;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import view.Main;
 
@@ -9,6 +10,8 @@ public class LogoutController {
     private TextField nameTextField;
     @FXML
     private TextField passwordField;
+    @FXML
+    public Button teamlogo;
 
     public void doLogout(){
         Main.loggedInUser = null;

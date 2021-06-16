@@ -3,10 +3,7 @@ package controller;
 import database.mysql.DBAccess;
 import database.mysql.UserDAO;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
 import javafx.scene.text.Text;
 import model.User;
 import view.Main;
@@ -26,6 +23,8 @@ public class ManageUsersController {
     private ListView<User> userList;
     @FXML
     private Label aantalGebruikers;
+    @FXML
+    public Button teamlogo;
 
     public ManageUsersController() {
         this.dbAccess = Main.getDBaccess();

@@ -12,7 +12,7 @@ public class Main extends Application {
     private static DBAccess dbAccess = null;
     public static User loggedInUser = null;
     public static final String STUDENT_ROL = "student";
-    public static final String ADMIN_ROL = "admin";
+    public static final String ADMIN_ROL = "administrator";
     public static final String TECHBEHEER_ROL = "technisch beheerder";
     public static final String COORDINATOR_ROL = "coördinator";
     public static final String DOCENT_ROL = "docent";

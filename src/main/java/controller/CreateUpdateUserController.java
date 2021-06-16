@@ -35,6 +35,8 @@ public class CreateUpdateUserController {
     private ComboBox<String> roleButton;
     @FXML
     private Button createUpdate;
+    @FXML
+    public Button teamlogo;
 
 
 
