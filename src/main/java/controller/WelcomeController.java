@@ -24,7 +24,7 @@ public class  WelcomeController {
         switch (Main.loggedInUser.getRoleName()) {
             case "technisch beheerder": role = "Technisch Beheerder";
             break;
-            case "administrator": role = "Administrator";
+            case "admin": role = "Administrator";
             break;
             case "student": role = "Student";
             break;
