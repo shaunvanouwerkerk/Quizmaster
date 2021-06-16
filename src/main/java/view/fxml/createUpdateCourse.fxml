@@ -8,9 +8,9 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@../../../../src/Stylesheet/quaranteamStylesheet.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CreateUpdateCourseController">
-      <children>
+    <Button layoutX="-16.0" layoutY="451.0" mnemonicParsing="false" prefHeight="124.0" prefWidth="916.0" styleClass="teamlogo" />
       <Label fx:id="titleLabel" layoutX="312.0" layoutY="179.0" text="Maak een nieuwe cursus aan">
-          <Button layoutX="-16.0" layoutY="451.0" mnemonicParsing="false" prefHeight="124.0" prefWidth="916.0" styleClass="teamlogo" />
+
          <font>
             <Font size="18.0" />
          </font>
@@ -37,5 +37,4 @@
             <Font size="18.0" />
          </font>
       </Label>
-   </children>
 </AnchorPane>

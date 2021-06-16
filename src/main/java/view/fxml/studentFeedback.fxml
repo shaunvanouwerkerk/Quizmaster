@@ -7,6 +7,7 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@../../../../src/Stylesheet/quaranteamStylesheet.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.StudentFeedbackController">
+    <Button layoutX="-16.0" layoutY="451.0" mnemonicParsing="false" prefHeight="124.0" prefWidth="916.0" styleClass="teamlogo" />
     <Label fx:id="feedbackLabel" layoutX="14.0" layoutY="14.0" text="Feedback voor quiz &lt;QUIZ&gt;">
         <font>
             <Font size="18.0" />
@@ -14,7 +15,7 @@
     </Label>
     <ListView fx:id="feedbackList" layoutX="14.0" layoutY="43.0" prefHeight="300.0" prefWidth="400.0" />
     <Button layoutX="813.0" layoutY="33.0" mnemonicParsing="false" onAction="#doMenu" text="Menu">
-        <Button layoutX="-16.0" layoutY="451.0" mnemonicParsing="false" prefHeight="124.0" prefWidth="916.0" styleClass="teamlogo" />
+
         <font>
             <Font size="14.0" />
         </font>
