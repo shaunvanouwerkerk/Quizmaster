@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CreateUpdateUserController">
-    <Label fx:id="welcomeLabel" layoutX="350.0" layoutY="14.0" text="Maak nieuwe gebruiker" AnchorPane.topAnchor="14.0">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@../../../../src/Stylesheet/quaranteamStylesheet.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CreateUpdateUserController">
+    <Label fx:id="welcomeLabel" layoutX="214.0" layoutY="95.0" stylesheets="@../../../../Stylesheet/quaranteamStylesheet.css" text="Maak nieuwe gebruiker" AnchorPane.topAnchor="95.0">
         <font>
             <Font name="SansSerif Regular" size="18.0" />
         </font>
@@ -14,32 +17,33 @@
          <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
       </padding>
     </Label>
-    <Label layoutX="154.0" layoutY="148.0" text="Naam:">
+    <Label layoutX="234.0" layoutY="177.0" text="Naam:">
         <font>
             <Font size="18.0" />
         </font>
     </Label>
-    <TextField fx:id="userNameTextField" layoutX="350.0" layoutY="148.0" prefHeight="25.0" prefWidth="335.0" promptText="vul hier de gebruikernaam in" />
-    <Label layoutX="154.0" layoutY="180.0" text="Wachtwoord:">
+    <TextField fx:id="userNameTextField" layoutX="348.0" layoutY="174.0" prefHeight="25.0" prefWidth="335.0" promptText="vul hier de gebruikernaam in" />
+    <Label layoutX="234.0" layoutY="209.0" text="Wachtwoord:">
         <font>
             <Font size="18.0" />
         </font>
     </Label>
-    <TextField fx:id="passwordTextField" layoutX="350.0" layoutY="180.0" prefHeight="25.0" prefWidth="335.0" promptText="vul hier het wachtwoord in" />
-    <Label layoutX="154.0" layoutY="212.0" text="Rol:">
+    <TextField fx:id="passwordTextField" layoutX="348.0" layoutY="206.0" prefHeight="25.0" prefWidth="335.0" promptText="vul hier het wachtwoord in" />
+    <Button layoutX="-16.0" layoutY="451.0" mnemonicParsing="false" prefHeight="124.0" prefWidth="916.0" styleClass="teamlogo" />
+    <Label layoutX="234.0" layoutY="241.0" text="Rol:">
         <font>
             <Font size="18.0" />
         </font>
     </Label>
-    <ComboBox fx:id="roleButton" layoutX="350.0" layoutY="212.0" prefHeight="25.0" prefWidth="335.0" promptText="student" />
-    <Button fx:id="createUpdate" layoutX="350.0" layoutY="292.0" mnemonicParsing="false" onAction="#doCreateUser" text="Voeg gebruiker toe">
+    <ComboBox fx:id="roleButton" layoutX="348.0" layoutY="238.0" prefHeight="25.0" prefWidth="335.0" promptText="student" />
+    <Button fx:id="createUpdate" layoutX="348.0" layoutY="291.0" mnemonicParsing="false" onAction="#doCreateUser" text="Voeg gebruiker toe">
         <font>
             <Font size="14.0" />
         </font>
     </Button>
-   <AnchorPane prefHeight="200.0" prefWidth="200.0">
+   <AnchorPane prefHeight="104.0" prefWidth="129.0">
       <children>
-          <Button layoutX="42.0" layoutY="36.0" mnemonicParsing="false" onAction="#doMenu" text="Menu">
+          <Button layoutX="813.0" layoutY="33.0" mnemonicParsing="false" onAction="#doMenu" text="Menu">
               <font>
                   <Font size="14.0" />
               </font>

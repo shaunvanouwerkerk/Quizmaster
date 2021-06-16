@@ -19,6 +19,7 @@
     </Label>
     <ListView fx:id="groupList" layoutX="14.0" layoutY="78.0" prefHeight="200.0" prefWidth="281.0" />
     <Button layoutX="14.0" layoutY="288.0" mnemonicParsing="false" onAction="#doCreateGroup" text="Nieuw">
+        <Button layoutX="-16.0" layoutY="451.0" mnemonicParsing="false" prefHeight="124.0" prefWidth="916.0" styleClass="teamlogo" />
         <font>
             <Font size="14.0" />
         </font>
@@ -33,7 +34,7 @@
             <Font size="14.0" />
         </font>
     </Button>
-    <Button layoutX="780.0" layoutY="47.0" mnemonicParsing="false" onAction="#doMenu" text="Menu">
+    <Button layoutX="813.0" layoutY="33.0" mnemonicParsing="false" onAction="#doMenu" text="Menu">
         <font>
             <Font size="14.0" />
         </font>
