@@ -8,6 +8,7 @@ import database.couchDB.QuizResultsCouchDAO;
 import model.QuizResult;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class CouchDBQuizResultsLauncher {
 
@@ -32,7 +33,13 @@ public class CouchDBQuizResultsLauncher {
         System.out.println(allResults);
         quizResultLauncher.quizResultsCouchDAO.printQuizResultInJson(result1);
 
-        // ArrayList<QuizResult> alleQuizResults = quizResultLauncher.quizResultsCouchDAO.getAllResultsbyQuizIdWithStudentId();
+        ArrayList<QuizResult> alleQuizResults = quizResultLauncher.quizResultsCouchDAO.getAllQuizResults();
+        System.out.println(alleQuizResults);
+
+        System.out.println("-------------------------------------------------------------");
+        System.out.println();
+        Collections.sort(alleQuizResults);
+        System.out.println(alleQuizResults);
 
     }
 

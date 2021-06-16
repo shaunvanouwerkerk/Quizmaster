@@ -11,22 +11,27 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="294.0" layoutY="142.0" text="Naam curcus">
+      <Label layoutX="343.0" layoutY="139.0" text="Naam">
          <font>
-            <Font size="14.0" />
+            <Font size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="nameCourseTextfield" layoutX="401.0" layoutY="140.0" />
-      <ComboBox fx:id="userButton" layoutX="400.0" layoutY="188.0" prefWidth="150.0" promptText="Naam coördinator" />
-      <Button fx:id="addCourse" layoutX="430.0" layoutY="248.0" mnemonicParsing="false" onAction="#doCreateCourse" text="Voeg cursus toe">
+      <TextField fx:id="nameCourseTextfield" layoutX="401.0" layoutY="140.0" prefHeight="25.0" prefWidth="294.0" promptText="Geef hier de naam van de cursus" />
+      <ComboBox fx:id="coordinatorDropDown" layoutX="401.0" layoutY="185.0" prefHeight="25.0" prefWidth="294.0" promptText="Naam coördinator" />
+      <Button fx:id="addCourse" layoutX="401.0" layoutY="233.0" mnemonicParsing="false" onAction="#doCreateCourse" prefHeight="30.0" prefWidth="294.0" text="Voeg cursus toe">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <Button fx:id="backToMenu" layoutX="36.0" layoutY="32.0" mnemonicParsing="false" onAction="#doMenu" text="Terug naar menu">
+      <Button layoutX="766.0" layoutY="36.0" mnemonicParsing="false" onAction="#doMenu" text="Menu">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
+      <Label layoutX="295.0" layoutY="184.0" text="Coördinator">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

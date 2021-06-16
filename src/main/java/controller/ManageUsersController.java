@@ -59,8 +59,15 @@ public class ManageUsersController {
     }
 
     public void doDeleteUser() {
-        boolean userDeleted = false;
+        boolean userDeleted;
         User userToDelete = userList.getSelectionModel().getSelectedItem();
+
+        //Eerst checken of de te verwijderen user een technisch beheerder is
+        //Als dat zo is, kan het niet zo zijn dat er minder dat 1 technisch beheerder nog is aangezien er dan
+        //geen gebruikers meer kunnen worden aangemaakt.
+
+        boolean userToDelteIsTechAdmin = userToDelete.getRoleName().equals(Main.TECHBEHEER_ROL);
+        boolean deleteTechUser = userDAO.checkNumberOfTecnicalAdmins();
 
         Alert deleteAlert = new Alert(Alert.AlertType.CONFIRMATION);
         deleteAlert.setTitle("Verwijderen gebruiker");
@@ -69,17 +76,28 @@ public class ManageUsersController {
         deleteAlert.setContentText("Dit kun je niet ongedaan maken.");
 
         Optional<ButtonType> result = deleteAlert.showAndWait();
-        if(result.get() == ButtonType.OK) {
-            userDeleted = userDAO.deleteUser(userToDelete);
-        }
+        if (result.get() == ButtonType.OK) {
 
-        Alert deleteInformation = new Alert(Alert.AlertType.INFORMATION);
-        if (userDeleted) {
-            deleteInformation.setTitle("Gebruiker verwijderd");
-            deleteInformation.setHeaderText(String.format("Gebruiker %s is verwijderd", userToDelete.toString()));
-            deleteInformation.show();
+            //Conditie die checkt of de te verwijderen user zowel een technisch beheerder is én of er na het verwijderen
+            //nog minimaal één technisch beheerder over zal zijn.
+            if (userToDelteIsTechAdmin && deleteTechUser) {
+                Alert cannotDeleteTechAdmin = new Alert(Alert.AlertType.ERROR);
+                cannotDeleteTechAdmin.setTitle("Onmogelijke verwijdering");
+                cannotDeleteTechAdmin.setHeaderText("Gebruiker kan nu niet worden verwijderd.");
+                cannotDeleteTechAdmin.setContentText("Er moet minimaal één Technisch Beheerder zijn na verwijdering.");
+                cannotDeleteTechAdmin.show();
+            } else {
+                userDeleted = userDAO.deleteUser(userToDelete);
+
+                Alert deleteInformation = new Alert(Alert.AlertType.INFORMATION);
+                if (userDeleted) {
+                    deleteInformation.setTitle("Gebruiker verwijderd");
+                    deleteInformation.setHeaderText(String.format("Gebruiker %s is verwijderd", userToDelete.toString()));
+                    deleteInformation.show();
+                }
+                Main.getSceneManager().showManageUserScene();
+            }
         }
-        Main.getSceneManager().showManageUserScene();
     }
 
     public void setLabelRoleCount(String role) {
