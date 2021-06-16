@@ -10,9 +10,12 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import model.Quiz;
+import model.QuizResult;
+import view.CouchDBQuizResultsLauncher;
 import view.Main;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class SelectQuizForStudentController {
 
@@ -20,6 +23,7 @@ public class SelectQuizForStudentController {
     private DBAccess dbAccess = Main.getDBaccess();
     private UserDAO userDAO = new UserDAO(dbAccess);
     private QuizDAO quizDAO = new QuizDAO(dbAccess);
+    private CouchDBQuizResultsLauncher couchDBQuizResultsLauncher = new CouchDBQuizResultsLauncher();
 
 
     @FXML
@@ -28,19 +32,20 @@ public class SelectQuizForStudentController {
     public Button teamlogo;
 
     public void setup() {
+        couchDBQuizResultsLauncher.run();
         fillQuizesForStudent();
         for(Quiz quiz : quizes) {
             quizList.getItems().add(quiz);
         }
         if (quizes.isEmpty()) {
-            System.out.println("lekker hoor");
             Alert geenQuizes = new Alert(Alert.AlertType.WARNING);
             geenQuizes.setHeaderText("Je hebt geen Quizen om te selecteren!");
             geenQuizes.setContentText("Schrijf je eerst in voor een cursus.");
-            geenQuizes.show();
+            geenQuizes.showAndWait();
             Main.getSceneManager().showStudentSignInOutScene();
         }
         quizList.getSelectionModel().selectFirst();
+        setLabelQuizResult();
     }
 
     public void doMenu() {
@@ -57,6 +62,16 @@ public class SelectQuizForStudentController {
             ArrayList<Quiz> quizzesPerCourse = quizDAO.getQuizesByCourseId(courseId);
             for(Quiz quiz : quizzesPerCourse) {
                 quizes.add(quiz);
+            }
+        }
+    }
+
+    public void setLabelQuizResult() {
+        ArrayList<QuizResult> quizResults = couchDBQuizResultsLauncher.getQuizResultsCouchDAO().getAllQuizResults();
+        for (QuizResult quizResult : quizResults) {
+            if(Main.loggedInUser.getIdUser() == quizResult.getIdGebruiker()){
+                System.out.println(quizResult);
+                System.out.println(quizResult.getIdGebruiker());
             }
         }
     }

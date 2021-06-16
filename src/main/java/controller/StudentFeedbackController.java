@@ -45,7 +45,6 @@ public class StudentFeedbackController {
         feedbackLabel.setText(String.format("Feedback voor quiz %s", quiz.getNameQuiz()));
         // Haalt alle quizResults uit CouchDB
         ArrayList<QuizResult> quizResultsTemp = couchDBQuizResultsLauncher.getQuizResultsCouchDAO().getAllQuizResults();
-        Collections.sort(quizResultsTemp);
         // Filtert het lijst alleen tot ingelogde student
         for (QuizResult quizresult: quizResultsTemp) {
             if (quizresult.getIdGebruiker() == Main.loggedInUser.getIdUser()) {

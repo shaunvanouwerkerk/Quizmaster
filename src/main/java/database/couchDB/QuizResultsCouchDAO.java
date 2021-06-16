@@ -5,16 +5,15 @@ package database.couchDB;
  * */
 
 import com.google.gson.*;
-import database.mysql.DBAccess;
-import database.mysql.QuizDAO;
 import model.QuizResult;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class QuizResultsCouchDAO {
-    DBAccess dbAccess;
+
     private CouchDBaccessQuizResults couchDBaccessQuizResults;
     private Gson gson;
 
@@ -52,13 +51,11 @@ public class QuizResultsCouchDAO {
     }
 
     public ArrayList<QuizResult> getAllQuizResults() {
-        QuizDAO quizDAO = new QuizDAO(dbAccess);
         ArrayList<QuizResult> allQuizresults = new ArrayList<>();
-        QuizResult quizResult = null;
+        QuizResult quizResult;
         List<JsonObject> allQuizresultsCouchDb = couchDBaccessQuizResults.getClient()
                 .view("_all_docs").includeDocs(true)
                 .query(JsonObject.class);
-        System.out.println(allQuizresultsCouchDb );
         gson = new GsonBuilder().registerTypeAdapter(LocalDateTime.class, (JsonDeserializer<LocalDateTime>)
                 (json, typeOfT, context) -> LocalDateTime.parse(json.getAsString(), DateTimeFormatter.ISO_LOCAL_DATE_TIME))
                 .registerTypeAdapter(LocalDateTime.class, (JsonSerializer<LocalDateTime>) (src, typeOfSrc, context) ->
@@ -67,7 +64,7 @@ public class QuizResultsCouchDAO {
             quizResult = gson.fromJson(object, QuizResult.class);
             allQuizresults.add(quizResult);
         }
+        Collections.sort(allQuizresults);
         return allQuizresults;
     }
-
 }

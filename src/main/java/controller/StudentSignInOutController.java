@@ -101,8 +101,6 @@ public class StudentSignInOutController {
         * als er een veradering is --> er is een inschrijving vanaf gegaan --> moeten we verwijderen uit db
         *
         * */
-
-
         for(Course courseNew : coursesToSignOut) {
             if(!(coursesToCheckWhenSave.contains(courseNew))) {
                 courseDAO.addCourseStudentSignIn(courseNew.getIdCourse(), Main.loggedInUser.getIdUser());
