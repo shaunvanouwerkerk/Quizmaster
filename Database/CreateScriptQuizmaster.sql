@@ -146,26 +146,6 @@ CREATE TABLE studentincourse (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Table structure for table `usermakesquiz`
---
-
-DROP TABLE IF EXISTS usermakesquiz;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE usermakesquiz (
-  takeTestNumber int NOT NULL AUTO_INCREMENT,
-  idQuiz int NOT NULL,
-  idGebruiker int NOT NULL,
-  numberAnswersRight int NOT NULL,
-  dateQuiz date NOT NULL,
-  PRIMARY KEY (takeTestNumber),
-  KEY fk_Quiz_has_Gebruiker_Gebruiker1_idx (idGebruiker),
-  KEY fk_Quiz_has_Gebruiker_Quiz1_idx (idQuiz),
-  CONSTRAINT fk_Quiz_has_Gebruiker_Gebruiker1 FOREIGN KEY (idGebruiker) REFERENCES `user` (idUser) ON DELETE RESTRICT ON UPDATE CASCADE,
-  CONSTRAINT fk_Quiz_has_Gebruiker_Quiz1 FOREIGN KEY (idQuiz) REFERENCES quiz (idQuiz) ON DELETE RESTRICT ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

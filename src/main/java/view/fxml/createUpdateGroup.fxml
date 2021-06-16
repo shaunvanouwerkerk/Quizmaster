@@ -44,7 +44,7 @@
          <font>
             <Font size="18.0" />
          </font></Button>
-      <Button fx:id="returnMenu" layoutX="41.0" layoutY="50.0" mnemonicParsing="false" onAction="#doMenu" text="Terug naar menu">
+      <Button fx:id="returnMenu" layoutX="777.0" layoutY="52.0" mnemonicParsing="false" onAction="#doMenu" text="Menu">
          <font>
             <Font size="18.0" />
          </font></Button>

@@ -24,15 +24,15 @@ public class  WelcomeController {
     public void setLabels() {
         String role = "";
         switch (Main.loggedInUser.getRoleName()) {
-            case "technischBeheerder": role = "Technisch Beheerder";
+            case "technisch beheerder": role = "Technisch Beheerder";
             break;
-            case "admin": role = "Administrator";
+            case "administrator": role = "Administrator";
             break;
             case "student": role = "Student";
             break;
             case "docent": role = "Docent";
             break;
-            case "coordinator": role = "Coördinator";
+            case "coördinator": role = "Coördinator";
             break;
 
 
