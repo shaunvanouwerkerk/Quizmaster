@@ -94,15 +94,12 @@ public class CreateUpdateGroupController {
     }
 
     public void doUpdateGroup(Group group) {
-        if (checkFields()) {
+        boolean correctFilledOut = checkFields();
+        if (correctFilledOut) {
             group.setNameGroup(textfieldGroupName.getText());
             group.setIdCooridnator(coordinatorButton.getSelectionModel().getSelectedItem().getIdUser());
             group.setIdCourse(courseButton.getSelectionModel().getSelectedItem().getIdCourse());
             groupDAO.updateGroup(group);
-            Alert groupSuccesvolGewijzigd = new Alert(Alert.AlertType.INFORMATION);
-            groupSuccesvolGewijzigd.setTitle("");
-            groupSuccesvolGewijzigd.setHeaderText("De groep is succesvol gewijzigd");
-            groupSuccesvolGewijzigd.show();
             Main.getSceneManager().showManageGroupsScene();
         }
     }
@@ -143,9 +140,11 @@ public class CreateUpdateGroupController {
         boolean nameGroupLengthCorrect = false;
 
         Alert foutmelding = new Alert(Alert.AlertType.ERROR);
+
         if (!(textfieldGroupName.getText().isEmpty())) {
             groupName =true;
         } else {
+            foutmelding.setTitle("");
             foutmelding.setContentText("Je hebt geen groepnaam opgegeven");
             foutmelding.show();
         }

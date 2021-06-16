@@ -70,13 +70,16 @@ public class CourseDAO extends AbstractDAO implements GenericDAO<Course>{
             int key = executeInsertStatementWithKey();
             course.setIdCourse(key);
             Alert opgeslagen = new Alert(Alert.AlertType.CONFIRMATION);
+            opgeslagen.setTitle("");
             opgeslagen.setContentText(String.format("Cursus %s is opgeslagen!", course.getNameCourse()));
             opgeslagen.show();
         } catch (SQLException sqlException) {
             Alert foutmelding = new Alert(Alert.AlertType.ERROR);
             if(sqlException.getMessage().contains("Duplicate")) {
+                foutmelding.setTitle("");
                 foutmelding.setContentText("Deze cursus bestaat al! Cursus is niet opgeslagen.");
             } else {
+                foutmelding.setTitle("");
                 foutmelding.setContentText("Cursus kon niet worden opgeslagen.");
             }
             foutmelding.show();
@@ -94,11 +97,17 @@ public class CourseDAO extends AbstractDAO implements GenericDAO<Course>{
             preparedStatement.setInt(3, course.getIdCourse());
             System.out.println(course);
             executeManipulateStatement();
+            Alert cursusSuccesvolGewijzigd = new Alert(Alert.AlertType.INFORMATION);
+            cursusSuccesvolGewijzigd.setTitle("");
+            cursusSuccesvolGewijzigd.setHeaderText("De cursus is succesvol gewijzigd");
+            cursusSuccesvolGewijzigd.show();
         } catch (SQLException sqlException) {
             Alert foutmelding = new Alert(Alert.AlertType.ERROR);
             if(sqlException.getMessage().contains("Duplicate")) {
+                foutmelding.setTitle("");
                 foutmelding.setContentText("Deze cursus bestaat al! Cursus is niet gewijzigd.");
             } else {
+                foutmelding.setTitle("");
                 foutmelding.setContentText("Cursus kon niet worden gewijzigd.");
             }
             foutmelding.show();

@@ -80,13 +80,16 @@ GroupDAO extends AbstractDAO implements GenericDAO<Group>{
                 int primaryKey = executeInsertStatementWithKey();
                 group.setIdGroup(primaryKey);
                 Alert opgeslagen = new Alert(Alert.AlertType.CONFIRMATION);
+                opgeslagen.setTitle("");
                 opgeslagen.setContentText(String.format("Groep %s is opgeslagen!", group.getNameGroup()));
                 opgeslagen.show();
             } catch (SQLException sqlException) {
                 Alert foutmelding = new Alert(Alert.AlertType.ERROR);
                 if(sqlException.getMessage().contains("Duplicate")) {
+                    foutmelding.setTitle("");
                     foutmelding.setContentText("Deze groep bestaat al! De groep is niet opgeslagen.");
                 } else {
+                    foutmelding.setTitle("");
                     foutmelding.setContentText("Groep kan niet worden opgeslagen.");
                 }
                 foutmelding.show();
@@ -108,17 +111,23 @@ GroupDAO extends AbstractDAO implements GenericDAO<Group>{
         String sql = "UPDATE `group` SET nameGroup = ?, idCoordinatorGroup = ?, idCourse = ? WHERE idGroup = ?;";
         try {
             setupPreparedStatement(sql);
-           preparedStatement.setString(1, group.getNameGroup());
+            preparedStatement.setString(1, group.getNameGroup());
             preparedStatement.setInt(2, group.getIdCooridnator());
             preparedStatement.setInt(3, group.getIdCourse());
             preparedStatement.setInt(4, group.getIdGroup());
-           System.out.println(group);
+            System.out.println(group);
             executeManipulateStatement();
+            Alert updateGroup = new Alert(Alert.AlertType.CONFIRMATION);
+            updateGroup.setTitle("");
+            updateGroup.setHeaderText("Groep is gewijzigd");
+            updateGroup.show();
         } catch (SQLException sqlException) {
             Alert foutmelding = new Alert(Alert.AlertType.ERROR);
             if(sqlException.getMessage().contains("Duplicate")) {
+                foutmelding.setTitle("");
                 foutmelding.setContentText("Deze Groep bestaat al! Groep is niet gewijzigd.");
             } else {
+                foutmelding.setTitle("");
                 foutmelding.setContentText("Groep kan niet worden gewijzigd.");
             }
             foutmelding.show();

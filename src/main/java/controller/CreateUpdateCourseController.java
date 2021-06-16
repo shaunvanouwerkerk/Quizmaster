@@ -22,6 +22,7 @@ public class CreateUpdateCourseController {
     private DBAccess dbAccess;
     private ArrayList<User>  allUsers;
     private ArrayList<User>  allCoordinators = new ArrayList<>();
+    private static final int MAX_CHAR_COURSE_NAME = 45;
 
     @FXML
     private TextField nameCourseTextfield;
@@ -98,10 +99,6 @@ public class CreateUpdateCourseController {
             course.setNameCourse(nameCourseTextfield.getText());
             course.setIdCoordinator(coordinatorDropDown.getSelectionModel().getSelectedItem().getIdUser());
             courseDAO.updateCourse(course);
-            Alert cursusSuccesvolGewijzigd = new Alert(Alert.AlertType.INFORMATION);
-            cursusSuccesvolGewijzigd.setTitle("");
-            cursusSuccesvolGewijzigd.setHeaderText("De cursus is succesvol gewijzigd");
-            cursusSuccesvolGewijzigd.show();
             Main.getSceneManager().showManageCoursesScene();
         }
     }
@@ -110,6 +107,7 @@ public class CreateUpdateCourseController {
     public boolean checkFields() {
         boolean allFields = false;
         boolean coursName = false;
+        boolean nameCourseLengthCorrect = false;
 
         Alert foutmelding = new Alert(Alert.AlertType.ERROR);
 
@@ -120,7 +118,12 @@ public class CreateUpdateCourseController {
             foutmelding.setHeaderText("Je hebt geen cursusnaam opgegeven");
             foutmelding.show();
         }
-        if(coursName) {
+        if (nameCourseTextfield.getLength() < MAX_CHAR_COURSE_NAME) {
+            nameCourseLengthCorrect = true;
+        } else {
+            foutmelding.setContentText("De groepsnaam mag niet langer dan 45 tekens zijn");
+            foutmelding.show();
+        if(coursName && nameCourseLengthCorrect) {
             allFields = true;
         }
         System.out.println(allFields);
