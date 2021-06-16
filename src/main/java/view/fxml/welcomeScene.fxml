@@ -5,6 +5,7 @@
 <?import javafx.scene.text.*?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@../../../../src/Stylesheet/quaranteamStylesheet.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.WelcomeController">
+    <Button layoutX="-16.0" layoutY="451.0" mnemonicParsing="false" prefHeight="124.0" prefWidth="916.0" styleClass="teamlogo" />
     <Label fx:id="welcomeLabel" layoutX="44.0" layoutY="65.0" text="Welkom gebruiker">
         <font>
             <Font name="SansSerif Regular" size="18.0" />
@@ -21,7 +22,6 @@
         </font>
     </MenuButton>
     <Button layoutX="44.0" layoutY="189.0" mnemonicParsing="false" onAction="#doLogout" text="Log out">
-        <Button layoutX="-16.0" layoutY="451.0" mnemonicParsing="false" prefHeight="124.0" prefWidth="916.0" styleClass="teamlogo" />
         <font>
             <Font size="14.0" />
         </font>
