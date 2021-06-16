@@ -78,10 +78,7 @@ public class CreateUpdateQuizController {
             int succesDefinition = Integer.parseInt(textfieldSuccesDefinition.getText());
             Quiz quiz = new Quiz(quizeName, succesDefinition, courseId);//
             quizDAO.storeOne(quiz);
-            // Melding als quiz is toegevoegd
-            Alert quizStored = new Alert(Alert.AlertType.INFORMATION);
-            quizStored.setHeaderText("De quiz is toegevoegd");
-            quizStored.show();
+
             doClear();
         }
     }
@@ -93,10 +90,7 @@ public class CreateUpdateQuizController {
             quiz.setSuccesDefinition(Integer.parseInt(textfieldSuccesDefinition.getText()));
             quiz.setIdCourse(courseButton.getSelectionModel().getSelectedItem().getIdCourse());
             quizDAO.updateOne(quiz);
-            // Alert bericht
-            Alert quizStored = new Alert(Alert.AlertType.INFORMATION);
-            quizStored.setHeaderText("De quiz is aangepast");
-            quizStored.show();
+
             doClear();
         }
     }
@@ -122,7 +116,6 @@ public class CreateUpdateQuizController {
         boolean allFields = false;
         boolean quizname = false;
         boolean succesdefinition = false;
-//        boolean courseid = false;
 
         Alert foutmelding = new Alert(Alert.AlertType.ERROR);
 
@@ -138,12 +131,6 @@ public class CreateUpdateQuizController {
             foutmelding.setContentText("Je hebt geen succes definitie opgegeven");
             foutmelding.show();
             }
-//        if(!(courseButton.getSelectionModel().isEmpty())) {
-//            courseid= true;
-//        } else if(courseButton.getSelectionModel().isEmpty()) {
-//            foutmelding.setContentText("Je hebt geen course geselecteerd");
-//            foutmelding.show();
-//        }
         if(textfieldQuizName.getText().isEmpty() && textfieldSuccesDefinition.getText().isEmpty()) {
             foutmelding.setContentText("Je hebt geen quizname én succes definitie opgegeven");
             foutmelding.show();
