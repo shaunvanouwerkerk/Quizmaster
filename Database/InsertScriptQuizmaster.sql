@@ -17,7 +17,7 @@
 -- Dumping data for table `role`
 --
 
-INSERT INTO role VALUES ('administrator'),('coördinator'),('docent'),('student'),('technisch beheerder');
+INSERT INTO role VALUES ('admin'),('coördinator'),('docent'),('student'),('technisch beheerder');
 
 --
 -- Dumping data for table `user`
