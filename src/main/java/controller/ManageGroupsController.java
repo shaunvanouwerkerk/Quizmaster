@@ -22,6 +22,8 @@ public class ManageGroupsController {
     ListView<Group> groupList;
     @FXML
     private Label aantalGroupen;
+    @FXML
+    public Button teamlogo;
 
 
     public ManageGroupsController() {

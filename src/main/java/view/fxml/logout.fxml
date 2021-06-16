@@ -6,6 +6,7 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="900.0" stylesheets="@../../../../src/Stylesheet/quaranteamStylesheet.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LogoutController">
+    <Button layoutX="-16.0" layoutY="250.0" mnemonicParsing="false" prefHeight="124.0" prefWidth="916.0" styleClass="teamlogo" />
     <Label alignment="CENTER" layoutY="103.0" prefHeight="29.0" prefWidth="900.0" text="Zeker weten uitloggen?">
         <font>
             <Font size="24.0" />

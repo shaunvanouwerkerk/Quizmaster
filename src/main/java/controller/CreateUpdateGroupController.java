@@ -45,6 +45,8 @@ public class CreateUpdateGroupController {
     private TextField textfieldGroupName;
     @FXML
     private Label titleUpdateLabel;
+    @FXML
+    public Button teamlogo;
 
     public CreateUpdateGroupController() {
         this.dbAccess = Main.getDBaccess();

@@ -5,6 +5,7 @@
 <?import javafx.scene.text.*?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@../../../../src/Stylesheet/quaranteamStylesheet.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CreateUpdateGroupController">
+   <Button layoutX="-16.0" layoutY="451.0" mnemonicParsing="false" prefHeight="124.0" prefWidth="916.0" styleClass="teamlogo" />
    <children>
       <Label fx:id="titleUpdateLabel" layoutX="236.0" layoutY="51.0" prefHeight="48.0" prefWidth="255.0" text="Maak een nieuwe group aan">
          <font>
@@ -38,7 +39,6 @@
          </font></Label>
       <ComboBox fx:id="courseButton" layoutX="486.0" layoutY="329.0" prefWidth="150.0" promptText="Kies een cursus" />
       <Button fx:id="addGroup" layoutX="383.0" layoutY="380.0" mnemonicParsing="false" onAction="#doCreateGroup" text="Voeg groep toe">
-         <Button layoutX="-16.0" layoutY="451.0" mnemonicParsing="false" prefHeight="124.0" prefWidth="916.0" styleClass="teamlogo" />
          <font>
             <Font size="18.0" />
          </font></Button>
