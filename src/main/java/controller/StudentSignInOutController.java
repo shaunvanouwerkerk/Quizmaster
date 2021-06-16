@@ -53,7 +53,6 @@ public class StudentSignInOutController {
         for (Course courseToSave : coursesToSignOut) {
             coursesToCheckWhenSave.add(courseToSave);
         }
-        System.out.println(coursesToCheckWhenSave);
         setupScreen();
     }
     //methode om het scherm(Listview) te vullen met de cursussen uit de arraylists van setup
