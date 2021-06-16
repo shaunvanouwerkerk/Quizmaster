@@ -47,6 +47,7 @@ public class CreateUpdateQuizController {
 
     public void setupCreateQuiz(){
         ComboBox<Course> keuzeDropDown = setCoursesDropList();
+        courseButton.getSelectionModel().selectFirst();
         courseButton.getSelectionModel().getSelectedItem();
         courseButton.setOnAction(event -> keuzeDropDown.getSelectionModel().getSelectedItem());
 
@@ -121,7 +122,7 @@ public class CreateUpdateQuizController {
         boolean allFields = false;
         boolean quizname = false;
         boolean succesdefinition = false;
-        boolean courseid = false;
+//        boolean courseid = false;
 
         Alert foutmelding = new Alert(Alert.AlertType.ERROR);
 
@@ -137,17 +138,17 @@ public class CreateUpdateQuizController {
             foutmelding.setContentText("Je hebt geen succes definitie opgegeven");
             foutmelding.show();
             }
-        if(!(courseButton.getSelectionModel().isEmpty())) {
-            courseid= true;
-        } else if(courseButton.getSelectionModel().isEmpty()) {
-            foutmelding.setContentText("Je hebt geen course geselecteerd");
-            foutmelding.show();
-        }
+//        if(!(courseButton.getSelectionModel().isEmpty())) {
+//            courseid= true;
+//        } else if(courseButton.getSelectionModel().isEmpty()) {
+//            foutmelding.setContentText("Je hebt geen course geselecteerd");
+//            foutmelding.show();
+//        }
         if(textfieldQuizName.getText().isEmpty() && textfieldSuccesDefinition.getText().isEmpty()) {
             foutmelding.setContentText("Je hebt geen quizname én succes definitie opgegeven");
             foutmelding.show();
         }
-        if(quizname && succesdefinition && courseid) {
+        if(quizname && succesdefinition) {
             allFields = true;
         }
         System.out.println(allFields);
