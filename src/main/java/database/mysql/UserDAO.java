@@ -10,6 +10,8 @@ import java.util.ArrayList;
 
 public class UserDAO extends AbstractDAO implements GenericDAO<User> {
 
+    private static final int MINIMAL_NUMBER_TECHNICAL_ADMINS = 1;
+
     public UserDAO(DBAccess dbAccess) {
         super(dbAccess);
     }
@@ -180,4 +182,25 @@ public class UserDAO extends AbstractDAO implements GenericDAO<User> {
         }
         return allCourseId;
     }
+
+    public boolean checkNumberOfTecnicalAdmins() {
+        boolean mayNotBeDeleted = false;
+        String sql = "SELECT COUNT(idUser) AS numberOfTecAdmin FROM `user` WHERE roleName = \"technischBeheerder\"";
+        int numberOfTecAdmin = 0;
+        try {
+            setupPreparedStatement(sql);
+            ResultSet resultSet = executeSelectStatement();
+
+            if(resultSet.next()) {
+                numberOfTecAdmin = resultSet.getInt("numberOfTecAdmin");
+            }
+        } catch (SQLException sqlException) {
+            System.out.println(sqlException.getMessage());
+        }
+        if (numberOfTecAdmin <= MINIMAL_NUMBER_TECHNICAL_ADMINS) {
+            mayNotBeDeleted = true;
+        }
+        return mayNotBeDeleted;
+    }
+
 }
