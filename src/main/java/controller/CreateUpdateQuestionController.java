@@ -41,6 +41,8 @@ public class CreateUpdateQuestionController {
     private ComboBox<Quiz> quizzen;
     @FXML
     private Button createUpdateQuestionButton;
+    @FXML
+    public Button teamlogo;
 
     public CreateUpdateQuestionController () {
         this.dbAccess = Main.getDBaccess();

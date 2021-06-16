@@ -6,6 +6,7 @@ package controller;
 import database.mysql.DBAccess;
 import database.mysql.QuizDAO;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import model.Quiz;
@@ -28,6 +29,8 @@ public class StudentFeedbackController {
     private ListView<QuizResult> feedbackList;
     @FXML
     private Label uitslagQuiz;
+    @FXML
+    public Button teamlogo;
 
 
     public StudentFeedbackController(){
