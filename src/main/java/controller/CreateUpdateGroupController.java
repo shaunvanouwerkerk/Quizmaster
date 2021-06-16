@@ -94,8 +94,7 @@ public class CreateUpdateGroupController {
     }
 
     public void doUpdateGroup(Group group) {
-        boolean correctFilledOut = checkFields();
-        if (correctFilledOut) {
+        if (checkFields()) {
             group.setNameGroup(textfieldGroupName.getText());
             group.setIdCooridnator(coordinatorButton.getSelectionModel().getSelectedItem().getIdUser());
             group.setIdCourse(courseButton.getSelectionModel().getSelectedItem().getIdCourse());

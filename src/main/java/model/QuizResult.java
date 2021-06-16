@@ -40,24 +40,12 @@ public class QuizResult implements Comparable<QuizResult>{
         return idGebruiker;
     }
 
-    public void setIdGebruiker(int idGebruiker) {
-        this.idGebruiker = idGebruiker;
-    }
-
     public int getNumberAnswersRight() {
         return numberAnswersRight;
     }
 
-    public void setNumberAnswersRight(int numberAnswersRight) {
-        this.numberAnswersRight = numberAnswersRight;
-    }
-
     public LocalDateTime getDateTimeQuiz() {
         return dateTimeQuiz;
-    }
-
-    public void setDateTimeQuiz(LocalDateTime dateTimeQuiz) {
-        this.dateTimeQuiz = dateTimeQuiz;
     }
 
     @Override
