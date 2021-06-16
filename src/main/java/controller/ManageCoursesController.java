@@ -40,7 +40,6 @@ public class ManageCoursesController {
         courseList.getSelectionModel().selectFirst();
         numberOfStudents();
 
-
         //aanroepen methode om het aantal studenten te tonen
         courseList.setOnMouseClicked(mouseEvent -> numberOfStudents());
     }
