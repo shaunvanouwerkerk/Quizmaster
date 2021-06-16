@@ -20,7 +20,7 @@
          <font>
             <Font size="18.0" />
          </font></Label>
-      <TextField fx:id="textfieldCurrentCoordinatorId" disable="true" visible="false" layoutX="412.0" layoutY="252.0" />
+      <TextField fx:id="textfieldCurrentCoordinatorId" disable="true" layoutX="412.0" layoutY="252.0" visible="false" />
       <Label layoutX="162.0" layoutY="286.0" prefHeight="27.0" prefWidth="235.0" text="Coördinator van de groep:">
          <font>
             <Font size="18.0" />
@@ -31,7 +31,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="textfieldCurrentCourseId" disable="true" visible="false" layoutX="412.0" layoutY="354.0" />
+      <TextField fx:id="textfieldCurrentCourseId" disable="true" layoutX="412.0" layoutY="354.0" visible="false" />
       <Label layoutX="162.0" layoutY="391.0" prefHeight="27.0" prefWidth="242.0" text="Course waar groep bij hoort:">
          <font>
             <Font size="18.0" />
@@ -41,7 +41,7 @@
          <font>
             <Font size="18.0" />
          </font></Button>
-      <Button fx:id="returnMenu" layoutX="41.0" layoutY="50.0" mnemonicParsing="false" onAction="#doMenu" text="Terug naar menu">
+      <Button fx:id="returnMenu" layoutX="777.0" layoutY="52.0" mnemonicParsing="false" onAction="#doMenu" text="Menu">
          <font>
             <Font size="18.0" />
          </font></Button>

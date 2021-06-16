@@ -1,10 +1,11 @@
 package view;
-
+/*
+ * @author Fiona Lampers
+ * for testing of the quizResults DAO and couchDBaccess
+ * */
 import database.couchDB.CouchDBaccessQuizResults;
 import database.couchDB.QuizResultsCouchDAO;
 import model.QuizResult;
-import model.User;
-
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 

@@ -1,5 +1,7 @@
 package controller;
-
+/*
+ * @author Fiona Lampers
+ * */
 import database.mysql.CourseDAO;
 import database.mysql.DBAccess;
 import database.mysql.GroupDAO;
