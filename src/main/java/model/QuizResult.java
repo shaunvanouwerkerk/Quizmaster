@@ -6,7 +6,7 @@ import view.Main;
 
 import java.time.LocalDateTime;
 
-public class QuizResult {
+public class QuizResult implements Comparable<QuizResult>{
     private int idQuiz;
     private int idGebruiker;
     private int numberAnswersRight;
@@ -58,5 +58,10 @@ public class QuizResult {
 
     public void setDateTimeQuiz(LocalDateTime dateTimeQuiz) {
         this.dateTimeQuiz = dateTimeQuiz;
+    }
+
+    @Override
+    public int compareTo(QuizResult andereQuizResult) {
+        return this.dateTimeQuiz.compareTo(andereQuizResult.getDateTimeQuiz());
     }
 }
