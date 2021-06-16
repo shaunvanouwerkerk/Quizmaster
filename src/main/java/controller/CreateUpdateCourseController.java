@@ -84,6 +84,8 @@ public class CreateUpdateCourseController {
         }
         return comboBox;
     }
+
+
     //methode voor het opslaan van wijzigingen in de database
     public void doUpdateCourse(Course course) {
         boolean correctFilledOut = checkFields();
@@ -99,7 +101,7 @@ public class CreateUpdateCourseController {
             Main.getSceneManager().showManageCoursesScene();
         }
     }
-    //methode om te controleren of alle velden zijn gevuld bij het toevoegen/wijzigen van een nieuwe cursus
+    //methode om te controleren of alle velden zijn gevuld bij het toevoegen van een nieuwe cursus
     public boolean checkFields() {
         boolean allFields = false;
         boolean coursName = false;
@@ -132,6 +134,7 @@ public class CreateUpdateCourseController {
         System.out.println(allFields);
         return allFields;
     }
+
 
     //methode om de invoervelden leeg te maken
     public void doClear() {
