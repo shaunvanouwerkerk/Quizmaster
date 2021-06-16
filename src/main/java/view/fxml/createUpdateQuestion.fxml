@@ -1,30 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="900.0" stylesheets="@../../../../Stylesheet/quaranteamStylesheet.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CreateUpdateQuestionController">
+<AnchorPane prefHeight="600.0" prefWidth="900.0" stylesheets="@../../../../src/Stylesheet/quaranteamStylesheet.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CreateUpdateQuestionController">
    <children>
-      <TextField fx:id="questionString" layoutX="301.0" layoutY="209.0" prefHeight="25.0" prefWidth="203.0" promptText="Voer hier je vraag in" />
-      <TextField fx:id="antwoordA" layoutX="301.0" layoutY="242.0" prefHeight="25.0" prefWidth="203.0" promptText="Antwoord A" />
-      <TextField fx:id="antwoordB" layoutX="301.0" layoutY="275.0" prefHeight="25.0" prefWidth="203.0" promptText="Antwoord B" />
-      <TextField fx:id="antwoordC" layoutX="301.0" layoutY="308.0" prefHeight="25.0" prefWidth="203.0" promptText="Antwoord C" />
-      <TextField fx:id="antwoordD" layoutX="301.0" layoutY="340.0" prefHeight="25.0" prefWidth="203.0" promptText="Antwoord D" />
-      <Label fx:id="hoofdTitel" layoutX="210.0" layoutY="77.0" text="Een vraag bewerken">
+      <TextField fx:id="questionString" layoutX="403.0" layoutY="212.0" prefHeight="25.0" prefWidth="203.0" promptText="Voer hier je vraag in" />
+      <TextField fx:id="antwoordA" layoutX="403.0" layoutY="245.0" prefHeight="25.0" prefWidth="203.0" promptText="Antwoord A" />
+      <TextField fx:id="antwoordB" layoutX="403.0" layoutY="278.0" prefHeight="25.0" prefWidth="203.0" promptText="Antwoord B" />
+      <TextField fx:id="antwoordC" layoutX="403.0" layoutY="311.0" prefHeight="25.0" prefWidth="203.0" promptText="Antwoord C" />
+      <TextField fx:id="antwoordD" layoutX="403.0" layoutY="343.0" prefHeight="25.0" prefWidth="203.0" promptText="Antwoord D" />
+      <Button layoutX="-16.0" layoutY="451.0" mnemonicParsing="false" prefHeight="124.0" prefWidth="916.0" styleClass="teamlogo" />
+      <Label fx:id="hoofdTitel" layoutX="312.0" layoutY="113.0" text="Een vraag bewerken">
          <font>
             <Font name="Arial Bold" size="22.0" />
          </font>
       </Label>
-      <Label layoutX="210.0" layoutY="179.0" text="Quiz Naam" />
-      <Label layoutX="210.0" layoutY="213.0" text="Vraag" />
-      <Label layoutX="210.0" layoutY="246.0" text="Antwoord A" />
-      <Label layoutX="210.0" layoutY="279.0" text="Antwoord B" />
-      <Label layoutX="210.0" layoutY="312.0" text="Antwoord C" />
-      <Label layoutX="210.0" layoutY="344.0" text="Antwoord D" />
-      <Button fx:id="createUpdateQuestionButton" layoutX="279.0" layoutY="392.0" mnemonicParsing="false" onAction="#doCreateUpdateQuestion" text="Bevestigen" />
-      <Button layoutX="373.0" layoutY="392.0" mnemonicParsing="false" onAction="#doClear" text="Leegmaken" />
-      <Button layoutX="210.0" layoutY="392.0" mnemonicParsing="false" onAction="#doMenu" text="Menu" />
-      <ComboBox fx:id="quizzen" layoutX="301.0" layoutY="175.0" prefHeight="25.0" prefWidth="203.0" promptText="Kies een quiz" />
+      <Label layoutX="312.0" layoutY="182.0" text="Quiz Naam" />
+      <Label layoutX="312.0" layoutY="216.0" text="Vraag" />
+      <Label layoutX="312.0" layoutY="249.0" text="Antwoord A" />
+      <Label layoutX="312.0" layoutY="282.0" text="Antwoord B" />
+      <Label layoutX="312.0" layoutY="315.0" text="Antwoord C" />
+      <Label layoutX="312.0" layoutY="347.0" text="Antwoord D" />
+      <Button fx:id="createUpdateQuestionButton" layoutX="403.0" layoutY="384.0" mnemonicParsing="false" onAction="#doCreateUpdateQuestion" text="Bevestigen" />
+      <Button layoutX="520.0" layoutY="384.0" mnemonicParsing="false" onAction="#doClear" text="Leegmaken" />
+      <Button layoutX="813.0" layoutY="33.0" mnemonicParsing="false" onAction="#doMenu" text="Menu" />
+      <ComboBox fx:id="quizzen" layoutX="403.0" layoutY="178.0" prefHeight="25.0" prefWidth="203.0" promptText="Kies een quiz" />
    </children>
 </AnchorPane>
