@@ -62,6 +62,6 @@ public class QuizResult implements Comparable<QuizResult>{
 
     @Override
     public int compareTo(QuizResult andereQuizResult) {
-        return this.dateTimeQuiz.compareTo(andereQuizResult.getDateTimeQuiz());
+        return -1 * this.dateTimeQuiz.compareTo(andereQuizResult.getDateTimeQuiz());
     }
 }
