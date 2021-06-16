@@ -26,5 +26,11 @@ public class CourseCouchDAO {
         return doc_Id;
     }
 
+    public Course getCourseByDocId(String doc_id) {
+        JsonObject json = couchDBaccessCourse.getClient().find(JsonObject.class, doc_id);
+        Course resultaat = gson.fromJson(json, Course.class);
+        return resultaat;
+    }
+
 
 }

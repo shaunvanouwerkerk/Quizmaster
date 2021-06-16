@@ -1,6 +1,6 @@
 package model;
 /*
-* Author Harold Stevens
+* @Author Harold Stevens
 * */
 
 public class Course {
@@ -22,7 +22,6 @@ public class Course {
     public Course(String nameCourse, int idCoordinator){
         this(0,nameCourse,idCoordinator);
     }
-
 
     //getters/setters
     public int getIdCourse() {

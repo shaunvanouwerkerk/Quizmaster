@@ -56,6 +56,7 @@ public class CreateUpdateQuestionController {
         antwoordD.setText(question.getAnswerD());
         this.idQuestion = question.getIdQuestion();
         ComboBox<Quiz> keuzeBox = setTaskMenuButtonQuizzes();
+        quizzen.getSelectionModel().select(quizDAO.getOneById(question.getIdQuiz()));
         quizzen.setOnAction(event-> keuzeBox.getSelectionModel().getSelectedItem());
         createUpdateQuestionButton.setOnAction(event-> updateQuestion());
     }
@@ -83,12 +84,16 @@ public class CreateUpdateQuestionController {
             if (juisteLengte) {
                 Alert bevestigAanmakenVraag = new Alert(Alert.AlertType.INFORMATION);
                 bevestigAanmakenVraag.setContentText("Vraag is succesvol aangemaakt");
+                bevestigAanmakenVraag.setHeaderText("Een vraag aanmaken");
+                bevestigAanmakenVraag.setTitle("Een vraag aanmaken");
                 bevestigAanmakenVraag.show();
                 doClear();
                 quizzen.getSelectionModel().getSelectedItem();
             } else {
                 Alert bevestigAanmakenVraag = new Alert(Alert.AlertType.ERROR);
                 bevestigAanmakenVraag.setContentText("Vraag en/of antwoord mag niet langer dan 45 tekens zijn");
+                bevestigAanmakenVraag.setHeaderText("Error lengte van invulvelden");
+                bevestigAanmakenVraag.setTitle("Error lengte van invulvelden");
                 bevestigAanmakenVraag.showAndWait();
                 doClear();
             }
@@ -111,12 +116,16 @@ public class CreateUpdateQuestionController {
             if (juisteLengte) {
                 Alert bevestigAanpassenVraag = new Alert(Alert.AlertType.INFORMATION);
                 bevestigAanpassenVraag.setContentText("Vraag is succesvol aangepast");
+                bevestigAanpassenVraag.setHeaderText("Een vraag bewerken");
+                bevestigAanpassenVraag.setTitle("Een vraag bewerken");
                 bevestigAanpassenVraag.show();
                 doClear();
                 Main.getSceneManager().showManageQuestionsScene();
             } else {
                 Alert bevestigAanmakenVraag = new Alert(Alert.AlertType.ERROR);
                 bevestigAanmakenVraag.setContentText("Vraag en/of antwoord mag niet langer dan 45 tekens zijn");
+                bevestigAanmakenVraag.setHeaderText("Error lengte van invulvelden");
+                bevestigAanmakenVraag.setTitle("Error lengte van invulvelden");
                 bevestigAanmakenVraag.showAndWait();
                 doClear();
             }

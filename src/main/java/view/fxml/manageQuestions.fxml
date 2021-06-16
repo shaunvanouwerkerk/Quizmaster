@@ -36,6 +36,9 @@
             <Font size="14.0" />
         </font>
     </Button>
-   <TextField fx:id="aantalVragen" editable="false" layoutX="113.0" layoutY="332.0" prefHeight="25.0" prefWidth="214.0" promptText="Aantal vragen in deze quiz" />
-   <Button layoutX="14.0" layoutY="332.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="79.0" text="Dashboard" onAction="#showCoordinatorDashboard"/>
+   <Label fx:id="aantalVragen" layoutX="113.0" layoutY="332.0" text="Aantal vragen in deze quiz">
+      <font>
+         <Font size="14.0" />
+      </font></Label>
+   <Button layoutX="14.0" layoutY="332.0" mnemonicParsing="false" onAction="#showCoordinatorDashboard" prefHeight="25.0" prefWidth="79.0" text="Dashboard" />
 </AnchorPane>

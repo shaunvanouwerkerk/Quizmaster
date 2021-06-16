@@ -7,10 +7,7 @@ import database.mysql.DBAccess;
 import database.mysql.QuestionDAO;
 import database.mysql.QuizDAO;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import model.Question;
 import view.Main;
 
@@ -25,7 +22,7 @@ public class ManageQuestionsController {
     @FXML
     private ListView<Question> questionList;
     @FXML
-    private TextField aantalVragen;
+    private Label aantalVragen;
 
     public ManageQuestionsController () {
         this.dbAccess = Main.getDBaccess();
@@ -37,20 +34,19 @@ public class ManageQuestionsController {
         for (Question question: alleVragen) {
             questionList.getItems().add(question);
         }
-        questionList.getSelectionModel().selectFirst();
         if (alleVragen.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setContentText("Er zijn geen door jou aangemaakte vragen in de database. " +
                     "\nEr moeten eerst quizzen aangemaakt worden");
+            alert.setHeaderText("Geen vragen");
+            alert.setTitle("Geen vragen");
             alert.showAndWait();
             Main.getSceneManager().showWelcomeScene();
         } else {
-            aantalVragen.setText(String.format("Deze quiz bestaat uit %d vraag(en).",
-                    questionDAO.getNumberOfQuestionsInAquiz(questionList.getSelectionModel().getSelectedItem().getIdQuiz())));
-            questionList.setOnMouseClicked(mouseEvent -> aantalVragen.setText(String.format("Deze quiz bestaat" +
-                    " uit %d vraag(en).", questionDAO.getNumberOfQuestionsInAquiz(questionList.getSelectionModel().getSelectedItem().getIdQuiz()))));
-            questionList.setOnKeyPressed(keyEvent -> aantalVragen.setText(String.format("Deze quiz bestaat" +
-                    " uit %d vraag(en).", questionDAO.getNumberOfQuestionsInAquiz(questionList.getSelectionModel().getSelectedItem().getIdQuiz()))));
+            questionList.getSelectionModel().selectFirst();
+            printNumberOfQuestions(questionDAO.getNumberOfQuestionsInAquiz(questionList.getSelectionModel().getSelectedItem().getIdQuiz()));
+            questionList.setOnMouseClicked(mouseEvent -> printNumberOfQuestions(questionDAO.getNumberOfQuestionsInAquiz(questionList.getSelectionModel().getSelectedItem().getIdQuiz())));
+            questionList.setOnKeyPressed(keyEvent -> printNumberOfQuestions(questionDAO.getNumberOfQuestionsInAquiz(questionList.getSelectionModel().getSelectedItem().getIdQuiz())));
         }
     }
 
@@ -88,4 +84,13 @@ public class ManageQuestionsController {
             setup();
         }
     }
+
+    public void printNumberOfQuestions(int numberOfQuestions) {
+        if (numberOfQuestions == 1) {
+            aantalVragen.setText(String.format("Deze quiz bestaat uit %d vraag.", numberOfQuestions));
+        } else {
+            aantalVragen.setText(String.format("Deze quiz bestaat uit %d vragen.", numberOfQuestions));
+        }
+    }
+
 }
