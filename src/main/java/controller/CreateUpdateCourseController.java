@@ -125,6 +125,10 @@ public class CreateUpdateCourseController {
         } else {
             foutmelding.setContentText("De groepsnaam mag niet langer dan 45 tekens zijn");
             foutmelding.show();
+
+            if (coursName && nameCourseLengthCorrect) {
+                allFields = true;
+            }
         }
             if (coursName && nameCourseLengthCorrect) {
                 allFields = true;

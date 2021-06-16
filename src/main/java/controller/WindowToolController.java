@@ -13,8 +13,8 @@ public class WindowToolController {
 
     private SceneManager sceneManager = Main.getSceneManager();
 
-    @FXML
-    private MenuButton screenMenuButton;
+//    @FXML
+//    private MenuButton screenMenuButton; Uitgezet voor presentatie
     @FXML
     public Button teamlogo;
 
@@ -33,7 +33,7 @@ public class WindowToolController {
                         MenuItem menuItem = new MenuItem();
                         menuItem.setText(filename);
                         menuItem.setOnAction(event -> sceneManager.getScene("/view/fxml/" + filename));
-                        screenMenuButton.getItems().add(menuItem);
+//                        screenMenuButton.getItems().add(menuItem); Uitgezet voor presentatie
                     }
                 }
             }
