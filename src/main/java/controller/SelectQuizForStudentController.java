@@ -14,6 +14,9 @@ import model.Quiz;
 import model.QuizResult;
 import view.CouchDBQuizResultsLauncher;
 import view.Main;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 
@@ -50,13 +53,12 @@ public class SelectQuizForStudentController {
             quizList.getItems().add(quiz);
         }
         quizList.getSelectionModel().selectFirst();
-        QuizResult result = findLatestQuizResult(quizList.getSelectionModel().getSelectedItem().getIdQuiz());
-        if(!(result == null)) {
-            setResultLabel(result, quizList.getSelectionModel().getSelectedItem());
-        } else {
-            resultLabel.setText("");
-        }
+        setLabelText();
+
+        quizList.setOnMouseClicked(mouseEvent -> setLabelText());
+        quizList.setOnKeyPressed(keyEvent -> setLabelText());
     }
+
 
     public void doMenu() {
         Main.getSceneManager().showWelcomeScene();
@@ -90,24 +92,49 @@ public class SelectQuizForStudentController {
 
     public String checkAndPrintResult(int aantalJuisteAntwoorden, int successDefinition) {
         StringBuilder result = new StringBuilder();
+        String afnameInfo = "Afname info:";
+        result.append(String.format("%S\n\n",afnameInfo));
         result.append("Vorig resultaat: ");
 
         if (aantalJuisteAntwoorden >= successDefinition) {
-            result.append("gehaald)");
+            result.append("gehaald");
         } else {
-            result.append("niet gehaald)");
+            result.append("niet gehaald");
         }
+
+        result.append(String.format("\nJe had %d antwoorden goed.\n", aantalJuisteAntwoorden));
+        result.append(String.format(String.format("\nDe cescuur van deze Quiz is %d vrag(en) goed.",
+                successDefinition)));
 
         return result.toString();
     }
 
-    public void setResultLabel(QuizResult quizResult, Quiz quiz) {
+    public void setLabelTextWithResult(QuizResult quizResult, Quiz quiz) {
         StringBuilder stringBuilderResult = new StringBuilder();
         String resultQuiz = checkAndPrintResult(quizResult.getNumberAnswersRight(), quiz.getSuccesDefinition());
         stringBuilderResult.append(resultQuiz);
         stringBuilderResult.append("\nAfgenomen op: ");
-        stringBuilderResult.append(quizResult.getDateTimeQuiz().toString());
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        LocalDateTime dateResult = quizResult.getDateTimeQuiz();
+        String formatDateTime = dateResult.format(formatter);
+
+        stringBuilderResult.append(formatDateTime);
+
         resultLabel.setText(stringBuilderResult.toString());
+    }
+
+    public void setLabelText() {
+        QuizResult result = findLatestQuizResult(quizList.getSelectionModel().getSelectedItem().getIdQuiz());
+        if(!(result == null)) {
+            setLabelTextWithResult(result, quizList.getSelectionModel().getSelectedItem());
+        } else {
+            setLabelTextNoResult();
+        }
+    }
+
+    public void setLabelTextNoResult() {
+        resultLabel.setText("Deze Quiz heb je nog niet eerder gemaakt!");
     }
 
 }
