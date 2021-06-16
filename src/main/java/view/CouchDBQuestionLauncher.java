@@ -1,4 +1,7 @@
 package view;
+/*
+ * @Author Nijad Nazarli
+ */
 
 import database.couchDB.CouchDBaccessQuestion;
 import database.couchDB.QuestionCouchDAO;

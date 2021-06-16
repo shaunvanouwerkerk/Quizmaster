@@ -1,4 +1,7 @@
 package database.couchDB;
+/*
+* @Author Nijad Nazarli
+*/
 
 import com.google.gson.JsonObject;
 import org.lightcouch.CouchDbClient;

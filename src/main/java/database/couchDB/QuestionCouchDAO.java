@@ -1,4 +1,7 @@
 package database.couchDB;
+/*
+ * @Author Nijad Nazarli
+ */
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
