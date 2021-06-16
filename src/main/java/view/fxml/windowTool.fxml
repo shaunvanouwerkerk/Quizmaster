@@ -22,5 +22,5 @@
                 <Font size="18.0" />
             </font>
         </Button>
-        <MenuButton fx:id="screenMenuButton" disable="true" layoutX="360.0" layoutY="287.0" mnemonicParsing="false" text="Spring naar scherm" />
+<!--        <MenuButton fx:id="screenMenuButton" disable="true" layoutX="360.0" layoutY="287.0" mnemonicParsing="false" text="Spring naar scherm" />-->
 </AnchorPane>
