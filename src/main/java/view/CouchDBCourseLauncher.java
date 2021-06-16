@@ -46,7 +46,7 @@ public class CouchDBCourseLauncher {
     //methode om een cursus op te slaan
     public void saveOneCourse (Course course) {courseCouchDAO.saveSingleCourse(course);}
 
-    //methode om alle cursussen uit de database op de slaan in CouchDB
+    //methode om alle cursussen uit de MySQL database op de slaan in CouchDB
     public void saveAllCourses () {
         this.courseDAO = new CourseDAO(dbAccess);
         ArrayList<Course> allCoursesInDatabase = courseDAO.getAll();
@@ -55,9 +55,8 @@ public class CouchDBCourseLauncher {
         }
     }
 
-
     public void testWithCourses () {
-    //Een cursus om te zetten naar een Json String
+        //Een cursus om te zetten naar een Json String
         Course cursus1 = new Course("Voetbaltrainer", 5);
         Gson gson = new Gson();
         String cursus1Json = gson.toJson(cursus1);
@@ -65,10 +64,17 @@ public class CouchDBCourseLauncher {
         System.out.println(cursus1Json);
         System.out.println("================================================================");
 
-    //Van een Json string weer een Course(class) te maken
+        //Van een Json string weer een Course(class) te maken
         Course cursus2 = gson.fromJson(cursus1Json, Course.class);
         System.out.println("Json omgezet naar course object. Toon de ToString van Course ");
         System.out.println(cursus2);
         System.out.println("================================================================");
+
+
+        //Een cursus op halen uit CouchDb
+        Course courseId = courseCouchDAO.getCourseByDocId("3d925f5d225644a0a84d39d9a2e788d2");
+        System.out.println("Course uit COUCH DB: \n" + courseId);
+        System.out.println("================================================================");
     }
+
 }
