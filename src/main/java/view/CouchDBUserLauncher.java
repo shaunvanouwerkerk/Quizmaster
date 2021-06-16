@@ -14,6 +14,7 @@ public class CouchDBUserLauncher {
     public CouchDBUserLauncher() {
         this.couchDBaccessUser = new CouchDBaccessUser();
         this.couchUserDAO = new UserCouchDAO(couchDBaccessUser);
+
     }
 
     public static void main(String[] args) {
