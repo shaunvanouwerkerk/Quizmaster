@@ -113,7 +113,7 @@ public class CreateUpdateCourseController {
 
         if (!(nameCourseTextfield.getText().isEmpty())) {
             coursName = true;
-        } else if(nameCourseTextfield.getText().isEmpty()) {
+        } else if (nameCourseTextfield.getText().isEmpty()) {
             foutmelding.setTitle("Ontbrekende gegevens");
             foutmelding.setHeaderText("Je hebt geen cursusnaam opgegeven");
             foutmelding.show();
@@ -123,12 +123,14 @@ public class CreateUpdateCourseController {
         } else {
             foutmelding.setContentText("De groepsnaam mag niet langer dan 45 tekens zijn");
             foutmelding.show();
-        if(coursName && nameCourseLengthCorrect) {
-            allFields = true;
+            if (coursName && nameCourseLengthCorrect) {
+                allFields = true;
+            }
         }
         System.out.println(allFields);
         return allFields;
     }
+
 
 
     //methode om de invoervelden leeg te maken
@@ -136,7 +138,7 @@ public class CreateUpdateCourseController {
         nameCourseTextfield.clear();
     }
 
-   }
+}
 
 
 
