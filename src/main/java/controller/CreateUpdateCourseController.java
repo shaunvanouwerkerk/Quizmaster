@@ -122,16 +122,13 @@ public class CreateUpdateCourseController {
         if (nameCourseTextfield.getLength() < MAX_CHAR_COURSE_NAME) {
             nameCourseLengthCorrect = true;
         } else {
-            foutmelding.setContentText("De groepsnaam mag niet langer dan 45 tekens zijn");
+            foutmelding.setTitle("Pas de lengte van de cursusnaam aan");
+            foutmelding.setHeaderText("De cursusnaam mag niet langer dan 45 tekens zijn");
             foutmelding.show();
-
-            if (coursName && nameCourseLengthCorrect) {
-                allFields = true;
-            }
         }
-            if (coursName && nameCourseLengthCorrect) {
+        if (coursName && nameCourseLengthCorrect) {
                 allFields = true;
-            }
+        }
             System.out.println(allFields);
             return allFields;
         }
