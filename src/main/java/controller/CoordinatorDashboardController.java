@@ -11,6 +11,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ListView;
 import model.Course;
@@ -35,6 +36,8 @@ public class CoordinatorDashboardController {
     private ListView<Quiz> quizList;
     @FXML
     private ListView<Question> questionList;
+    @FXML
+    public Button teamlogo;
 
     public CoordinatorDashboardController() {
         this.dBaccess = Main.getDBaccess();
@@ -99,6 +102,9 @@ public class CoordinatorDashboardController {
         for (Quiz quiz : allQuizesNew) {
             quizList.getItems().add(quiz);
         }
+        if(quizList.getItems().isEmpty()){
+            checkExistanceOfQuizes();
+        }
         return quizList;
     }
 
@@ -133,6 +139,12 @@ public class CoordinatorDashboardController {
             deleteAlert.setHeaderText("Er bestaan geen vragen bij deze quiz.");
             Optional<ButtonType> result = deleteAlert.showAndWait();
         }
+        public void checkExistanceOfQuizes () {
+            Alert deleteAlert = new Alert(Alert.AlertType.ERROR);
+            deleteAlert.setTitle("Geen quiz aanwezig");
+            deleteAlert.setHeaderText("Er bestaat geen quiz bij deze cursus.");
+            Optional<ButtonType> result = deleteAlert.showAndWait();
+    }
 }
 
 

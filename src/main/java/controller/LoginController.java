@@ -5,6 +5,7 @@ import database.mysql.UserDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import model.User;
 import view.Main;
@@ -21,6 +22,8 @@ public class LoginController {
     private TextField nameTextField;
     @FXML
     private TextField passwordField;
+    @FXML
+    public Button teamlogo;
 
     public LoginController() {
         this.dbAccess = Main.getDBaccess();

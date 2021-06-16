@@ -53,10 +53,13 @@ public class  ManageQuizzesController {
                         quizList.getItems().add(quiz);
                     }
                 }
-                // Om een nullpointer exception te vermijden
+                // Om een nullpointer exception te vermijden & aantal vragen te tonen
                 quizList.getSelectionModel().selectFirst();
+                amountOfQuestions(quizList.getSelectionModel().getSelectedItem());
+
                 // Methode om aantal vragen te tonen per quiz:
                 quizList.setOnMouseClicked(mouseEvent -> amountOfQuestions(quizList.getSelectionModel().getSelectedItem()));
+                quizList.setOnKeyPressed(keyEvent -> amountOfQuestions(quizList.getSelectionModel().getSelectedItem()));
             }
         }
 
@@ -90,7 +93,9 @@ public class  ManageQuizzesController {
     // Methode om te controleren of coordinator ook courses beheert
     public void checkCoordinatorHasCourses () {
         Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setContentText("Je hebt nog geen rol als coordinator bij een cursus.\n Hierdoor kun je nog geen quizen aanmaken");
+        alert.setTitle("Let op");
+        alert.setHeaderText("Je hebt nog geen rol als coordinator bij een cursus");
+        alert.setContentText("Je kunt dus nog geen quizen aanmaken");
         Optional<ButtonType> result = alert.showAndWait();
 
         if (result.get() == ButtonType.OK) {
@@ -103,7 +108,14 @@ public class  ManageQuizzesController {
         this.questionDAO = new QuestionDAO(dbAccess);
         ArrayList<Question> totalQuestions = questionDAO.getAllperQuiz(quiz);
         int itemCount = totalQuestions.size();
-        amountQuestionText.setText(String.valueOf("Aantal vragen bij deze quiz: " + itemCount + " vragen."));
+
+        if(itemCount == 0) {
+            amountQuestionText.setText(String.valueOf("De quiz bevat momenteel geen vragen."));
+        }else if (itemCount == 1){
+                amountQuestionText.setText(String.valueOf("Aantal vragen bij deze quiz: " + itemCount + " vraag."));
+            } else {
+         amountQuestionText.setText(String.valueOf("Aantal vragen bij deze quiz: " + itemCount + " vragen."));
+            }
     }
 
     // Method om waarschuwing te geven bij verwijden

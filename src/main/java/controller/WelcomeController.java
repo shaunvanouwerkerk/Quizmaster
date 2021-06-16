@@ -1,10 +1,7 @@
 package controller;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.MenuItem;
+import javafx.scene.control.*;
 import model.Course;
 import model.User;
 import view.Main;
@@ -19,21 +16,23 @@ public class  WelcomeController {
     private Label welcomeLabel;
     @FXML
     private MenuButton taskMenuButton;
+    @FXML
+    public Button teamlogo;
 
 
 
     public void setLabels() {
         String role = "";
         switch (Main.loggedInUser.getRoleName()) {
-            case "technischBeheerder": role = "Technisch Beheerder";
+            case "technisch beheerder": role = "Technisch Beheerder";
             break;
-            case "admin": role = "Administrator";
+            case "administrator": role = "Administrator";
             break;
             case "student": role = "Student";
             break;
             case "docent": role = "Docent";
             break;
-            case "coordinator": role = "Coördinator";
+            case "coördinator": role = "Coördinator";
             break;
 
 
