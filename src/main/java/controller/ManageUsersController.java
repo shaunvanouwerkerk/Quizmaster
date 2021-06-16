@@ -4,8 +4,9 @@ import database.mysql.DBAccess;
 import database.mysql.UserDAO;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.text.Text;
+import model.QuizResult;
 import model.User;
+import view.CouchDBQuizResultsLauncher;
 import view.Main;
 
 import java.util.ArrayList;
@@ -17,6 +18,7 @@ public class ManageUsersController {
     private UserDAO userDAO;
     private DBAccess dbAccess;
     private ArrayList<User> allUsers;
+    private CouchDBQuizResultsLauncher couchDBQuizResultsLauncher;
 
 
     @FXML
@@ -26,8 +28,10 @@ public class ManageUsersController {
     @FXML
     public Button teamlogo;
 
-    public ManageUsersController() {
+    public ManageUsersController(CouchDBQuizResultsLauncher couchDBQuizResultsLauncher) {
+        this.couchDBQuizResultsLauncher = couchDBQuizResultsLauncher;
         this.dbAccess = Main.getDBaccess();
+        couchDBQuizResultsLauncher.run();
     }
 
 
@@ -81,11 +85,16 @@ public class ManageUsersController {
             //nog minimaal één technisch beheerder over zal zijn.
             if (userToDelteIsTechAdmin && deleteTechUser) {
                 Alert cannotDeleteTechAdmin = new Alert(Alert.AlertType.ERROR);
-                cannotDeleteTechAdmin.setTitle("Onmogelijke verwijdering");
+                cannotDeleteTechAdmin.setTitle("Verwijdering onmogelijk");
                 cannotDeleteTechAdmin.setHeaderText("Gebruiker kan nu niet worden verwijderd.");
                 cannotDeleteTechAdmin.setContentText("Er moet minimaal één Technisch Beheerder zijn na verwijdering.");
                 cannotDeleteTechAdmin.show();
-            } else {
+            }else if(checkIfStudentCanBeDeleted()) {
+                Alert cannotDeleteStudent = new Alert(Alert.AlertType.ERROR);
+                cannotDeleteStudent.setTitle("Verwijdering onmogelijk");
+                cannotDeleteStudent.setHeaderText("Gebruiker kan nu niet worden verwijderd.");
+                cannotDeleteStudent.setContentText("Deze student heeft al testresultaten.");
+            }else {
                 userDeleted = userDAO.deleteUser(userToDelete);
 
                 Alert deleteInformation = new Alert(Alert.AlertType.INFORMATION);
@@ -107,5 +116,18 @@ public class ManageUsersController {
             }
         }
         aantalGebruikers.setText(String.format("Het aantal gebruikers met de rol %s is %d", role, sumRole));
+    }
+
+    public boolean checkIfStudentCanBeDeleted() {
+        boolean canBeDeleted = true;
+        User userToDelte = userList.getSelectionModel().getSelectedItem();
+        ArrayList<QuizResult> quizResults = couchDBQuizResultsLauncher.getQuizResultsCouchDAO().getAllQuizResults();
+        for (QuizResult quizResult: quizResults ) {
+            if (quizResult.getIdGebruiker() == userToDelte.getIdUser()) {
+                canBeDeleted = false;
+                break;
+            }
+        }
+        return canBeDeleted;
     }
 }

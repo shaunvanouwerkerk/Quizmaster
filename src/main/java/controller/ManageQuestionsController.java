@@ -123,7 +123,7 @@ public class ManageQuestionsController {
         for (QuizResult quizResult: quizResults ) {
             if (quizResult.getIdQuiz() == vraagOmTeVerwijderen.getIdQuiz()) {
                 canBeDeleted = false;
-                return canBeDeleted;
+                break;
             }
         }
         return canBeDeleted;
