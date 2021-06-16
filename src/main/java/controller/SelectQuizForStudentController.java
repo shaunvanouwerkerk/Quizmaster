@@ -8,14 +8,14 @@ import database.mysql.UserDAO;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import model.Quiz;
 import model.QuizResult;
 import view.CouchDBQuizResultsLauncher;
 import view.Main;
-
 import java.util.ArrayList;
-import java.util.Collections;
+
 
 public class SelectQuizForStudentController {
 
@@ -30,13 +30,14 @@ public class SelectQuizForStudentController {
     ListView<Quiz> quizList;
     @FXML
     public Button teamlogo;
+    @FXML
+    private Label resultLabel;
 
     public void setup() {
         couchDBQuizResultsLauncher.run();
         fillQuizesForStudent();
-        for(Quiz quiz : quizes) {
-            quizList.getItems().add(quiz);
-        }
+
+
         if (quizes.isEmpty()) {
             Alert geenQuizes = new Alert(Alert.AlertType.WARNING);
             geenQuizes.setHeaderText("Je hebt geen Quizen om te selecteren!");
@@ -44,8 +45,17 @@ public class SelectQuizForStudentController {
             geenQuizes.showAndWait();
             Main.getSceneManager().showStudentSignInOutScene();
         }
+
+        for(Quiz quiz : quizes) {
+            quizList.getItems().add(quiz);
+        }
         quizList.getSelectionModel().selectFirst();
-        setLabelQuizResult();
+        QuizResult result = findLatestQuizResult(quizList.getSelectionModel().getSelectedItem().getIdQuiz());
+        if(!(result == null)) {
+            setResultLabel(result, quizList.getSelectionModel().getSelectedItem());
+        } else {
+            resultLabel.setText("");
+        }
     }
 
     public void doMenu() {
@@ -66,14 +76,38 @@ public class SelectQuizForStudentController {
         }
     }
 
-    public void setLabelQuizResult() {
+    public QuizResult findLatestQuizResult(int idQuiz) {
         ArrayList<QuizResult> quizResults = couchDBQuizResultsLauncher.getQuizResultsCouchDAO().getAllQuizResults();
+        QuizResult lastResult = null;
         for (QuizResult quizResult : quizResults) {
-            if(Main.loggedInUser.getIdUser() == quizResult.getIdGebruiker()){
-                System.out.println(quizResult);
-                System.out.println(quizResult.getIdGebruiker());
+            if(Main.loggedInUser.getIdUser() == quizResult.getIdGebruiker() && quizResult.getIdQuiz() == idQuiz){
+                lastResult = quizResult;
+                break;
             }
         }
+        return lastResult;
+    }
+
+    public String checkAndPrintResult(int aantalJuisteAntwoorden, int successDefinition) {
+        StringBuilder result = new StringBuilder();
+        result.append("Vorig resultaat: ");
+
+        if (aantalJuisteAntwoorden >= successDefinition) {
+            result.append("gehaald)");
+        } else {
+            result.append("niet gehaald)");
+        }
+
+        return result.toString();
+    }
+
+    public void setResultLabel(QuizResult quizResult, Quiz quiz) {
+        StringBuilder stringBuilderResult = new StringBuilder();
+        String resultQuiz = checkAndPrintResult(quizResult.getNumberAnswersRight(), quiz.getSuccesDefinition());
+        stringBuilderResult.append(resultQuiz);
+        stringBuilderResult.append("\nAfgenomen op: ");
+        stringBuilderResult.append(quizResult.getDateTimeQuiz().toString());
+        resultLabel.setText(stringBuilderResult.toString());
     }
 
 }
