@@ -1,13 +1,13 @@
 package database.couchDB;
 
+/*
+ * @author Fiona Lampers
+ * */
+
 import com.google.gson.*;
 import database.mysql.DBAccess;
 import database.mysql.QuizDAO;
 import model.QuizResult;
-import model.User;
-
-
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;

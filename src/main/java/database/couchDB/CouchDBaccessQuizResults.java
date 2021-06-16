@@ -1,5 +1,7 @@
 package database.couchDB;
-
+/*
+ * @author Fiona Lampers
+ * */
 import com.google.gson.JsonObject;
 import org.lightcouch.CouchDbClient;
 import org.lightcouch.CouchDbProperties;

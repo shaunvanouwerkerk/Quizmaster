@@ -1,5 +1,7 @@
 package controller;
-
+/*
+ * @author Fiona Lampers
+ * */
 import database.mysql.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -72,7 +74,7 @@ public class ManageGroupsController {
                 sumGroup++;
             }
         }
-        aantalGroupen.setText(String.format("Het aantal groepen in dezelde cursus: %s is %d", String.valueOf
+        aantalGroupen.setText(String.format("Het aantal groepen in dezelfde cursus: %s is %d", String.valueOf
                 (courseDAO.getOneById(idCourse)), sumGroup));
     }
 }

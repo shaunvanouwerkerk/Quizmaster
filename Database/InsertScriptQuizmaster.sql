@@ -42,9 +42,9 @@ INSERT INTO course (nameCourse, idCoordinatorCourse) VALUES ('Programming',22),(
 -- Dumping data for table `group`
 --
 
-INSERT INTO `group`(nameGroup, idCoordinatorGroup, idCourse) VALUES ('TR',23,7), ('BB',22,3), ('QQ',23,4), ('DD',5,2), ('EE',23,6), ('FF',24,3), ('GG',23,4),
- ('HH',24,3), ('II',22,4), ('JJ',23,3), ('KK',23,3), ('LL',24,3), ('STV',22,5), ('PRS',23,3),
-  ('QUARANTEAM',23,6), ('SS',23,5);
+INSERT INTO `group`(nameGroup, idCoordinatorGroup, idCourse) VALUES ('TR',23,1), ('BB',22,3), ('QQ',23,3), ('DD',5,2), ('EE',23,4), ('FF',24,3), ('GG',23,4),
+ ('HH',24,3), ('II',22,4), ('JJ',23,5), ('KK',23,3), ('LL',24,3), ('STV',22,5), ('PRS',23,3),
+  ('QUARANTEAM',23,4), ('SS',23,5);
 
   --
   -- Dumping data for table `quiz`
@@ -87,11 +87,6 @@ INSERT INTO `question` VALUES (1,1,'Which HTML element contains CSS sheets?','<s
 --
 INSERT INTO `quizmaster`.`studentincourse` (`idCourse`, `idStudent`) VALUES ('1', '1'),('2', '1'),('3', '1'),('4', '5'),
 ('1', '6'),('1', '7'),('1', '8'),('1', '8'),('2', '6'),('2', '7'),('2', '8'),('2', '9');
-
---
--- Dumping data for table `usermakesquiz`
---
-
 
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
