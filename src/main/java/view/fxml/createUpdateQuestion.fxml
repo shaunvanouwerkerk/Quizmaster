@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="900.0" stylesheets="@../../../../../Stylesheet/quaranteamStylesheet.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CreateUpdateQuestionController">
+<AnchorPane prefHeight="600.0" prefWidth="900.0" stylesheets="@../../../../Stylesheet/quaranteamStylesheet.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CreateUpdateQuestionController">
    <children>
       <TextField fx:id="questionString" layoutX="301.0" layoutY="209.0" promptText="Voer hier je vraag in" />
       <TextField fx:id="antwoordA" layoutX="301.0" layoutY="242.0" promptText="Antwoord A" />
