@@ -1,5 +1,7 @@
 package controller;
 
+import database.couchDB.CouchDBaccessQuizResults;
+import database.couchDB.QuizResultsCouchDAO;
 import database.mysql.DBAccess;
 import database.mysql.UserDAO;
 import javafx.fxml.FXML;
@@ -21,6 +23,7 @@ public class ManageUsersController {
     private CouchDBQuizResultsLauncher couchDBQuizResultsLauncher;
 
 
+
     @FXML
     private ListView<User> userList;
     @FXML
@@ -28,9 +31,9 @@ public class ManageUsersController {
     @FXML
     public Button teamlogo;
 
-    public ManageUsersController(CouchDBQuizResultsLauncher couchDBQuizResultsLauncher) {
-        this.couchDBQuizResultsLauncher = couchDBQuizResultsLauncher;
+    public ManageUsersController() {
         this.dbAccess = Main.getDBaccess();
+        this.couchDBQuizResultsLauncher = new CouchDBQuizResultsLauncher();
         couchDBQuizResultsLauncher.run();
     }
 
@@ -81,20 +84,16 @@ public class ManageUsersController {
         Optional<ButtonType> result = deleteAlert.showAndWait();
         if (result.get() == ButtonType.OK) {
 
-            //Conditie die checkt of de te verwijderen user zowel een technisch beheerder is én of er na het verwijderen
-            //nog minimaal één technisch beheerder over zal zijn.
+
+                //Conditie die checkt of de te verwijderen user zowel een technisch beheerder is én of er na het verwijderen
+                //nog minimaal één technisch beheerder over zal zijn.
             if (userToDelteIsTechAdmin && deleteTechUser) {
                 Alert cannotDeleteTechAdmin = new Alert(Alert.AlertType.ERROR);
                 cannotDeleteTechAdmin.setTitle("Verwijdering onmogelijk");
                 cannotDeleteTechAdmin.setHeaderText("Gebruiker kan nu niet worden verwijderd.");
                 cannotDeleteTechAdmin.setContentText("Er moet minimaal één Technisch Beheerder zijn na verwijdering.");
                 cannotDeleteTechAdmin.show();
-            }else if(checkIfStudentCanBeDeleted()) {
-                Alert cannotDeleteStudent = new Alert(Alert.AlertType.ERROR);
-                cannotDeleteStudent.setTitle("Verwijdering onmogelijk");
-                cannotDeleteStudent.setHeaderText("Gebruiker kan nu niet worden verwijderd.");
-                cannotDeleteStudent.setContentText("Deze student heeft al testresultaten.");
-            }else {
+            } else {
                 userDeleted = userDAO.deleteUser(userToDelete);
 
                 Alert deleteInformation = new Alert(Alert.AlertType.INFORMATION);
@@ -120,10 +119,10 @@ public class ManageUsersController {
 
     public boolean checkIfStudentCanBeDeleted() {
         boolean canBeDeleted = true;
-        User userToDelte = userList.getSelectionModel().getSelectedItem();
+        User userToDelete = userList.getSelectionModel().getSelectedItem();
         ArrayList<QuizResult> quizResults = couchDBQuizResultsLauncher.getQuizResultsCouchDAO().getAllQuizResults();
         for (QuizResult quizResult: quizResults ) {
-            if (quizResult.getIdGebruiker() == userToDelte.getIdUser()) {
+            if (quizResult.getIdGebruiker() == userToDelete.getIdUser()) {
                 canBeDeleted = false;
                 break;
             }
