@@ -5,12 +5,10 @@ package database.mysql;
  */
 
 import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
 import model.Quiz;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Optional;
 
 public class QuizDAO extends AbstractDAO implements GenericDAO <Quiz> {
 
