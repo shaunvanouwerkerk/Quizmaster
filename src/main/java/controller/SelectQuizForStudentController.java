@@ -1,5 +1,7 @@
 package controller;
 
+//Author Branko Visser
+
 import database.mysql.DBAccess;
 import database.mysql.QuizDAO;
 import database.mysql.UserDAO;
