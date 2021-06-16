@@ -51,13 +51,13 @@ INSERT INTO `group`(nameGroup, idCoordinatorGroup, idCourse) VALUES ('TR',23,7),
   --
 
   INSERT INTO quiz (idCourse, nameQuiz, succesDefinition) VALUES
-  (1,'Basic Programming',8),
-  (2,'Database ontwerp',7),
-  (2,'Database bouw en gebruik',8),
-  (3,'Advanced programming 1',8),
-  (3, 'Advanced programming 2', 6),
-  (4, 'JSON en CouchDB',7),
-  (5, 'GIT commandos',8);
+  (1,'Basic Programming',1),
+  (2,'Database ontwerp',1),
+  (2,'Database bouw en gebruik',1),
+  (3,'Advanced programming 1',1),
+  (3, 'Advanced programming 2', 1),
+  (4, 'JSON en CouchDB',1),
+  (5, 'GIT commandos',1);
 
 --
 -- Dumping data for table `question`
