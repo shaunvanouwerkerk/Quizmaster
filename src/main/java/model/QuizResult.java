@@ -5,6 +5,7 @@ import database.mysql.QuizDAO;
 import view.Main;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class QuizResult implements Comparable<QuizResult>{
     private int idQuiz;
@@ -23,7 +24,10 @@ public class QuizResult implements Comparable<QuizResult>{
     @Override
     public String toString() {
         StringBuilder result = new StringBuilder();
-        result.append(String.format("Datum van indiening: %s\n", dateTimeQuiz.withNano(0)));
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        LocalDateTime date = this.dateTimeQuiz;
+        String formattedDate = formatter.format(date);
+        result.append(String.format("Datum van indiening: %s\n", formattedDate));
         result.append(String.format("Aantal juiste antwoorden: %d\n", numberAnswersRight));
         return result.toString();
     }
