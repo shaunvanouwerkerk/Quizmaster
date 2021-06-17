@@ -62,54 +62,49 @@ public class FillOutQuizController {
             geenVragen.showAndWait();
             Main.getSceneManager().showSelectQuizForStudent();
         }
-
         huidigeQuiz = quiz;
         // Haal alle vragen per Quiz uit de database
         vragenUitQuiz = questionDAO.getAllperQuiz(quiz);
-
         // Sla juiste antwoorden op om die verder te vergelijken met antwoorden van student
         for (Question question: vragenUitQuiz) {
             juisteAntwoorden.add(question.getAnswerA());
         }
-        // Voorkomt indexoutofbound en laat de gebruiker antwoorden herschrijven
-        studentAntwoorden.ensureCapacity(vragenUitQuiz.size());
         // Een vraag uit quiz tonen
-        if (huidigeVraagNr < vragenUitQuiz.size()) {
+        if (huidigeVraagNr <= vragenUitQuiz.size()) {
             showQuestion();
         }
-
-        if(labelHuidigeVraagNr == vragenUitQuiz.size()) {
-            volgende.setText("Afronden");
-        } else {
-            volgende.setText("Volgende");
+        for (int arrayAntwoorden = 0; arrayAntwoorden < vragenUitQuiz.size(); arrayAntwoorden++) {
+            studentAntwoorden.add("");
         }
+        System.out.println(studentAntwoorden.toString());
     }
 
     public void doRegisterA() {
-            studentAntwoorden.add(huidigeVraagNr, antwoordKeuzes[0]);
-            doNextQuestion();
+        studentAntwoorden.set(huidigeVraagNr, antwoordKeuzes[0]);
+        doNextQuestion();
     }
 
     public void doRegisterB() {
-            studentAntwoorden.add(huidigeVraagNr, antwoordKeuzes[1]);
-            doNextQuestion();
+        studentAntwoorden.set(huidigeVraagNr, antwoordKeuzes[1]);
+        doNextQuestion();
     }
 
     public void doRegisterC() {
-            studentAntwoorden.add(huidigeVraagNr, antwoordKeuzes[2]);
-            doNextQuestion();
+        studentAntwoorden.set(huidigeVraagNr, antwoordKeuzes[2]);
+        doNextQuestion();
     }
 
     public void doRegisterD() {
-            studentAntwoorden.add(huidigeVraagNr, antwoordKeuzes[0]);
-            doNextQuestion();
+        studentAntwoorden.set(huidigeVraagNr, antwoordKeuzes[3]);
+        doNextQuestion();
     }
 
     public void doNextQuestion() {
         huidigeVraagNr++;
         labelHuidigeVraagNr++;
+
         if(huidigeVraagNr < vragenUitQuiz.size()) {
-            setup(huidigeQuiz);
+            showQuestion();
         } else if (huidigeVraagNr >= vragenUitQuiz.size()){
           Alert quizAfronden = new Alert(Alert.AlertType.CONFIRMATION);
           quizAfronden.setContentText("Weet je zeker dat je deze quiz wil afsluiten en verzenden?");
@@ -127,8 +122,7 @@ public class FillOutQuizController {
           } else {
               huidigeVraagNr = 0;
               labelHuidigeVraagNr = 1;
-              setup(huidigeQuiz);
-              System.out.println(huidigeVraagNr);
+              showQuestion();
           }
         }
     }
@@ -137,7 +131,7 @@ public class FillOutQuizController {
         if (labelHuidigeVraagNr > 1) {
             huidigeVraagNr--;
             labelHuidigeVraagNr--;
-            setup(huidigeQuiz);
+            showQuestion();
         } else if (labelHuidigeVraagNr == 1) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setContentText("Dit is de eerste vraag van de quiz");
@@ -169,6 +163,8 @@ public class FillOutQuizController {
                 vragenUitQuiz.get(huidigeVraagNr).toString(), antwoordKeuzes[0], antwoordKeuzes[1],
                 antwoordKeuzes[2], antwoordKeuzes[3]));
         titleLabel.setText(String.format("Vraag %d", labelHuidigeVraagNr));
+        System.out.println(studentAntwoorden.toString());
+        setNextButtonText();
     }
 
     public void compareAndCountCorrectAnswers(){
@@ -180,6 +176,14 @@ public class FillOutQuizController {
             } catch (IndexOutOfBoundsException error) {
                 studentAntwoorden.add(teller, "geen antwoord opgegeven");
             }
+        }
+    }
+
+    public void setNextButtonText() {
+        if(labelHuidigeVraagNr == vragenUitQuiz.size()) {
+            volgende.setText("Afronden");
+        } else {
+            volgende.setText("Volgende");
         }
     }
 
