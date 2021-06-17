@@ -1,6 +1,7 @@
 package view;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import database.couchDB.CouchDBaccessCourse;
 import database.couchDB.CourseCouchDAO;
 import database.mysql.CourseDAO;
@@ -8,6 +9,7 @@ import database.mysql.DBAccess;
 import model.Course;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class CouchDBCourseLauncher {
 
@@ -68,11 +70,19 @@ public class CouchDBCourseLauncher {
         System.out.println(cursus2);
         System.out.println("================================================================");
 
-
         //Een cursus op halen uit CouchDb
         Course courseId = courseCouchDAO.getCourseByDocId("3d925f5d225644a0a84d39d9a2e788d2");
         System.out.println("Course uit COUCH DB: \n" + courseId);
         System.out.println("================================================================");
+
+        //Een view met een reduce halen uit couchDB
+        List<JsonObject> reducer = couchDBaccessCourse.getClient().view("Views/Toon het aantal cursussen per coordinator").reduce(true).groupLevel(1).query(JsonObject.class);
+        for (JsonObject js : reducer) {
+            System.out.println(js);
+        }
+
     }
+
+
 
 }
