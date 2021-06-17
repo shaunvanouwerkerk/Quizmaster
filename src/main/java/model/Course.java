@@ -10,10 +10,7 @@ public class Course {
     private int idCoordinator;
 
     //constructors
-    public Course(int idCourse, String nameCourse, int idCoordinator)throws IllegalArgumentException {
-        if (idCoordinator < 0){
-            throw new IllegalArgumentException();
-        }
+    public Course(int idCourse, String nameCourse, int idCoordinator) {
         this.idCourse = idCourse;
         this.nameCourse = nameCourse;
         this.idCoordinator = idCoordinator;
