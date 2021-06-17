@@ -103,8 +103,8 @@ public class SelectQuizForStudentController {
         }
 
         result.append(String.format("\nJe had %d antwoorden goed.\n", aantalJuisteAntwoorden));
-        result.append(String.format(String.format("\nDe cescuur van deze Quiz is %d vrag(en) goed.",
-                successDefinition)));
+        result.append(String.format("\nDe cescuur van deze Quiz is %d vrag(en) goed.",
+                successDefinition));
 
         return result.toString();
     }
