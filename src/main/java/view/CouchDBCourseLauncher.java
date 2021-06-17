@@ -5,9 +5,7 @@ import database.couchDB.CouchDBaccessCourse;
 import database.couchDB.CourseCouchDAO;
 import database.mysql.CourseDAO;
 import database.mysql.DBAccess;
-import database.mysql.QuizDAO;
 import model.Course;
-import model.Quiz;
 
 import java.util.ArrayList;
 
