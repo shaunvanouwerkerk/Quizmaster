@@ -118,7 +118,7 @@ public class  ManageQuizzesController {
             }
     }
 
-    // Method om waarschuwing te geven bij verwijden
+    // Method om waarschuwing te geven bij verwijderen
     public void warningQuizDelete () {
         Alert deleteAlert = new Alert(Alert.AlertType.CONFIRMATION);
         deleteAlert.setTitle("Verwijder quiz");
