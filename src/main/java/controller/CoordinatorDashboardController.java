@@ -139,6 +139,7 @@ public class CoordinatorDashboardController {
             deleteAlert.setHeaderText("Er bestaan geen vragen bij deze quiz.");
             Optional<ButtonType> result = deleteAlert.showAndWait();
         }
+        // Methode die waarschuwing geeft als er geen quiz aanwezig is
         public void checkExistanceOfQuizes () {
             Alert deleteAlert = new Alert(Alert.AlertType.ERROR);
             deleteAlert.setTitle("Geen quiz aanwezig");

@@ -37,8 +37,8 @@ class QuizTest {
         quizen.add(quiz3);
         quizen.add(quiz4);
 
-        int actual = quizen.lastIndexOf(quiz3);
-        int expected = 2;
+        int actual = quizen.size();
+        int expected = 4;
         assertEquals(expected,actual);
         }
 
